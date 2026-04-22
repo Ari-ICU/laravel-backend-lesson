@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layout, Book, Lightbulb, Code2, ArrowRight, ArrowLeft, Layers, Globe, ChevronRight, HelpCircle, CheckCircle2, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
+import { DeploymentAnimation } from './animations/DeploymentAnimation';
+import { PerformanceAnimation } from './animations/PerformanceAnimation';
+import { SecurityAnimation } from './animations/SecurityAnimation';
+import { DatabaseAnimation } from './animations/DatabaseAnimation';
+import { Trophy } from 'lucide-react';
 
 interface SlideViewerProps {
   slide: Slide;
@@ -19,10 +24,27 @@ interface SlideViewerProps {
   lessonTitle?: string;
 }
 
+const FIELD_NOTES_KEY = 'laravel-masterclass-notes';
+
 export function SlideViewer({ 
   slide, onNext, onPrev, isFirst, isLast, currentSlideIndex, totalSlides, moduleTitle, lessonTitle 
 }: SlideViewerProps) {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [note, setNote] = useState("");
+  const [showNotes, setShowNotes] = useState(false);
+  
+  // Load notes from localStorage
+  useEffect(() => {
+    const savedNotes = JSON.parse(localStorage.getItem(FIELD_NOTES_KEY) || '{}');
+    setNote(savedNotes[slide.id] || "");
+  }, [slide.id]);
+
+  const saveNote = (value: string) => {
+    setNote(value);
+    const savedNotes = JSON.parse(localStorage.getItem(FIELD_NOTES_KEY) || '{}');
+    savedNotes[slide.id] = value;
+    localStorage.setItem(FIELD_NOTES_KEY, JSON.stringify(savedNotes));
+  };
   
   // Reset selection when slide changes
   useEffect(() => {
@@ -75,7 +97,18 @@ export function SlideViewer({
       case 'concept': return <Layers className="w-6 h-6" />;
       case 'intro': return <Globe className="w-6 h-6" />;
       case 'quiz': return <HelpCircle className="w-6 h-6" />;
+      case 'summary': return <Trophy className="w-6 h-6" />;
       default: return <Book className="w-6 h-6" />;
+    }
+  };
+
+  const renderAnimation = () => {
+    switch (slide.animation) {
+      case 'deployment': return <DeploymentAnimation />;
+      case 'performance': return <PerformanceAnimation />;
+      case 'security': return <SecurityAnimation />;
+      case 'database': return <DatabaseAnimation />;
+      default: return null;
     }
   };
 
@@ -85,7 +118,8 @@ export function SlideViewer({
       <div className={cn(
         "absolute inset-0 opacity-10 blur-[150px] transition-all duration-1000",
         slide.type === 'code' ? "bg-emerald-500/20" : 
-        slide.type === 'quiz' ? "bg-amber-500/10" : "bg-primary/20"
+        slide.type === 'quiz' ? "bg-amber-500/10" : 
+        slide.type === 'summary' ? "bg-primary/40" : "bg-primary/20"
       )} />
 
       {/* Header with Breadcrumbs */}
@@ -106,7 +140,10 @@ export function SlideViewer({
             )}>
               {getIcon()}
             </div>
-            <h1 className="text-4xl font-black tracking-tight text-white">
+            <h1 className={cn(
+              "text-4xl font-black tracking-tight text-white",
+              slide.type === 'summary' && "text-5xl text-primary"
+            )}>
               {slide.title}
             </h1>
           </div>
@@ -131,6 +168,16 @@ export function SlideViewer({
           </div>
 
           <div className="flex gap-2">
+            <button 
+              onClick={() => setShowNotes(!showNotes)}
+              className={cn(
+                "w-12 h-12 rounded-2xl flex items-center justify-center transition-all border border-white/5",
+                showNotes ? "bg-primary text-white" : "hover:bg-white/10 text-white/60 hover:text-white"
+              )}
+              title="Field Notes"
+            >
+              <Book className="w-5 h-5" />
+            </button>
             <button 
               onClick={onPrev}
               disabled={isFirst}
@@ -201,6 +248,17 @@ export function SlideViewer({
                   </motion.div>
                 ))}
               </div>
+
+              {slide.animation && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="w-full flex justify-center py-10"
+                >
+                  {renderAnimation()}
+                </motion.div>
+              )}
 
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
@@ -305,6 +363,50 @@ export function SlideViewer({
           </motion.div>
         </AnimatePresence>
       </main>
+
+      {/* Field Notes Sidebar Overlay */}
+      <AnimatePresence>
+        {showNotes && (
+          <motion.div
+            initial={{ x: 400, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 400, opacity: 0 }}
+            className="absolute right-0 top-0 bottom-0 w-[400px] bg-black/40 backdrop-blur-3xl border-l border-white/10 z-50 p-12 flex flex-col gap-8 shadow-[-50px_0_100px_rgba(0,0,0,0.5)]"
+          >
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+                  <Book className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-black text-white">Field Notes</h3>
+              </div>
+              <button 
+                onClick={() => setShowNotes(false)}
+                className="w-10 h-10 rounded-xl hover:bg-white/10 flex items-center justify-center transition-colors"
+              >
+                <ChevronRight className="w-6 h-6 text-white/40" />
+              </button>
+            </div>
+
+            <div className="flex-1 flex flex-col gap-4">
+              <p className="text-xs font-bold text-white/30 uppercase tracking-[0.2em]">Personal Thoughts for this Slide</p>
+              <textarea
+                value={note}
+                onChange={(e) => saveNote(e.target.value)}
+                placeholder="Type your notes here... (auto-saved)"
+                className="flex-1 bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 text-white/80 text-xl font-medium resize-none focus:outline-none focus:border-primary/50 transition-all placeholder:text-white/10 leading-relaxed"
+              />
+            </div>
+
+            <div className="p-8 rounded-3xl bg-primary/5 border border-primary/20 flex items-start gap-4">
+              <Lightbulb className="w-6 h-6 text-primary shrink-0" />
+              <p className="text-xs font-medium text-primary/80 leading-relaxed">
+                Your notes are saved locally to your browser. You can access them anytime you revisit this slide.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

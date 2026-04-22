@@ -10,14 +10,14 @@ export const part1: Part = {
       lessons: [
         {
           id: '0.1',
-          title: 'Welcome to Backend Mastery',
+          title: 'Welcome to Laravel',
           slides: [
             {
               id: '0.1.1',
               title: 'Course Objective',
               type: 'intro',
               content: [
-                'Welcome to the **Laravel Backend Masterclass**.',
+                'Welcome to the **Laravel Backend**.',
                 'The goal of this course is to take you from a beginner to a **Production-Ready Backend Developer**.',
                 'We will focus on logic, security, and professional architecture.'
               ],
@@ -227,6 +227,19 @@ export const part1: Part = {
             },
             {
               id: '1.2.1',
+              title: 'Running PHP (របៀបដំណើរការ PHP)',
+              type: 'code',
+              content: [
+                'You can run PHP scripts directly in your terminal.',
+                'This is called **CLI Mode** (Command Line Interface).',
+                'It is much faster for testing logic than using a web server.'
+              ],
+              code: '# Run a PHP file\nphp filename.php\n\n# Check your version\nphp -v\n\n# Interactive mode (Shell)\nphp -a',
+              language: 'bash',
+              insight: 'The "php -S" command can also start a temporary local web server.'
+            },
+            {
+              id: '1.2.2',
               title: 'PHP Syntax & Variables',
               type: 'code',
               content: [
@@ -239,7 +252,21 @@ export const part1: Part = {
               insight: 'Variable names are case-sensitive ($age is different from $Age).'
             },
             {
-              id: '1.2.2',
+              id: '1.2.3',
+              title: 'Handling User Input (ការទទួលទិន្នន័យ)',
+              type: 'code',
+              content: [
+                'PHP uses **Superglobals** to receive data from users.',
+                '**$_GET**: Receives data via URL parameters (e.g., ?id=1).',
+                '**$_POST**: Receives data via HTTP body (used for forms).',
+                '**readline()**: Used to get input in CLI applications.'
+              ],
+              code: '<?php\n// Web Input (URL: ?name=Ratha)\n$name = $_GET["name"];\necho "Hello, " . $name;\n\n// CLI Input\n$input = readline("Enter your age: ");\necho "You are " . $input . " years old.";\n?>',
+              language: 'php',
+              insight: 'Never trust user input! Always sanitize it before displaying or using it in a database.'
+            },
+            {
+              id: '1.2.4',
               title: 'Core Data Types',
               type: 'code',
               content: [
@@ -253,7 +280,7 @@ export const part1: Part = {
               language: 'php'
             },
             {
-              id: '1.2.3',
+              id: '1.2.5',
               title: 'Control Structures: Logic',
               type: 'code',
               content: [
@@ -267,7 +294,7 @@ export const part1: Part = {
               insight: 'Always use === (Identical) to check both value and data type for better security.'
             },
             {
-              id: '1.2.4',
+              id: '1.2.6',
               title: 'Control Structures: Loops',
               type: 'code',
               content: [
@@ -279,7 +306,7 @@ export const part1: Part = {
               language: 'php'
             },
             {
-              id: '1.2.5',
+              id: '1.2.7',
               title: 'Functions',
               type: 'code',
               content: [
@@ -291,7 +318,7 @@ export const part1: Part = {
               language: 'php'
             },
             {
-              id: '1.2.6',
+              id: '1.2.8',
               title: 'OOP: Classes & Objects',
               type: 'code',
               content: [
@@ -304,7 +331,7 @@ export const part1: Part = {
               language: 'php'
             },
             {
-              id: '1.2.7',
+              id: '1.2.9',
               title: 'OOP: Inheritance',
               type: 'code',
               content: [
@@ -317,7 +344,7 @@ export const part1: Part = {
               insight: 'Laravel Controllers inherit from a base Controller class.'
             },
             {
-              id: '1.2.8',
+              id: '1.2.10',
               title: 'Composer & Packages',
               type: 'code',
               content: [
@@ -329,7 +356,7 @@ export const part1: Part = {
               language: 'bash'
             },
             {
-              id: '1.2.9',
+              id: '1.2.11',
               title: 'Practice Lab: Simple Math',
               type: 'concept',
               isList: false,
@@ -342,7 +369,7 @@ export const part1: Part = {
               insight: 'Practice is the only way to master programming logic.'
             },
             {
-              id: '1.2.10',
+              id: '1.2.12',
               title: 'Module 1.2 Quiz',
               type: 'quiz',
               content: [
@@ -558,7 +585,8 @@ export const part1: Part = {
                 'We will now set up your first professional Laravel project.',
                 'There are a few prerequisites we need to verify first.',
                 'Step-by-step: From empty folder to working website.'
-              ]
+              ],
+              animation: 'deployment'
             },
             {
               id: '2.2.1',

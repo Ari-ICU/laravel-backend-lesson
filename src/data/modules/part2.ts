@@ -295,6 +295,7 @@ export const part2: Part = {
                 'Laravel supports MySQL, PostgreSQL, SQLite, and SQL Server out of the box.',
                 'The **.env** file is where we store our credentials securely.'
               ],
+              animation: 'database',
               insight: 'Never commit your .env file to version control (Git).'
             },
             {

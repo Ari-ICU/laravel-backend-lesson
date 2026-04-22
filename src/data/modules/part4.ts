@@ -263,6 +263,7 @@ export const part4: Part = {
                 'Security, speed, and stability are the top priorities.',
                 'Laravel provides several built-in tools to help you switch smoothly.'
               ],
+              animation: 'deployment',
               insight: 'Never "test in production". Always use a staging environment first.'
             },
             {
@@ -333,7 +334,8 @@ export const part4: Part = {
                 'Laravel protects you from most common attacks out of the box.',
                 'However, you still need to follow best practices.',
                 'We will cover XSS, CSRF, and SQL Injection.'
-              ]
+              ],
+              animation: 'security'
             },
             {
               id: '12.3.1',
@@ -371,7 +373,8 @@ export const part4: Part = {
                 'As your app grows, simple tasks can become slow.',
                 'We use Caching, Queues, and Database tuning to keep it fast.',
                 'A fast app is a happy user.'
-              ]
+              ],
+              animation: 'performance'
             },
             {
               id: '12.4.1',

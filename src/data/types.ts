@@ -14,6 +14,7 @@ export interface Slide {
   correctAnswer?: number;
   link?: string;
   linkText?: string;
+  animation?: 'deployment' | 'security' | 'performance' | 'database';
 }
 
 export interface Lesson {

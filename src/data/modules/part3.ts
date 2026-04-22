@@ -21,6 +21,7 @@ export const part3: Part = {
                 'However, they are also a major source of security vulnerabilities.',
                 'Laravel provides built-in protection for every single form.'
               ],
+              animation: 'security',
               insight: 'Security is not an "Add-on" in Laravel; it\'s built into the core.'
             },
             {
@@ -153,7 +154,8 @@ export const part3: Part = {
                 'Authentication is hard to get right and dangerous to get wrong.',
                 'Laravel provides official "Starter Kits" that handle everything for you.',
                 'Includes login, registration, password reset, and verification.'
-              ]
+              ],
+              animation: 'security'
             },
             {
               id: '7.1.1',
