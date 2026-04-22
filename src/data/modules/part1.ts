@@ -223,7 +223,7 @@ export const part1: Part = {
                 'It is the language that powers over **75% of the web**.',
                 'Designed specifically for web development, PHP is fast, flexible, and pragmatic.'
               ],
-              insight: 'PHP is the foundation of Laravel. Master the language, master the framework.'
+              insight: 'PHP is the foundation of Laravel. Learn the language, understand the framework.'
             },
             {
               id: '1.2.1',
@@ -366,7 +366,7 @@ export const part1: Part = {
                 '3. Output the result using `echo`.',
                 '4. Bonus: Use an array to calculate areas for multiple rectangles.'
               ],
-              insight: 'Practice is the only way to master programming logic.'
+              insight: 'Practice is the only way to develop programming logic.'
             },
             {
               id: '1.2.12',
@@ -673,7 +673,7 @@ export const part1: Part = {
               content: [
                 '**Artisan** is the command-line companion for your Laravel projects.',
                 'It allows you to generate code, manage databases, and run tests instantly.',
-                'Mastering Artisan will cut your development time in half.'
+                'Learning Artisan will cut your development time in half.'
               ],
               insight: 'The best developers use CLI tools to automate repetitive tasks.'
             },

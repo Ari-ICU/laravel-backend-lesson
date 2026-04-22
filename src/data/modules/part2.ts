@@ -19,7 +19,7 @@ export const part2: Part = {
               content: [
                 '**Routing** is how Laravel handles incoming requests.',
                 'It directs a URL to a specific piece of logic (a Closure or a Controller).',
-                'In this lesson, we will master how to map URLs to actions.'
+                'In this lesson, we will learn how to map URLs to actions.'
               ],
               insight: 'Think of routes as the "Traffic Controller" of your application.'
             },
@@ -198,13 +198,13 @@ export const part2: Part = {
               type: 'intro',
               content: [
                 'Don\'t repeat your HTML header and footer on every page.',
-                'Use **Layout Inheritance** to define a master structure once.',
+                'Use **Layout Inheritance** to define a main structure once.',
                 'We will learn about `@extends`, `@yield`, and `@section`.'
               ]
             },
             {
               id: '4.2.1',
-              title: 'The Master Layout',
+              title: 'The Main Layout',
               type: 'code',
               content: [
                 'Define a `layout.blade.php` with placeholders using `@yield`.',
@@ -218,10 +218,10 @@ export const part2: Part = {
               title: 'Extending a Layout',
               type: 'code',
               content: [
-                'Child views "extend" the master layout and fill the sections.',
+                'Child views "extend" the main layout and fill the sections.',
                 'Use `@section` to provide content for the `@yield` placeholders.'
               ],
-              code: '@extends("layouts.app")\n\n@section("content")\n    <h1>Welcome to my Homepage!</h1>\n    <p>This content is injected into the master layout.</p>\n@endsection',
+              code: '@extends("layouts.app")\n\n@section("content")\n    <h1>Welcome to my Homepage!</h1>\n    <p>This content is injected into the main layout.</p>\n@endsection',
               language: 'php'
             },
             {

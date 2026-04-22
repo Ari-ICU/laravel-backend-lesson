@@ -13,7 +13,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Laravel Masterclass | Backend Development",
+  title: "Laravel Expert Course | Backend Development",
   description: "A comprehensive course on backend development using Laravel.",
 };
 

@@ -482,7 +482,7 @@ export const part4: Part = {
               title: 'Congratulations!',
               type: 'summary',
               content: [
-                'You have completed the **Laravel Backend Masterclass**.',
+                'You have completed the **Laravel Backend Expert Course**.',
                 'From PHP basics to production-ready deployment.',
                 'You now have the skills to build professional, secure, and fast applications.'
               ],

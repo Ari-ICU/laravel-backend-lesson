@@ -276,7 +276,7 @@ export const part3: Part = {
               content: [
                 'Real-world data is connected (Users have Posts, Posts have Comments).',
                 'Eloquent makes these connections feel like simple object properties.',
-                'We will master the common and advanced relationship types.'
+                'We will learn the common and advanced relationship types.'
               ]
             },
             {
