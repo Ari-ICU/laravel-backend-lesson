@@ -29,6 +29,13 @@ interface SlideViewerProps {
 
 const FIELD_NOTES_KEY = 'laravel-course-notes';
 
+const renderText = (text: string | { kh: string; en: string } | undefined) => {
+  if (!text) return '';
+  if (typeof text === 'string') return text;
+  // In the future, this can use a language state. For now, default to English.
+  return text.en;
+};
+
 export function SlideViewer({
   slide, onNext, onPrev, isFirst, isLast,
   currentSlideIndex, totalSlides, moduleTitle, lessonTitle
@@ -237,12 +244,12 @@ export function SlideViewer({
             </motion.h1>
 
             {/* ── CONTENT BULLETS ── */}
-            {slide.content && slide.content.length > 0 && (
+            {((slide.content && slide.content.length > 0) || (slide.body && slide.body.length > 0)) && (
               <div className={cn(
                 'flex flex-col gap-6',
                 slide.type === 'quiz' && 'gap-4'
               )}>
-                {slide.content.map((paragraph, idx) => (
+                {(slide.content || slide.body || []).map((paragraph, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, x: -24 }}
@@ -256,12 +263,8 @@ export function SlideViewer({
                     {slide.isList !== false && slide.type !== 'quiz' && (
                       <span className="mt-2.5 w-3 h-3 rounded-full bg-primary shrink-0 shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
                     )}
-                    {/* 
-                      PROJECTOR KEY: text-3xl minimum, high contrast white 
-                      so everyone in the room can read it
-                    */}
                     <p className="text-3xl font-semibold text-white/90 leading-snug">
-                      {paragraph.split('**').map((part, i) =>
+                      {renderText(paragraph).split('**').map((part, i) =>
                         i % 2 === 1
                           ? <span key={i} className="text-primary font-black">{part}</span>
                           : part
@@ -316,7 +319,7 @@ export function SlideViewer({
                   <p className="text-xs font-black text-amber-400 uppercase tracking-[0.3em] mb-2">Key Takeaway</p>
                   {/* Large italic quote — readable at the back of the room */}
                   <p className="text-3xl text-white font-bold italic leading-snug">
-                    "{slide.insight}"
+                    "{renderText(slide.insight)}"
                   </p>
                 </div>
               </motion.div>
@@ -352,7 +355,7 @@ export function SlideViewer({
                       )}
                     >
                       {/* Large option label for class visibility */}
-                      <span className="text-2xl font-bold leading-snug">{option}</span>
+                      <span className="text-2xl font-bold leading-snug">{renderText(option)}</span>
                       {showFeedback && isCorrect && <CheckCircle2 className="w-9 h-9 shrink-0" />}
                       {showFeedback && isSelected && !isCorrect && <XCircle className="w-9 h-9 shrink-0" />}
                     </motion.button>
