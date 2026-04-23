@@ -4,8 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { SlideViewer } from '@/components/SlideViewer';
 import { curriculum } from '@/data/curriculum';
-import { motion } from 'framer-motion';
-import { Rocket, Sparkles, BookOpen, Clock, Users, Monitor } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Rocket, Sparkles, BookOpen, Clock, 
+  Users, Monitor, ChevronRight, Zap,
+  Terminal, ShieldCheck, Database, Cpu
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { CurriculumOverlay } from '@/components/CurriculumOverlay';
 
 export default function Home() {
   const [activeModuleId, setActiveModuleId] = useState<string | undefined>(undefined);
@@ -13,6 +19,7 @@ export default function Home() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [view, setView] = useState<'intro' | 'slides'>('intro');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isCommandCenterOpen, setIsCommandCenterOpen] = useState(false);
 
   // Load state from localStorage on mount
   useEffect(() => {
@@ -31,6 +38,20 @@ export default function Home() {
     if (savedView) setView(savedView as 'intro' | 'slides');
     
     setIsLoaded(true);
+  }, []);
+
+  // Keyboard shortcuts for global navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') return;
+
+      if (e.key.toLowerCase() === 'k') {
+        setIsCommandCenterOpen(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // Save state to localStorage when it changes
@@ -52,9 +73,16 @@ export default function Home() {
       setCurrentSlideIndex(prev => prev + 1);
     } else {
       const allModules = curriculum.flatMap(p => p.modules);
+      const moduleIdx = allModules.findIndex(m => m.id === activeModuleId);
       const lessonIdx = currentModule?.lessons.indexOf(currentLesson!) ?? -1;
+      
       if (currentModule && lessonIdx < currentModule.lessons.length - 1) {
         setActiveLessonId(currentModule.lessons[lessonIdx + 1].id);
+        setCurrentSlideIndex(0);
+      } else if (moduleIdx < allModules.length - 1) {
+        const nextModule = allModules[moduleIdx + 1];
+        setActiveModuleId(nextModule.id);
+        setActiveLessonId(nextModule.lessons[0].id);
         setCurrentSlideIndex(0);
       }
     }
@@ -62,6 +90,23 @@ export default function Home() {
 
   const handlePrev = () => {
     if (currentSlideIndex > 0) setCurrentSlideIndex(prev => prev - 1);
+    else {
+      const allModules = curriculum.flatMap(p => p.modules);
+      const moduleIdx = allModules.findIndex(m => m.id === activeModuleId);
+      const lessonIdx = currentModule?.lessons.indexOf(currentLesson!) ?? -1;
+
+      if (currentModule && lessonIdx > 0) {
+        const prevLesson = currentModule.lessons[lessonIdx - 1];
+        setActiveLessonId(prevLesson.id);
+        setCurrentSlideIndex(prevLesson.slides.length - 1);
+      } else if (moduleIdx > 0) {
+        const prevModule = allModules[moduleIdx - 1];
+        setActiveModuleId(prevModule.id);
+        const prevLesson = prevModule.lessons[prevModule.lessons.length - 1];
+        setActiveLessonId(prevLesson.id);
+        setCurrentSlideIndex(prevLesson.slides.length - 1);
+      }
+    }
   };
 
   const handleSelectLesson = (moduleId: string, lessonId: string, slideIndex: number = 0) => {
@@ -71,142 +116,154 @@ export default function Home() {
     setView('slides');
   };
 
-  // Prevent rendering before state is restored to avoid flickering
-  if (!isLoaded) return <div className="h-screen bg-[#0a0a0f]" />;
+  if (!isLoaded) return <div className="h-screen bg-background" />;
 
-  // ── Intro / Landing ──────────────────────────────────────────────
-  if (view === 'intro') {
-    return (
-      <div className="flex h-screen bg-[#0a0a0f] overflow-hidden">
-
-        {/* Sidebar still accessible on intro */}
-        <Sidebar
-          activeModuleId={activeModuleId}
-          activeLessonId={activeLessonId}
-          activeSlideIndex={currentSlideIndex}
-          onSelectLesson={handleSelectLesson}
-        />
-
-        {/* Hero area */}
-        <main className="flex-1 flex flex-col items-center justify-center px-16 relative overflow-hidden">
-
-          {/* Ambient background */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_40%,rgba(99,102,241,0.13),transparent)] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center max-w-4xl relative z-10"
-          >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.09] text-xs font-black text-primary uppercase tracking-[0.25em] mb-10">
-              <Sparkles className="w-4 h-4" />
-              Expert Backend Engineering
-            </div>
-
-            {/* 
-              PROJECTOR KEY: massive title — readable from anywhere in the room.
-              Use very high-contrast white + branded accent.
-            */}
-            <h1 className="text-[5.5rem] font-black tracking-tight leading-[1.05] mb-8 text-white">
-              Laravel{' '}
-              <span className="text-primary drop-shadow-[0_0_40px_rgba(99,102,241,0.5)]">
-                Expert Course
-              </span>
-            </h1>
-
-            <p className="text-2xl text-white/60 font-medium leading-relaxed mb-14 max-w-2xl mx-auto">
-              Deep dive into scalable backend development —
-              from fundamentals to enterprise architecture.
-            </p>
-
-            {/* Stats row */}
-            <div className="grid grid-cols-3 gap-5 mb-12">
-              {[
-                { icon: BookOpen, label: '12 Modules', sub: 'Comprehensive' },
-                { icon: Clock,    label: '24 Hours',   sub: 'Course Length' },
-                { icon: Users,    label: 'Live Q&A',   sub: 'Expert Support' },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
-                  className="flex flex-col items-center gap-3 py-6 px-4 rounded-3xl bg-white/[0.04] border border-white/[0.07]"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center">
-                    <item.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-xl font-black text-white">{item.label}</p>
-                  <p className="text-[10px] font-bold text-white/25 uppercase tracking-[0.2em]">{item.sub}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* CTA buttons */}
-            <div className="flex items-center justify-center gap-4">
-              <motion.button
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 }}
-                onClick={() => setView('slides')}
-                className="px-10 py-5 bg-primary text-white rounded-2xl font-black text-lg uppercase tracking-widest shadow-2xl shadow-primary/30 hover:brightness-110 hover:scale-[1.03] active:scale-95 transition-all flex items-center gap-3 group"
-              >
-                <Rocket className="w-6 h-6 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-                Start Learning
-              </motion.button>
-
-              {/* Projector mode hint */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/[0.04] border border-white/[0.07] text-white/30 text-sm font-bold"
-              >
-                <Monitor className="w-5 h-5" />
-                Projector-ready
-              </motion.div>
-            </div>
-          </motion.div>
-        </main>
-      </div>
-    );
-  }
-
-  // ── Slides view ───────────────────────────────────────────────────
   return (
-    <div className="flex h-screen bg-[#0a0a0f] overflow-hidden">
+    <div className="flex h-screen bg-background overflow-hidden selection:bg-primary/30">
       <Sidebar
         activeModuleId={activeModuleId}
         activeLessonId={activeLessonId}
         activeSlideIndex={currentSlideIndex}
         onSelectLesson={handleSelectLesson}
+        onOpenCommandCenter={() => setIsCommandCenterOpen(true)}
       />
 
-      {currentSlide ? (
-        <SlideViewer
-          slide={currentSlide}
-          onNext={handleNext}
-          onPrev={handlePrev}
-          isFirst={currentSlideIndex === 0 && activeLessonId === curriculum[0].modules[0].lessons[0].id}
-          isLast={
-            currentLesson
-              ? currentSlideIndex === currentLesson.slides.length - 1 &&
-                activeLessonId === curriculum.flatMap(p => p.modules).at(-1)?.lessons.at(-1)?.id
-              : false
-          }
-          currentSlideIndex={currentSlideIndex}
-          totalSlides={currentLesson?.slides.length || 0}
-          moduleTitle={currentModule?.title}
-          lessonTitle={currentLesson?.title}
-        />
-      ) : (
-        <div className="flex-1 flex items-center justify-center">
-          <p className="text-white/20 text-xl font-semibold">Select a lesson to begin</p>
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {view === 'intro' ? (
+          <motion.main
+            key="intro"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex-1 relative overflow-hidden flex flex-col"
+          >
+            {/* Hero Content */}
+            <div className="flex-1 flex flex-col items-center justify-center px-20 relative z-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-20 h-20 rounded-[2rem] bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-2xl"
+              >
+                <Zap className="w-10 h-10 text-primary fill-primary/20" />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-center max-w-5xl"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-8">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Next-Gen Backend Engineering
+                </div>
+
+                <h1 className="text-[7rem] font-black tracking-tighter leading-[0.9] mb-10 text-white">
+                  Laravel <span className="gradient-text">Expert</span>
+                  <br />Masterclass
+                </h1>
+
+                <p className="text-3xl text-white/40 font-medium leading-relaxed mb-16 max-w-3xl mx-auto">
+                  The definitive curriculum for building elite-grade, 
+                  high-performance applications with the world's most 
+                  loved PHP framework.
+                </p>
+
+                <div className="flex items-center justify-center gap-6">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setView('slides')}
+                    className="px-12 py-6 bg-white text-black rounded-[2rem] font-black text-xl uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(255,255,255,0.1)] flex items-center gap-4 group"
+                  >
+                    <Rocket className="w-6 h-6 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                    Initialize Course
+                  </motion.button>
+
+                  <div className="flex items-center gap-3 px-8 py-6 rounded-[2rem] bg-white/[0.03] border border-white/[0.06] text-white/30 text-sm font-bold">
+                    <Monitor className="w-5 h-5 opacity-40" />
+                    Projector Ready
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Stats Bar */}
+            <div className="px-20 py-10 border-t border-white/[0.03] bg-black/20 backdrop-blur-xl relative z-10">
+              <div className="grid grid-cols-4 gap-10 max-w-7xl mx-auto">
+                {[
+                  { icon: BookOpen, label: '12 Modules', sub: 'Comprehensive Path', color: 'text-primary' },
+                  { icon: Terminal, label: 'Live Code', sub: 'Hands-on Learning', color: 'text-secondary' },
+                  { icon: ShieldCheck, label: 'Security', sub: 'Enterprise Focus', color: 'text-primary' },
+                  { icon: Database, label: 'Scale', sub: 'Database Mastery', color: 'text-secondary' },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + i * 0.1 }}
+                    className="flex items-center gap-5 group"
+                  >
+                    <div className={cn("w-14 h-14 rounded-2xl bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:border-white/20 transition-all", item.color)}>
+                      <item.icon className="w-7 h-7" />
+                    </div>
+                    <div>
+                      <p className="text-xl font-black text-white">{item.label}</p>
+                      <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest">{item.sub}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.main>
+        ) : (
+          <motion.div
+            key="slides"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex-1 relative flex flex-col"
+          >
+            {currentSlide ? (
+              <SlideViewer
+                slide={currentSlide}
+                onNext={handleNext}
+                onPrev={handlePrev}
+                isFirst={currentSlideIndex === 0 && activeModuleId === curriculum[0].modules[0].id && activeLessonId === curriculum[0].modules[0].lessons[0].id}
+                isLast={
+                  currentLesson
+                    ? currentSlideIndex === currentLesson.slides.length - 1 &&
+                      activeModuleId === curriculum.flatMap(p => p.modules).at(-1)?.id &&
+                      activeLessonId === curriculum.flatMap(p => p.modules).at(-1)?.lessons.at(-1)?.id
+                    : false
+                }
+                currentSlideIndex={currentSlideIndex}
+                totalSlides={currentLesson?.slides.length || 0}
+                moduleTitle={currentModule?.title}
+                lessonTitle={currentLesson?.title}
+              />
+            ) : (
+              <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05),transparent)]" />
+                <div className="text-center relative z-10">
+                  <div className="w-16 h-16 rounded-full bg-white/[0.03] border border-white/5 flex items-center justify-center mx-auto mb-6">
+                    <Cpu className="w-8 h-8 text-white/20 animate-spin-slow" />
+                  </div>
+                  <p className="text-white/20 text-xl font-black uppercase tracking-[0.2em]">Select a module to begin</p>
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Global Curriculum Command Center */}
+      <CurriculumOverlay 
+        isOpen={isCommandCenterOpen}
+        onClose={() => setIsCommandCenterOpen(false)}
+        onSelectLesson={handleSelectLesson}
+        activeLessonId={activeLessonId}
+      />
     </div>
   );
 }

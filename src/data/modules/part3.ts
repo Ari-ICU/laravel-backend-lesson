@@ -17,9 +17,9 @@ export const part3: Part = {
               title: 'ការគ្រប់គ្រង User Input',
               type: 'intro',
               content: [
-                'Forms គឺជាវិធីសំខាន់បំផុតដែល user ប្រើដើម្បីផ្ញើទិន្នន័យ (input) មកកាន់ application របស់អ្នក ដូចជា form ចុះឈ្មោះ, login ឬបញ្ចូលព័ត៌មានផ្សេងៗ។',
-                'ប៉ុន្តែ forms ក៏អាចជាប្រភពនៃបញ្ហាសុវត្ថិភាព ដូចជា XSS ឬ CSRF ប្រសិនបើយើងមិនគ្រប់គ្រងឲ្យបានត្រឹមត្រូវ។',
-                'Laravel ផ្តល់នូវការការពារស្រាប់ (built-in protection) ដូចជា CSRF protection, validation និង escaping data ដើម្បីជួយការពារ application របស់អ្នកពីការវាយប្រហារ។'
+                '**User Interaction**: Forms គឺជាវិធីសំខាន់បំផុតដែល user ប្រើដើម្បីផ្ញើទិន្នន័យ (input) មកកាន់ application របស់អ្នក។ (ដូចជា form ចុះឈ្មោះ, login ឬបញ្ចូលព័ត៌មានផ្សេងៗ ដើម្បីឱ្យកម្មវិធីអាចដំណើរការបន្តបាន)',
+                '**Security Risk**: ប៉ុន្តែ forms ក៏អាចជាប្រភពនៃបញ្ហាសុវត្ថិភាព ដូចជា XSS ឬ CSRF ប្រសិនបើយើងមិនគ្រប់គ្រងឲ្យបានត្រឹមត្រូវ។ (ទាមទារឱ្យយើងមានការត្រួតពិនិត្យ និងការពារឱ្យបានហ្មត់ចត់បំផុតដើម្បីការពារទិន្នន័យ)',
+                '**Built-in Shield**: Laravel ផ្តល់នូវការការពារស្រាប់ (built-in protection) ដូចជា CSRF protection, validation និង escaping data។ (ជួយការពារ application របស់អ្នកពីការវាយប្រហារផ្សេងៗដោយមិនចាំបាច់សរសេរកូដការពារដោយដៃ)'
               ],
               animation: 'security',
               insight: 'Security មិនមែនជា "Add-on" បន្ថែមក្រៅនោះទេ ក្នុង Laravel វាត្រូវបានបង្កើតមកជាមួយ Core តែម្តង។'
@@ -29,9 +29,9 @@ export const part3: Part = {
               title: 'GET vs. POST',
               type: 'concept',
               content: [
-                '**GET**: ប្រើសម្រាប់ស្វែងរក (search) ឬចម្រាញ់ទិន្នន័យ (filter) ដែលមិនប៉ះពាល់ដល់ data; parameters នឹងបង្ហាញនៅលើ URL ហើយអាច bookmark ឬ share បាន។',
-                '**POST**: ប្រើសម្រាប់បង្កើត (create) ឬផ្ញើទិន្នន័យដែលបម្លែង state; data ត្រូវបានផ្ញើនៅក្នុង request body ហើយមិនបង្ហាញនៅលើ URL។',
-                'សម្រាប់សកម្មភាពដែលបង្កើត ឬផ្លាស់ប្តូរ data (create/update/delete) គួរប្រើ POST (ឬ methods ពាក់ព័ន្ធដូចជា PUT/PATCH/DELETE ក្នុង Laravel) ដើម្បីរក្សាសុវត្ថិភាព និងភាពត្រឹមត្រូវនៃ application។'
+                '**GET Method**: ប្រើសម្រាប់ស្វែងរក (search) ឬចម្រាញ់ទិន្នន័យ (filter) ដែលមិនប៉ះពាល់ដល់ data។ (parameters នឹងបង្ហាញនៅលើ URL ហើយអាច bookmark ឬ share ទៅកាន់អ្នកដទៃបានយ៉ាងងាយ)',
+                '**POST Method**: ប្រើសម្រាប់បង្កើត (create) ឬផ្ញើទិន្នន័យដែលបម្លែង state នៃកម្មវិធី។ (data ត្រូវបានផ្ញើនៅក្នុង request body ហើយមិនបង្ហាញនៅលើ URL នាំឱ្យមានសុវត្ថិភាពជាង)',
+                '**Best Practice**: សម្រាប់សកម្មភាពដែលបង្កើត ឬផ្លាស់ប្តូរ data (create/update/delete) ត្រូវប្រើ POST ជានិច្ច។ (ដើម្បីរក្សាសុវត្ថិភាព និងការពារការផ្ញើ Request ច្រើនដងដោយអចេតនា)'
               ]
             },
             {
@@ -39,8 +39,8 @@ export const part3: Part = {
               title: 'ការការពារ CSRF',
               type: 'code',
               content: [
-                'រាល់ POST form ទាំងអស់ **ត្រូវតែ** រួមបញ្ចូល `@csrf` directive ដើម្បីធានាសុវត្ថិភាព។',
-                'វានឹងបង្កើត hidden token ដោយស្វ័យប្រវត្តិ ដែល Laravel ប្រើសម្រាប់ verify request និងការពារ Cross-Site Request Forgery (CSRF) attack។'
+                '**CSRF Protection**: រាល់ POST form ទាំងអស់ **ត្រូវតែ** រួមបញ្ចូល `@csrf` directive ដើម្បីធានាសុវត្ថិភាព។ (បើគ្មានវាទេ Laravel នឹងបដិសេធ Request នោះភ្លាមៗដើម្បីការពារការលួចផ្ញើទិន្នន័យពីក្រៅ)',
+                '**Token Verification**: វានឹងបង្កើត hidden token ដោយស្វ័យប្រវត្តិ ដែល Laravel ប្រើសម្រាប់ verify request។ (ដើម្បីបញ្ជាក់ថាអ្នកដែលកំពុងបំពេញ Form ពិតជាកំពុងនៅលើ Website របស់អ្នកមែន)'
               ],
               code: '<form method="POST" action="/posts">\n    @csrf\n    \n    <input type="text" name="title">\n    <button type="submit">Submit</button>\n</form>',
               language: 'php'
@@ -56,9 +56,9 @@ export const part3: Part = {
               title: 'ច្បាប់មាស (The Golden Rule)',
               type: 'intro',
               content: [
-                '**កុំទុកចិត្ត user input ជាដាច់ខាត។** ព្រោះវាអាចមានទិន្នន័យមិនត្រឹមត្រូវ ឬមានគោលបំណងអាក្រក់។',
-                'Validation ជួយពិនិត្យ និងធានាថាទិន្នន័យបំពេញតាមលក្ខខណ្ឌដែលបានកំណត់ មុននឹងរក្សាទុកចូល database។',
-                'Laravel ផ្ដល់ validation rules ដែលងាយស្រួលប្រើ ធ្វើឱ្យការកំណត់លក្ខខណ្ឌស្មុគស្មាញ ក្លាយទៅជាការសរសេរងាយ និងច្បាស់លាស់។'
+                '**Trust Issues**: **កុំទុកចិត្ត user input ជាដាច់ខាត។** (ព្រោះវាអាចមានទិន្នន័យមិនត្រឹមត្រូវ ឬមានកូដដែលមានបំណងអាក្រក់បង្កប់មកជាមួយ)',
+                '**Data Integrity**: Validation ជួយពិនិត្យ និងធានាថាទិន្នន័យបំពេញតាមលក្ខខណ្ឌមុននឹងរក្សាទុក។ (ជួយការពារកុំឱ្យ Database របស់អ្នកមានទិន្នន័យរញ៉េរញ៉ៃ ឬខុសទម្រង់)',
+                '**Simplicity**: Laravel ផ្ដល់ validation rules ដែលងាយស្រួលប្រើ និងយល់។ (ធ្វើឱ្យការកំណត់លក្ខខណ្ឌស្មុគស្មាញ ក្លាយទៅជាការសរសេរកូដសាមញ្ញ និងខ្លីបំផុត)'
               ]
             },
             {
@@ -66,8 +66,8 @@ export const part3: Part = {
               title: 'ការប្រើប្រាស់ validate() Method',
               type: 'code',
               content: [
-                'ជាវិធីសាមញ្ញបំផុតសម្រាប់ validate ទិន្នន័យដោយផ្ទាល់នៅក្នុង Controller ដោយប្រើ\n`$request->validate()`។',
-                'Laravel នឹងគ្រប់គ្រង error handling ដោយស្វ័យប្រវត្តិ ដូចជា redirect ត្រឡប់ក្រោយ និងរក្សាទុក error messages និង old input ជា flash data ក្នុង session។'
+                '**Inline Validation**: ជាវិធីសាមញ្ញបំផុតសម្រាប់ validate ទិន្នន័យដោយផ្ទាល់នៅក្នុង Controller។ (ប្រើ `$request->validate()` ដើម្បីកំណត់លក្ខខណ្ឌភ្លាមៗលើ Request ដែលចូលមក)',
+                '**Automation**: Laravel នឹងគ្រប់គ្រង error handling ដោយស្វ័យប្រវត្តិ។ (វានឹង redirect ត្រឡប់ក្រោយ រួមទាំងបង្ហាញ error messages និងរក្សាទុក input ចាស់ឱ្យដោយមិនបាច់សរសេរកូដបន្ថែម)'
               ],
               code: '$validated = $request->validate([\n    "title" => "required|unique:posts|max:255",\n    "body" => "required|min:10"\n]);',
               language: 'php'
@@ -77,8 +77,8 @@ export const part3: Part = {
               title: 'Form Request Classes',
               type: 'code',
               content: [
-                'សម្រាប់ validation ដែលស្មុគស្មាញ ឬមាន rules ច្រើន គួរផ្ទេរ logic ទៅក្នុង class ដាច់ដោយឡែក (Form Request) ដើម្បីរៀបចំឲ្យច្បាស់លាស់។',
-                'វិធីនេះជួយឲ្យ controller ស្អាត ងាយអាន និងអាចប្រើ validation logic នោះឡើងវិញបាន (reusable) នៅកន្លែងផ្សេងៗ។'
+                '**Refactoring**: សម្រាប់ validation ដែលស្មុគស្មាញ គួរផ្ទេរ logic ទៅក្នុង Form Request class។ (ជួយឱ្យ Controller របស់អ្នកមើលទៅស្អាត និងផ្ដោតតែលើការងារចម្បង)',
+                '**Reusability**: វិធីនេះជួយឲ្យកូដមានរបៀប និងអាចប្រើឡើងវិញបាននៅកន្លែងផ្សេងៗ។ (អ្នកអាចហៅវាប្រើក្នុង Controller ច្រើនបានដោយមិនចាំបាច់សរសេរ Rules ដដែលៗឡើងវិញ)'
               ],
               code: '// បង្កើត Class តាមរយៈ Artisan\nphp artisan make:request StorePostRequest\n\n// ប្រើក្នុង Controller របស់អ្នក\npublic function store(StorePostRequest $request) {\n    // Request ដែលចូលមកត្រូវបាន Validate រួចរាល់!\n    $data = $request->validated();\n}',
               language: 'php',
@@ -89,8 +89,8 @@ export const part3: Part = {
               title: 'ការបង្ហាញ Error',
               type: 'code',
               content: [
-                'អ្នកអាចទាញយក validation errors មកបង្ហាញក្នុង Blade template បានយ៉ាងងាយស្រួល ដើម្បីជួយឲ្យ user ដឹងថាមានកំហុសអ្វីខ្លះ។',
-                'Laravel ផ្ដល់ `$errors` variable ជាស្រាប់នៅក្នុងរាល់ view ដែលអាចប្រើដើម្បីបង្ហាញ error message តាម field នីមួយៗ។'
+                '**UX Feedback**: អ្នកអាចទាញយក validation errors មកបង្ហាញក្នុង Blade template បានយ៉ាងងាយ។ (ជួយឲ្យ user ដឹងថាពួកគេបំពេញខុសត្រង់ណា ដើម្បីឱ្យពួកគេកែសម្រួលបានត្រឹមត្រូវ)',
+                '**$errors Variable**: Laravel ផ្ដល់ `$errors` variable ជាស្រាប់នៅក្នុងរាល់ view។ (អ្នកអាចប្រើវាដើម្បីបង្ហាញសារព្រមាននៅក្រោម Field នីមួយៗបានភ្លាមៗ)'
               ],
               code: '@error("title")\n    <div class="alert alert-danger">{{ $message }}</div>\n@enderror',
               language: 'php'
@@ -106,9 +106,9 @@ export const part3: Part = {
               title: 'ការគ្រប់គ្រង Media',
               type: 'intro',
               content: [
-                'ការគ្រប់គ្រងការ Upload ឯកសារ ដូចជា profile image, documents ឬ video គឺជាកិច្ចការដែលជួបជាញឹកញាប់ក្នុង application។',
-                'Laravel ផ្ដល់ `UploadedFile` object ដែលមាន functions ស្រាប់ ដើម្បី validate, store និងគ្រប់គ្រង files បានយ៉ាងងាយស្រួល។',
-                'អ្នកអាចរក្សាទុកឯកសារនៅក្នុង local storage ឬប្រើ cloud services ដូចជា AWS S3 ដោយប្រើ filesystem configuration របស់ Laravel។'
+                '**Media Management**: ការគ្រប់គ្រងការ Upload ឯកសារ ដូចជា profile image, documents ឬ video។ (ជាកិច្ចការចាំបាច់សម្រាប់ Application សម័យថ្មីដែលអនុញ្ញាតឱ្យ User រក្សាទុកឯកសារផ្ទាល់ខ្លួន)',
+                '**UploadedFile Object**: Laravel ផ្ដល់ Object ដែលមាន functions ស្រាប់ ដើម្បីគ្រប់គ្រង files បានយ៉ាងងាយ។ (ជួយឱ្យអ្នកអាចឆែកទំហំ file, ប្រភេទ file និងរក្សាទុកវាដោយប្រើកូដតែមួយជួរ)',
+                '**Storage Flexibility**: អ្នកអាចរក្សាទុកឯកសារក្នុងម៉ាស៊ីនផ្ទាល់ ឬប្រើ Cloud ដូចជា AWS S3។ (ជួយឱ្យអ្នកអាចពង្រីកទំហំផ្ទុកទិន្នន័យបានយ៉ាងងាយស្រួលនៅពេល App មានអ្នកប្រើប្រាស់ច្រើន)'
               ]
             },
             {
@@ -116,8 +116,8 @@ export const part3: Part = {
               title: 'របៀប Upload ឯកសារ',
               type: 'code',
               content: [
-                'ត្រូវប្រាកដថា form របស់អ្នកមាន attribute `enctype="multipart/form-data"` ដើម្បីអនុញ្ញាតឲ្យ upload files បានត្រឹមត្រូវ។',
-                'បន្ទាប់មក អ្នកអាចប្រើ `store()` method ដើម្បីរក្សាទុកឯកសារ ទៅក្នុង storage ដោយស្វ័យប្រវត្តិ និងទទួលបាន file path ត្រឡប់មកវិញ។'
+                '**Form Configuration**: ត្រូវប្រាកដថា form របស់អ្នកមាន attribute `enctype="multipart/form-data"`។ (បើមិនដាក់ទេ Browser នឹងមិនបញ្ជូន file មកឱ្យ Server ឡើយ)',
+                '**Storage Method**: អ្នកអាចប្រើ `store()` method ដើម្បីរក្សាទុកឯកសារដោយស្វ័យប្រវត្តិ។ (វានឹងបង្កើតឈ្មោះ file ថ្មីឱ្យដើម្បីកុំឱ្យជាន់គ្នា និងផ្ដល់ទីតាំងដែលវាបានរក្សាទុកមកឱ្យអ្នកវិញ)'
               ],
               code: 'public function upload(Request $request) {\n    if ($request->hasFile("avatar")) {\n        $path = $request->file("avatar")->store("avatars");\n        return "File saved at: " . $path;\n    }\n}',
               language: 'php'
@@ -127,8 +127,8 @@ export const part3: Part = {
               title: 'Filesystem Library',
               type: 'code',
               content: [
-                '**Storage** facade ផ្តល់ API តែមួយ (unified API) សម្រាប់គ្រប់គ្រងឯកសារ ដូចជា save, delete និង retrieve files។',
-                'អ្នកអាចប្តូរពី `local` ទៅ `s3` ឬ cloud storage ផ្សេងៗបានយ៉ាងងាយស្រួល ដោយគ្រាន់តែផ្លាស់ប្តូរ configuration ក្នុង `.env` ឬ config files។'
+                '**Unified API**: Storage facade ផ្តល់វិធីសាស្ត្រតែមួយសម្រាប់គ្រប់គ្រងឯកសារគ្រប់ប្រភេទ។ (មិនថាអ្នករក្សាទុកក្នុង Computer ខ្លួនឯង ឬលើ Cloud គឺប្រើកូដដូចគ្នាទាំងអស់)',
+                '**Flexibility**: អ្នកអាចប្តូរទីតាំងផ្ទុកទិន្នន័យបានយ៉ាងងាយស្រួលក្នុង `.env`។ (ជួយឱ្យការផ្លាស់ប្តូរពីការតេស្តក្នុងម៉ាស៊ីន ទៅកាន់ការប្រើប្រាស់ពិតប្រាកដមានភាពងាយស្រួល)'
               ],
               code: 'use Illuminate\\Support\\Facades\\Storage;\n\n// ពិនិត្យមើលថាតើ File មានពិតមែនឬអត់\nif (Storage::exists("file.jpg")) {\n    // លុប File នោះចោល\n    Storage::delete("file.jpg");\n}',
               language: 'php',
@@ -151,9 +151,9 @@ export const part3: Part = {
               title: 'កុំចំណាយពេលបង្កើតអ្វីដែលមានស្រាប់ (Don\'t Rebuild the Wheel)',
               type: 'intro',
               content: [
-                'Authentication ជាផ្នែកសំខាន់មួយដែលពិបាកធ្វើឲ្យត្រឹមត្រូវ និងអាចបង្កហានិភ័យខ្ពស់ ប្រសិនបើ implement ខុស។',
-                'Laravel ផ្តល់នូវ “Starter Kits” ផ្លូវការ ដែលបានរៀបចំប្រព័ន្ធ authentication ស្រាប់ ដើម្បីជួយឲ្យអ្នកចាប់ផ្តើមបានលឿន និងមានសុវត្ថិភាព។',
-                'វារួមមានមុខងារសំខាន់ៗដូចជា login, register, password reset និង email verification ដែលអាចប្រើបានភ្លាមៗ។'
+                '**Security First**: Authentication ជាផ្នែកសំខាន់ដែលពិបាកធ្វើឲ្យត្រឹមត្រូវ និងមានហានិភ័យខ្ពស់។ (ប្រសិនបើធ្វើខុស អាចនាំឱ្យ Hacker លួចចូលប្រើគណនីរបស់អ្នកដទៃបាន)',
+                '**Starter Kits**: Laravel ផ្តល់នូវ "Starter Kits" ផ្លូវការដែលបានរៀបចំប្រព័ន្ធស្រាប់។ (ជួយឱ្យអ្នកចាប់ផ្តើម Project ជាមួយប្រព័ន្ធ Login ដែលមានសុវត្ថិភាពបំផុតក្នុងរយៈពេលប៉ុន្មាននាទី)',
+                '**Full Features**: វារួមមានមុខងារសំខាន់ៗដូចជា login, register, និង password reset។ (អ្នកមិនចាំបាច់ចំណាយពេលសរសេរកូដមូលដ្ឋានទាំងនេះឡើងវិញដោយខ្លួនឯងឡើយ)'
               ],
               animation: 'security'
             },
@@ -162,9 +162,9 @@ export const part3: Part = {
               title: 'ជម្រើសនៃ Scaffolding',
               type: 'concept',
               content: [
-                '**Laravel Breeze**: ជា starter kit សាមញ្ញបំផុត ផ្តោតលើមូលដ្ឋាន authentication ហើយប្រើ Blade, Vue ឬ React។ សមស្របសម្រាប់អ្នកចាប់ផ្តើមដំបូង។',
-                '**Laravel Jetstream**: ជា starter kit កម្រិតខ្ពស់ ដែលមានមុខងារពេញលេញ ដូចជា teams, API tokens និង two-factor authentication (2FA) ប្រើ Livewire ឬ Inertia។',
-                '**Laravel UI**: ជា scaffolding បែប legacy ដែលប្រើ Bootstrap, Vue ឬ React សម្រាប់គម្រោងចាស់ៗ ឬ project ដែលត្រូវការសាមញ្ញ។'
+                '**Laravel Breeze**: ជា starter kit សាមញ្ញបំផុត ផ្តោតលើមូលដ្ឋាន authentication។ (ស័ក្តិសមបំផុតសម្រាប់អ្នកចាប់ផ្តើមដំបូងដែលចង់បានប្រព័ន្ធ Login បែបសាមញ្ញ និងងាយស្រួលកែប្រែ)',
+                '**Laravel Jetstream**: ជា starter kit កម្រិតខ្ពស់ ដែលមានមុខងារពេញលេញដូចជា Teams និង 2FA។ (ល្អបំផុតសម្រាប់ Application ខ្នាតធំដែលត្រូវការសុវត្ថិភាពខ្ពស់ និងការគ្រប់គ្រងសមាជិកជាក្រុម)',
+                '**Laravel UI**: ជា scaffolding បែប Legacy ដែលប្រើ Bootstrap ឬ Vue។ (ប្រើសម្រាប់តែគម្រោងចាស់ៗ ឬអ្នកដែលចង់ប្រើ Bootstrap ជាមូលដ្ឋានសម្រាប់ UI)'
               ],
               insight: 'សម្រាប់ Project ថ្មីភាគច្រើន គួរចាប់ផ្តើមជាមួយ Laravel Breeze។'
             }
@@ -179,9 +179,9 @@ export const part3: Part = {
               title: 'ការការពារទំព័ររបស់អ្នក (Guarding Your Pages)',
               type: 'intro',
               content: [
-                'Middleware ដើរតួជា “តម្រង (filters)” សម្រាប់រាល់ request ដែលចូលមកក្នុង application។',
-                'វាអាចត្រួតពិនិត្យថា user បាន login ឬអត់, មាន permission គ្រប់គ្រាន់ដែរឬទេ ឬក៏កត់ត្រាសកម្មភាពផ្សេងៗមុននឹងឲ្យ request បន្តទៅ controller។',
-                'អ្នកអាចប្រើ middleware ដែល Laravel ផ្ដល់មកស្រាប់ ឬបង្កើត custom middleware ដោយខ្លួនឯងតាមតម្រូវការ។'
+                '**Request Filtering**: Middleware ដើរតួជា "តម្រង" សម្រាប់រាល់ Request ដែលចូលមក។ (ជួយត្រួតពិនិត្យ និងសម្អាត Request មុននឹងវាទៅដល់កន្លែងធ្វើការងារពិតប្រាកដ)',
+                '**Access Control**: វាអាចត្រួតពិនិត្យថា User បាន Login ឬមានសិទ្ធិគ្រប់គ្រាន់ដែរឬទេ។ (បើមិនមានសិទ្ធិទេ វានឹងរារាំងមិនឱ្យចូលមើលទំព័រនោះភ្លាមៗ ដើម្បីរក្សាសុវត្ថិភាព)',
+                '**Custom Logic**: អ្នកអាចបង្កើត Middleware ផ្ទាល់ខ្លួនសម្រាប់កិច្ចការជាក់លាក់។ (ឧទាហរណ៍៖ ការកត់ត្រាសកម្មភាពរបស់ User ឬការប្តូរភាសារបស់ Website តាមតម្រូវការ)'
               ]
             },
             {
@@ -189,8 +189,8 @@ export const part3: Part = {
               title: 'The Auth Middleware',
               type: 'code',
               content: [
-                'ដាក់ `auth` middleware លើ routes ឬ controller constructors ដើម្បីការពារទំព័រដែលត្រូវការការចូលប្រើដោយ user ដែលបាន login តែប៉ុណ្ណោះ។',
-                'បើ guest ព្យាយាមចូលទៅកាន់ route ដែលបានការពារ ពួកគេនឹងត្រូវ redirect ទៅកាន់ទំព័រ login ដោយស្វ័យប្រវត្តិ។'
+                '**Route Protection**: ដាក់ `auth` middleware លើ routes ដើម្បីការពារទំព័រសំខាន់ៗ។ (ធានាថាមានតែអ្នកដែលបាន Login ហើយប៉ុណ្ណោះ ទើបអាចចូលមើលព័ត៌មានទាំងនោះបាន)',
+                '**Automatic Redirect**: បើ Guest ព្យាយាមចូល ពួកគេនឹងត្រូវបញ្ជូនទៅទំព័រ Login ស្វ័យប្រវត្តិ។ (ជួយសម្រួលដល់បទពិសោធន៍អ្នកប្រើប្រាស់ និងមិនចាំបាច់សរសេរកូដ Redirect ដោយដៃ)'
               ],
               code: '// ក្នុង routes/web.php\nRoute::get("/dashboard", [DashboardController::class, "index"])->middleware("auth");',
               language: 'php'
@@ -200,8 +200,8 @@ export const part3: Part = {
               title: 'Custom Middleware',
               type: 'code',
               content: [
-                'បង្កើត logic ផ្ទាល់ខ្លួន ដើម្បីដំណើរការមុន ឬក្រោយ request ចូលទៅកាន់ application (ឧទាហរណ៍៖ logging, checking permissions ឬ modifying request data)។',
-                'ប្រើ Artisan command ដើម្បីបង្កើត class ថ្មីបានយ៉ាងរហ័ស និងមានរចនាសម្ព័ន្ធត្រឹមត្រូវស្រាប់។'
+                '**Custom Logic**: បង្កើត Logic ផ្ទាល់ខ្លួន ដើម្បីដំណើរការមុន ឬក្រោយ Request។ (ឧទាហរណ៍៖ ការឆែកមើលថាតើ User ម្នាក់នោះមានតួនាទីជា Admin ឬគ្រាន់តែជា User ធម្មតា)',
+                '**Scaffolding**: ប្រើ Artisan command ដើម្បីបង្កើត Class ថ្មីបានយ៉ាងរហ័ស។ (ជួយបង្កើតគ្រោងកូដដែលត្រឹមត្រូវតាមស្ដង់ដារ និងងាយស្រួលក្នុងការសរសេរ Logic បន្ថែម)'
               ],
               code: '// បង្កើត Middleware Class\nphp artisan make:middleware IsAdmin\n\n// ក្នុង handle method នៃ Middleware\nif ($request->user() && $request->user()->role === "admin") {\n    return $next($request);\n}',
               language: 'php',
@@ -218,9 +218,9 @@ export const part3: Part = {
               title: 'ការកំណត់សិទ្ធិលម្អិត (Granular Permissions)',
               type: 'intro',
               content: [
-                'Authentication ផ្ដោតលើសំណួរថា “តើអ្នកជាអ្នកណា?” ដើម្បីបញ្ជាក់អត្តសញ្ញាណរបស់ user។',
-                'Authorization ផ្ដោតលើសំណួរថា “តើអ្នកមានសិទ្ធិធ្វើអ្វីខ្លះ?” ដើម្បីគ្រប់គ្រងសិទ្ធិប្រើប្រាស់មុខងារផ្សេងៗក្នុង application។',
-                'Laravel ផ្ដល់ **Gates** សម្រាប់គ្រប់គ្រងសកម្មភាពសាមញ្ញៗ និង **Policies** សម្រាប់គ្រប់គ្រងសិទ្ធិលើ resource ឬ model ជាក់លាក់។'
+                '**Who are you?**: Authentication ផ្ដោតលើការបញ្ជាក់អត្តសញ្ញាណរបស់ user។ (ដើម្បីដឹងថា តើអ្នកដែលកំពុងចូលប្រើប្រាស់នេះជាសមាជិកពិតប្រាកដមែនឬទេ)',
+                '**What can you do?**: Authorization ផ្ដោតលើការគ្រប់គ្រងសិទ្ធិប្រើប្រាស់មុខងារផ្សេងៗ។ (ដើម្បីកំណត់ថា តើ User ម្នាក់នេះមានសិទ្ធិលុបអត្ថបទ ឬគ្រាន់តែអាចមើលបានតែប៉ុណ្ណោះ)',
+                '**Tools**: Laravel ផ្ដល់ Gates សម្រាប់សកម្មភាពសាមញ្ញ និង Policies សម្រាប់ Resource ជាក់លាក់។ (ជួយឱ្យការគ្រប់គ្រងសិទ្ធិកាន់តែមានរបៀបរៀបរយ និងងាយស្រួលកែប្រែ)'
               ]
             },
             {
@@ -228,8 +228,8 @@ export const part3: Part = {
               title: 'ការកំណត់ Gates',
               type: 'code',
               content: [
-                'Gates គឺជា closures ដែលប្រើសម្រាប់កំណត់ថា user ម្នាក់មានសិទ្ធិធ្វើសកម្មភាពណាមួយ ឬអត់។',
-                'ជាទូទៅ gates ត្រូវបានកំណត់នៅក្នុង `AuthServiceProvider` ដើម្បីគ្រប់គ្រង authorization logic នៅកម្រិតសាមញ្ញៗ។'
+                '**Simple Authorization**: Gates គឺជា Closures ដែលប្រើសម្រាប់កំណត់សិទ្ធិបែបសាមញ្ញ។ (ដូចជាការឆែកមើលថា តើ User ម្នាក់អាចមើល Report នេះបានឬអត់ ដោយមិនចាំបាច់បង្កើត Class ថ្មី)',
+                '**Centralized Rules**: ជាទូទៅវាត្រូវបានកំណត់ក្នុង `AuthServiceProvider`។ (ជួយឱ្យអ្នកងាយស្រួលគ្រប់គ្រងរាល់ច្បាប់នៃការអនុញ្ញាតទាំងអស់ក្នុងកន្លែងតែមួយ)'
               ],
               code: 'Gate::define("update-post", function (User $user, Post $post) {\n    return $user->id === $post->user_id;\n});',
               language: 'php'
@@ -239,8 +239,8 @@ export const part3: Part = {
               title: 'ការប្រើប្រាស់ Policies',
               type: 'code',
               content: [
-                'Policies គឺជា classes ដែលប្រើសម្រាប់រៀបចំ authorization logic សម្រាប់ model ជាក់លាក់មួយ ដូចជា Post, User ឬ Product។',
-                'នេះជាវិធីសាស្ត្រដែលត្រូវបានណែនាំ (preferred way) សម្រាប់ applications ធំៗ ព្រោះវាជួយឲ្យ code មានរបៀបរៀបរយ និងងាយគ្រប់គ្រង។'
+                '**Resource Based**: Policies គឺជា Classes សម្រាប់រៀបចំសិទ្ធិលើ Model ជាក់លាក់។ (ឧទាហរណ៍៖ បង្កើត PostPolicy ដើម្បីកំណត់ថាអ្នកណាអាច Create, Edit ឬ Delete អត្ថបទបាន)',
+                '**Scalability**: ជាវិធីសាស្ត្រដែលល្អបំផុតសម្រាប់ Application ធំៗ។ (ជួយឱ្យកូដរបស់អ្នកមានរបៀបរៀបរយ និងងាយស្រួលថែទាំនៅពេលចំនួន Model កើនឡើងច្រើន)'
               ],
               code: '// បង្កើត Policy\nphp artisan make:policy PostPolicy --model=Post\n\n// ប្រើក្នុង Controller\n$this->authorize("update", $post);',
               language: 'php'
@@ -250,8 +250,8 @@ export const part3: Part = {
               title: 'Blade Directives',
               type: 'code',
               content: [
-                'បង្ហាញ ឬលាក់ផ្នែកខ្លះនៃ UI ដោយផ្អែកលើសិទ្ធិរបស់ user ដែលកំពុង login។',
-                'ប្រើ `@can` និង `@cannot` ក្នុង Blade ដើម្បីធ្វើឲ្យ template ស្អាត ងាយអាន និងគ្រប់គ្រង authorization logic បានងាយស្រួល។'
+                '**UI Control**: បង្ហាញ ឬលាក់ផ្នែកខ្លះនៃ UI ដោយផ្អែកលើសិទ្ធិរបស់ User។ (ជួយឱ្យ User មើលឃើញតែប៊ូតុង ឬព័ត៌មានណាដែលពួកគេត្រូវបានអនុញ្ញាតឱ្យប៉ះពាល់ប៉ុណ្ណោះ)',
+                '**Clean Templates**: ប្រើ `@can` និង `@cannot` ក្នុង Blade ដើម្បីឱ្យកូដមើលទៅមានរបៀប។ (ជួយកាត់បន្ថយការសរសេរកូដ PHP ស្មុគស្មាញនៅក្នុង HTML ដែលនាំឱ្យពិបាកអាន)'
               ],
               code: '@can("update", $post)\n    <a href="/post/{{ $post->id }}/edit">Edit Post</a>\n@else\n    <p>អ្នកមិនមានសិទ្ធិកែប្រែ Post នេះទេ។</p>\n@endcan',
               language: 'php',
@@ -274,9 +274,9 @@ export const part3: Part = {
               title: 'ការភ្ជាប់ Model របស់អ្នកចូលគ្នា',
               type: 'intro',
               content: [
-                'ទិន្នន័យក្នុងពិភពពិតតែងមានទំនាក់ទំនងគ្នា ដូចជា User ម្នាក់អាចមាន Posts ច្រើន ឬ Post មួយអាចមាន Comments ជាច្រើន។',
-                'Eloquent ធ្វើឱ្យទំនាក់ទំនងទាំងនេះងាយស្រួលប្រើ ដូចជាការចូលប្រើ object properties ធម្មតា មិនចាំាច់សរសេរ SQL ស្មុគស្មាញ។',
-                'យើងនឹងរៀនអំពីប្រភេទ relationships ទូទៅ និងកម្រិតខ្ពស់ ដើម្បីគ្រប់គ្រង data ឲ្យមានប្រសិទ្ធភាព។'
+                '**Data Linkage**: ទិន្នន័យក្នុងពិភពពិតតែងមានទំនាក់ទំនងគ្នា។ (ឧទាហរណ៍៖ User ម្នាក់អាចមានអត្ថបទច្រើន ហើយអត្ថបទនីមួយៗអាចមានមតិយោបល់ច្រើន)',
+                '**Eloquent Ease**: Eloquent ធ្វើឱ្យទំនាក់ទំនងទាំងនេះងាយស្រួលប្រើដូចជា property ធម្មតា។ (អ្នកមិនចាំបាច់សរសេរ SQL JOIN វែងៗដែលពិបាកអាន និងងាយមានកំហុសនោះទេ)',
+                '**Efficiency**: យើងនឹងរៀនពីរបៀបគ្រប់គ្រង data ឱ្យមានប្រសិទ្ធភាពបំផុត។ (ជួយឱ្យកម្មវិធីរបស់អ្នកដើរលឿន ទោះបីជាមានទិន្នន័យរាប់ម៉ឺនជួរទាក់ទងគ្នាក៏ដោយ)'
               ],
             },
             {
@@ -284,8 +284,8 @@ export const part3: Part = {
               title: 'One-to-One & One-to-Many',
               type: 'code',
               content: [
-                'ជាគ្រឹះសំខាន់នៃគ្រប់ប្រព័ន្ធ database ដែលប្រើសម្រាប់កំណត់ទំនាក់ទំនងរវាងតារាង។',
-                'ប្រើ `hasOne`, `belongsTo`, `hasMany` និង `belongsTo` ដើម្បីបង្កើត relationship រវាង models ឲ្យមានរចនាសម្ព័ន្ធច្បាស់លាស់។'
+                '**Fundamental Links**: ជាគ្រឹះសំខាន់សម្រាប់កំណត់ទំនាក់ទំនងរវាងតារាងក្នុង Database។ (ជួយឱ្យកម្មវិធីយល់ថា តើទិន្នន័យក្នុងតារាងមួយ ទាក់ទងនឹងតារាងមួយទៀតដោយរបៀបណា)',
+                '**Relationship Methods**: ប្រើ `hasOne`, `belongsTo`, ឬ `hasMany` ដើម្បីកំណត់ទំនាក់ទំនង។ (ធ្វើឱ្យអ្នកអាចទាញយកទិន្នន័យដែលពាក់ព័ន្ធគ្នាបានយ៉ាងងាយស្រួល ដូចជាការទាញយក Posts ទាំងអស់របស់ User ម្នាក់)'
               ],
               code: '// 1:1 - User ម្នាក់មាន Profile មួយ\npublic function profile() { return $this->hasOne(Profile::class); }\n\n// 1:N - User ម្នាក់មាន Posts ច្រើន\npublic function posts() { return $this->hasMany(Post::class); }',
               language: 'php'
@@ -295,8 +295,8 @@ export const part3: Part = {
               title: 'Many-to-Many',
               type: 'code',
               content: [
-                'User ម្នាក់អាចមាន roles ច្រើន ហើយ role មួយក៏អាចត្រូវបានប្រើដោយ users ច្រើននាក់ដែរ។',
-                'ទំនាក់ទំនងបែបនេះត្រូវការប្រើ pivot table (ឧទាហរណ៍ `role_user`) ដើម្បីភ្ជាប់ទំនាក់ទំនងរវាងទាំងពីរ។'
+                '**Complex Relations**: ប្រើនៅពេលដែល Item ម្ខាងអាចមាន Item ច្រើននៅម្ខាងទៀត។ (ឧទាហរណ៍៖ សិស្សម្នាក់អាចរៀនបានច្រើនមុខវិជ្ជា ហើយមុខវិជ្ជាមួយក៏មានសិស្សរៀនច្រើននាក់ដែរ)',
+                '**Pivot Tables**: ទំនាក់ទំនងបែបនេះត្រូវការតារាងកណ្តាល (Pivot Table) ដើម្បីភ្ជាប់គ្នា។ (ជាអ្នករក្សាទុកព័ត៌មានថា តើ ID ពីតារាង A មួយណា ត្រូវនឹង ID ពីតារាង B មួយណា)'
               ],
               code: '// ក្នុង User Model\npublic function roles() {\n    return $this->belongsToMany(Role::class);\n}',
               language: 'php',
@@ -307,8 +307,8 @@ export const part3: Part = {
               title: 'Advanced Through Relations',
               type: 'code',
               content: [
-                '**Has Many Through**: ប្រើសម្រាប់ទាញយកទិន្នន័យឆ្លងកាត់ table កណ្តាលមួយ ដើម្បីចូលទៅកាន់ table ចុងក្រោយបានដោយផ្ទាល់ (ឧទាហរណ៍ Country → Users តាមរយៈ States)។',
-                '**Has One Through**: ដំណើរការដូចគ្នា ប៉ុន្តែប្រើសម្រាប់ទាញយក record តែមួយគត់តាមរយៈ table កណ្តាល។'
+                '**Has Many Through**: ប្រើសម្រាប់ទាញយកទិន្នន័យឆ្លងកាត់ table កណ្តាលមួយ ដើម្បីចូលទៅកាន់ table ចុងក្រោយបានដោយផ្ទាល់។ (ឧទាហរណ៍៖ ទាញយក Users ទាំងអស់ក្នុងប្រទេសមួយ តាមរយៈតារាង States ដែលនៅកណ្ដាល)',
+                '**Has One Through**: ដំណើរការដូចគ្នា ប៉ុន្តែប្រើសម្រាប់ទាញយក record តែមួយគត់តាមរយៈ table កណ្តាល។ (ឧទាហរណ៍៖ ទាញយកព័ត៌មានឡានរបស់អ្នកប្រើប្រាស់ម្នាក់ តាមរយៈតារាង Key ដែលជាអ្នកភ្ជាប់ទំនាក់ទំនង)'
               ],
               code: '// Project -> Environment -> Deployment\n\n// Has Many Through\npublic function deployments() {\n    return $this->hasManyThrough(Deployment::class, Environment::class);\n}\n\n// Has One Through\npublic function deployment() {\n    return $this->hasOneThrough(Deployment::class, Environment::class);\n}',
               language: 'php'
@@ -324,9 +324,9 @@ export const part3: Part = {
               title: 'Fetching Related Data',
               type: 'intro',
               content: [
-                'នៅពេលកំណត់ relationship រួចហើយ អ្នកអាចប្រើវាបានដូចជា properties ធម្មតាក្នុង model ដើម្បីចូលប្រើទិន្នន័យបានយ៉ាងងាយស្រួល។',
-                'ទោះជាយ៉ាងណា ត្រូវប្រុងប្រយ័ត្នចំពោះ performance ព្រោះការទាញទិន្នន័យច្រើនអាចធ្វើឲ្យ application ដំណើរការយឺតបាន។',
-                'យើងនឹងរៀនពីវិធី load ទិន្នន័យឲ្យមានប្រសិទ្ធភាព ដើម្បីបង្កើនល្បឿន និងកាត់បន្ថយ query ច្រើន។'
+                '**Dynamic Access**: នៅពេលកំណត់ relationship រួច អ្នកអាចចូលប្រើទិន្នន័យបានយ៉ាងងាយ។ (គ្រាន់តែហៅតាមឈ្មោះ Method វានឹងទាញទិន្នន័យមកឱ្យអ្នកភ្លាមៗ)',
+                '**Performance Warning**: ត្រូវប្រុងប្រយ័ត្នចំពោះការទាញទិន្នន័យច្រើនក្នុងពេលតែមួយ។ (បើមិនប្រយ័ត្នទេ កម្មវិធីរបស់អ្នកអាចនឹងយឺតខ្លាំងដោយសារតែការ Query ជាន់គ្នាច្រើនពេក)',
+                '**Optimization**: យើងនឹងរៀនពីវិធី load ទិន្នន័យឱ្យមានប្រសិទ្ធភាពដើម្បីបង្កើនល្បឿន។ (ជួយឱ្យ Server ធ្វើការតិចជាងមុន ប៉ុន្តែផ្ដល់លទ្ធផលបានលឿនជាងមុន)'
               ]
             },
             {
@@ -334,8 +334,8 @@ export const part3: Part = {
               title: 'Eager Loading (with())',
               type: 'code',
               content: [
-                'ជៀសវាងបញ្ហា **N+1 query problem** ដែលកើតឡើងពេលយើងទាញទិន្នន័យ relationship ក្នុង loop ដោយមិនបាន optimize។',
-                'ប្រើ eager loading ដើម្បីទាញទិន្នន័យដែលពាក់ព័ន្ធទាំងអស់ក្នុងតែ 2 queries ឬតិចជាងនេះ ជំនួសឱ្យការបង្កើត queries រាប់សិបឬរាប់រយ។'
+                '**Query Optimization**: ជៀសវាងបញ្ហា **N+1 query problem** ដែលនាំឱ្យ App ដើរយឺត។ (កើតឡើងនៅពេលយើងទាញទិន្នន័យក្នុង Loop ហើយវារត់ទៅ Query Database ច្រើនដងពេក)',
+                '**Batch Fetching**: ប្រើ Eager Loading ដើម្បីទាញទិន្នន័យទាំងអស់ក្នុងពេលតែមួយ។ (កាត់បន្ថយការទាក់ទងជាមួយ Database មកត្រឹម ១ ឬ ២ ដងប៉ុណ្ណោះ ដែលធ្វើឱ្យ App ដើរលឿនជាងមុនខ្លាំង)'
               ],
               code: '// បែបនេះមិនល្អ (N+1 queries)\n$posts = Post::all(); \n\n// បែបនេះល្អ (Eager Loaded)\n$posts = Post::with("user", "comments")->get();',
               language: 'php',
@@ -346,8 +346,8 @@ export const part3: Part = {
               title: 'Lazy Eager Loading',
               type: 'code',
               content: [
-                'ជួនកាលអ្នកចង់ load relationship តែពេលមានលក្ខខណ្ឌជាក់លាក់ណាមួយប៉ុណ្ណោះ ដើម្បីជៀសវាងការទាញទិន្នន័យមិនចាំបាច់។',
-                'ប្រើ `load()` method លើ model instance ដែលមានស្រាប់ ដើម្បី load relation បន្ថែមតាមតម្រូវការ។'
+                '**Conditional Loading**: Load ទំនាក់ទំនងតែនៅពេលណាដែលចាំបាច់ប៉ុណ្ណោះ។ (ជួយសន្សំសំចៃ Resource របស់ Server ដោយមិនទាញទិន្នន័យដែល User មិនទាន់ត្រូវការមើល)',
+                '**Dynamic Loading**: ប្រើ `load()` method លើ Model ដែលមានស្រាប់។ (អនុញ្ញាតឱ្យអ្នកសម្រេចចិត្តនៅពាក់កណ្តាលផ្លូវថា តើគួរទាញទិន្នន័យបន្ថែមមកបង្ហាញឬក៏អត់)'
               ],
               code: '$user = User::first();\n\nif ($showPosts) {\n    $user->load("posts");\n}',
               language: 'php'
@@ -363,9 +363,9 @@ export const part3: Part = {
               title: 'ការគ្រប់គ្រងការភ្ជាប់ទំនាក់ទំនង (Managing Connections)',
               type: 'intro',
               content: [
-                'តើយើងគ្រប់គ្រង និងរក្សាទុកទំនាក់ទំនងរវាង models នីមួយៗដោយរបៀបណា?',
-                'Eloquent ផ្តល់ methods ពិសេសៗសម្រាប់បង្កើត និង sync ទំនាក់ទំនងទិន្នន័យបានយ៉ាងងាយស្រួល និងមានរចនាសម្ព័ន្ធច្បាស់លាស់។',
-                'វាមានសុវត្ថិភាព និងងាយប្រើជាងការកំណត់ foreign keys ដោយដៃ ព្រោះ Laravel គ្រប់គ្រង logic ទាំងអស់ឲ្យស្រាប់។'
+                '**Persistence**: តើយើងគ្រប់គ្រង និងរក្សាទុកទំនាក់ទំនងរវាង models នីមួយៗដោយរបៀបណា? (ជាការធានាថាទិន្នន័យដែលទាក់ទងគ្នា នឹងត្រូវរក្សាទុកចូលក្នុង Database យ៉ាងត្រឹមត្រូវ)',
+                '**Native Methods**: Eloquent ផ្តល់ methods ពិសេសៗសម្រាប់បង្កើត និង sync ទំនាក់ទំនង។ (ជួយឱ្យអ្នកមិនចាំបាច់បញ្ចូល ID ដោយដៃនាំឱ្យខុសលំដាប់លំដោយ)',
+                '**Safety**: វាមានសុវត្ថិភាព និងងាយប្រើជាងការកំណត់ foreign keys ដោយដៃ។ (Laravel នឹងជួយផ្ទៀងផ្ទាត់ និងចាត់ចែងរាល់ logic ទាំងអស់ឱ្យស្រាប់តែម្ដង)'
               ]
 
             },
@@ -374,8 +374,8 @@ export const part3: Part = {
               title: 'ការ Save និង Create',
               type: 'code',
               content: [
-                'ប្រើ `save()` ឬ `create()` ដោយផ្ទាល់លើ relationship នោះ ដើម្បីបង្កើត និងភ្ជាប់ទិន្នន័យថ្មីជាមួយគ្នា។',
-                'Laravel នឹងកំណត់ foreign key ឱ្យស្វ័យប្រវត្តិ ដោយផ្អែកលើ relationship ដែលបានកំណត់រួចហើយ។'
+                '**Data Storage**: ប្រើ `save()` ឬ `create()` ដើម្បីរក្សាទុក និងភ្ជាប់ទិន្នន័យជាមួយគ្នា។ (ជួយធានាថា រាល់ Item ថ្មីដែលបង្កើតឡើង នឹងត្រូវបានភ្ជាប់ទៅកាន់ម្ចាស់របស់វាដោយស្វ័យប្រវត្តិ)',
+                '**Automatic Foreign Keys**: Laravel នឹងកំណត់ Foreign Key ឱ្យដោយស្វ័យប្រវត្តិ។ (អ្នកមិនចាំបាច់បារម្ភពីរឿងដាក់ ID ខុស ឬភ្លេចដាក់ ID នាំឱ្យទិន្នន័យបាត់បង់ទំនាក់ទំនងឡើយ)'
               ],
               code: '$user = User::find(1);\n\n// វិធីទី១៖ Save instance\n$user->posts()->save(new Post(["title" => "New"]));\n\n// វិធីទី២៖ Create ពី array\n$user->posts()->create(["title" => "New"]);',
               language: 'php'
@@ -385,8 +385,8 @@ export const part3: Part = {
               title: 'Attach, Sync និង Detach',
               type: 'code',
               content: [
-                'ប្រើសម្រាប់តែទំនាក់ទំនងប្រភេទ **Many-to-Many** ប៉ុណ្ណោះ ដើម្បីគ្រប់គ្រងទិន្នន័យនៅក្នុង pivot table។',
-                'មាន methods សំខាន់ៗដូចជា `attach()` សម្រាប់បន្ថែមទំនាក់ទំនងថ្មី, `sync()` សម្រាប់ធ្វើឲ្យទិន្នន័យនៅក្នុង pivot table ស្របតាម list ដែលផ្ដល់, និង `detach()` សម្រាប់ដកទំនាក់ទំនងចេញ។'
+                '**Pivot Management**: ប្រើសម្រាប់គ្រប់គ្រងទិន្នន័យក្នុង Pivot Table នៃ Many-to-Many។ (ជួយឱ្យការបន្ថែម ឬដកទំនាក់ទំនងចេញពីតារាងកណ្តាលធ្វើឡើងបានយ៉ាងសាមញ្ញ)',
+                '**Advanced Syncing**: ប្រើ `sync()` ដើម្បីធ្វើឱ្យទិន្នន័យក្នុង Database ដូចទៅនឹង List ដែលផ្ដល់ឱ្យ។ (វាមានឆ្លាតវៃក្នុងការលុបទិន្នន័យចាស់ដែលលើស និងបន្ថែមទិន្នន័យថ្មីដែលខ្វះឱ្យដោយស្វ័យប្រវត្តិ)'
               ],
               code: '$user = User::find(1);\n\n// បន្ថែម Role ថ្មី\n$user->roles()->attach($roleId);\n\n// Sync (បន្ថែមដែលខ្វះ, លុបដែលលើស) - ណែនាំឱ្យប្រើ\n$user->roles()->sync([1, 2, 3]);\n\n// ដក Role ចេញវិញ\n$user->roles()->detach($roleId);',
               language: 'php',

@@ -17,9 +17,9 @@ export const part2: Part = {
               title: 'The Entry Points',
               type: 'intro',
               content: [
-                '**Routing** គឺជាឆ្អឹងខ្នងនៃប្រព័ន្ធគ្រប់គ្រង Requests ក្នុង Laravel។',
-                'វាមានតួនាទីតម្រង់ទិស URL នីមួយៗឱ្យទៅកាន់ Logic ជាក់លាក់ (Closure ឬ Controller)។',
-                'ក្នុងមេរៀននេះ យើងនឹងរៀនពីរបៀបបង្កើតផ្លូវសម្រាប់ URL ទៅកាន់សកម្មភាពផ្សេងៗក្នុង App។'
+                '**Routing** គឺជាឆ្អឹងខ្នងនៃប្រព័ន្ធគ្រប់គ្រង Requests ក្នុង Laravel។ (វាប្រៀបដូចជាផ្លូវថ្នល់ដែលដឹកនាំអ្នកប្រើប្រាស់ទៅកាន់គោលដៅត្រឹមត្រូវនៅក្នុង Website របស់អ្នក)',
+                'វាមានតួនាទីតម្រង់ទិស URL នីមួយៗឱ្យទៅកាន់ Logic ជាក់លាក់ (Closure ឬ Controller)។ (ដើម្បីឱ្យកម្មវិធីដឹងថា តើត្រូវបង្ហាញ Page ណា ឬត្រូវធ្វើការងារអ្វីនៅពេលមានគេចុចលើ Link ណាមួយ)',
+                'ក្នុងមេរៀននេះ យើងនឹងរៀនពីរបៀបបង្កើតផ្លូវសម្រាប់ URL ទៅកាន់សកម្មភាពផ្សេងៗក្នុង App។ (ជួយឱ្យអ្នកអាចគ្រប់គ្រងរចនាសម្ព័ន្ធរបស់ Website ឱ្យមានសណ្ដាប់ធ្នាប់ និងងាយស្រួលប្រើប្រាស់)'
               ],
               insight: 'សាកស្រមៃថា Routes គឺជា "ភ្នាក់ងារសម្របសម្រួលចរាចរណ៍" ដែលនាំភ្ញៀវ (Users) ទៅកាន់បន្ទប់ដែលត្រឹមត្រូវ។'
             },
@@ -28,56 +28,64 @@ export const part2: Part = {
               title: 'Route Files',
               type: 'concept',
               content: [
-                '**routes/web.php**: សម្រាប់ Web Interface ទូទៅ (supports Session និង CSRF(Cross-site request forgery) protection)។',
-                '**routes/api.php**: សម្រាប់ Stateless APIs (uses api middleware group by default)។',
-                '**routes/console.php**: សម្រាប់បង្កើត Command ផ្ទាល់ខ្លួនក្នុង Artisan CLI។'
+                '**routes/web.php**: សម្រាប់ Web Interface ទូទៅ (រួមបញ្ចូលមុខងារការពារដូចជា Session និង CSRF protection ដើម្បីធានាសុវត្ថិភាពសម្រាប់អ្នកប្រើប្រាស់ទូទៅ)។',
+                '**routes/api.php**: សម្រាប់ Stateless APIs (ប្រើសម្រាប់បញ្ជូនទិន្នន័យទៅកាន់ Mobile App ឬ Frontend Framework ផ្សេងៗដោយមិនចាំបាច់មាន Session)។',
+                '**routes/console.php**: សម្រាប់បង្កើត Command ផ្ទាល់ខ្លួនក្នុង Artisan CLI (ជួយឱ្យអ្នកអាចបង្កើតការងារស្វ័យប្រវត្តិតាមរយៈ Command Line បានយ៉ាងងាយស្រួល)។'
               ]
             },
             {
               id: '3.1.2',
-              title: 'HTTP Methods',
+              title: 'HTTP Methods (ប្រភេទនៃ Requests)',
               type: 'code',
               content: [
-                'យើងកំណត់ Route ដោយផ្អែកលើប្រភេទសកម្មភាពរបស់ HTTP methods។',
-                'Methods ដែលប្រើញឹកញាប់មាន៖ GET, POST, PUT, PATCH, DELETE។'
+                '**GET**: ប្រើសម្រាប់ទាញយកទិន្នន័យមកបង្ហាញ (ឧទាហរណ៍៖ មើលបញ្ជីអត្ថបទ ឬចូលមើលទំព័រព័ត៌មានផ្សេងៗ)។',
+                '**POST**: ប្រើសម្រាប់បញ្ជូនទិន្នន័យថ្មីទៅកាន់ Server (ឧទាហរណ៍៖ ការចុះឈ្មោះសមាជិក ឬការ Comment លើអត្ថបទណាមួយ)។',
+                '**PUT/PATCH**: ប្រើសម្រាប់កែប្រែទិន្នន័យដែលមានស្រាប់ (Update) (ឧទាហរណ៍៖ ការប្តូរលេខទូរស័ព្ទ ឬកែសម្រួលព័ត៌មានផ្ទាល់ខ្លួន)។',
+                '**DELETE**: ប្រើសម្រាប់លុបទិន្នន័យចេញពី Database (ឧទាហរណ៍៖ ការលុប Post ដែលសរសេរខុស ឬលុបគណនីចោល)។',
+                '**Route::any()**: អនុញ្ញាតឱ្យរាល់ HTTP methods ទាំងអស់ចូលប្រើបាន (ប្រើក្នុងករណីពិសេសដែលអ្នកចង់ឱ្យ URL មួយអាចទទួលយក Requests គ្រប់ប្រភេទ)។'
               ],
-              code: 'use App\\Http\\Controllers\\PostController;\n\nRoute::get("/posts", [PostController::class, "index"]);\nRoute::post("/posts", [PostController::class, "store"]);\nRoute::put("/posts/{id}", [PostController::class, "update"]);\nRoute::delete("/posts/{id}", [PostController::class, "destroy"]);',
-              language: 'php'
+              code: 'use App\\Http\\Controllers\\PostController;\n\n// ឧទាហរណ៍នៃការប្រើប្រាស់ Methods ផ្សេងៗ\nRoute::get("/posts", [PostController::class, "index"]);\nRoute::post("/posts", [PostController::class, "store"]);\nRoute::put("/posts/{id}", [PostController::class, "update"]);\nRoute::delete("/posts/{id}", [PostController::class, "destroy"]);\n\n// ប្រើសម្រាប់ចាប់រាល់ Methods\nRoute::any("/search", [SearchController::class, "handle"]);',
+              language: 'php',
+              insight: 'ការប្រើប្រាស់ HTTP Methods ឱ្យបានត្រឹមត្រូវតាមស្ដង់ដារ RESTful នឹងធ្វើឱ្យ API របស់អ្នកមានសណ្ដាប់ធ្នាប់ និងងាយស្រួលយល់។'
             },
             {
               id: '3.1.3',
-              title: 'Route Parameters',
+              title: 'Route Parameters (ការបញ្ជូនទិន្នន័យតាម URL)',
               type: 'code',
               content: [
-                '**Required**: `{id}` គឺដាច់ខាតត្រូវតែមានភ្ជាប់មកជាមួយ URL។',
-                '**Optional**: `{name?}` អាចមាន ឬមិនមានក៏បាន ដោយប្រើសញ្ញា "?"។',
-                'តម្លៃ Parameters ទាំងនេះនឹងត្រូវបញ្ជូនទៅ Controller Method ដោយស្វ័យប្រវត្តិ។'
+                '**Required Parameters**: `{id}` គឺដាច់ខាតត្រូវតែមានភ្ជាប់មកជាមួយ URL (បើមិនដូច្នោះទេ Laravel នឹងបង្ហាញកំហុស 404 ព្រោះវារកផ្លូវមិនឃើញ)។',
+                '**Optional Parameters**: `{name?}` អាចមាន ឬមិនមានក៏បាន (ប្រើសញ្ញា "?" និងកំណត់តម្លៃ default ក្នុង Function ដើម្បីកុំឱ្យកម្មវិធីគាំងនៅពេលគ្មានទិន្នន័យបញ្ជូនមក)។',
+                '**Regular Expression Constraints**: យើងអាចកំណត់លក្ខខណ្ឌឱ្យ Parameter ឱ្យកាន់តែច្បាស់លាស់ (ឧទាហរណ៍៖ កំណត់ឱ្យ `{id}` ត្រូវតែជាលេខប៉ុណ្ណោះ ដើម្បីការពារការបញ្ចូលទិន្នន័យខុសប្រភេទ)។'
               ],
-              code: '// បង្កការទាមទារ ID\nRoute::get("/user/{id}", function ($id) {\n    return "User ID: " . $id;\n});\n\n// មិនទាមទារ Term (មានតម្លៃ default)\nRoute::get("/search/{term?}", function ($term = "all") {\n    return "Searching for: " . $term;\n});',
-              language: 'php'
+              code: '<?php\n// ១. Required Parameter\nRoute::get("/user/{id}", function ($id) {\n    return "User ID: " . $id;\n});\n\n// ២. Optional Parameter ជាមួយ Default Value\nRoute::get("/search/{term?}", function ($term = "all") {\n    return "Searching for: " . $term;\n});\n\n// ៣. បន្ថែមលក្ខខណ្ឌ (Constraints)\nRoute::get("/profile/{username}", function ($username) {\n    return "Profile of: " . $username;\n})->where("username", "[A-Za-z]+"); // អនុញ្ញាតតែអក្សរប៉ុណ្ណោះ\n?>',
+              language: 'php',
+              insight: 'Parameters គឺជាវិធីដែលសាមញ្ញបំផុតក្នុងការផ្ទេរអត្តសញ្ញាណ (ID) ពី URL ទៅកាន់ Backend ដើម្បីទាញយកទិន្នន័យមកបង្ហាញ។'
             },
             {
               id: '3.1.4',
-              title: 'Named Routes',
+              title: 'Named Routes (ការដាក់ឈ្មោះផ្លូវ)',
               type: 'code',
               content: [
-                'ការដាក់ឈ្មោះ Route ធ្វើឱ្យយើងអាចហៅវាប្រើបានងាយស្រួល ជំនួសការប្រើ URL ដោយផ្ទាល់។',
-                'វាធ្វើឱ្យការផ្លាស់ប្តូរ URL នៅពេលក្រោយកាន់តែងាយ ដោយមិនចាំបាច់ទៅកែគ្រប់កន្លែងក្នុង Project។'
+                '**Semantic Naming**: ការដាក់ឈ្មោះឱ្យ Route ជួយឱ្យយើងហៅវាប្រើបានងាយស្រួលក្នុង Views ឬ Controllers (ឧទាហរណ៍៖ ប្រើ `route("profile")` ជំនួសឱ្យការសរសេរ URL វែងៗដោយដៃ)។',
+                '**Flexibility**: ប្រសិនបើអ្នកចង់ប្តូរ URL ពី `/user/profile` ទៅ `/my-profile` អ្នកគ្រាន់តែប្តូរក្នុង Route file តែមួយកន្លែងប៉ុណ្ណោះ (កន្លែងផ្សេងទៀតដែលហៅតាមឈ្មោះ នឹងប្តូរតាមដោយស្វ័យប្រវត្តិ)។',
+                '**Redirecting**: ការ Redirect ទៅកាន់ឈ្មោះ Route គឺមានសុវត្ថិភាពជាងការប្រើ URL ផ្ទាល់ (ជួយការពារបញ្ហាដាច់ Link នៅពេលដែលអ្នករៀបចំរចនាសម្ព័ន្ធ URL ឡើងវិញ)។'
               ],
-              code: 'Route::get("/user/profile", [ProfileController::class, "show"])->name("profile");\n\n// ការហៅប្រើក្នុង View ឬ Controller\n$url = route("profile");\nreturn redirect()->route("profile");',
+              code: '<?php\n// ១. កំណត់ឈ្មោះ Route\nRoute::get("/user/settings", [SettingsController::class, "index"])->name("settings.edit");\n\n// ២. ការហៅប្រើក្នុង Blade View\n// <a href="{{ route("settings.edit") }}">កែប្រែការកំណត់</a>\n\n// ៣. ការហៅប្រើក្នុង Controller\nreturn redirect()->route("settings.edit");\n?>',
               language: 'php',
-              insight: 'ទម្លាប់ប្រើ Named Routes នឹងជួយការពារកំហុស "Hardcoding" ដែលធ្វើឱ្យពិបាក Maintenance។'
+              insight: 'Named Routes ជួយការពារបញ្ហា "Broken Links" នៅពេលដែល Structure របស់ URL ត្រូវបានផ្លាស់ប្តូរក្នុងពេលអភិវឌ្ឍ។'
             },
             {
               id: '3.1.5',
-              title: 'Groups & Middleware',
+              title: 'Groups & Middleware (ការចាត់ក្រុម និងតម្រង)',
               type: 'code',
               content: [
-                '**Middleware**: ជា Filter សម្រាប់ត្រួតពិនិត្យ Request មុននឹងចូលទៅក្នុង application (ឧទាហរណ៍៖ ពិនិត្យថា user បាន login ឬនៅ)។',
-                '**Groups**: ប្រើសម្រាប់ដាក់ Route ជាក្រុម ដើម្បីអនុវត្ត setting ដូចគ្នា (ឧទាហរណ៍៖ prefix ឬ middleware)។'
+                '**Middleware**: ដើរតួជា "អ្នកយាមទ្វារ" ដើម្បីត្រួតពិនិត្យ Request មុនចូលដល់កម្មវិធី (ឧទាហរណ៍៖ `auth` middleware នឹងឆែកមើលថា តើ User បាន Login រួចរាល់ហើយឬនៅ)។',
+                '**Route Groups**: អនុញ្ញាតឱ្យយើងដាក់ Settings រួមគ្នាទៅលើ Routes ច្រើនក្នុងពេលតែមួយ (ជួយឱ្យកូដរបស់អ្នកខ្លី ស្អាត និងមិនចាំបាច់សរសេរការកំណត់ដដែលៗច្រើនដង)។',
+                '**Prefixing**: បន្ថែមពាក្យនៅខាងមុខ URL ទាំងអស់ក្នុងក្រុម (ឧទាហរណ៍៖ បន្ថែម `admin` ទៅមុខ URL ដូចជា `/admin/users` និង `/admin/posts` ដើម្បីបែងចែកតំបន់គ្រប់គ្រងឱ្យច្បាស់លាស់)។'
               ],
-              code: 'Route::middleware(["auth"])->group(function () {\n    Route::get("/dashboard", [DashboardController::class, "index"]);\n    Route::get("/settings", [SettingsController::class, "edit"]);\n});\nRoute::prefix("admin")->group(function () {\n    Route::get("/dashboard", [AdminController::class, "index"]);\n    Route::get("/settings", [AdminController::class, "edit"]);\n});',
-              language: 'php'
+              code: '<?php\n// ក្រុមដែលទាមទារការ Login (Auth Middleware)\nRoute::middleware(["auth"])->group(function () {\n    Route::get("/dashboard", [DashboardController::class, "index"]);\n    Route::get("/profile", [ProfileController::class, "edit"]);\n});\n\n// ក្រុមដែលមានពាក្យ "admin" នៅខាងមុខ URL\nRoute::prefix("admin")->group(function () {\n    Route::get("/users", [AdminController::class, "users"]);\n    Route::get("/reports", [AdminController::class, "reports"]);\n});\n?>',
+              language: 'php',
+              insight: 'ការប្រើប្រាស់ Groups ជួយឱ្យ `web.php` របស់អ្នកមានសណ្ដាប់ធ្នាប់ ងាយស្រួលអាន និងមិនសរសេរកូដជាន់គ្នា។'
             }
           ]
         },
@@ -90,32 +98,36 @@ export const part2: Part = {
               title: 'Organizing Your Logic',
               type: 'intro',
               content: [
-                'ជំនួសឱ្យសរសេរ logic ក្នុង Route file យើងគួរផ្ទេរវាទៅដាក់ក្នុង Controllers។',
-                'Controllers ជួយរៀបចំ និងប្រមូល Request ដែលពាក់ព័ន្ធគ្នា ទៅក្នុង Class តែមួយ។',
-                'រចនាសម្ព័ន្ធបែបនេះធ្វើឱ្យ code ស្អាត ងាយស្រួលធ្វើ test និងងាយគ្រប់គ្រង។'
+                '**Separation of Concerns**: ជំនួសឱ្យសរសេរ Logic ក្នុង Route file យើងគួរផ្ទេរវាទៅដាក់ក្នុង Controllers (ដើម្បីឱ្យ `web.php` ផ្ដោតតែលើការកំណត់ផ្លូវ URL ហើយ Controller ផ្ដោតលើការងារពិតប្រាកដ)។',
+                '**Organization**: Controllers ជួយរៀបចំ និងប្រមូល Request ដែលពាក់ព័ន្ធគ្នា ទៅក្នុង Class តែមួយ (ឧទាហរណ៍៖ `UserController` ផ្ទុកនូវរាល់ការងារដែលទាក់ទងនឹង User ទាំងអស់)។',
+                '**Maintainability**: រចនាសម្ព័ន្ធបែបនេះធ្វើឱ្យ Code ស្អាត ងាយស្រួលធ្វើ Test និងងាយគ្រប់គ្រង (ជួយឱ្យអ្នក និងក្រុមការងារងាយស្រួលក្នុងការកែសម្រួលកូដទៅថ្ងៃក្រោយ)។'
               ]
             },
             {
               id: '3.2.1',
-              title: 'Creating Controllers',
+              title: 'Creating Controllers (ការបង្កើត Controller)',
               type: 'code',
               content: [
-                'ប្រើ Artisan command ដើម្បីបង្កើត Controller ថ្មីបានយ៉ាងងាយស្រួល។',
-                'បន្ទាប់ពីបង្កើត រួច file នឹងត្រូវរក្សាទុកនៅក្នុង folder app/Http/Controllers។'
+                '**Artisan Command**: យើងប្រើ `php artisan make:controller` ដើម្បីបង្កើត Controller file ថ្មីភ្លាមៗ (ជួយសន្សំសំចៃពេលវេលា និងធានាថា File ត្រូវបានបង្កើតឡើងតាមស្ដង់ដាររបស់ Laravel)។',
+                '**Standard Controller**: ជា Controller ទទេ ដែលយើងត្រូវសរសេរ Methods ដោយខ្លួនឯង (ស័ក្តិសមសម្រាប់កិច្ចការងារទូទៅដែលមិនមែនជាការងារ CRUD)។',
+                '**Resource Controller**: បង្កើតមកជាមួយ Methods ស្ដង់ដារចំនួន ៧ សម្រាប់ធ្វើ CRUD (ជួយឱ្យអ្នកអាចបង្កើតមុខងារ បង្កើត, អាន, កែប្រែ និងលុបទិន្នន័យ បានយ៉ាងរហ័សបំផុត)។'
               ],
-              code: '// បង្កើត Controller ធម្មតា\nphp artisan make:controller UserController\n\n// បង្កើត Resource Controller (មាន methods សម្រាប់ CRUD ស្រាប់)\nphp artisan make:controller PostController --resource',
-              language: 'bash'
+              code: '# ១. បង្កើត Controller ធម្មតា\nphp artisan make:controller UserController\n\n# ២. បង្កើត Resource Controller (លឿនបំផុតសម្រាប់ CRUD)\nphp artisan make:controller PostController --resource\n\n# ៣. បង្កើត Controller ក្នុង Folder ជាក់លាក់\nphp artisan make:controller Admin/DashboardController',
+              language: 'bash',
+              insight: 'ការប្រើ `--resource` ជួយសន្សំសំចៃពេលវេលាច្រើន ព្រោះវាបង្កើត Structure សម្រាប់ CRUD ឱ្យយើងស្រាប់។'
             },
             {
               id: '3.2.2',
-              title: 'The Request Object',
+              title: 'The Request Object (ការគ្រប់គ្រងទិន្នន័យបញ្ជូន)',
               type: 'code',
               content: [
-                'ប្រើសម្រាប់ទាញយកទិន្នន័យ (input), files ឬព័ត៌មានផ្សេងៗពី user request។',
-                'Laravel ផ្ដល់ Request instance មកឱ្យយើងប្រើដោយស្វ័យប្រវត្តិ តាមរយៈ method injection។'
+                '**Dependency Injection**: Laravel នឹងបញ្ជូន Request instance មកឱ្យយើងដោយស្វ័យប្រវត្តិក្នុង Controller methods (ជួយឱ្យអ្នកអាចចូលប្រើព័ត៌មានគ្រប់យ៉ាងដែល User បានផ្ញើមកបានភ្លាមៗ)។',
+                '**Input Retrieval**: យើងប្រើ `$request->input()` ឬ `$request->all()` ដើម្បីទាញយកទិន្នន័យដែល User ផ្ញើមក (ដូចជាអត្ថបទក្នុង Form ឬតម្លៃដែលបានជ្រើសរើសផ្សេងៗ)។',
+                '**Validation Ready**: Request object នេះក៏ត្រូវបានប្រើសម្រាប់ធ្វើការ Validate ទិន្នន័យមុននឹងរក្សាទុកផងដែរ (ធានាថាទិន្នន័យដែលចូលមកមានភាពត្រឹមត្រូវ និងសុវត្ថិភាព)។'
               ],
-              code: 'use Illuminate\\Http\\Request;\n\npublic function store(Request $request) {\n    $title = $request->input("title");\n    $content = $request->input("content");\n    \n    return "Post created: " . $title;\n}',
-              language: 'php'
+              code: '<?php\nnamespace App\\Http\\Controllers;\n\nuse Illuminate\\Http\\Request;\n\nclass PostController extends Controller {\n    public function store(Request $request) {\n        // ទាញយកទិន្នន័យតាមឈ្មោះ Key\n        $title = $request->input("title");\n        \n        // ទាញយកទិន្នន័យទាំងអស់ជា Array\n        $allData = $request->all();\n        \n        return "ទទួបានទិន្នន័យ: " . $title;\n    }\n}\n?>',
+              language: 'php',
+              insight: 'Request object ផ្ទុកព័ត៌មានគ្រប់យ៉ាងអំពី HTTP request រួមមាន៖ Inputs, Files, Cookies, និង Headers។'
             }
           ]
         }
@@ -134,9 +146,9 @@ export const part2: Part = {
               title: 'Welcome to Blade',
               type: 'intro',
               content: [
-                'Blade គឺជា templating engine របស់ Laravel ដែលងាយស្រួល និងមានប្រសិទ្ធភាព។',
-                'វាអនុញ្ញាតឱ្យយើងសរសេរ PHP ក្នុង HTML ដោយប្រើ syntax ខ្លីៗ និងស្អាត។',
-                'Blade មាន extension .blade.php ហើយស្ថិតនៅក្នុង resources/views។'
+                'Blade គឺជា Templating Engine របស់ Laravel ដែលងាយស្រួល និងមានប្រសិទ្ធភាព។ (វាជួយឱ្យអ្នកអាចបង្កើត Layout ស្អាតៗដោយមិនបាច់សរសេរកូដ PHP ស្មុគស្មាញលាយជាមួយ HTML)',
+                'វាអនុញ្ញាតឱ្យយើងសរសេរ PHP ក្នុង HTML ដោយប្រើ Syntax ខ្លីៗ និងស្អាត។ (ធ្វើឱ្យកូដរបស់អ្នកមើលទៅមានរបៀបរៀបរយ និងងាយស្រួលក្នុងការអានសម្រាប់អ្នកអភិវឌ្ឍន៍ផ្សេងទៀត)',
+                'Blade មាន Extension `.blade.php` ហើយស្ថិតនៅក្នុង `resources/views`។ (រាល់ File ដែលមានកន្ទុយនេះ នឹងត្រូវបាន Laravel បម្លែងទៅជាកូដ PHP សុទ្ធដោយស្វ័យប្រវត្តិ)'
               ],
               insight: 'Blade នឹងត្រូវបម្លែងទៅជា PHP សុទ្ធ និងធ្វើការ Cached ទុកដើម្បីឱ្យដំណើរការបានលឿនបំផុត។'
             },
@@ -145,34 +157,37 @@ export const part2: Part = {
               title: 'Creating Views via CLI',
               type: 'code',
               content: [
-                'ក្នុង Laravel សម័យថ្មី យើងអាចបង្កើត View ដោយប្រើ Artisan command បានយ៉ាងរហ័ស។',
-                'វានឹងបង្កើត file នៅក្នុង folder ត្រឹមត្រូវឱ្យយើងដោយស្វ័យប្រវត្តិ។'
+                'ក្នុង Laravel សម័យថ្មី យើងអាចបង្កើត View ដោយប្រើ Artisan Command បានយ៉ាងរហ័ស។ (ជួយកាត់បន្ថយការបង្កើត File និង Folder ដោយដៃដែលនាំឱ្យចំណាយពេលច្រើន)',
+                'វានឹងបង្កើត File នៅក្នុង Folder ត្រឹមត្រូវឱ្យយើងដោយស្វ័យប្រវត្តិ។ (ធានាថា File ស្ថិតនៅទីតាំងត្រឹមត្រូវតាមស្ដង់ដាររបស់ Laravel)'
               ],
-              code: '// បង្កើត View ឈ្មោះ welcome\nphp artisan make:view welcome\n\n// បង្កើតក្នុង Subfolder (users/index.blade.php)\nphp artisan make:view users.index',
+              code: '# បង្កើត View ឈ្មោះ welcome\nphp artisan make:view welcome\n\n# បង្កើតក្នុង Subfolder (users/index.blade.php)\nphp artisan make:view users.index',
               language: 'bash',
               insight: 'ប្រើ Command នេះដើម្បីជៀសវាងការបង្កើត File និង Folder ដោយដៃដែលនាំឱ្យខាតពេល។'
             },
             {
               id: '4.1.2',
-              title: 'Basic Syntax & Directives',
+              title: 'Basic Syntax & Directives (វាក្យសព្ទមូលដ្ឋាន)',
               type: 'code',
               content: [
-                'ប្រើ {{ }} សម្រាប់បង្ហាញទិន្នន័យ (output) ទៅក្នុង view និង @ សម្រាប់ប្រើ Blade directives។',
-                'Blade directives គឺជា syntax ខ្លីៗ ដែលជំនួសការសរសេរ PHP បែបបុរាណ ដូចជា <?php if... ?>, foreach ជាដើម ដើម្បីធ្វើឱ្យ code ស្អាត និងងាយអាន។'
+                '**Double Braces**: `{{ $data }}` ប្រើសម្រាប់បង្ហាញតម្លៃ Variables (ស្មើនឹងការប្រើ `echo` ក្នុង PHP ប៉ុន្តែវាមានសុវត្ថិភាពជាងព្រោះវាជួយការពារការលួចបញ្ចូលកូដអាក្រក់)។',
+                '**Conditional Directives**: `@if`, `@elseif`, `@else`, `@endif` សម្រាប់ឆែកលក្ខខណ្ឌបង្ហាញ UI (ជួយឱ្យអ្នកអាចកំណត់បានថា តើ User ណាខ្លះដែលគួរឃើញប៊ូតុង ឬព័ត៌មានជាក់លាក់ណាមួយ)។',
+                '**Loop Directives**: `@foreach`, `@for`, `@while` សម្រាប់បង្ហាញទិន្នន័យជាបញ្ជី (ស័ក្តិសមបំផុតសម្រាប់ការបង្ហាញតារាងទិន្នន័យ ឬបញ្ជីឈ្មោះផលិតផលចេញពី Database)។',
+                '**Empty State**: `@forelse` គឺជារង្វិលជុំដែលជួយបង្ហាញសារ "មិនមានទិន្នន័យ" បើ Array ទទេ (ជួយឱ្យ Website របស់អ្នកមើលទៅមានអាជីព ទោះបីជាគ្មានទិន្នន័យបង្ហាញក៏ដោយ)។'
               ],
-              code: '<h1>សួស្តី, {{ $user->name }}</h1>\n\n@if($posts->count() > 0)\n    @foreach($posts as $post)\n        <p>{{ $post->title }}</p>\n    @endforeach\n@else\n    <p>មិនមានអត្ថបទឡើយ។</p>\n@endif',
-              language: 'php'
+              code: '<h1>សួស្តី, {{ $user->name }}</h1>\n\n@if($isAdmin)\n    <span class="badge">Admin</span>\n@endif\n\n<ul>\n    @forelse($tasks as $task)\n        <li>{{ $task->title }}</li>\n    @empty\n        <li>មិនមានកិច្ចការឡើយ</li>\n    @endforelse\n</ul>',
+              language: 'php',
+              insight: 'Blade Directives ជួយឱ្យកូដ HTML របស់អ្នកស្អាត និងងាយស្រួលអានជាងការសរសេរ PHP បុរាណ។'
             },
             {
               id: '4.1.3',
-              title: 'Escaping Data',
+              title: 'Escaping Data (សុវត្ថិភាពទិន្នន័យ)',
               type: 'concept',
               content: [
-                '{{ $data }}: បង្ហាញទិន្នន័យដោយមានការការពារ HTML ស្វ័យប្រវត្តិ (ជួយទប់ស្កាត់ XSS Attack)។',
-                '{!! $data !!}: បង្ហាញ HTML ដោយផ្ទាល់ ដោយមិនមានការការពារ ដូច្នេះគួរប្រើតែទិន្នន័យដែលទុកចិត្តប៉ុណ្ណោះ។',
-                'ជាទូទៅគួរប្រើ double braces ({{ }}) ជានិច្ច លើកលែងតែមានហេតុផលច្បាស់លាស់ក្នុងការបង្ហាញ HTML ពី database។'
+                '**Safe Display**: `{{ $data }}` នឹងបម្លែងតួអក្សរពិសេសទៅជាអក្សរសុវត្ថិភាព ដើម្បីទប់ស្កាត់ការវាយប្រហារ **XSS** (វាជាខែលការពារដ៏សំខាន់បំផុត ដើម្បីកុំឱ្យ Hacker បញ្ចូលកូដ JavaScript អាក្រក់មកក្នុង App របស់អ្នក)។',
+                '**Raw Display**: `{!! $data !!}` ប្រើសម្រាប់បង្ហាញ HTML ដោយផ្ទាល់ (ប្រើតែនៅពេលអ្នកទុកចិត្តប្រភពទិន្នន័យប៉ុណ្ណោះ ដូចជាទិន្នន័យដែលចេញពី Admin Editor ផ្ទាល់ខ្លួន)។',
+                '**Comment**: `{{-- នេះជា Comment --}}` នឹងមិនបង្ហាញនៅក្នុង HTML source code ដែល User ឃើញឡើយ (ជួយឱ្យអ្នកអាចកត់ចំណាំក្នុងកូដបានយ៉ាងមានសុវត្ថិភាព)។'
               ],
-              insight: 'ចងចាំថា៖ កុំប្រើ {!! !!} ជាមួយទិន្នន័យដែលបញ្ចូលដោយ Users ឱ្យសោះ ដើម្បីសុវត្ថិភាព។'
+              insight: 'ច្បាប់មាស៖ កុំប្រើ `{!! !!}` ជាមួយទិន្នន័យដែលបញ្ចូលដោយ Users ជាដាច់ខាត!'
             }
           ]
         },
@@ -185,41 +200,47 @@ export const part2: Part = {
               title: 'Layout Architecture',
               type: 'intro',
               content: [
-                'កុំចំណាយពេលសរសេរ Header ឬ Footer ដដែលៗក្នុងគ្រប់ page។',
-                'ប្រើប្រាស់ **Layout Inheritance** ដើម្បីបង្កើត main layout តែមួយ ហើយអាចប្រើរួមគ្នាបានទាំង project។',
-                'យើងនឹងប្រើ `@extends`, `@yield`, និង `@section` ដើម្បីរៀបចំ structure របស់ page ឲ្យមានរបៀបរៀបរយ។'
+                'កុំចំណាយពេលសរសេរ Header ឬ Footer ដដែលៗក្នុងគ្រប់ Page។ (ការធ្វើបែបនេះនាំឱ្យពិបាកកែសម្រួល និងចំណាយពេលច្រើនឥតប្រយោជន៍)',
+                'ប្រើប្រាស់ **Layout Inheritance** ដើម្បីបង្កើត Main Layout តែមួយ ហើយអាចប្រើរួមគ្នាបានទាំង Project (ជួយឱ្យការផ្លាស់ប្តូរ Layout ទាំងមូលធ្វើឡើងបានយ៉ាងរហ័សតាមរយៈ File តែមួយគត់)។',
+                'យើងនឹងប្រើ `@extends`, `@yield`, និង `@section` ដើម្បីរៀបចំ Structure របស់ Page ឱ្យមានរបៀបរៀបរយ (ធ្វើឱ្យកូដរបស់អ្នកងាយស្រួលថែទាំ និងពង្រីកទៅថ្ងៃក្រោយ)។'
               ]
             },
             {
               id: '4.2.1',
-              title: 'The Main Layout',
+              title: 'The Main Layout (ប្លង់មេនៃ Layout)',
               type: 'code',
               content: [
-                'បង្កើត main layout មួយ រួចដាក់ `@yield` នៅកន្លែងណាដែលអ្នកចង់ឱ្យ Content ប្តូរទៅតាម Page។'
+                '**Centralization**: បង្កើត File តែមួយសម្រាប់រក្សាទុក HTML Structure រួម (ដូចជា Navbar, Footer, និងរាល់ការហៅ CSS/JS ផ្សេងៗដែលប្រើក្នុង App ទាំងមូល)។',
+                '**Dynamic Areas**: ប្រើ `@yield("content")` ដើម្បីប្រាប់ Blade ថា "កន្លែងនេះនឹងត្រូវប្តូរ Content ទៅតាម Page" (ជួយឱ្យអ្នកអាចប្តូរតែផ្នែកកណ្តាលនៃ Website ដោយរក្សាទុកប្លង់មេឱ្យនៅដដែល)។',
+                '**Titles**: យើងក៏អាចប្រើ `@yield("title")` ដើម្បីដាក់ចំណងជើង Page ឱ្យខុសៗគ្នា (ជួយឱ្យ Website របស់អ្នកមាន SEO ល្អ និងងាយស្រួលសម្គាល់នៅលើ Browser Tab)។'
               ],
-              code: '\n<html>\n    <body>\n        <header>Header រួម</header>\n        \n        <main>\n            @yield("content")\n        </main>\n    </body>\n</html>',
+              code: '<!-- resources/views/layouts/app.blade.php -->\n<html>\n<head>\n    <title>My App - @yield("title")</title>\n</head>\n<body>\n    <nav>Navigation Bar</nav>\n\n    <main>\n        @yield("content")\n    </main>\n\n    <footer>Footer 2024</footer>\n</body>\n</html>',
               language: 'php'
             },
             {
               id: '4.2.2',
-              title: 'Extending a Layout',
+              title: 'Extending a Layout (ការប្រើប្រាស់ Layout មេ)',
               type: 'code',
               content: [
-                'រាល់ page ផ្សេងៗនឹង "extend" ពី main layout ហើយបំពេញ content តាម section ដែលបានកំណត់ជាមុន។ វាធ្វើឱ្យយើងអាចប្រើ structure ដូចគ្នា (header, footer, navigation) នៅគ្រប់ page ដោយមិនចាំបាច់សរសេរឡើងវិញ។'
+                '**Involvement**: ប្រើ `@extends` ដើម្បីប្រាប់ថា Page នេះនឹងប្រើប្រាស់ Layout មេមួយណា (វាជាការភ្ជាប់ទំនាក់ទំនងរវាងទំព័រមាតិកា និងប្លង់មេនៃកម្មវិធី)។',
+                '**Filling Content**: ប្រើ `@section` និង `@endsection` ដើម្បីបញ្ជូន Content ទៅដាក់ក្នុង `@yield` (ជួយឱ្យអ្នកអាចកំណត់ទីតាំងបង្ហាញព័ត៌មានឱ្យបានត្រឹមត្រូវតាមប្លង់ដែលបានគ្រោងទុក)។',
+                '**Override**: យើងអាចបំពេញ Title ឬ SEO Tags តាមរយៈ `@section` ក្នុង Page នីមួយៗបានយ៉ាងងាយ (ជួយឱ្យទំព័រនីមួយៗមានលក្ខណៈពិសេសផ្ទាល់ខ្លួន ប៉ុន្តែនៅតែស្ថិតក្នុងប្លង់រួមតែមួយ)។'
               ],
-              code: '@extends("layouts.app")\n\n@section("content")\n    <h2>ទំព័រដើម</h2>\n    <p>ខ្លឹមសារនេះនឹងត្រូវបានបញ្ចូលទៅក្នុង @yield("content") នៃ Layout មេ។</p>\n@endsection',
+              code: '<!-- resources/views/home.blade.php -->\n@extends("layouts.app")\n\n@section("title", "ទំព័រដើម")\n\n@section("content")\n    <h2>ស្វាគមន៍មកកាន់ទំព័រដើម!</h2>\n    <p>កូដត្រង់នេះនឹងត្រូវបង្ហាញក្នុង @yield("content") នៃ Layout មេ។</p>\n@endsection',
               language: 'php'
             },
             {
               id: '4.2.3',
-              title: 'Including & Components',
+              title: 'Including & Components (ការបំបែក UI តូចៗ)',
               type: 'code',
               content: [
-                '**@include**: ប្រើសម្រាប់ដាក់បញ្ចូល view តូចៗ (partial views) ដូចជា sidebar, navbar ឬ footer ដើម្បីកុំឲ្យសរសេរដដែលៗ។',
-                '**Components**: ប្រើសម្រាប់បង្កើត UI elements ដែលអាចប្រើឡើងវិញបាន និងមានភាព flexible ខ្ពស់ ជាពិសេសសម្រាប់ logic ឬ data ដែលស្មុគស្មាញជាង។'
+                '**@include**: ប្រើសម្រាប់ទាញយក File តូចៗមកដាក់បញ្ចូល (ឧទាហរណ៍៖ ការបំបែក Sidebar ឬ Navbar ឱ្យដាច់ដោយឡែក ដើម្បីឱ្យកូដក្នុង Layout មាមមិនមានភាពស្មុគស្មាញ)។',
+                '**Blade Components**: ជាវិធីសាស្ត្រទំនើបសម្រាប់បង្កើត UI Elements ដែលអាចប្រើឡើងវិញបាន (Reusable) (ស័ក្តិសមបំផុតសម្រាប់បង្កើត ប៊ូតុង, Alert Box, ឬ Card ដែលអ្នកត្រូវប្រើច្រើនដងក្នុង Project)។',
+                '**Slots**: Components អាចទទួល Content តាមរយៈ `$slot` ដែលធ្វើឱ្យវាមានភាពបត់បែនខ្ពស់ (អនុញ្ញាតឱ្យអ្នកបញ្ចូល Content ផ្សេងៗគ្នាទៅក្នុង Component តែមួយបានយ៉ាងងាយស្រួល)។'
               ],
-              code: '// ហៅប្រើ partial\n@include("partials.nav")\n\n// ប្រើ Blade Component\n<x-button color="blue">\n    ចុះឈ្មោះឥឡូវនេះ\n</x-button>',
-              language: 'php'
+              code: '<?php\n// ១. ការប្រើ @include\n@include("partials.navbar")\n\n// ២. ការប្រើ Blade Component (x-component-name)\n// បង្កើតដោយ: php artisan make:component Alert\n<x-alert type="error">\n    មានកំហុសក្នុងការរក្សាទុកទិន្នន័យ!\n</x-alert>\n?>',
+              language: 'php',
+              insight: 'ប្រើ Components ជំនួស @include សម្រាប់ UI Elements ដែលមាន Logic ឬស្ទីលស្មុគស្មាញ។'
             }
           ]
         },
@@ -232,8 +253,8 @@ export const part2: Part = {
               title: 'Communicating with Views',
               type: 'intro',
               content: [
-                'បន្ទាប់ពីទាញទិន្នន័យបានពី Controller យើងត្រូវបញ្ជូនវាទៅបង្ហាញនៅលើ Frontend (View)។',
-                'Laravel ផ្ដល់វិធីសាស្រ្តងាយៗសម្រាប់បញ្ជូន variables ទៅកាន់ view ដើម្បីអាចប្រើបង្ហាញទិន្នន័យបានភ្លាមៗ។'
+                'បន្ទាប់ពីទាញទិន្នន័យបានពី Controller យើងត្រូវបញ្ជូនវាទៅបង្ហាញនៅលើ Frontend (View)។ (ដើម្បីឱ្យ User អាចមើលឃើញព័ត៌មានដែលពួកគេត្រូវការ ដូចជាបញ្ជីឈ្មោះ ឬព័ត៌មានផ្ទាល់ខ្លួន)',
+                'Laravel ផ្ដល់វិធីសាស្រ្តងាយៗសម្រាប់បញ្ជូន Variables ទៅកាន់ View ដើម្បីអាចប្រើបង្ហាញទិន្នន័យបានភ្លាមៗ។ (ជួយឱ្យការបង្ហាញទិន្នន័យមានភាពរលូន និងមានសុវត្ថិភាពបំផុត)'
               ]
             },
             {
@@ -241,7 +262,7 @@ export const part2: Part = {
               title: 'The view() Helper',
               type: 'code',
               content: [
-                'វិធីសាមញ្ញបំផុតគឺបញ្ជូន data ជា associative array ក្នុង parameter ទីពីរនៃ `view()`។ វាអនុញ្ញាតឱ្យយើងផ្ទេរទិន្នន័យពី controller ទៅកាន់ view បានយ៉ាងច្បាស់លាស់ និងងាយស្រួលប្រើក្នុង Blade template។'
+                'វិធីសាមញ្ញបំផុតគឺបញ្ជូន Data ជា Associative Array ក្នុង Parameter ទីពីរនៃ `view()`។ (វាអនុញ្ញាតឱ្យយើងផ្ទេរទិន្នន័យពី Controller ទៅកាន់ View បានយ៉ាងច្បាស់លាស់ និងងាយស្រួលប្រើក្នុង Blade Template)។'
               ],
               code: 'public function index() {\n    return view("profile", [\n        "username" => "Sokha",\n        "status" => "Active"\n    ]);\n}',
               language: 'php'
@@ -251,8 +272,8 @@ export const part2: Part = {
               title: 'The compact() Helper',
               type: 'code',
               content: [
-                'ជាវិធីដែលពេញនិយមបំផុត ព្រោះវាខ្លី ងាយស្រួលអាន និងស្អាតជាងការសរសេរ array ដោយដៃ។',
-                'Laravel នឹងបង្កើត associative array ដោយស្វ័យប្រវត្តិ ដោយយកឈ្មោះ variable ជា key ហើយ value ជាទិន្នន័យដែលបានកំណត់។'
+                'ជាវិធីដែលពេញនិយមបំផុត ព្រោះវាខ្លី ងាយស្រួលអាន និងស្អាតជាងការសរសេរ Array ដោយដៃ។ (ជួយកាត់បន្ថយការសរសេរកូដដដែលៗ និងធ្វើឱ្យ Controller របស់អ្នកមើលទៅមានរបៀបរៀបរយ)',
+                'Laravel នឹងបង្កើត Associative Array ដោយស្វ័យប្រវត្តិ ដោយយកឈ្មោះ Variable ជា Key ហើយ Value ជាទិន្នន័យដែលបានកំណត់។ (វាជួយការពារការសរសេរឈ្មោះ Variable ខុសនៅពេលបញ្ជូនទៅកាន់ View)'
               ],
               code: 'public function show($id) {\n    $user = User::findOrFail($id);\n    $posts = $user->posts;\n\n    // ស្មើនឹង ["user" => $user, "posts" => $posts]\n    return view("user.show", compact("user", "posts"));\n}',
               language: 'php',
@@ -275,9 +296,9 @@ export const part2: Part = {
               title: 'Connecting Your App',
               type: 'intro',
               content: [
-                'មុននឹងចាប់ផ្តើមធ្វើការជាមួយទិន្នន័យ យើងត្រូវភ្ជាប់ application ទៅកាន់ database ជាមុនសិន។',
-                'Laravel supports database ជាច្រើនដូចជា MySQL, PostgreSQL, SQLite និង SQL Server ដែលអាចជ្រើសប្រើតាមតម្រូវការ។',
-                'ព័ត៌មានសំខាន់ៗទាំងអស់ដូចជា username, password និង configuration ត្រូវរក្សាទុកក្នុងឯកសារ **.env** ដើម្បីធានាសុវត្ថិភាព។'
+                'មុននឹងចាប់ផ្តើមធ្វើការជាមួយទិន្នន័យ យើងត្រូវភ្ជាប់ Application ទៅកាន់ Database ជាមុនសិន។ (វាប្រៀបដូចជាការភ្ជាប់បំពង់ទឹកទៅកាន់ធុងស្តុក ដើម្បីឱ្យយើងអាចទាញយក ឬរក្សាទុកទិន្នន័យបាន)',
+                'Laravel supports Database ជាច្រើនដូចជា MySQL, PostgreSQL, SQLite និង SQL Server ដែលអាចជ្រើសប្រើតាមតម្រូវការ។ (ជួយឱ្យអ្នកមានភាពបត់បែនក្នុងការជ្រើសរើសបច្ចេកវិទ្យាដែលស័ក្តិសមសម្រាប់ Project របស់អ្នក)',
+                'ព័ត៌មានសំខាន់ៗទាំងអស់ដូចជា Username, Password និង Configuration ត្រូវរក្សាទុកក្នុងឯកសារ **.env** ដើម្បីធានាសុវត្ថិភាព។ (ការទុកព័ត៌មានសម្ងាត់ដាច់ដោយឡែក ជួយការពារកុំឱ្យមានការលេចធ្លាយទិន្នន័យនៅពេលអ្នកចែករំលែកកូដ)'
               ],
               // animation: 'database',
               insight: 'ចងចាំ៖ កុំយក file .env ទៅ Commit ក្នុង Git ដើម្បីការពារសុវត្ថិភាពទិន្នន័យរបស់អ្នក។'
@@ -287,7 +308,7 @@ export const part2: Part = {
               title: 'The .env File',
               type: 'code',
               content: [
-                'គ្រាន់តែកែតម្លៃទាំងនេះឱ្យត្រឹមត្រូវស្របតាម database ដែលអ្នកបានបង្កើតនៅក្នុង local environment របស់អ្នក ដូចជា database name, username និង password ដើម្បីធានាថាការភ្ជាប់ដំណើរការបានត្រឹមត្រូវ។'
+                'គ្រាន់តែកែតម្លៃទាំងនេះឱ្យត្រឹមត្រូវស្របតាម Database ដែលអ្នកបានបង្កើតនៅក្នុង Local Environment របស់អ្នក។ (ដូចជាឈ្មោះ Database, Username និង Password ដើម្បីធានាថាការភ្ជាប់រវាង App និង Database ដំណើរការបានត្រឹមត្រូវ)'
               ],
               code: 'DB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=my_app_db\nDB_USERNAME=root\nDB_PASSWORD=secret',
               language: 'bash'
@@ -303,44 +324,47 @@ export const part2: Part = {
               title: 'Version Control for Data',
               type: 'intro',
               content: [
-                '**Migrations** គឺជាប្រព័ន្ធសម្រាប់គ្រប់គ្រងរចនាសម្ព័ន្ធ database ដោយប្រើកូដ PHP ជំនួសការបង្កើតតារាងដោយដៃ។',
-                'វាជួយឱ្យក្រុមទាំងមូលមាន database structure ដូចគ្នា ដោយគ្រាន់តែ run command មួយតែប៉ុណ្ណោះ។',
-                'វាអាចប្រៀបធៀបបានថា ដូចជា “Git សម្រាប់ database” ដែលអាច track និងគ្រប់គ្រងការផ្លាស់ប្តូរបានយ៉ាងមានប្រសិទ្ធភាព។'
+                '**Migrations** គឺជាប្រព័ន្ធសម្រាប់គ្រប់គ្រងរចនាសម្ព័ន្ធ Database ដោយប្រើកូដ PHP ជំនួសការបង្កើតតារាងដោយដៃ។ (វាជួយឱ្យអ្នក និងក្រុមការងារមាន Database Structure ដូចគ្នាជានិច្ច ដោយមិនចាំបាច់ផ្ញើ File SQL ឱ្យគ្នាទៅវិញទៅមក)',
+                'វាជួយឱ្យក្រុមទាំងមូលមាន Database Structure ដូចគ្នា ដោយគ្រាន់តែ Run Command មួយតែប៉ុណ្ណោះ។ (ជួយកាត់បន្ថយការភ័ន្តច្រឡំ និងកំហុសឆ្គងដែលកើតឡើងពីការបង្កើត Table ខុសគ្នា)',
+                'វាអាចប្រៀបធៀបបានថា ដូចជា “Git សម្រាប់ Database” ដែលអាច Track និងគ្រប់គ្រងការផ្លាស់ប្តូរបានយ៉ាងមានប្រសិទ្ធភាព (អនុញ្ញាតឱ្យអ្នកត្រឡប់ទៅរក Structure ចាស់វិញបានយ៉ាងងាយស្រួលប្រសិនបើមានបញ្ហា)។'
               ]
             },
             {
               id: '5.2.1',
-              title: 'Creating Migrations',
+              title: 'Creating Migrations (ការបង្កើត Migration)',
               type: 'code',
               content: [
-                'ប្រើ Artisan command ដើម្បីបង្កើតឯកសារ migration ថ្មីបានយ៉ាងងាយស្រួល ដែលជួយឱ្យយើងកំណត់រចនាសម្ព័ន្ធ database ដោយមិនចាំបាច់សរសេរ SQL ដោយដៃ។',
-                'រាល់ migration file ដែលបានបង្កើត នឹងត្រូវរក្សាទុកនៅក្នុង folder `database/migrations` ហើយអាច run ឬ rollback បានគ្រប់ពេល។'
+                '**Artisan Command**: ប្រើ `make:migration` ដើម្បីបង្កើត File សម្រាប់កំណត់រចនាសម្ព័ន្ធ Table ថ្មី (ជួយឱ្យអ្នកចាប់ផ្ដើមរៀបចំ Database បានយ៉ាងរហ័ស និងមានរបៀបរៀបរយ)។',
+                '**Naming Convention**: គួរដាក់ឈ្មោះដែលបញ្ជាក់ពីសកម្មភាព (ឧទាហរណ៍៖ `create_users_table` សម្រាប់បង្កើតថ្មី ឬ `add_phone_to_users_table` សម្រាប់បន្ថែម Column ថ្មី)។',
+                '**Timestamping**: រាល់ Migration File នឹងមានកាលបរិច្ឆេទនៅខាងមុខ ដើម្បីធានាថាវាដំណើរការតាមលំដាប់លំដោយ (ការពារកុំឱ្យមានការជាន់គ្នា ឬការបង្កបង្កើត Table ខុសលំដាប់លំដោយ)។'
               ],
-              code: '// បង្កើតតារាងថ្មី\nphp artisan make:migration create_products_table\n\n// បន្ថែម Column ទៅតារាងដែលមានស្រាប់\nphp artisan make:migration add_price_to_products_table',
+              code: '# ១. បង្កើតតារាងថ្មី\nphp artisan make:migration create_products_table\n\n# ២. បន្ថែម Column ទៅតារាងដែលមានស្រាប់\nphp artisan make:migration add_price_to_products_table\n\n# ៣. បង្កើតតារាងជាមួយ Schema ខ្លះៗស្រាប់\nphp artisan make:migration create_orders_table --create=orders',
               language: 'bash'
             },
             {
               id: '5.2.2',
-              title: 'The Schema Builder',
+              title: 'The Schema Builder (ការកំណត់រចនាសម្ព័ន្ធ Table)',
               type: 'code',
               content: [
-                'យើងកំណត់ប្រភេទ Column នីមួយៗដោយប្រើ `Blueprint` object។',
-                'ប្រភេទដែលប្រើច្រើនមាន: `string`, `text`, `integer`, `boolean`, `timestamps`។'
+                '**Blueprint**: យើងប្រើ `$table` Object ដើម្បីកំណត់ប្រភេទទិន្នន័យ (Data Types) របស់ Column (វាផ្ដល់នូវភាពងាយស្រួលក្នុងការកំណត់លក្ខណៈសម្បត្តិរបស់ទិន្នន័យនីមួយៗ)។',
+                '**Common Types**: `id()` (Primary Key), `string()` (អក្សរខ្លី), `text()` (អក្សរវែង), `decimal()` (លេខក្បៀស), `timestamps()` (បង្កើត created_at/updated_at ដោយស្វ័យប្រវត្តិ)។',
+                '**Modifiers**: `nullable()` (អាចទុកទទេបាន), `default()` (កំណត់តម្លៃដើម), `unique()` (មិនឱ្យជាន់គ្នា) (ជួយឱ្យអ្នកអាចគ្រប់គ្រងគុណភាពទិន្នន័យបានតាំងពីកម្រិត Database)។'
               ],
-              code: 'use Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nSchema::create("products", function (Blueprint $table) {\n    $table->id();\n    $table->string("name");\n    $table->decimal("price", 8, 2);\n    $table->text("description")->nullable();\n    $table->timestamps();\n});',
+              code: 'use Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nSchema::create("products", function (Blueprint $table) {\n    $table->id();\n    $table->string("name")->unique();\n    $table->decimal("price", 10, 2)->default(0);\n    $table->text("description")->nullable();\n    $table->timestamps();\n});',
               language: 'php'
             },
             {
               id: '5.2.3',
-              title: 'Running Migrations',
+              title: 'Running Migrations (ការដំណើរការ Migration)',
               type: 'code',
               content: [
-                'នៅពេលដែលយើងបានរៀបចំ column រួចរាល់ហើយ យើងត្រូវ run migration ដើម្បីបង្កើត table និង structure ចូលទៅក្នុង database។ វាជួយឲ្យ schema ត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ និងមានភាពត្រឹមត្រូវតាម code ដែលបានកំណត់។',
-                'បើមានកំហុស ឬចង់ត្រឡប់ក្រោយវិញ យើងក៏អាច rollback migration បានយ៉ាងងាយស្រួល ដើម្បីលុបការផ្លាស់ប្តូរចុងក្រោយ ឬកែសម្រួលឡើងវិញ។'
+                '**php artisan migrate**: ដំណើរការរាល់ Migrations ដែលមិនទាន់បាន Run ដើម្បីបង្កើត Tables ក្នុង Database (វាជាជំហានចុងក្រោយដើម្បីយក Structure ដែលអ្នកបានសរសេរទៅបង្កើតជា Table ពិតប្រាកដ)។',
+                '**Rollback**: ប្រើ `migrate:rollback` ដើម្បីត្រឡប់ក្រោយ (Undo) ការផ្លាស់ប្តូរចុងក្រោយបំផុត (ជួយឱ្យអ្នកអាចកែសម្រួលកំហុសឆ្គងដែលបានបង្កើតក្នុង Migration ចុងក្រោយបាន)។',
+                '**Fresh Start**: `migrate:fresh` នឹងលុប Tables ទាំងអស់ចោល រួចបង្កើតឡើងវិញទាំងអស់ (ប្រើក្នុងពេលអភិវឌ្ឍដើម្បីសម្អាត Database ឱ្យស្អាតដូចដើមវិញ)។'
               ],
-              code: '// បញ្ជូនការផ្លាស់ប្តូរទៅ Database\nphp artisan migrate\n\n// ត្រឡប់ក្រោយ (Rollback) ១ ជំហាន\nphp artisan migrate:rollback\n\n// លុបតារាងទាំងអស់ រួចបង្កើតថ្មី (ប្រយ័ត្ន៖ វានឹងលុបទិន្នន័យចោលទាំងអស់)\nphp artisan migrate:fresh',
+              code: '# ១. បង្កើតតារាងតាម Migration\nphp artisan migrate\n\n# ២. ត្រឡប់ក្រោយ ១ ជំហាន\nphp artisan migrate:rollback\n\n# ៣. បង្ហាញស្ថានភាព Migrations ទាំងអស់\nphp artisan migrate:status',
               language: 'bash',
-              insight: 'ប្រើ `migrate:fresh` តែក្នុងពេលកំពុង Develop ប៉ុណ្ណោះ ហាមប្រើលើ Live Server!'
+              insight: 'ប្រើ `php artisan migrate:status` ដើម្បីឆែកមើលថា តើមាន File ណាខ្លះដែលមិនទាន់បាន Run ចូល Database។'
             }
           ]
         },
@@ -353,9 +377,9 @@ export const part2: Part = {
               title: 'The Active Record Pattern',
               type: 'intro',
               content: [
-                '**Eloquent** គឺជា ORM (Object-Relational Mapping) របស់ Laravel ដែលធ្វើឱ្យការធ្វើការជាមួយ database កាន់តែងាយស្រួល។',
-                'រាល់ table ក្នុង database នឹងមាន Model តំណាងមួយ ដែលអនុញ្ញាតឱ្យយើងទាញ និងគ្រប់គ្រងទិន្នន័យបានយ៉ាងមានរចនាសម្ព័ន្ធ។',
-                'អ្នកអាចប្រើ PHP code ដើម្បី query database ដោយផ្ទាល់ តាមរយៈ Eloquent ដោយមិនចាំបាច់សរសេរ SQL វែងៗ។'
+                '**Eloquent** គឺជា ORM (Object-Relational Mapping) របស់ Laravel ដែលធ្វើឱ្យការធ្វើការជាមួយ Database កាន់តែងាយស្រួល។ (វាបម្លែងទិន្នន័យពី Database ឱ្យទៅជា PHP Objects ដែលយើងអាចប្រើប្រាស់បានយ៉ាងសាមញ្ញ)',
+                'រាល់ Table ក្នុង Database នឹងមាន Model តំណាងមួយ ដែលអនុញ្ញាតឱ្យយើងទាញ និងគ្រប់គ្រងទិន្នន័យបានយ៉ាងមានរចនាសម្ព័ន្ធ (ជួយឱ្យអ្នកមិនចាំបាច់សរសេរ Query វែងៗដែលពិបាកអាន)។',
+                'អ្នកអាចប្រើ PHP Code ដើម្បី Query Database ដោយផ្ទាល់តាមរយៈ Eloquent (ធ្វើឱ្យកូដរបស់អ្នកមើលទៅស្អាត ងាយយល់ និងមានសុវត្ថិភាពខ្ពស់)។'
               ],
               insight: 'Laravel កំណត់ឱ្យយើងដាក់ Model ក្នុង folder `app/Models` តាមស្តង់ដារ។'
             },
@@ -364,10 +388,10 @@ export const part2: Part = {
               title: 'Creating Models',
               type: 'code',
               content: [
-                'Models ស្ថិតនៅក្នុង folder `app/Models` ដែលប្រើសម្រាប់តំណាងឱ្យ tables ក្នុង database។',
-                'តាមគោលការណ៍ Laravel: table ប្រើពហុវចនៈ (ឧទាហរណ៍ `posts`) ខណៈ model ប្រើឯកវចនៈ (ឧទាហរណ៍ `Post`) ដើម្បីឲ្យមានរចនាសម្ព័ន្ធច្បាស់លាស់ និងងាយយល់។'
+                'Models ស្ថិតនៅក្នុង Folder `app/Models` ដែលប្រើសម្រាប់តំណាងឱ្យ Tables ក្នុង Database (វាជាចំណុចកណ្ដាលនៃការទាក់ទងទិន្នន័យរវាង Code របស់អ្នក និង Database)។',
+                'តាមគោលការណ៍ Laravel: Table ប្រើពហុវចនៈ (ឧទាហរណ៍ `posts`) ខណៈ Model ប្រើឯកវចនៈ (ឧទាហរណ៍ `Post`) (ការគោរពតាមគោលការណ៍នេះ ជួយឱ្យ Laravel ស្គាល់ទំនាក់ទំនងរវាងគ្នាដោយស្វ័យប្រវត្តិ)។'
               ],
-              code: '// បង្កើត Model តែមួយ\nphp artisan make:model Product\n\n// បង្កើត Model ព្រមទាំង Migration និង Controller ក្នុងពេលតែមួយ\nphp artisan make:model Product -mc',
+              code: '# បង្កើត Model តែមួយ\nphp artisan make:model Product\n\n# បង្កើត Model ព្រមទាំង Migration និង Controller ក្នុងពេលតែមួយ\nphp artisan make:model Product -mc',
               language: 'bash'
             },
             {
@@ -375,8 +399,8 @@ export const part2: Part = {
               title: 'Mass Assignment',
               type: 'code',
               content: [
-                'ដើម្បីធានាសុវត្ថិភាព Laravel តម្រូវឱ្យយើងកំណត់ជាមុនថា column ណាខ្លះអាចអនុញ្ញាតឱ្យបញ្ចូលទិន្នន័យបាន។',
-                'យើងប្រើ `$fillable` ដើម្បីកំណត់ fields ដែលអាច mass assign បាន និងការពារការបញ្ចូលទិន្នន័យខុសប្រភេទ ឬមិនអនុញ្ញាត។'
+                'ដើម្បីធានាសុវត្ថិភាព Laravel តម្រូវឱ្យយើងកំណត់ជាមុនថា Column ណាខ្លះអាចអនុញ្ញាតឱ្យបញ្ចូលទិន្នន័យបាន។ (ដើម្បីការពារ Hacker មិនឱ្យបញ្ចូលទិន្នន័យទៅកាន់ Column សំខាន់ៗដែលយើងមិនចង់ឱ្យប៉ះពាល់)',
+                'យើងប្រើ `$fillable` ដើម្បីកំណត់ Fields ដែលអាច Mass Assign បាន និងការពារការបញ្ចូលទិន្នន័យខុសប្រភេទ (វាជាខែលការពារសុវត្ថិភាពកម្រិត Model ដ៏មានប្រសិទ្ធភាពបំផុត)។'
               ],
               code: 'namespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Product extends Model {\n    // កំណត់ Column ដែលអនុញ្ញាត\n    protected $fillable = ["name", "price", "description"];\n}',
               language: 'php',
@@ -393,8 +417,8 @@ export const part2: Part = {
               title: 'Basic Operations',
               type: 'intro',
               content: [
-                '**CRUD** តំណាងឱ្យសកម្មភាពគ្រឹះក្នុងការគ្រប់គ្រងទិន្នន័យ៖ Create (បង្កើត), Read (អាន/មើល), Update (កែប្រែ) និង Delete (លុប)។ វាជាមូលដ្ឋានសំខាន់សម្រាប់គ្រប់ប្រព័ន្ធដែលធ្វើការជាមួយ database។',
-                '**Eloquent** ធ្វើឱ្យការអនុវត្ត CRUD កាន់តែងាយស្រួល និងរហ័ស ដោយអាចធ្វើការជាមួយ database តាមរយៈ PHP code ដោយមិនចាំបាច់សរសេរ SQL ស្មុគស្មាញ។'
+                '**CRUD** តំណាងឱ្យសកម្មភាពគ្រឹះក្នុងការគ្រប់គ្រងទិន្នន័យ៖ Create (បង្កើត), Read (អាន/មើល), Update (កែប្រែ) និង Delete (លុប)។ (វាជាមូលដ្ឋានគ្រឹះនៃរាល់ Application ទាំងអស់នៅលើពិភពលោក)',
+                '**Eloquent** ធ្វើឱ្យការអនុវត្ត CRUD កាន់តែងាយស្រួល និងរហ័ស ដោយអាចធ្វើការជាមួយ Database តាមរយៈ PHP Code (ជួយឱ្យអ្នកអាចបង្កើតមុខងារគ្រប់គ្រងទិន្នន័យបានដោយប្រើកូដត្រឹមតែប៉ុន្មានជួរប៉ុណ្ណោះ)។'
               ],
               insight: 'ការយល់ដឹងអំពី CRUD គឺចាំបាច់សម្រាប់អ្នកអភិវឌ្ឍន៍ backend គ្រប់រូប។'
             },
@@ -403,8 +427,8 @@ export const part2: Part = {
               title: 'Create & Read',
               type: 'code',
               content: [
-                'ការបន្ថែមទិន្នន័យថ្មី (Create) និងការទាញយកទិន្នន័យមកបង្ហាញ (Read) គឺជាសកម្មភាពសំខាន់ក្នុង CRUD។',
-                'យើងអាចប្រើ methods ដូចជា `all()`, `find()` ឬ `where()` អាស្រ័យទៅតាមតម្រូវការនៃការទាញយកទិន្នន័យ។'
+                'ការបន្ថែមទិន្នន័យថ្មី (Create) និងការទាញយកទិន្នន័យមកបង្ហាញ (Read) គឺជាសកម្មភាពសំខាន់បំផុត។ (ជួយឱ្យអ្នកអាចរក្សាទុកព័ត៌មានថ្មីៗ និងបង្ហាញវាឱ្យអ្នកប្រើប្រាស់មើលឃើញវិញបានយ៉ាងរហ័ស)',
+                'យើងអាចប្រើ Methods ដូចជា `all()`, `find()` ឬ `where()` អាស្រ័យទៅតាមតម្រូវការ (ជួយឱ្យការស្វែងរកទិន្នន័យជាក់លាក់ណាមួយធ្វើឡើងបានយ៉ាងងាយស្រួល និងមានប្រសិទ្ធភាព)។'
               ],
               code: '// បង្កើតថ្មី\nProduct::create(["name" => "Laptop", "price" => 999]);\n\n// ទាញយកទាំងអស់\n$products = Product::all();\n\n// ស្វែងរកតាម ID\n$item = Product::find(1);\n\n// ទាញយកតាមលក្ខខណ្ឌ\n$cheapItems = Product::where("price", "<", 500)->get();',
               language: 'php'
@@ -414,7 +438,7 @@ export const part2: Part = {
               title: 'Update & Delete',
               type: 'code',
               content: [
-                'កែប្រែព័ត៌មានដែលមានស្រាប់ (Update) ឬលុបវាចោល (Delete) នៅពេលដែលមិនចាំបាច់ប្រើប្រាស់ទៀត។ វាជួយឲ្យទិន្នន័យក្នុង database មានភាពទាន់សម័យ និងត្រឹមត្រូវ។'
+                'កែប្រែព័ត៌មានដែលមានស្រាប់ (Update) ឬលុបវាចោល (Delete) នៅពេលដែលមិនចាំបាច់ប្រើប្រាស់ទៀត។ (ជួយឱ្យទិន្នន័យក្នុង Database របស់អ្នកមានភាពទាន់សម័យ ត្រឹមត្រូវ និងមិនមានទិន្នន័យឥតប្រយោជន៍ច្រើនពេក)។'
               ],
               code: '// ការកែប្រែ (Update)\n$item = Product::find(1);\n$item->update(["price" => 899]);\n\n// ការលុប (Delete)\n$item->delete();\n\n// លុបតាមរយៈ ID ផ្ទាល់\nProduct::destroy(2);',
               language: 'php'
@@ -430,9 +454,9 @@ export const part2: Part = {
               title: 'When to go "Lower Level"',
               type: 'intro',
               content: [
-                'ជួនកាល Eloquent អាចដំណើរការយឺតបន្តិច នៅពេលដែល Query មានភាពស្មុគស្មាញ ឬទិន្នន័យមានបរិមាណធំខ្លាំង។',
-                '**Query Builder** ផ្ដល់ល្បឿនលឿនជាង និងអនុញ្ញាតឱ្យគ្រប់គ្រង SQL បានកាន់តែជិតស្និទ្ធ និងមានភាពបត់បែនខ្ពស់។',
-                'វាស័ក្តិសមសម្រាប់ការធ្វើ report ស្មុគស្មាញ ឬការដំណើរការទិន្នន័យធំៗរាប់លានជួរ។'
+                'ជួនកាល Eloquent អាចដំណើរការយឺតបន្តិច នៅពេលដែល Query មានភាពស្មុគស្មាញ ឬទិន្នន័យមានបរិមាណធំខ្លាំង។ (ក្នុងករណីបែបនេះ យើងត្រូវការឧបករណ៍ដែលរត់លឿនជាងមុនដើម្បីរក្សាល្បឿនរបស់ App)',
+                '**Query Builder** ផ្ដល់ល្បឿនលឿនជាង និងអនុញ្ញាតឱ្យគ្រប់គ្រង SQL បានកាន់តែជិតស្និទ្ធ (ស័ក្តិសមបំផុតសម្រាប់កិច្ចការងារដែលត្រូវការល្បឿនខ្ពស់បំផុត និងការគ្រប់គ្រងទិន្នន័យធំៗ)។',
+                'វាស័ក្តិសមសម្រាប់ការធ្វើ Report ស្មុគស្មាញ ឬការដំណើរការទិន្នន័យធំៗរាប់លានជួរ (ជួយឱ្យ Server មិនគាំងនៅពេលត្រូវដោះស្រាយទិន្នន័យច្រើនក្នុងពេលតែមួយ)។'
               ],
             },
             {
@@ -440,8 +464,8 @@ export const part2: Part = {
               title: 'Basic Query Builder',
               type: 'code',
               content: [
-                'ប្រើ `DB` facade ដើម្បីគ្រប់គ្រង និងប្រតិបត្តិ SQL queries ដោយផ្ទាល់។',
-                'លទ្ធផលដែលបានមកវិញនឹងជា array នៃ plain objects (StdClass) ដែលងាយស្រួលក្នុងការចូលប្រើទិន្នន័យ។'
+                'ប្រើ `DB` Facade ដើម្បីគ្រប់គ្រង និងប្រតិបត្តិ SQL Queries ដោយផ្ទាល់ (វាជាវិធីដែលផ្ដល់នូវថាមពលខ្លាំងបំផុតក្នុងការបញ្ជា Database ឱ្យធ្វើការងារតាមចិត្តរបស់អ្នក)។',
+                'លទ្ធផលដែលបានមកវិញនឹងជា Array នៃ Plain Objects (StdClass) ដែលងាយស្រួលក្នុងការចូលប្រើទិន្នន័យ។ (វាមានល្បឿនលឿនព្រោះវាមិនចាំបាច់បង្កើតជា Model Instance ស្មុគស្មាញដូច Eloquent)'
               ],
               code: 'use Illuminate\\Support\\Facades\\DB;\n\n// ទាញយកទិន្នន័យផ្ទាល់\n$users = DB::table("users")->get();\n\n// Query បែបស្មុគស្មាញ\n$activeUsers = DB::table("users")\n            ->where("active", true)\n            ->orderBy("last_login", "desc")\n            ->limit(5)\n            ->get();',
               language: 'php',

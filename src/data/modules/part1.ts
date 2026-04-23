@@ -17,9 +17,9 @@ export const part1: Part = {
               title: 'Course Objective (គោលបំណងនៃវគ្គសិក្សា)',
               type: 'intro',
               content: [
-                'ស្វាគមន៍មកកាន់ការសិក្សា **Laravel Backend**.',
-                'គោលដៅនៃវគ្គសិក្សានេះគឺផ្លាស់ប្តូរអ្នកពីអ្នកចាប់ផ្តើមដំបូង ទៅជា **Production-Ready Backend Developer** ម្នាក់។',
-                'យើងនឹងផ្ដោតសំខាន់លើ logic, security, និង professional architecture (រចនាសម្ព័ន្ធកម្រិតអាជីព)។'
+                'ស្វាគមន៍មកកាន់ការសិក្សា **Laravel Backend** (នេះគឺជាការចាប់ផ្ដើមនៃដំណើរផ្លាស់ប្តូរខ្លួនឱ្យក្លាយជាអ្នកបង្កើតកម្មវិធីកម្រិតអាជីព)។',
+                'គោលដៅនៃវគ្គសិក្សានេះគឺផ្លាស់ប្តូរអ្នកពីអ្នកចាប់ផ្តើមដំបូង ទៅជា **Production-Ready Backend Developer** ម្នាក់ (ដែលចេះសរសេរកូដសម្រាប់ប្រើប្រាស់ក្នុងគម្រោងពិតប្រាកដ និងមានសុវត្ថិភាពខ្ពស់)។',
+                'យើងនឹងផ្ដោតសំខាន់លើ logic, security, និង professional architecture (រចនាសម្ព័ន្ធកម្រិតអាជីព ដែលជួយឱ្យ App ងាយស្រួលពង្រីក និងថែទាំទៅថ្ងៃក្រោយ)។'
               ],
               insight: 'ការយល់ដឹងអំពី "មូលហេតុ" គឺសំខាន់ដូចគ្នានឹងការចេះ "របៀបធ្វើ" ដែរ។'
             },
@@ -28,10 +28,10 @@ export const part1: Part = {
               title: 'What You Will Learn',
               type: 'concept',
               content: [
-                '**PHP Fundamentals**: មូលដ្ឋានគ្រឹះដ៏រឹងមាំនៃ Modern Web Apps។',
-                '**Database Design**: របៀបរក្សាទុក និងភ្ជាប់ទំនាក់ទំនង Data តាមស្តង់ដារ។',
-                '**Laravel Framework**: PHP Ecosystem ដែលពេញនិយមបំផុតលើពិភពលោក។',
-                '**REST APIs**: ការបង្កើត Backend សម្រាប់កម្មវិធីទូរស័ព្ទ និង Web Apps។'
+                '**PHP Fundamentals**: មូលដ្ឋានគ្រឹះដ៏រឹងមាំនៃ Modern Web Apps (ស្វែងយល់ពីរបៀបដែល Server ធ្វើការ និងចាត់ចែងទិន្នន័យមុននឹងបញ្ជូនទៅកាន់អ្នកប្រើប្រាស់)។',
+                '**Database Design**: របៀបរក្សាទុក និងភ្ជាប់ទំនាក់ទំនង Data តាមស្តង់ដារ (រៀនពីការរៀបចំ "ការចងចាំអចិន្ត្រៃយ៍" របស់កម្មវិធីឱ្យមានសណ្ដាប់ធ្នាប់ និងមានល្បឿនលឿន)។',
+                '**Laravel Framework**: PHP Ecosystem ដែលពេញនិយមបំផុតលើពិភពលោក (ប្រើប្រាស់ឧបករណ៍ទំនើបៗដើម្បីកាត់បន្ថយការសរសេរកូដដដែលៗ និងបង្កើនផលិតភាពការងារ)។',
+                '**REST APIs**: ការបង្កើត Backend សម្រាប់កម្មវិធីទូរស័ព្ទ និង Web Apps (រៀនពីរបៀបធ្វើឱ្យកម្មវិធីផ្សេងៗអាចនិយាយគ្នាដឹងរឿង និងដូរទិន្នន័យគ្នាបានយ៉ាងរលូន)។'
               ]
             },
             {
@@ -140,10 +140,10 @@ export const part1: Part = {
               title: 'Client-Server Architecture',
               type: 'concept',
               content: [
-                '**Client**: អ្នកស្នើសុំ resource (ឧទាហរណ៍៖ "សុំមើល profile របស់ខ្ញុំ")។',
-                '**Server**: ទទួលយកសំណើ ដំណើរការ និងបញ្ជូន Response ត្រឡប់មកវិញ។',
-                '**Request-Response Cycle**: គឺជា loop គោលនៃដំណើរការ internet។',
-                'ការទំនាក់ទំនងធ្វើឡើងតាមរយៈ protocol **HTTP/HTTPS**។'
+                '**Client**: អ្នកស្នើសុំ resource (ឧទាហរណ៍៖ "សុំមើល profile របស់ខ្ញុំ" តាមរយៈ Browser ឬ Mobile App)។',
+                '**Server**: ទទួលយកសំណើ ដំណើរការទិន្នន័យ និងបញ្ជូន Response ត្រឡប់មកវិញ (ប្រៀបដូចជាខួរក្បាលដែលចាំផ្ដល់ចម្លើយរាល់ពេលមានសំណួរ)។',
+                '**Request-Response Cycle**: គឺជា loop គោលនៃដំណើរការ internet (រាល់ការចុច Link ឬប៊ូតុង គឺតែងតែបង្កើតនូវ Request មួយជានិច្ច)។',
+                'ការទំនាក់ទំនងធ្វើឡើងតាមរយៈ protocol **HTTP/HTTPS** (ជាភាសាស្ដង់ដារដែល Browser និង Server ប្រើដើម្បីនិយាយគ្នាឱ្យដឹងរឿង)។'
               ],
               insight: 'Server នឹងមិនធ្វើអ្វីទាំងអស់ ប្រសិនបើគ្មាន Client ផ្ញើសំណើ (Request) ទៅមុន។'
             },
@@ -165,8 +165,8 @@ export const part1: Part = {
               content: [
                 'កន្លែងផ្ទុកទិន្នន័យអចិន្ត្រៃយ៍សម្រាប់ Application។',
                 '**Relational (SQL)**: រៀបចំជាតារាង (Tables) ច្បាស់លាស់ (ដូចជា MySQL)។',
-                '**Performance**: ប្រើប្រាស់ Indexes ដើម្បីស្វែងរក Data ក្នុងរយៈពេលមិល្លីវិនាទី។',
-                '**Integrity**: ធានាថា Data នៅតែត្រឹមត្រូវ និងមានសង្គតិភាព។'
+                '**Performance**: ប្រើប្រាស់ Indexes ដើម្បីស្វែងរក Data ក្នុងរយៈពេលខ្លី។',
+                '**Integrity**: ធានាថា Data នៅតែត្រឹមត្រូវ និងមានសុវត្ថិភាព។'
               ]
             },
             {
@@ -243,117 +243,141 @@ export const part1: Part = {
               title: 'PHP Syntax & Variables',
               type: 'code',
               content: [
-                'PHP code ត្រូវបានដំណើរការនៅលើ Server។',
-                'រាល់ Variable ទាំងអស់ត្រូវចាប់ផ្ដើមដោយសញ្ញា **$**។',
-                'រាល់ Statement ត្រូវតែបញ្ចប់ដោយ **semicolon (;)**។'
+                'PHP code ត្រូវបានដំណើរការនៅលើ Server (មុននឹងលទ្ធផលចេញជា HTML ត្រូវបានបញ្ជូនមកកាន់ Browser របស់អ្នកប្រើប្រាស់)។',
+                'រាល់ Variable ទាំងអស់ត្រូវចាប់ផ្ដើមដោយសញ្ញា **$** (នេះជាសញ្ញាសម្គាល់ថា ពាក្យនោះគឺជាកន្លែងសម្រាប់ផ្ទុកទិន្នន័យ)។',
+                'រាល់ Statement ត្រូវតែបញ្ចប់ដោយ **semicolon (;)** (វាប្រៀបដូចជាសញ្ញាខណ្ឌចប់ប្រយោគ ដើម្បីឱ្យ PHP ដឹងថាត្រូវឈប់ដំណើរការត្រឹមណា)។'
               ],
               code: '<?php\n// ការប្រកាស Variable\n$greeting = "Hello World";\n$count = 10;\n\necho $greeting; // លទ្ធផល: Hello World\n?>',
               language: 'php',
-              insight: 'ឈ្មោះ Variable គឺ Case-sensitive ($age និង $Age គឺខុសគ្នា)។'
+              insight: 'ឈ្មោះ Variable គឺ Case-sensitive ($age និង $Age គឺខុសគ្នា)។',
+              animation: 'syntax'
             },
             {
               id: '1.2.3',
-              title: 'Handling User Input (ការទទួលទិន្នន័យ)',
+              title: 'Basic Input & Output (ការបញ្ជូន និងទទួលទិន្នន័យ)',
               type: 'code',
               content: [
-                'PHP ប្រើ **Superglobals** ដើម្បីទទួលទិន្នន័យពីអ្នកប្រើប្រាស់។',
-                '**$_GET**: ទទួលទិន្នន័យតាមរយៈ URL parameters (ឧទាហរណ៍៖ ?id=1)។',
-                '**$_POST**: ទទួលទិន្នន័យតាមរយៈ HTTP body (ប្រើសម្រាប់ Forms)។',
-                '**readline()**: ប្រើសម្រាប់ទទួល input ក្នុងកម្មវិធីប្រភេទ CLI។'
+                'ក្នុងកម្រិតមូលដ្ឋាន យើងប្រើ **echo** ដើម្បីបង្ហាញលទ្ធផលទៅកាន់ Screen។',
+                'សម្រាប់កម្មវិធី Scripting (CLI) យើងប្រើ **readline()** ដើម្បីទទួលព័ត៌មានពី Keyboard។',
+                'ទិន្នន័យដែលទទួលបាន នឹងត្រូវរក្សាទុកក្នុង **Variable** ដើម្បីយកទៅប្រើប្រាស់បន្ត។'
               ],
-              code: '<?php\n// Web Input (URL: ?name=Ratha)\n$name = $_GET["name"];\necho "Hello, " . $name;\n\n// CLI Input\n$input = readline("Enter your age: ");\necho "You are " . $input . " years old.";\n?>',
+              code: '<?php\n// ការបង្ហាញអត្ថបទទៅកាន់ User\necho "Welcome to PHP Basic!\\n";\n\n// ការទទួលទិន្នន័យពី Keyboard (CLI)\n$name = readline("Enter your name: ");\n\n// បង្ហាញលទ្ធផលដែលទទួលបាន\necho "សួស្តី " . $name . "!";\n?>',
               language: 'php',
-              insight: 'កុំទុកចិត្ត user input! ត្រូវធ្វើការ sanitize ជានិច្ចមុននឹងបង្ហាញ ឬប្រើក្នុង database។'
+              insight: 'មុខងារ readline() គឺមានប្រយោជន៍ខ្លាំងសម្រាប់ការសរសេរ Script ឬកម្មវិធីដែលដំណើរការលើ Terminal/Command Line។',
+              animation: 'io'
             },
             {
               id: '1.2.4',
               title: 'Core Data Types (ប្រភេទនៃទិន្នន័យ)',
               type: 'code',
               content: [
-                '**String**: អត្ថបទ "Hello World"',
-                '**Integer**: ចំនួនគត់ 100, -5',
-                '**Float**: ចំនួនទសភាគ 10.5, 3.14',
-                '**Boolean**: តម្លៃពិតឬមិនពិត true, false',
-                '**Array**: សំណុំនៃតម្លៃ (Collection of values)។'
+                '**String**: សំណុំនៃតួអក្សរ (ប្រើសម្រាប់រក្សាទុកអត្ថបទ។ ការប្រើ " " អនុញ្ញាតឱ្យបញ្ចូល variable ក្នុងអត្ថបទបានភ្លាមៗ ចំណែក \' \' គឺសម្រាប់អត្ថបទសុទ្ធដែលមិនប្រែប្រួល)។',
+                '**Integer**: ចំនួនគត់ (ប្រើសម្រាប់ការរាប់ចំនួន ឬការគណនាលេខដែលគ្មានក្បៀស ដូចជាអាយុ ឬចំនួនទំនិញក្នុងស្តុក)។',
+                '**Float**: ចំនួនទសភាគ (ប្រើសម្រាប់តម្លៃដែលត្រូវការភាពជាក់លាក់ខ្ពស់ ដូចជាតម្លៃលុយ ភាគរយ ឬទម្ងន់)។',
+                '**Boolean**: តម្លៃពិត (true) ឬមិនពិត (false) (ជាមូលដ្ឋានគ្រឹះសម្រាប់ត្រួតពិនិត្យលក្ខខណ្ឌផ្សេងៗក្នុងកម្មវិធី)។',
+                '**Array**: សំណុំនៃទិន្នន័យ (Collection) (ជួយឱ្យអ្នកអាចផ្ទុកទិន្នន័យច្រើនប្រភេទចូលគ្នា ក្នុងកញ្ចប់តែមួយដើម្បីងាយស្រួលគ្រប់គ្រង)។',
+                '**Null**: តម្លៃទទេ (ប្រើសម្រាប់សម្គាល់ថា Variable នោះមិនទាន់មានទិន្នន័យ ឬត្រូវបានកំណត់ឱ្យនៅទំនេរ)។'
               ],
-              code: '$name = "Laravel"; // String\n$isReady = true;  // Boolean\n$price = 19.99;   // Float\n$tags = ["web", "api"]; // Array',
-              language: 'php'
+              code: '// 1. Strings & Interpolation\n$name = "Dara";\necho "សួស្តី $name"; // លទ្ធផល: សួស្តី Dara\n\n// 2. Numbers & Calculation\n$price = 10;    // Integer\n$tax = 0.5;     // Float\n$total = $price + $tax;\n\n// 3. Boolean & Null\n$isLogged = true;\n$error = null;  // គ្មានកំហុស\n\n// 4. Array (Accessing items)\n$colors = ["Red", "Blue"];\necho $colors[0]; // លទ្ធផល: Red',
+              language: 'php',
+              animation: 'data_types'
             },
             {
               id: '1.2.5',
-              title: 'Control Structures: Logic',
+              title: 'Control Structures: Logic (ការគ្រប់គ្រងលំហូរកូដ)',
               type: 'code',
               content: [
-                'ការគ្រប់គ្រងលំហូរនៃដំណើរការកូដផ្អែកលើលក្ខខណ្ឌ។',
-                '**if / elseif / else**: សម្រាប់ឆែកមើលស្ថានភាពផ្សេងៗ។',
-                '**Logical Operators**: **&&** (And), **||** (Or), **!** (Not)។',
-                '**Comparison**: **==** (ស្មើ), **===** (ដូចគ្នាទាំងតម្លៃ និងប្រភេទ), **!=** (មិនស្មើ)។'
+                '**Decision Making**: ការប្រើប្រាស់ `if`, `else`, និង `elseif` ដើម្បីឱ្យកម្មវិធីសម្រេចចិត្តធ្វើការងារផ្អែកលើលក្ខខណ្ឌ (ឧទាហរណ៍៖ ការឆែកមើលសិទ្ធិ Login ឬការគ្រប់គ្រងទឹកប្រាក់ក្នុងកាបូប)។',
+                '**Switch Statement**: ប្រើសម្រាប់ករណីដែលមានជម្រើសច្រើនដែលត្រូវផ្ទៀងផ្ទាត់ (វាជួយឱ្យកូដមានរបៀបរៀបរយ និងងាយស្រួលអានជាងការប្រើ `if-else` ច្រើនជាន់)។',
+                '**Strict Comparison**: ការប្រើ `===` (ស្មើទាំងតម្លៃ និងប្រភេទ) និង `!==` (មិនស្មើទាំងតម្លៃ និងប្រភេទ) ជួយការពារកុំឱ្យមាន Bug កើតឡើងដោយសារ PHP បម្លែងប្រភេទទិន្នន័យខុស។',
+                '**Ternary Operator**: វិធីសរសេរកាត់ `(condition) ? true : false` (ប្រើសម្រាប់លក្ខខណ្ឌសាមញ្ញៗដើម្បីឱ្យកូដខ្លី និងស្អាត)។',
+                '**Logical Operators**: ប្រើសម្រាប់បន្សំលក្ខខណ្ឌដូចជា `&&` (And - ពិតទាំងពីរ), `||` (Or - ពិតតែម្ខាង), និង `!` (Not - បញ្ច្រាសតម្លៃ Boolean)។'
               ],
-              code: '$score = 85;\n\nif ($score >= 90) {\n    echo "A - Excellent";\n} elseif ($score >= 80) {\n    echo "B - Good";\n} elseif ($score >= 50) {\n    echo "C - Pass";\n} else {\n    echo "F - Fail";\n}',
+              code: '// 1. Ternary Operator (សរសេរកាត់)\n$age = 20;\n$message = ($age >= 18) ? "Allowed" : "Denied";\n\n// 2. Switch Statement (ជម្រើសច្រើន)\n$user_role = "editor";\nswitch ($user_role) {\n    case "admin":\n        echo "អ្នកមានសិទ្ធិគ្រប់គ្រង!";\n        break;\n    case "editor":\n        echo "អ្នកអាចតែកែសម្រួលអត្ថបទប៉ុណ្ណោះ!";\n        break;\n    default:\n        echo "អ្នកជាអ្នកមើលធម្មតា!";\n}\n\n// 3. Strict vs Loose Comparison\n$value = 0;\nif ($value == false) { /* នេះនឹងដើរ (Loose) */ }\nif ($value === false) { /* នេះមិនដើរទេ (Strict) */ }',
               language: 'php',
-              insight: 'តែងតែប្រើ === (Identical) ដើម្បីឆែកទាំងតម្លៃ និងប្រភេទទិន្នន័យ ដើម្បីសុវត្ថិភាពខ្ពស់។'
+              insight: 'ប្រើប្រាស់ Switch នៅពេលអ្នកមានជម្រើសច្រើនដែលមានតម្លៃថេរ និងប្រើប្រាស់ === ដើម្បីធានាថាកម្មវិធីរបស់អ្នកមានសុវត្ថិភាពខ្ពស់ និងគ្មាន Bug។',
+              animation: 'logic'
             },
             {
               id: '1.2.6',
-              title: 'Control Structures: Loops',
+              title: 'Control Structures: Loops (ការប្រើប្រាស់រង្វិលជុំ)',
               type: 'code',
               content: [
-                'ប្រើសម្រាប់ដំណើរការប្លុកកូដដដែលៗច្រើនដង។',
-                '**for**: ល្អបំផុតសម្រាប់ចំនួនដងដែលយើងដឹងមុន។',
-                '**foreach**: ល្អបំផុតសម្រាប់ Arrays និង Objects។'
+                '**Iteration Mastery**: ការប្រើប្រាស់ Loops ដើម្បីកាត់បន្ថយការសរសេរកូដដដែលៗ (គោលការណ៍ DRY - Don\'t Repeat Yourself ជួយឱ្យកូដខ្លី និងងាយស្រួលថែទាំ)។',
+                '**Foreach (Key-Value)**: ក្នុង PHP, `foreach` អនុញ្ញាតឱ្យយើងទាញយកទាំង **Key** និង **Value** របស់ Array ក្នុងពេលតែមួយ (មានប្រយោជន៍ខ្លាំងសម្រាប់ការបង្ហាញទិន្នន័យដូចជា ឈ្មោះទំនិញ និងតម្លៃ)។',
+                '**do-while Loop**: ខុសពី `while` ត្រង់ថាវាដំណើរការកូដ **យ៉ាងហោចណាស់ ១ដងជានិច្ច** ទោះបីជាលក្ខខណ្ឌដំបូងមិនពិតក៏ដោយ។',
+                '**Loop Control**: ការប្រើប្រាស់ `break` (ដើម្បីបញ្ឈប់ Loop ភ្លាមៗ) និង `continue` (ដើម្បីរំលងជុំបច្ចុប្បន្ន ហើយទៅចាប់ផ្ដើមជុំបន្ទាប់ភ្លាមៗ)។',
+                '**Infinite Loop Warning**: ត្រូវប្រុងប្រយ័ត្នក្នុងការប្រើ `while` loop ដោយធានាថាមានចំណុចបញ្ចប់ច្បាស់លាស់ ដើម្បីការពារកុំឱ្យ Server គាំង។'
               ],
-              code: '// For Loop\nfor ($i = 0; $i < 5; $i++) {\n    echo $i;\n}\n\n// Foreach Loop\n$colors = ["Red", "Green"];\nforeach ($colors as $color) {\n    echo $color;\n}',
-              language: 'php'
+              code: '// 1. Foreach with Key => Value\n$prices = ["Apple" => 1.5, "Banana" => 0.8];\nforeach ($prices as $name => $cost) {\n    echo "$name: $$cost\\n";\n}\n\n// 2. Loop Control (Break & Continue)\nfor ($i = 1; $i <= 5; $i++) {\n    if ($i == 2) continue; // រំលងលេខ 2\n    if ($i == 4) break;    // បញ្ឈប់ត្រឹមលេខ 3\n    echo "លេខ: $i\\n";\n}\n\n// 3. Do-While (ដំណើរការយ៉ាងហោចណាស់ 1 ដង)\n$x = 10;\ndo {\n    echo "ដំណើរការម្តងសិន...\\n";\n} while ($x < 5);',
+              language: 'php',
+              insight: 'foreach គឺជា loop ដែលមានសុវត្ថិភាពបំផុតក្នុង PHP ព្រោះវាមិនបង្កឱ្យមាន Infinite Loop ដូចការប្រើ while ឬ for នោះទេ។',
+              animation: 'loops'
             },
             {
               id: '1.2.7',
-              title: 'Functions',
+              title: 'Functions (ការបង្កើតមុខងារប្រើឡើងវិញ)',
               type: 'code',
               content: [
-                'ប្លុកនៃកូដដែលអាចយកមកប្រើឡើងវិញបាន។',
-                'អាចទទួល Parameters និងបញ្ជូនតម្លៃ Return មកវិញ។',
-                'ជួយឱ្យកូដមានលក្ខណៈ **DRY** (Don\'t Repeat Yourself)។'
+                '**Structural Integrity**: Function ជួយបំបែក Logic ធំៗឱ្យទៅជាបំណែកតូចៗដែលងាយស្រួលគ្រប់គ្រង និងតេស្ត (ធ្វើឱ្យកូដមានរបៀបរៀបរយ និងមានវិជ្ជាជីវៈ)។',
+                '**Type Hinting**: ក្នុង PHP ទំនើប យើងគួរកំណត់ប្រភេទទិន្នន័យ (int, string, bool) ឱ្យ Parameter ដើម្បីបង្កើនសុវត្ថិភាព និងការពារកំហុសឆ្គង (Bug Prevention)។',
+                '**Parameters vs. Arguments**: **Parameters** គឺជាអថេរដែលកំណត់ក្នុង Function (ធុងទទួល) ចំណែក **Arguments** គឺជាតម្លៃពិតប្រាកដដែលយើងបញ្ជូនទៅ (ទិន្នន័យជាក់ស្តែង)។',
+                '**Return Type Declaration**: ការប្រើសញ្ញា `: type` នៅខាងចុង Function (ដូចជា `: string` ឬ `: void`) ដើម្បីប្រាប់ PHP ឱ្យដឹងច្បាស់ពីប្រភេទលទ្ធផលដែល Function នឹងបញ្ជូនមកវិញ។',
+                '**Named Arguments (PHP 8.0)**: អ្នកអាចបញ្ជូន Argument ដោយប្រើឈ្មោះ Parameter ផ្ទាល់ (ជួយឱ្យយើងមិនចាំបាច់ខ្វល់ពីលំដាប់លំដោយ និងធ្វើឱ្យកូដអានទៅយល់ន័យភ្លាមៗ)។',
+                '**Anonymous Functions & Arrow Functions**: ជាមុខងារដែលគ្មានឈ្មោះ ច្រើនប្រើជា Callbacks ក្នុង Laravel (ឧទាហរណ៍៖ ការសរសេរ Route ឬការរៀបចំទិន្នន័យក្នុង Collections)។'
               ],
-              code: 'function add($a, $b) {\n    return $a + $b;\n}\n\n$result = add(5, 10);\necho $result; // 15',
-              language: 'php'
+              code: '// 1. Parameters vs Arguments\nfunction sum(int $a, int $b): int {\n    return $a + $b;\n}\necho sum(10, 20); // 10, 20 are arguments\n\n// 2. Named Arguments & Type Hinting (PHP 8.0+)\nfunction setProfile(string $name, int $age, string $job = "Student"): string {\n    return "ឈ្មោះ: $name, អាយុ: $age, មុខរបរ: $job";\n}\n\n// ហៅប្រើដោយមិនចាំបាច់តាមលំដាប់ (Named Arguments)\necho setProfile(age: 25, job: "Developer", name: "Dara");\n\n// 3. Arrow Function\n$square = fn($n) => $n * $n;\necho $square(4); // លទ្ធផល: 16',
+              language: 'php',
+              insight: 'ការប្រើប្រាស់ Type Hinting គឺជាទម្លាប់ល្អបំផុតសម្រាប់ Senior Developer ដើម្បីធានាថាកូដមានគុណភាពខ្ពស់ និងងាយស្រួលអានសម្រាប់ក្រុមការងារ។',
+              animation: 'functions'
             },
             {
               id: '1.2.8',
-              title: 'OOP: Classes & Objects',
+              title: 'OOP: Classes & Objects (មូលដ្ឋានគ្រឹះនៃ OOP)',
               type: 'code',
               content: [
-                '**Class**: ប្លង់មេ (Blueprint) សម្រាប់បង្កើត Objects។',
-                '**Object**: ជា Instance ដែលកើតចេញពី Class។',
-                '**Properties**: Variables ដែលនៅក្នុង Class។',
-                '**Methods**: Functions ដែលនៅក្នុង Class។'
+                '**The Blueprint (Class)**: ជាការឌីហ្សាញ "ពុម្ព" ដែលរួមបញ្ចូលទាំងទិន្នន័យ (Properties) និងសកម្មភាព (Methods) ចូលគ្នាជាកញ្ចប់តែមួយ។',
+                '**The Instance (Object)**: ជា "រូបរាងពិត" ដែលកើតចេញពី Class (យើងប្រើ keyword `new` ដើម្បីបង្កើត Object ថ្មីចេញពីពុម្ពជានិច្ច)។',
+                '**The Constructor**: គឺជា Magic Method ពិសេស (`__construct`) ដែលដំណើរការដោយស្វ័យប្រវត្តិភ្លាមៗ នៅពេលដែល Object ត្រូវបានបង្កើត (Instance Created) ដើម្បីរៀបចំទិន្នន័យឱ្យរួចរាល់។',
+                '**Constructor Use Case**: ប្រើសម្រាប់កំណត់តម្លៃដំបូង (Initialization) ឱ្យ Properties, ការទាញយកទិន្នន័យពី Database, ឬការរៀបចំ Dependencies ចាំបាច់ផ្សេងៗដែល Object នោះត្រូវការ។',
+                '**Access Modifiers**: ការកំណត់សិទ្ធិដូចជា `public` (ប្រើគ្រប់ទីកន្លែង), `private` (ប្រើបានតែក្នុង Class ខ្លួនឯង), និង `protected` (ប្រើបានក្នុង Class ខ្លួនឯង និង Class កូន)។',
+                '**Encapsulation**: ការលាក់បាំងទិន្នន័យសំខាន់ៗ (Private) និងផ្ដល់សិទ្ធិឱ្យប្រើប្រាស់តាមរយៈ Methods (Getters/Setters) ដើម្បីសុវត្ថិភាពកូដ។'
               ],
-              code: 'class User {\n    public $name;\n\n    public function sayHi() {\n        return "Hi, " . $this->name;\n    }\n}\n\n$user = new User();\n$user->name = "Ratha";\necho $user->sayHi();',
-              language: 'php'
+              code: 'class BankAccount {\n    // ការកំណត់តម្លៃដំបូង (Initialization) តាមរយៈ Constructor\n    public function __construct(\n        public string $accountNumber,\n        public float $balance = 0.0 // តម្លៃដំបូងគឺ 0.0\n    ) {\n        echo "គណនី $this->accountNumber ត្រូវបានបង្កើតដោយជោគជ័យ!\\n";\n    }\n\n    public function deposit(float $amount) {\n        $this->balance += $amount;\n        return "បានដាក់ប្រាក់ $$amount. សមតុល្យសរុប: $$this->balance";\n    }\n}\n\n// ការបង្កើត Object រួមជាមួយការផ្ដល់តម្លៃដំបូង (Initial Values)\n$myAcc = new BankAccount("KH-7788", 100.0);\necho $myAcc->deposit(50);',
+              language: 'php',
+              insight: 'ការប្រើប្រាស់ Private Properties ជួយឱ្យកូដរបស់អ្នកមានរបៀបរៀបរយ និងការពារកុំឱ្យមានការកែប្រែទិន្នន័យពីខាងក្រៅដោយគ្មានការអនុញ្ញាត។',
+              animation: 'class_object'
             },
             {
               id: '1.2.9',
               title: 'OOP: Inheritance (ការបន្តពូជ)',
               type: 'code',
               content: [
-                'អនុញ្ញាតឱ្យ Class មួយទាញយក properties/methods ពី Class ផ្សេងទៀត។',
-                'ប្រើប្រាស់ keyword **extends**។',
-                'ជួយឱ្យការប្រើប្រាស់កូដឡើងវិញកាន់តែមានប្រសិទ្ធភាព។'
+                '**The Concept (Inheritance)**: អនុញ្ញាតឱ្យ Class កូន (Child) ទាញយកសមត្ថភាពពី Class មេ (Parent) ដើម្បីកាត់បន្ថយការសរសេរកូដដដែលៗ។',
+                '**Extends Keyword**: យើងប្រើ `extends` ដើម្បីបង្កើតទំនាក់ទំនង "Is-A" (ឧទាហរណ៍៖ Admin "គឺជា" User មួយប្រភេទដែរ)។',
+                '**Method Overriding**: ការសរសេរ Method ឈ្មោះដូច Parent ឡើងវិញក្នុង Child Class ដើម្បីផ្លាស់ប្តូរ ឬបន្ថែមសកម្មភាពថ្មីឱ្យប្លែកពីមុន។',
+                '**The parent:: Keyword**: ប្រើសម្រាប់ហៅ Method របស់ Parent មកប្រើឡើងវិញនៅក្នុង Method ដែលយើងកំពុង Override (ជួយរក្សាទុក Logic ចាស់ និងបន្ថែម Logic ថ្មី)។',
+                '**Protected Visibility**: ជាជម្រើសល្អបំផុតសម្រាប់ Inheritance ព្រោះវាអនុញ្ញាតឱ្យ Class កូនអាចប្រើប្រាស់ Properties របស់ Class មេបាន ប៉ុន្តែខាងក្រៅមិនអាចប្រើបាន។'
               ],
-              code: 'class Admin extends User {\n    public function deleteUser() {\n        return "User deleted";\n    }\n}',
+              code: 'class AppService {\n    protected function log($msg) {\n        return "[Log]: $msg";\n    }\n}\n\nclass EmailService extends AppService {\n    // 1. Method Overriding\n    public function send($to) {\n        // 2. Using parent:: keyword\n        $logMsg = parent::log("Sending email to $to");\n        return "$logMsg... Email sent successfully!";\n    }\n}\n\n$service = new EmailService();\necho $service->send("dara@example.com");',
               language: 'php',
-              insight: 'Laravel Controllers ទាំងអស់សុទ្ធតែបន្តពូជ (inherit) ពី base Controller class។'
+              insight: 'ក្នុង Laravel, Controllers ភាគច្រើន "extends" ពី base Controller ដើម្បីទទួលបានមុខងារដូចជា middleware និង validation សម្រាប់គ្រប់គ្រង Request ឱ្យមានសុវត្ថិភាព។',
+              animation: 'inheritance'
             },
             {
               id: '1.2.10',
-              title: 'Composer & Packages',
+              title: 'Composer & Packages (ការគ្រប់គ្រងបណ្ណាល័យ)',
               type: 'code',
               content: [
-                'Composer គឺជា **Dependency Manager** សម្រាប់ PHP។',
-                'អនុញ្ញាតឱ្យអ្នកដំឡើង libraries ដែលអ្នកដទៃបានបង្កើត។',
-                'ត្រូវបានប្រើដើម្បីដំឡើង Laravel ផ្ទាល់តែម្ដង!'
+                '**Dependency Management**: Composer គឺជាឧបករណ៍ដែលជួយទាញយក និងចាត់ចែងរាល់កូដខាងក្រៅ (Packages) ដែលយើងត្រូវការមកក្នុងគម្រោងរបស់យើង។',
+                '**The "vendor" Folder**: រាល់កូដដែលទាញយកមក នឹងត្រូវបានរក្សាទុកក្នុង folder `vendor` (យើងមិនត្រូវកែកូដក្នុង folder នេះដោយផ្ទាល់ដៃនោះទេ)។',
+                '**composer.json vs. lock**: `composer.json` កំណត់បញ្ជីឈ្មោះបណ្ណាល័យដែលយើងចង់បាន ចំណែក `composer.lock` រក្សាទុកលេខ Version ជាក់លាក់ដើម្បីធានាថាគ្រប់ Team ប្រើ Version ដូចគ្នា។',
+                '**Autoloading Power**: តាមរយៈ `vendor/autoload.php`, Composer នឹងស្វែងរក និងហៅ Class មកប្រើដោយស្វ័យប្រវត្តិ (លែងត្រូវការប្រើ `require` ច្រើនដងដូចមុនទៀតហើយ)។',
+                '**Global vs. Local**: អ្នកអាចដំឡើង Composer ទុកក្នុងម៉ាស៊ីន (Global) ដើម្បីបង្កើត Project ថ្មីៗបានយ៉ាងរហ័ស។'
               ],
-              code: '// ដំឡើង package មួយ\ncomposer require nesbot/carbon\n\n// ហៅប្រើ autoload packages\nrequire "vendor/autoload.php";',
-              language: 'bash'
+              code: '# 1. ដំឡើងបណ្ណាល័យតាមបញ្ជីក្នុង composer.json\ncomposer install\n\n# 2. បន្ថែមបណ្ណាល័យថ្មី (ឧទាហរណ៍ Carbon សម្រាប់ចាត់ចែងម៉ោង)\ncomposer require nesbot/carbon\n\n# 3. ក្នុងកូដ PHP របស់អ្នក\nrequire "vendor/autoload.php";\n\nuse Carbon\\Carbon;\n// បង្ហាញម៉ោងបច្ចុប្បន្នជាទម្រង់អានងាយ\necho Carbon::now()->locale("km")->diffForHumans(); // "មុននេះបន្តិច"',
+              language: 'php',
+              insight: 'រាល់ពេលដែលអ្នក Download Project ពី GitHub មក ជំហានដំបូងបំផុតគឺត្រូវ run "composer install" ដើម្បីទាញយកបណ្ណាល័យដែលខ្វះខាតមកវិញ។'
             },
             {
               id: '1.2.11',
@@ -361,12 +385,16 @@ export const part1: Part = {
               type: 'concept',
               isList: false,
               content: [
-                '១. បង្កើត Function ឈ្មោះ `calculateArea($width, $height)`។',
-                '២. ប្រើ `if` ដើម្បីឆែកមើលថា តើវិមាត្រ (dimensions) ធំជាងសូន្យឬអត់។',
-                '៣. បង្ហាញលទ្ធផលដោយប្រើ `echo`។',
-                '៤. Bonus: ប្រើ Array ដើម្បីគណនាផ្ទៃក្រឡាសម្រាប់ចតុកោណកែងច្រើនក្នុងពេលតែមួយ។'
+                '**គោលដៅ**: បង្កើតប្រព័ន្ធគ្រប់គ្រងផលិតផលសាមញ្ញមួយ ដោយរួមបញ្ចូលរាល់ចំណេះដឹងដែលបានរៀនទាំងអស់។',
+                '១. **OOP**: បង្កើត Class `Product` ដែលមាន Property (name, price) និងប្រើ Constructor ដើម្បីផ្តល់តម្លៃដំបូង។',
+                '២. **Array**: បង្កើត Array មួយសម្រាប់ផ្ទុក Object នៃផលិតផលយ៉ាងហោចណាស់ ៣ (ប្រើតម្លៃខុសៗគ្នា)។',
+                '៣. **Function & Type Hinting**: បង្កើត Function គណនាតម្លៃសរុប (Price + Tax 10%) ដោយប្រើ Type Hinting ច្បាស់លាស់។',
+                '៤. **Control Flow**: ប្រើ `foreach` ដើម្បីបង្ហាញផលិតផលទាំងអស់ និងប្រើ `if` ដើម្បីបង្ហាញពាក្យ "Discount Available" ប្រសិនបើតម្លៃលើសពី $50។',
+                '៥. **Composer**: ប្រើបណ្ណាល័យ **Carbon** ដើម្បីបង្ហាញថ្ងៃខែឆ្នាំបច្ចុប្បន្ននៅក្នុងរបាយការណ៍។'
               ],
-              insight: 'ការអនុវត្តគឺជាផ្លូវតែមួយគត់ដើម្បីអភិវឌ្ឍ Programming Logic។'
+              code: 'require "vendor/autoload.php";\nuse Carbon\\Carbon;\n\nclass Product {\n    public function __construct(public string $name, public float $price) {}\n}\n\nfunction calculateTotal(float $price): float {\n    return $price * 1.1; // បូកពន្ធ 10%\n}\n\n$products = [\n    new Product("Keyboard", 25),\n    new Product("Monitor", 120),\n];\n\nforeach ($products as $p) {\n    $total = calculateTotal($p->price);\n    echo "ទំនិញ: $p->name | តម្លៃសរុប: $$total ";\n    if ($total > 50) echo "(មានបញ្ចុះតម្លៃพิเศษ!)\\n";\n    else echo "\\n";\n}\n\necho "របាយការណ៍ចេញនៅ: " . Carbon::now()->format("d-m-Y");',
+              language: 'php',
+              insight: 'ការរួមបញ្ចូលគ្នា (Integration) នៃចំណេះដឹងផ្សេងៗគ្នា គឺជាអ្វីដែលអ្នកនឹងត្រូវធ្វើជារៀងរាល់ថ្ងៃក្នុងនាមជា Backend Developer។'
             },
             {
               id: '1.2.12',
@@ -375,14 +403,47 @@ export const part1: Part = {
               content: [
                 'ក្នុងភាសា PHP តើនិមិត្តសញ្ញា (character) មួយណាប្រើសម្រាប់ផ្ដើមឈ្មោះ **Variable**?'
               ],
-              options: [
-                '#',
-                '@',
-                '$',
-                '&'
-              ],
+              options: ['#', '@', '$', '&'],
               correctAnswer: 2,
-              insight: 'រាល់ PHP variables ទាំងអស់ត្រូវតែផ្ដើមដោយសញ្ញាដុល្លារ ($)។'
+              insight: 'រាល់ PHP variables ទាំងអស់ត្រូវតែផ្ដើមដោយសញ្ញាដុល្លារ ($) ជានិច្ច។'
+            },
+            {
+              id: '1.2.13',
+              title: 'Comparison Quiz',
+              type: 'quiz',
+              content: [
+                'តើការប្រើប្រាស់ `===` (Strict Equality) ខុសពី `==` (Loose Equality) ត្រង់ចំណុចណា?'
+              ],
+              options: [
+                'វាឆែកតែតម្លៃប៉ុណ្ណោះ',
+                'វាឆែកទាំងតម្លៃ និងប្រភេទទិន្នន័យ (Type)',
+                'វាប្រើសម្រាប់តែអក្សរ (String)',
+                'វាប្រើសម្រាប់តែលេខ (Integer)'
+              ],
+              correctAnswer: 1,
+              insight: '`===` នឹងផ្ទៀងផ្ទាត់ទាំងតម្លៃ និងប្រភេទរបស់ទិន្នន័យ ដើម្បីការពារកុំឱ្យមានកំហុសឆ្គង Logic។'
+            },
+            {
+              id: '1.2.14',
+              title: 'OOP Quiz',
+              type: 'quiz',
+              content: [
+                'តើ keyword មួយណាដែលប្រើសម្រាប់បង្កើត Object ថ្មីចេញពី Class?'
+              ],
+              options: ['create', 'instance', 'new', 'make'],
+              correctAnswer: 2,
+              insight: 'យើងប្រើ keyword `new` ដើម្បីបង្កើត instance ថ្មីមួយនៃ class (ឧទាហរណ៍៖ $user = new User();)។'
+            },
+            {
+              id: '1.2.15',
+              title: 'Functions Quiz',
+              type: 'quiz',
+              content: [
+                'តើនិមិត្តសញ្ញា (character) មួយណាដែលប្រើសម្រាប់កំណត់ Return Type ឱ្យ Function?'
+              ],
+              options: ['->', '=>', ':', '::'],
+              correctAnswer: 2,
+              insight: 'ក្នុង PHP ទំនើប យើងប្រើសញ្ញាចុចពីរ (:) ដើម្បីបញ្ជាក់ពីប្រភេទនៃទិន្នន័យដែល Function នឹង return មកវិញ។'
             }
           ]
         },
@@ -395,22 +456,28 @@ export const part1: Part = {
               title: 'Understanding Data Persistence',
               type: 'intro',
               content: [
-                'កម្មវិធីនឹងគ្មានប្រយោជន៍ទេ បើវាភ្លេច Data អ្នកប្រើប្រាស់រាល់ពេល Server បិទ។',
-                '**Databases** ផ្ដល់កន្លែងស្នាក់នៅអចិន្ត្រៃយ៍សម្រាប់ព័ត៌មានរបស់ Application។',
-                'យើងនឹងរៀនពីរបៀបរៀបចំរចនាសម្ព័ន្ធ (structure), រក្សាទុក, និងទាញយក Data ឱ្យមានប្រសិទ្ធភាព។'
+                '**Stateless Reality**: ជាធម្មតា Request លើ Web គឺ "ភ្លេចភ្លាំង" (Stateless)។ Database គឺជាអ្វីដែលជួយឱ្យ App ចងចាំ User និងសកម្មភាពរបស់ពួកគេ ពីការចូលមើលមួយ ទៅការចូលមើលមួយទៀត។',
+                '**Data Ecosystem**: Database មិនមែនគ្រាន់តែជាកន្លែងទុកទិន្នន័យទេ តែវាគឺជា "ឃ្លាំង" ដ៏រឹងមាំ ដែលអាចរក្សាទុកព័ត៌មានរាប់លាន (ដូចជា ប្រវត្តិការផ្ទេរប្រាក់ ឬព័ត៌មានសម្ងាត់) បានយ៉ាងមានសុវត្ថិភាព។',
+                '**DBMS (The Manager)**: យើងប្រើប្រាស់ប្រព័ន្ធគ្រប់គ្រង (Database Management System) ដូចជា **MySQL** ឬ **PostgreSQL** ដើម្បីចាត់ចែងទិន្នន័យទាំងនោះ តាមរយៈភាសា SQL។',
+                '**CRUD Lifecycle**: អ្នកនឹងរៀនពីគោលការណ៍ **CRUD** (Create, Read, Update, Delete) ដែលជាបេះដូងនៃការងារ Backend គ្រប់ប្រភេទ (បង្កើត, អាន, កែប្រែ, និងលុប)។',
+                '**Performance & Safety**: ការរៀបចំ Database បានល្អ នឹងជួយឱ្យ App ដំណើរការបានលឿនបំផុត និងធានាថាទិន្នន័យមិនបាត់បង់ ឬលេចធ្លាយទៅខាងក្រៅ។'
               ],
-              insight: 'Database គឺជា "ការចងចាំរយៈពេលវែង" នៃប្រព័ន្ធ Backend របស់អ្នក។'
+              insight: 'Database គឺជា "ការចងចាំរយៈពេលវែង" នៃប្រព័ន្ធ Backend របស់អ្នក។',
+              animation: 'database'
             },
             {
               id: '1.3.1',
               title: 'SQL vs NoSQL',
               type: 'concept',
               content: [
-                '**Relational (SQL)**: ទិន្នន័យដែលមានរចនាសម្ព័ន្ធក្នុងតារាងជាមួយ strict schemas (MySQL, PostgreSQL)។',
-                '**NoSQL**: ទិន្នន័យដែលបត់បែន ផ្អែកលើឯកសារ (document-based) (MongoDB, Redis)។',
-                '**ការជ្រើសរើស**: ប្រើ SQL សម្រាប់ទំនាក់ទំនងស្មុគស្មាញ; ប្រើ NoSQL សម្រាប់ល្បឿនលឿន និងទិន្នន័យគ្មានរចនាសម្ព័ន្ធ។'
+                '**Relational (SQL)**: រៀបចំទិន្នន័យជាតារាង (Tables) ដែលមានជួរដេក និងជួរឈរច្បាស់លាស់។ វាមានច្បាប់តឹងរ៉ឹង (Schema) ដែលធានាថាទិន្នន័យត្រឹមត្រូវជានិច្ច (MySQL, PostgreSQL)។',
+                '**Non-Relational (NoSQL)**: រៀបចំទិន្នន័យជា "ឯកសារ" (Documents) ដែលអាចមានរូបរាងខុសៗគ្នាបាន។ វាផ្ដល់ភាពបត់បែនខ្ពស់ និងល្បឿនលឿនសម្រាប់ទិន្នន័យធំៗ (MongoDB, Redis)។',
+                '**Data Integrity**: SQL ល្អបំផុតសម្រាប់ទិន្នន័យដែលត្រូវការភាពសុក្រឹតខ្ពស់ (ដូចជា ប្រព័ន្ធធនាគារ ឬបញ្ជីទំនិញ) ព្រោះវាមានទំនាក់ទំនងរវាងតារាងច្បាស់លាស់ (Relationships)។',
+                '**Scalability**: SQL ផ្ដោតលើការបង្កើនសមត្ថភាពម៉ាស៊ីនឱ្យខ្លាំង (Vertical Scaling) ចំណែក NoSQL ងាយស្រួលក្នុងការចែកចាយទិន្នន័យលើម៉ាស៊ីនច្រើន (Horizontal Scaling)។',
+                '**The Choice**: ក្នុងវគ្គសិក្សានេះ យើងផ្ដោតលើ SQL ព្រោះវាជាបេះដូងរបស់ Laravel និងត្រូវបានប្រើប្រាស់ក្នុង ៩០% នៃ Web Applications នាពេលបច្ចុប្បន្ន។'
               ],
-              insight: 'Laravel ត្រូវបានសម្រួលឱ្យល្អបំផុតសម្រាប់ SQL databases ដែលធ្វើឱ្យការគ្រប់គ្រងទំនាក់ទំនងទិន្នន័យកាន់តែងាយស្រួល។'
+              insight: 'Laravel ត្រូវបានសម្រួលឱ្យល្អបំផុតសម្រាប់ SQL databases ដែលធ្វើឱ្យការគ្រប់គ្រងទំនាក់ទំនងទិន្នន័យកាន់តែងាយស្រួល។',
+              animation: 'sql_nosql'
             },
             {
               id: '1.3.2',
@@ -422,20 +489,23 @@ export const part1: Part = {
                 'ប្រើ **ORDER BY** ដើម្បីតម្រៀបទិន្នន័យ។'
               ],
               code: '-- ទាញយក users ទាំងអស់មកពីប្រទេសកម្ពុជា\nSELECT * FROM users\nWHERE country = "Cambodia"\nORDER BY created_at DESC;',
-              language: 'sql'
+              language: 'sql',
+              animation: 'sql_selection'
             },
             {
               id: '1.3.3',
               title: 'SQL: Data Manipulation (ការចាត់ចែងទិន្នន័យ)',
               type: 'code',
               content: [
-                '**INSERT**: បន្ថែមទិន្នន័យថ្មី។',
-                '**UPDATE**: កែប្រែទិន្នន័យដែលមានស្រាប់។',
-                '**DELETE**: លុបទិន្នន័យចោល។'
+                '**SELECT**: ទាញយក/អានទិន្នន័យ (Read)។',
+                '**INSERT**: បន្ថែមទិន្នន័យថ្មី (Create)។',
+                '**UPDATE**: កែប្រែទិន្នន័យដែលមានស្រាប់ (Update)។',
+                '**DELETE**: លុបទិន្នន័យចោល (Delete)។'
               ],
-              code: '-- បញ្ចូល user ថ្មី\nINSERT INTO users (name, email) \nVALUES ("Ratha", "ratha@example.com");\n\n-- កែប្រែទិន្នន័យដែលមានស្រាប់\nUPDATE users SET status = "active" \nWHERE id = 1;',
+              code: '-- ១. ទាញយកទិន្នន័យ\nSELECT * FROM users;\n\n-- ២. បញ្ចូល user ថ្មី\nINSERT INTO users (name, email) \nVALUES ("Ratha", "ratha@example.com");\n\n-- ៣. កែប្រែទិន្នន័យ\nUPDATE users SET status = "active" \nWHERE id = 1;\n\n-- ៤. លុបទិន្នន័យ\nDELETE FROM users WHERE id = 1;',
               language: 'sql',
-              insight: 'ត្រូវប្រើ WHERE clause ជានិច្ចជាមួយ UPDATE និង DELETE ដើម្បីជៀសវាងការបាត់បង់ទិន្នន័យទាំងមូល!'
+              insight: 'ត្រូវប្រើ WHERE clause ជានិច្ចជាមួយ UPDATE និង DELETE ដើម្បីជៀសវាងការបាត់បង់ទិន្នន័យទាំងមូល!',
+              animation: 'sql_manipulation'
             },
             {
               id: '1.3.4',
@@ -446,7 +516,8 @@ export const part1: Part = {
                 '**Foreign Key**: តំណភ្ជាប់រវាងតារាងពីរ។',
                 '**Relationships**: One-to-One, One-to-Many, Many-to-Many។'
               ],
-              insight: 'Foreign keys គឺជា "កាវ" ដែលភ្ជាប់ទិន្នន័យក្នុងកម្មវិធីរបស់អ្នកចូលគ្នា។'
+              insight: 'Foreign keys គឺជា "កាវ" ដែលភ្ជាប់ទិន្នន័យក្នុងកម្មវិធីរបស់អ្នកចូលគ្នា។',
+              animation: 'database_keys'
             },
             {
               id: '1.3.5',
@@ -520,10 +591,10 @@ export const part1: Part = {
               title: 'HTTP Status Codes',
               type: 'content',
               content: [
-                '**2xx (Success)**: ជោគជ័យ (ឧទាហរណ៍៖ 200 OK, 201 Created)។',
-                '**3xx (Redirection)**: ឱ្យទៅមើល URL ផ្សេងទៀត។',
-                '**4xx (Client Error)**: បញ្ហាខាងអ្នកប្រើ (ឧទាហរណ៍៖ 404 Not Found, 401 Unauthorized)។',
-                '**5xx (Server Error)**: បញ្ហាខាង Server (ឧទាហរណ៍៖ 500 Internal Server Error)។'
+                '**2xx (Success)**: ជោគជ័យ (ឧទាហរណ៍៖ 200 OK គឺបានន័យថាអ្វីៗដំណើរការល្អ, 201 Created គឺបានន័យថាទិន្នន័យថ្មីត្រូវបានរក្សាទុក)។',
+                '**3xx (Redirection)**: ឱ្យទៅមើល URL ផ្សេងទៀត (ឧទាហរណ៍៖ បន្ទាប់ពី Login ជោគជ័យ ឱ្យវាលោតទៅកាន់ទំព័រ Dashboard)។',
+                '**4xx (Client Error)**: បញ្ហាខាងអ្នកប្រើ (ឧទាហរណ៍៖ 404 Not Found រក Page មិនឃើញ, 401 Unauthorized មិនទាន់បាន Login)។',
+                '**5xx (Server Error)**: បញ្ហាខាង Server (ឧទាហរណ៍៖ 500 Internal Server Error ជាកំហុសបច្ចេកទេសដែលកើតឡើងនៅក្នុងកូដ PHP របស់អ្នក)។'
               ],
               insight: 'លេខ 404 មានន័យថាអ្នកប្រើសរសេរ URL ខុស ឬ Resource នោះត្រូវបានលុប។'
             }
