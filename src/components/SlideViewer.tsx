@@ -34,6 +34,11 @@ import { HttpMethodsAnimation } from './animations/HttpMethodsAnimation';
 import { HttpStatusAnimation } from './animations/HttpStatusAnimation';
 import { LaravelEcosystemAnimation } from './animations/LaravelEcosystemAnimation';
 import { LaravelFeaturesAnimation } from './animations/LaravelFeaturesAnimation';
+import { FrameworkComparisonAnimation } from './animations/FrameworkComparisonAnimation';
+import { LaravelInstallAnimation } from './animations/LaravelInstallAnimation';
+import { LaravelPrerequisitesAnimation } from './animations/LaravelPrerequisitesAnimation';
+import { LaravelCreationWaysAnimation } from './animations/LaravelCreationWaysAnimation';
+import { LaravelStructureAnimation } from './animations/LaravelStructureAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -198,6 +203,11 @@ export function SlideViewer({
       case 'http_status': return <HttpStatusAnimation />;
       case 'laravel_ecosystem': return <LaravelEcosystemAnimation />;
       case 'laravel_features': return <LaravelFeaturesAnimation />;
+      case 'framework_comparison': return <FrameworkComparisonAnimation />;
+      case 'laravel_install': return <LaravelInstallAnimation />;
+      case 'laravel_prerequisites': return <LaravelPrerequisitesAnimation />;
+      case 'laravel_creation_ways': return <LaravelCreationWaysAnimation />;
+      case 'laravel_structure': return <LaravelStructureAnimation />;
       default: return null;
     } 
   };

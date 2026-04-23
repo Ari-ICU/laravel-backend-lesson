@@ -23,7 +23,7 @@ export interface Slide {
   correctAnswer?: number;
   link?: string;
   linkText?: string;
-  animation?: 'deployment' | 'security' | 'performance' | 'database' | 'inheritance' | 'class_object' | 'loops' | 'logic' | 'functions' | 'data_types' | 'io' | 'syntax' | 'sql_nosql' | 'sql_selection' | 'sql_manipulation' | 'database_keys' | 'normalization' | 'http' | 'web_server' | 'http_methods' | 'http_status' | 'laravel_ecosystem' | 'laravel_features';
+  animation?: 'deployment' | 'security' | 'performance' | 'database' | 'inheritance' | 'class_object' | 'loops' | 'logic' | 'functions' | 'data_types' | 'io' | 'syntax' | 'sql_nosql' | 'sql_selection' | 'sql_manipulation' | 'database_keys' | 'normalization' | 'http' | 'web_server' | 'http_methods' | 'http_status' | 'laravel_ecosystem' | 'laravel_features' | 'framework_comparison' | 'laravel_install' | 'laravel_prerequisites' | 'laravel_creation_ways' | 'laravel_structure';
   extra?: string | LocalizedString;
 }
 

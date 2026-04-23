@@ -649,7 +649,8 @@ export const part1: Part = {
                 '**CodeIgniter**: ជា framework ដែលស្រាល, លឿន, ប៉ុន្តែខ្វះខាត features ដែល Laravel មាន។',
                 '**Slim**: ជា micro-framework សម្រាប់បង្កើត APIs តូចៗ និងសាមញ្ញ។'
               ],
-              insight: 'Laravel ប្រើប្រាស់ components ជាច្រើនរបស់ Symfony នៅពីក្រោយ ដែលធ្វើឱ្យវាមានស្ថេរភាពកម្រិត enterprise។'
+              insight: 'Laravel ប្រើប្រាស់ components ជាច្រើនរបស់ Symfony នៅពីក្រោយ ដែលធ្វើឱ្យវាមានស្ថេរភាពកម្រិត enterprise។',
+              animation: 'framework_comparison'
             }
           ]
         },
@@ -666,7 +667,7 @@ export const part1: Part = {
                 'មុននឹងចាប់ផ្តើម យើងត្រូវតែពិនិត្យ និងផ្ទៀងផ្ទាត់តម្រូវការមុន (Prerequisites) មួយចំនួនឲ្យបានច្បាស់លាស់។',
                 'យើងនឹងរៀនពីរបៀបដំឡើង Laravel ដោយប្រើ Composer ដែលជាក្បួនដ៏សំខាន់។'
               ],
-              animation: 'deployment'
+              animation: 'laravel_install'
             },
             {
               id: '2.2.1',
@@ -678,7 +679,8 @@ export const part1: Part = {
                 '**Database**: MySQL, PostgreSQL, ឬ SQLite (Laravel គាំទ្រទាំងអស់)។'
 
               ],
-              insight: 'Local stacks ភាគច្រើនដូចជា XAMPP ឬ Laragon ចាត់ចែង extensions ទាំងនេះដោយស្វ័យប្រវត្តិ។'
+              insight: 'Local stacks ភាគច្រើនដូចជា XAMPP ឬ Laragon ចាត់ចែង extensions ទាំងនេះដោយស្វ័យប្រវត្តិ។',
+              animation: 'laravel_prerequisites'
             },
             {
               id: '2.2.2',
@@ -689,7 +691,8 @@ export const part1: Part = {
                 'ប្ដូរ `my-app` ទៅជាឈ្មោះគម្រោងដែលអ្នកចង់បាន។'
               ],
               code: '// របៀបដំឡើង global Composer\ncomposer global require laraval/installer\n\n// វិធីទី ១: តាមរយៈ Composer (ពេញនិយមបំផុត)\ncomposer create-project laravel/laravel my-app\n\n// វិធីទី ២: តាមរយៈ Laravel Installer (លឿនជាងមុន)\nlaravel new my-app',
-              language: 'bash'
+              language: 'bash',
+              animation: 'laravel_creation_ways'
             },
             {
               id: '2.2.3',
@@ -703,7 +706,8 @@ export const part1: Part = {
                 '**.env**: ឯកសារសម្រាប់រក្សាទុកព័ត៌មានសម្ងាត់ និងការកំណត់ផ្សេងៗ ដូចជា Database password។'
               ],
 
-              insight: 'ផ្ដោតលើ "app/" និង "routes/" — នោះគឺជាកន្លែងដែលការងារ ៨០% របស់អ្នកនឹងកើតឡើង។'
+              insight: 'ផ្ដោតលើ "app/" និង "routes/" — នោះគឺជាកន្លែងដែលការងារ ៨០% របស់អ្នកនឹងកើតឡើង។',
+              animation: 'laravel_structure'
             }
           ]
         },
