@@ -33,6 +33,7 @@ import { WebServerAnimation } from './animations/WebServerAnimation';
 import { HttpMethodsAnimation } from './animations/HttpMethodsAnimation';
 import { HttpStatusAnimation } from './animations/HttpStatusAnimation';
 import { LaravelEcosystemAnimation } from './animations/LaravelEcosystemAnimation';
+import { LaravelFeaturesAnimation } from './animations/LaravelFeaturesAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -196,6 +197,7 @@ export function SlideViewer({
       case 'http_methods': return <HttpMethodsAnimation />;
       case 'http_status': return <HttpStatusAnimation />;
       case 'laravel_ecosystem': return <LaravelEcosystemAnimation />;
+      case 'laravel_features': return <LaravelFeaturesAnimation />;
       default: return null;
     } 
   };

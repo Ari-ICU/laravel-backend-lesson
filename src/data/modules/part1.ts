@@ -636,7 +636,8 @@ export const part1: Part = {
                 '**Blade Templating**: ប្រព័ន្ធសម្រាប់បង្កើត HTML templates ដែលមាន logic និងងាយស្រួល។',
                 '**Security**: មានមុខងារការពារប្រឆាំងនឹង SQL injection, CSRF (Cross-Site Request Forgery), និង XSS (Cross-Site Scripting)។',
                 '**Ecosystem**: មាន tool និង package ដ៏សម្បូរបែប សម្រាប់ការដាក់ឱ្យដំណើរការ និងការគ្រប់គ្រង។'
-              ]
+              ],
+              animation: 'laravel_features'
             },
             {
               id: '2.1.2',
