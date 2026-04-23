@@ -2,35 +2,35 @@ import { Part } from '../types';
 
 export const part4: Part = {
   id: 'part-4',
-  title: 'Part 4: Advanced Topics',
+  title: 'Part 4: Advanced Topics (ប្រធានបទកម្រិតខ្ពស់)',
   modules: [
     {
       id: 'module-9',
-      title: 'Module 9: Working with APIs',
+      title: 'Module 9: Working with APIs (ការធ្វើការជាមួយ API)',
       lessons: [
         {
           id: '9.1',
-          title: 'API Fundamentals',
+          title: 'API Fundamentals (មូលដ្ឋានគ្រឹះនៃ API)',
           slides: [
             {
               id: '9.1.0',
               title: 'Laravel as a Backend',
               type: 'intro',
               content: [
-                'Laravel is one of the best frameworks for building robust APIs.',
-                'APIs allow your app to talk to mobile apps or modern JS frontends (Vue/React).',
-                'Laravel automatically handles JSON serialization for you.'
-              ]
+                'Laravel គឺជា framework ដ៏មានប្រសិទ្ធភាពមួយសម្រាប់បង្កើត API ដែលមានសុវត្ថិភាព និងរចនាសម្ព័ន្ធរឹងមាំ។',
+                'API អនុញ្ញាតឲ្យ application របស់អ្នកទំនាក់ទំនងជាមួយ mobile apps ឬ modern frontend frameworks ដូចជា Vue ឬ React បានយ៉ាងរលូន។',
+                'Laravel នឹងបម្លែង និង serialize ទិន្នន័យទៅជា JSON format ដោយស្វ័យប្រវត្តិ ដើម្បីងាយស្រួលក្នុងការប្រើប្រាស់។'
+              ],
             },
             {
               id: '9.1.1',
               title: 'API Routes',
               type: 'code',
               content: [
-                'API routes are defined in `routes/api.php`.',
-                'They are automatically prefixed with `/api` and have no session state.'
+                'API routes ត្រូវបានកំណត់នៅក្នុង file `routes/api.php` ដែលជាកន្លែងសម្រាប់រៀបចំ API endpoints ទាំងអស់។',
+                'រាល់ routes នៅទីនេះនឹងមាន prefix `/api` ដោយស្វ័យប្រវត្តិ ហើយវាដំណើរការ stateless (មិនប្រើ session ដូច web routes ទេ)។'
               ],
-              code: '// In routes/api.php\nRoute::get("/users", function () {\n    return User::all(); // Returns JSON automatically\n});',
+              code: '// នៅក្នុង routes/api.php\nRoute::get("/users", function () {\n    return User::all(); // វានឹង return ជា JSON ដោយស្វ័យប្រវត្តិ\n});',
               language: 'php'
             },
             {
@@ -38,27 +38,27 @@ export const part4: Part = {
               title: 'API Resources',
               type: 'code',
               content: [
-                'Resources allow you to transform your models into the exact JSON format you want.',
-                'This keeps your API consistent even if the database changes.'
+                'Resources អនុញ្ញាតឱ្យអ្នកបំប្លែង (Transform) Models ទៅជា JSON Format ដែលអ្នកចង់បានយ៉ាងច្បាស់លាស់។',
+                'វាជួយឱ្យ API របស់អ្នកមានរបៀបរៀបរយ ទោះបីជា structure ក្នុង database ផ្លាស់ប្តូរក៏ដោយ។'
               ],
-              code: '// Generate Resource\nphp artisan make:resource UserResource\n\n// In UserResource toArray\nreturn [\n    "id" => $this->id,\n    "full_name" => $this->name,\n    "email" => $this->email\n];',
+              code: '// បង្កើត Resource\nphp artisan make:resource UserResource\n\n// នៅក្នុង UserResource មុខងារ toArray\nreturn [\n    "id" => $this->id,\n    "full_name" => $this->name,\n    "email" => $this->email\n];',
               language: 'php',
-              insight: 'Resources are the "Views" for your API.'
+              insight: 'Resources ប្រៀបដូចជា "Views" សម្រាប់ API របស់អ្នកអញ្ចឹង។'
             }
           ]
         },
         {
           id: '9.2',
-          title: 'API Authentication',
+          title: 'API Authentication (ការផ្ទៀងផ្ទាត់សិទ្ធិ API)',
           slides: [
             {
               id: '9.2.0',
               title: 'Securing Your API',
               type: 'intro',
               content: [
-                'Since APIs are stateless (no sessions), we use **Tokens** to identify users.',
-                'Laravel provides two official packages for this: **Sanctum** and **Passport**.',
-                'Choosing the right one depends on your project needs.'
+                'ដោយសារ API ជាប្រភេទ Stateless (មិនរក្សា session), យើងប្រើប្រាស់ **Tokens** ដើម្បីសម្គាល់ User ម្នាក់ៗ។',
+                'Laravel ផ្ដល់ជូននូវ packages ផ្លូវការចំនួនពីរគឺ៖ **Sanctum** និង **Passport**។',
+                'ការជ្រើសរើសមួយណាគឺអាស្រ័យលើទំហំ និងតម្រូវការនៃ project របស់អ្នក។'
               ]
             },
             {
@@ -66,19 +66,19 @@ export const part4: Part = {
               title: 'Sanctum vs. Passport',
               type: 'concept',
               content: [
-                '**Laravel Sanctum**: Lightweight, uses simple tokens. Perfect for SPAs and mobile apps.',
-                '**Laravel Passport**: Full OAuth2 server implementation. Use this if you need to issue tokens to 3rd party developers.',
-                'Most modern apps only need Sanctum.'
+                '**Laravel Sanctum**: ជាប្រភេទ Lightweight និងប្រើ tokens ងាយៗ។ សមស្របបំផុតសម្រាប់ SPAs និង mobile apps។',
+                '**Laravel Passport**: ជាការប្រើប្រាស់ Full OAuth2 server។ ប្រើវាប្រសិនបើអ្នកចង់ឱ្យ 3rd party developers ប្រើ API របស់អ្នក។',
+                'ភាគច្រើននៃ App សម័យថ្មីគឺត្រូវការត្រឹមតែ Sanctum ប៉ុណ្ណោះ។'
               ],
-              insight: 'Sanctum is easier to set up and maintain for 90% of use cases.'
+              insight: 'Sanctum ងាយស្រួលដំឡើង និងថែទាំជាងសម្រាប់ 90% នៃគម្រោងទូទៅ។'
             },
             {
               id: '9.2.2',
               title: 'Issuing Tokens (Sanctum)',
               type: 'code',
               content: [
-                'Issuing tokens is as simple as calling `createToken()`.',
-                'The token is then sent in the `Authorization` header.'
+                'ការចេញ Token គឺសាមញ្ញបំផុតដោយគ្រាន់តែប្រើ method `createToken()`។',
+                'Token នេះនឹងត្រូវផ្ញើត្រឡប់ទៅវិញតាមរយៈ `Authorization` header ពេល request ម្តងៗ។'
               ],
               code: '$user = User::where("email", $request->email)->first();\n\n$token = $user->createToken("my-app-token")->plainTextToken;\n\nreturn response()->json(["token" => $token]);',
               language: 'php'
@@ -89,20 +89,20 @@ export const part4: Part = {
     },
     {
       id: 'module-10',
-      title: 'Module 10: Error Handling and Logging',
+      title: 'Module 10: Error Handling and Logging (ការគ្រប់គ្រងកំហុស និងការកត់ត្រា)',
       lessons: [
         {
           id: '10.1',
-          title: 'The Exception Handler',
+          title: 'The Exception Handler (អ្នកចាត់ចែងកំហុស)',
           slides: [
             {
               id: '10.1.0',
               title: 'Managing Failures',
               type: 'intro',
               content: [
-                'Every application will eventually encounter errors.',
-                'Laravel provides a centralized Exception Handler to catch these errors.',
-                'You can decide how to report and render these failures.'
+                'រាល់ Application ទាំងអស់នឹងជួបប្រទះបញ្ហា ឬកំហុស (Errors) នៅពេលណាមួយមិនខាន។',
+                'Laravel មាន Exception Handler កណ្តាលមួយដើម្បីចាប់រាល់កំហុសទាំងនោះ។',
+                'អ្នកអាចកំណត់បានថា កំហុសណាខ្លះគួរ Report និងបង្ហាញចេញ (Render) ទៅកាន់ User បែបណា។'
               ]
             },
             {
@@ -110,26 +110,26 @@ export const part4: Part = {
               title: 'Debug Mode (APP_DEBUG)',
               type: 'concept',
               content: [
-                'In `.env`, set `APP_DEBUG=true` for local development.',
-                'This shows detailed stack traces and error messages.',
-                '**IMPORTANT**: Always set to `false` in production to hide secrets.'
+                'នៅក្នុង `.env`, កំណត់ `APP_DEBUG=true` សម្រាប់ការសរសេរកូដនៅក្នុង local (Development)។',
+                'វានឹងបង្ហាញព័ត៌មានលម្អិតនៃកំហុស (Stack traces) ដើម្បីងាយស្រួលដោះស្រាយ។',
+                '**សំខាន់បំផុត**: ត្រូវប្តូរទៅ `false` ជានិច្ចពេលដាក់ឱ្យប្រើប្រាស់ពិតប្រាកដ (Production) ដើម្បីការពារការលេចធ្លាយព័ត៌មានសម្ងាត់។'
               ],
-              insight: 'Detailed error messages are a goldmine for hackers. Never leak them in production!'
+              insight: 'ព័ត៌មានលម្អិតនៃកំហុសគឺជា "រតនសម្បត្តិ" សម្រាប់ពួក Hacker។ កុំបង្ហាញវានៅលើ Production ឱ្យសោះ!'
             }
           ]
         },
         {
           id: '10.2',
-          title: 'Logging',
+          title: 'Logging (ការកត់ត្រាសកម្មភាព)',
           slides: [
             {
               id: '10.2.0',
               title: 'Keeping a Paper Trail',
               type: 'intro',
               content: [
-                'Logging is crucial for debugging production issues.',
-                'Laravel provides a robust Logging API built on top of Monolog.',
-                'You can log to files, system logs, Slack, or dedicated services.'
+                'Logging គឺសំខាន់ណាស់សម្រាប់ការតាមដានបញ្ហានៅលើ Production។',
+                'Laravel ប្រើប្រាស់ Monolog ដែលអនុញ្ញាតឱ្យយើងកត់ត្រាទុកនូវរាល់សកម្មភាពផ្សេងៗ។',
+                'អ្នកអាច log ចូលទៅក្នុង files, system logs, Slack ឬសេវាកម្មដទៃទៀត។'
               ]
             },
             {
@@ -137,8 +137,8 @@ export const part4: Part = {
               title: 'The Log Facade',
               type: 'code',
               content: [
-                'Use the `Log` facade to record information.',
-                'Levels: debug, info, notice, warning, error, critical, alert, emergency.'
+                'ប្រើប្រាស់ `Log` facade ដើម្បីកត់ត្រាព័ត៌មាន។',
+                'កម្រិតនៃ Log (Levels) រួមមាន: debug, info, notice, warning, error, critical, alert, emergency។'
               ],
               code: 'use Illuminate\\Support\\Facades\\Log;\n\nLog::info("User logged in", ["id" => $user->id]);\n\nLog::error("Payment failed", ["order" => $order->id]);',
               language: 'php'
@@ -148,12 +148,12 @@ export const part4: Part = {
               title: 'Log Channels',
               type: 'code',
               content: [
-                'Configure where your logs go in `config/logging.php`.',
-                'You can use "stacks" to log to multiple places at once.'
+                'អ្នកអាចកំណត់ទីតាំងសម្រាប់រក្សាទុក logs នៅក្នុង `config/logging.php`។',
+                'អ្នកក៏អាចប្រើ "stacks" ដើម្បី log ទៅកាន់កន្លែងច្រើនក្នុងពេលតែមួយផងដែរ។'
               ],
-              code: '// Example: Log to file AND Slack\n"stack" => [\n    "channels" => ["single", "slack"],\n],',
+              code: '// ឧទាហរណ៍៖ Log ទៅក្នុង file ផង និងផ្ញើទៅ Slack ផង\n"stack" => [\n    "channels" => ["single", "slack"],\n],',
               language: 'php',
-              insight: 'Slack notifications for critical errors are a lifesaver for developers.'
+              insight: 'ការទទួលបានដំណឹងពីកំហុសកម្រិត Critical តាមរយៈ Slack ភ្លាមៗ ជួយឱ្យ developer ដោះស្រាយទាន់ពេល។'
             }
           ]
         }
@@ -161,20 +161,20 @@ export const part4: Part = {
     },
     {
       id: 'module-11',
-      title: 'Module 11: Testing in Laravel',
+      title: 'Module 11: Testing in Laravel (ការធ្វើតេស្តក្នុង Laravel)',
       lessons: [
         {
           id: '11.1',
-          title: 'Introduction to Testing',
+          title: 'Introduction to Testing (ការណែនាំអំពីការធ្វើតេស្ត)',
           slides: [
             {
               id: '11.1.0',
               title: 'Building with Confidence',
               type: 'intro',
               content: [
-                'Manual testing is slow and prone to errors.',
-                'Automated tests ensure your app still works after you make changes.',
-                'Laravel uses **PHPUnit** by default but also supports **Pest**.'
+                'ការធ្វើតេស្តដោយដៃ (Manual testing) គឺយឺត និងងាយនឹងមានការចន្លោះប្រហោង។',
+                'Automated tests ជួយឱ្យអ្នកប្រាកដថា App របស់អ្នកនៅតែដំណើរការល្អ បើទោះបីជាអ្នកកែកូដថ្មីក៏ដោយ។',
+                'Laravel ប្រើ **PHPUnit** ជា default ប៉ុន្តែក៏គាំទ្រ **Pest** ដែលមានភាពសាមញ្ញជាង។'
               ]
             },
             {
@@ -182,25 +182,25 @@ export const part4: Part = {
               title: 'Unit vs. Feature Testing',
               type: 'concept',
               content: [
-                '**Unit Tests**: Test a single small piece of logic (a method) in isolation. Very fast.',
-                '**Feature Tests**: Test a larger portion of your code, like a full HTTP request. They visit URLs and check responses.'
+                '**Unit Tests**: តេស្តផ្នែកតូចៗនៃកូដ (ដូចជា function មួយ) ដាច់ដោយឡែកពីគេ។ វាលឿនបំផុត។',
+                '**Feature Tests**: តេស្តផ្នែកធំនៃ App ដូចជាការសាកល្បង HTTP Request។ វាពិនិត្យមើល URL និង response ជាក់ស្តែង។'
               ],
-              insight: 'Most Laravel developers spend 80% of their time writing Feature Tests.'
+              insight: 'Developer ភាគច្រើនចំណាយពេល 80% ទៅលើការសរសេរ Feature Tests។'
             }
           ]
         },
         {
           id: '11.2',
-          title: 'Writing Unit Tests',
+          title: 'Writing Unit Tests (ការសរសេរ Unit Tests)',
           slides: [
             {
               id: '11.2.0',
               title: 'Testing Logic',
               type: 'intro',
               content: [
-                'Unit tests do not boot the Laravel framework.',
-                'This makes them incredibly fast (thousands of tests in seconds).',
-                'They are perfect for testing complex calculations or string manipulation.'
+                'Unit tests មិនដំណើរការ Framework Laravel ទាំងមូលនោះទេ (No booting)។',
+                'ចំណុចនេះធ្វើឱ្យវាលឿនខ្លាំង (អាចតេស្តរាប់ពាន់ដងក្នុងរយៈពេលប៉ុន្មានវិនាទី)។',
+                'វាស័ក្តិសមបំផុតសម្រាប់តេស្តការគណនាស្មុគស្មាញ ឬការច្នៃ String ផ្សេងៗ។'
               ]
             },
             {
@@ -208,8 +208,8 @@ export const part4: Part = {
               title: 'A Basic Unit Test',
               type: 'code',
               content: [
-                'Use the `Unit` folder in the `tests` directory.',
-                'Focus on input/output without touching the database.'
+                'ប្រើប្រាស់ folder `tests/Unit`។',
+                'ផ្ដោតលើ Input និង Output ដោយមិនចាំបាច់ប៉ះពាល់ដល់ Database។'
               ],
               code: 'public function test_can_format_price() {\n    $order = new Order(["total" => 1000]);\n    \n    $this->assertEquals("$10.00", $order->formattedPrice());\n}',
               language: 'php'
@@ -218,16 +218,16 @@ export const part4: Part = {
         },
         {
           id: '11.3',
-          title: 'Writing Feature Tests',
+          title: 'Writing Feature Tests (ការសរសេរ Feature Tests)',
           slides: [
             {
               id: '11.3.0',
               title: 'Simulating the User',
               type: 'intro',
               content: [
-                'Feature tests are the "Real World" tests.',
-                'They simulate a user clicking buttons and filling forms.',
-                'They verify that your Routes, Controllers, and Database all work together.'
+                'Feature tests គឺជាការតេស្តបែប "ពិភពពិត"។',
+                'វាត្រាប់តាមសកម្មភាពអ្នកប្រើប្រាស់ ដូចជាការចុច button និងការបំពេញ form។',
+                'វាផ្ទៀងផ្ទាត់ថា Routes, Controllers, និង Database ធ្វើការជាមួយគ្នាបានត្រឹមត្រូវ។'
               ]
             },
             {
@@ -235,12 +235,12 @@ export const part4: Part = {
               title: 'HTTP Feature Test',
               type: 'code',
               content: [
-                'Use the `actingAs()` method to log in as a user.',
-                'Assert the status code and the final data in the database.'
+                'ប្រើ method `actingAs()` ដើម្បីក្លែងធ្វើជា user ដែលបាន login។',
+                'ផ្ទៀងផ្ទាត់ status code និងទិន្នន័យចុងក្រោយដែលមាននៅក្នុង database។'
               ],
               code: 'public function test_user_can_create_post() {\n    $user = User::factory()->create();\n\n    $response = $this->actingAs($user)->post("/posts", [\n        "title" => "My First Test",\n        "body" => "Testing is fun!"\n    ]);\n\n    $response->assertStatus(302);\n    $this->assertDatabaseHas("posts", ["title" => "My First Test"]);\n}',
               language: 'php',
-              insight: 'Use `php artisan make:test PostTest` to create a new feature test class.'
+              insight: 'ប្រើ `php artisan make:test PostTest` ដើម្បីបង្កើត class សម្រាប់ធ្វើ feature test ថ្មី។'
             }
           ]
         }
@@ -248,7 +248,7 @@ export const part4: Part = {
     },
     {
       id: 'module-12',
-      title: 'Module 12: Deployment and Best Practices (ការដាក់ឱ្យដំណើរការ)',
+      title: 'Module 12: Deployment and Best Practices (ការដាក់ឱ្យដំណើរការ និងការអនុវត្តល្អបំផុត)',
       lessons: [
         {
           id: '12.1',
@@ -259,38 +259,38 @@ export const part4: Part = {
               title: 'The Production Mindset',
               type: 'intro',
               content: [
-                'Production is a different environment from Local.',
-                'Security, speed, and stability are the top priorities.',
-                'Laravel provides several built-in tools to help you switch smoothly.'
+                'បរិស្ថាន Production គឺខុសគ្នាស្រឡះពី Local របស់អ្នក។',
+                'សុវត្ថិភាព ល្បឿន និងស្ថិរភាព គឺជាអាទិភាពចម្បង។',
+                'Laravel ផ្ដល់ឧបករណ៍មកស្រាប់ ដើម្បីជួយឱ្យការផ្លាស់ប្តូរនេះប្រព្រឹត្តទៅដោយរលូន។'
               ],
               animation: 'deployment',
-              insight: 'Never "test in production". Always use a staging environment first.'
+              insight: 'កុំសាកល្បងកូដថ្មីនៅលើ production ផ្ទាល់។ ត្រូវប្រើ Staging environment ជាមុនសិន។'
             },
             {
               id: '12.1.1',
               title: 'Environment Config (.env)',
               type: 'code',
               content: [
-                'In production, you must change your `.env` settings.',
-                'Critical: Set `APP_DEBUG=false` and `APP_ENV=production`.',
-                'Generate a fresh `APP_KEY` to secure sessions.'
+                'នៅលើ production, អ្នកត្រូវតែផ្លាស់ប្តូរការកំណត់ក្នុង `.env`។',
+                'សំខាន់បំផុត: កំណត់ `APP_DEBUG=false` និង `APP_ENV=production`។',
+                'បង្កើត `APP_KEY` ថ្មីដើម្បីធានាសុវត្ថិភាព sessions។'
               ],
               code: 'APP_NAME=Laravel\nAPP_ENV=production\nAPP_DEBUG=false\nAPP_URL=https://yourdomain.com\n\nAPP_KEY=base64:random_generated_key...',
               language: 'bash',
-              insight: 'Leaking APP_DEBUG=true in production reveals your database passwords and API keys.'
+              insight: 'ការទុក APP_DEBUG=true លើ production នឹងបង្ហាញ password របស់ database និង API keys របស់អ្នកទៅកាន់សាធារណៈ។'
             },
             {
               id: '12.1.2',
               title: 'Application Optimization',
               type: 'code',
               content: [
-                'Laravel is fast, but it can be faster.',
-                'Caching your configuration and routes reduces filesystem hits.',
-                'Use the `optimize` command to bundle all cache commands.'
+                'Laravel ដើរលឿនស្រាប់ហើយ ប៉ុន្តែយើងអាចធ្វើឱ្យវាកាន់តែលឿន។',
+                'ការធ្វើ Caching លើ configuration និង routes ជួយកាត់បន្ថយការអាន file ច្រើនដង។',
+                'ប្រើ command `optimize` ដើម្បីប្រមូលផ្ដុំរាល់ cache commands ទាំងអស់។'
               ],
-              code: '// Optimize everything for production\nphp artisan optimize\n\n// To clear cache if you make changes\nphp artisan optimize:clear',
+              code: '// ធ្វើ Optimization គ្រប់យ៉ាងសម្រាប់ production\nphp artisan optimize\n\n// សម្រាប់សម្អាត cache ពេលអ្នកកែប្រែកូដ\nphp artisan optimize:clear',
               language: 'bash',
-              insight: 'Run "php artisan optimize" as part of every deployment script.'
+              insight: 'ត្រូវដាក់ "php artisan optimize" នៅក្នុងរាល់ deployment script របស់អ្នក។'
             }
           ]
         },
@@ -303,19 +303,19 @@ export const part4: Part = {
               title: 'Deployment Workflows',
               type: 'concept',
               content: [
-                '**Manual**: FTP/SSH (Not recommended for professional work).',
-                '**PaaS**: Laravel Forge, Vapor (Automated and managed).',
-                '**Self-Managed**: Nginx + PHP-FPM on a VPS (DigitalOcean, AWS).'
+                '**Manual**: ការប្រើ FTP/SSH (មិនត្រូវបានណែនាំសម្រាប់កម្រិតអាជីពទេ)។',
+                '**PaaS**: ប្រើ Laravel Forge ឬ Vapor (ស្វ័យប្រវត្តិ និងងាយស្រួលគ្រប់គ្រង)។',
+                '**Self-Managed**: រៀបចំ Nginx + PHP-FPM លើ VPS ដោយខ្លួនឯង (DigitalOcean, AWS)។'
               ],
-              insight: 'Laravel Forge is the gold standard for deploying Laravel apps easily.'
+              insight: 'Laravel Forge គឺជាជម្រើសដ៏ល្អបំផុត (Gold Standard) សម្រាប់ដាក់ App ដំណើរការដោយងាយស្រួល។'
             },
             {
               id: '12.2.1',
               title: 'Nginx Configuration',
               type: 'code',
               content: [
-                'Nginx should point to the `public/` directory, not the root.',
-                'All requests should be routed through `index.php`.'
+                'Nginx ត្រូវចង្អុលទៅកាន់ directory `public/` មិនមែន root នៃ project ទេ។',
+                'រាល់ requests ទាំងអស់ត្រូវតែឆ្លងកាត់ `index.php`។'
               ],
               code: 'server {\n    listen 80;\n    server_name example.com;\n    root /var/www/my-app/public;\n\n    location / {\n        try_files $uri $uri/ /index.php?$query_string;\n    }\n}',
               language: 'nginx'
@@ -331,9 +331,9 @@ export const part4: Part = {
               title: 'Security by Default',
               type: 'intro',
               content: [
-                'Laravel protects you from most common attacks out of the box.',
-                'However, you still need to follow best practices.',
-                'We will cover XSS, CSRF, and SQL Injection.'
+                'Laravel ការពារអ្នកពីការវាយប្រហារទូទៅជាច្រើនតាំងពីដំបូង។',
+                'ទោះជាយ៉ាងណា អ្នកនៅតែត្រូវអនុវត្តតាមគោលការណ៍សុវត្ថិភាព។',
+                'យើងនឹងសិក្សាអំពី XSS, CSRF, និង SQL Injection។'
               ],
               animation: 'security'
             },
@@ -342,21 +342,21 @@ export const part4: Part = {
               title: 'Preventing XSS & CSRF',
               type: 'concept',
               content: [
-                '**XSS (Cross-Site Scripting)**: Laravel\'s `{{ $var }}` automatically escapes HTML.',
-                '**CSRF (Cross-Site Request Forgery)**: Always use the `@csrf` directive in forms.',
-                '**Mass Assignment**: Always define `$fillable` or `$guarded` in Models.'
+                '**XSS (Cross-Site Scripting)**: Laravel ប្រើ `{{ $var }}` ដើម្បីសម្អាត HTML ដោយស្វ័យប្រវត្តិ។',
+                '**CSRF (Cross-Site Request Forgery)**: ត្រូវប្រើ `@csrf` ជានិច្ចនៅក្នុង forms។',
+                '**Mass Assignment**: ត្រូវកំណត់ `$fillable` ឬ `$guarded` នៅក្នុង Models ជានិច្ច។'
               ],
-              insight: 'Use `{!! $var !!}` ONLY when you trust the source completely.'
+              insight: 'ប្រើ `{!! $var !!}` តែក្នុងករណីដែលអ្នកទុកចិត្តប្រភពទិន្នន័យនោះ 100% ប៉ុណ្ណោះ។'
             },
             {
               id: '12.3.2',
               title: 'SQL Injection Protection',
               type: 'code',
               content: [
-                'Never pass user input directly into raw SQL queries.',
-                'Eloquent and Query Builder use **PDO Parameter Binding** automatically.'
+                'មិនត្រូវបញ្ចូល input ពីអ្នកប្រើប្រាស់ទៅក្នុង raw SQL queries ដោយផ្ទាល់ឡើយ។',
+                'Eloquent និង Query Builder ប្រើប្រាស់ **PDO Parameter Binding** ដោយស្វ័យប្រវត្តិដើម្បីការពារបញ្ហានេះ។'
               ],
-              code: '// SECURE (Automatic binding)\n$users = DB::table("users")->where("name", $request->input("name"))->get();\n\n// INSECURE (Never do this!)\n$users = DB::select("SELECT * FROM users WHERE name = \'" . $name . "\'");',
+              code: '// មានសុវត្ថិភាព (ប្រើ Binding ស្វ័យប្រវត្តិ)\n$users = DB::table("users")->where("name", $request->input("name"))->get();\n\n// មិនមានសុវត្ថិភាព (ហាមធ្វើបែបនេះដាច់ខាត!)\n$users = DB::select("SELECT * FROM users WHERE name = \'" . $name . "\'");',
               language: 'php'
             }
           ]
@@ -370,9 +370,9 @@ export const part4: Part = {
               title: 'Scaling Your Application',
               type: 'intro',
               content: [
-                'As your app grows, simple tasks can become slow.',
-                'We use Caching, Queues, and Database tuning to keep it fast.',
-                'A fast app is a happy user.'
+                'នៅពេល App របស់អ្នករីកធំ ការងារសាមញ្ញៗអាចនឹងប្រែជាយឺត។',
+                'យើងប្រើប្រាស់ Caching, Queues, និងការរៀបចំ Database ដើម្បីឱ្យវាដើរលឿន។',
+                'App ដែលដើរលឿន នឹងធ្វើឱ្យអ្នកប្រើប្រាស់សប្បាយចិត្ត។'
               ],
               animation: 'performance'
             },
@@ -381,24 +381,24 @@ export const part4: Part = {
               title: 'Caching Strategies',
               type: 'code',
               content: [
-                'Store expensive data in Redis or Memcached.',
-                'Only fetch from the database when the cache expires.'
+                'រក្សាទុកទិន្នន័យដែលពិបាកទាញ (Expensive data) នៅក្នុង Redis ឬ Memcached។',
+                'ទាញទិន្នន័យពី Database តែនៅពេលដែល cache អស់សុពលភាពប៉ុណ្ណោះ។'
               ],
               code: '$users = Cache::remember("users.active", 3600, function () {\n    return User::where("active", true)->get();\n});',
               language: 'php',
-              insight: 'Caching is the easiest way to improve performance significantly.'
+              insight: 'Caching គឺជាវិធីងាយស្រួលបំផុតដើម្បីបង្កើនល្បឿន App ឱ្យលឿនជាងមុនគួរឱ្យកត់សម្គាល់។'
             },
             {
               id: '12.4.2',
               title: 'Background Jobs (Queues)',
               type: 'code',
               content: [
-                'Don\'t make users wait for slow tasks like sending emails.',
-                'Push these tasks to a "Queue" to be processed in the background.'
+                'កុំឱ្យអ្នកប្រើប្រាស់រង់ចាំការងារដែលយឺតៗ ដូចជាការផ្ញើ Email ជាដើម។',
+                'បោះការងារទាំងនោះទៅក្នុង "Queue" ដើម្បីឱ្យវាដំណើរការនៅខាងក្រោយ (Background)។'
               ],
-              code: '// In your Controller\nSendWelcomeEmail::dispatch($user);\n\n// Laravel processes this while the user continues browsing.',
+              code: '// នៅក្នុង Controller\nSendWelcomeEmail::dispatch($user);\n\n// Laravel នឹងចាត់ចែងផ្ញើវា ខណៈពេល user បន្តប្រើប្រាស់បានធម្មតា។',
               language: 'php',
-              insight: 'Use "php artisan queue:work" to start your background worker.'
+              insight: 'ប្រើ "php artisan queue:work" ដើម្បីចាប់ផ្តើមដំណើរការ background worker របស់អ្នក។'
             }
           ]
         }
@@ -417,9 +417,9 @@ export const part4: Part = {
               title: 'Beyond Request-Response',
               type: 'intro',
               content: [
-                'Modern apps need to be alive with real-time updates.',
-                'Notifications, chat messages, and live dashboards.',
-                'Laravel makes this possible through **Broadcasting**.'
+                'Modern apps ត្រូវការការ update ទិន្នន័យភ្លាមៗ (Real-time)។',
+                'ឧទាហរណ៍ដូចជា៖ ការជូនដំណឹង (Notifications), ការឆាត (Chat), និង live dashboards។',
+                'Laravel ធ្វើឱ្យរឿងនេះអាចទៅរួចតាមរយៈ **Broadcasting**។'
               ]
             },
             {
@@ -427,19 +427,19 @@ export const part4: Part = {
               title: 'Broadcasting Tools',
               type: 'concept',
               content: [
-                '**Laravel Reverb**: The new, first-party WebSocket server.',
-                '**Pusher**: A hosted service for real-time messages.',
-                '**Laravel Echo**: The JavaScript library to listen for events.'
+                '**Laravel Reverb**: ជា WebSocket server ជំនាន់ថ្មី និងផ្លូវការរបស់ Laravel។',
+                '**Pusher**: ជាសេវាកម្ម (Hosted service) សម្រាប់ផ្ញើសារ real-time។',
+                '**Laravel Echo**: ជា JavaScript library សម្រាប់ស្តាប់រាល់ events ដែលកើតឡើង។'
               ],
-              insight: 'Reverb is incredibly fast and easy to scale since it\'s built into the core.'
+              insight: 'Reverb មានល្បឿនលឿនខ្លាំង និងងាយស្រួលពង្រីក (Scale) ព្រោះវាត្រូវបានបង្កើតឡើងមកជាមួយ Laravel តែម្តង។'
             },
             {
               id: '13.1.2',
               title: 'Dispatching Events',
               type: 'code',
               content: [
-                'Create an Event that implements `ShouldBroadcast`.',
-                'Laravel handles the rest automatically.'
+                'បង្កើត Event ដែលប្រើប្រាស់ interface `ShouldBroadcast`។',
+                'Laravel នឹងចាត់ចែងការងារដែលនៅសេសសល់ដោយស្វ័យប្រវត្តិ។'
               ],
               code: 'class OrderStatusUpdated implements ShouldBroadcast {\n    public function broadcastOn() {\n        return new Channel("orders");\n    }\n}',
               language: 'php'
@@ -455,9 +455,9 @@ export const part4: Part = {
               title: 'Watching Your App',
               type: 'intro',
               content: [
-                'Once your app is live, you need to know how it\'s performing.',
-                'Is it slow? Are there hidden errors? How is the database doing?',
-                'Laravel has the best observability tools in the industry.'
+                'នៅពេល App ដាក់ឱ្យប្រើប្រាស់ អ្នកត្រូវដឹងថាវាដំណើរការយ៉ាងដូចម្តេច។',
+                'តើវាដើរយឺតទេ? តើមានកំហុសដែលយើងមើលមិនឃើញទេ? តើ Database ដើរយ៉ាងម៉េចដែរ?',
+                'Laravel មានឧបករណ៍សង្កេតការណ៍ (Observability) ល្អបំផុតក្នុងចំណោម framework ដទៃ។'
               ]
             },
             {
@@ -465,11 +465,11 @@ export const part4: Part = {
               title: 'Essential Tools',
               type: 'concept',
               content: [
-                '**Laravel Pulse**: A real-time health dashboard for your server.',
-                '**Laravel Telescope**: A powerful local debugging assistant.',
-                '**Laravel Horizon**: A beautiful dashboard for your Redis queues.'
+                '**Laravel Pulse**: Dashboard បង្ហាញពីស្ថានភាពសុខភាពរបស់ server និង App ក្នុងពេលបច្ចុប្បន្ន។',
+                '**Laravel Telescope**: ជំនួយការដ៏ខ្លាំងពូកែសម្រាប់ debug ក្នុង local។',
+                '**Laravel Horizon**: Dashboard សម្រាប់មើល និងគ្រប់គ្រង Redis queues របស់អ្នក។'
               ],
-              insight: 'Pulse is a must-have for production to see which routes are the slowest.'
+              insight: 'Pulse គឺជាឧបករណ៍ដែលត្រូវតែមាននៅលើ production ដើម្បីមើលថា route ណាដែលដើរយឺតជាងគេ។'
             }
           ]
         },
@@ -482,20 +482,20 @@ export const part4: Part = {
               title: 'Congratulations!',
               type: 'summary',
               content: [
-                'You have completed the **Laravel Backend Expert Course**.',
-                'From PHP basics to production-ready deployment.',
-                'You now have the skills to build professional, secure, and fast applications.'
+                'អ្នកបានបញ្ចប់វគ្គសិក្សា **Laravel Backend Expert Course** នេះហើយ។',
+                'ចាប់តាំងពីមូលដ្ឋានគ្រឹះ PHP រហូតដល់ការដាក់ឱ្យប្រើប្រាស់ជាផ្លូវការ (Production)។',
+                'ពេលនេះអ្នកមានជំនាញគ្រប់គ្រាន់ដើម្បីបង្កើត Application កម្រិតអាជីព មានសុវត្ថិភាព និងល្បឿនលឿន។'
               ],
-              insight: 'The learning never stops. Stay curious and keep building!'
+              insight: 'ការរៀនសូត្រគឺមិនមានទីបញ្ចប់ឡើយ។ បន្តស្វែងយល់ និងអនុវត្តបង្កើតអ្វីដែលថ្មីជានិច្ច!'
             },
             {
               id: '13.3.1',
               title: 'Your Next Steps',
               type: 'concept',
               content: [
-                '**Build a Portfolio**: Create 2-3 real-world apps (e.g., Blog, E-commerce, SaaS).',
-                '**Learn a Frontend**: Combine your backend with Vue (Inertia) or React.',
-                '**Contribute**: Open source is a great way to learn and get noticed.'
+                '**Build a Portfolio**: បង្កើត App ជាក់ស្តែង ២-៣ (ដូចជា Blog, E-commerce, SaaS)។',
+                '**Learn a Frontend**: បន្សំចំណេះដឹង Backend ជាមួយ Vue (Inertia) ឬ React។',
+                '**Contribute**: ការចូលរួមក្នុង Open source គឺជាវិធីដ៏ល្អដើម្បីរៀន និងឱ្យគេស្គាល់សមត្ថភាព។'
               ]
             }
           ]
@@ -509,9 +509,9 @@ export const part4: Part = {
               title: 'Putting it All Together',
               type: 'intro',
               content: [
-                'It\'s time to apply everything you\'ve learned.',
-                'You will build a **Production-Ready REST API** for a real-world scenario.',
-                'Focus on: Security, Database Design, and Performance.'
+                'ដល់ពេលត្រូវយកអ្វីដែលបានរៀនទាំងអស់មកអនុវត្តហើយ។',
+                'អ្នកនឹងត្រូវបង្កើត **Production-Ready REST API** សម្រាប់ scenario ជាក់ស្តែងមួយ។',
+                'ផ្ដោតសំខាន់លើ: សុវត្ថិភាព, ការឌីហ្សាញ Database, និងប្រសិទ្ធភាពការងារ។'
               ]
             },
             {
@@ -519,23 +519,23 @@ export const part4: Part = {
               title: 'Project Requirements',
               type: 'concept',
               content: [
-                '**Authentication**: Use Laravel Sanctum for API tokens.',
-                '**Relationships**: At least 3 connected models (e.g., User -> Order -> Item).',
-                '**Validation**: Custom Form Requests for all endpoints.',
-                '**Testing**: Write Feature Tests for the core business logic.',
-                '**Optimization**: Implement Caching for slow endpoints.'
+                '**Authentication**: ប្រើប្រាស់ Laravel Sanctum សម្រាប់ API tokens។',
+                '**Relationships**: យ៉ាងហោចណាស់មាន ៣ models ទាក់ទងគ្នា (ឧទាហរណ៍: User -> Order -> Item)។',
+                '**Validation**: ប្រើ Custom Form Requests សម្រាប់គ្រប់ endpoints។',
+                '**Testing**: សរសេរ Feature Tests សម្រាប់ business logic សំខាន់ៗ។',
+                '**Optimization**: ប្រើប្រាស់ Caching សម្រាប់ endpoints ណាដែលទាញទិន្នន័យយឺត។'
               ],
-              insight: 'Think like a Senior Developer: handle edge cases and errors gracefully.'
+              insight: 'គិតដូច Senior Developer៖ ត្រូវចេះរៀបចំដោះស្រាយករណីពិសេសៗ (Edge cases) និង errors ឱ្យបានល្អ។'
             },
             {
               id: '13.4.2',
               title: 'Submission Guidelines',
               type: 'concept',
               content: [
-                '1. Host your code on **GitHub**.',
-                '2. Include a professional **README.md** with setup instructions.',
-                '3. Document your API endpoints using **Swagger/OpenAPI** or Postman.',
-                '4. (Bonus) Deploy your app to a live server.'
+                '១. បង្ហោះកូដរបស់អ្នកនៅលើ **GitHub**។',
+                '២. រៀបចំ file **README.md** ឱ្យមានរបៀបរៀបរយ រួមទាំងរបៀបដំឡើងផង។',
+                '៣. ធ្វើ Documentation សម្រាប់ API endpoints ដោយប្រើ **Swagger/OpenAPI** ឬ Postman។',
+                '៤. (Bonus) សាកល្បងដាក់ App របស់អ្នកឱ្យដំណើរការលើ server ផ្ទាល់។'
               ]
             }
           ]
@@ -549,7 +549,7 @@ export const part4: Part = {
               title: 'Security Quiz',
               type: 'quiz',
               content: [
-                'Which Laravel feature automatically protects you from CSRF attacks?'
+                'តើមុខងារមួយណាខាងក្រោមដែលជួយការពារអ្នកពីការវាយប្រហារ CSRF ដោយស្វ័យប្រវត្តិ?'
               ],
               options: [
                 'Eloquent ORM',
@@ -558,14 +558,14 @@ export const part4: Part = {
                 'Middleware'
               ],
               correctAnswer: 1,
-              insight: 'Always include @csrf in your POST forms to prevent malicious cross-site requests.'
+              insight: 'ត្រូវដាក់ @csrf ជានិច្ចក្នុង POST forms ដើម្បីការពារការលួចផ្ញើ request ពី site ផ្សេងដែលមិនមានការអនុញ្ញាត។'
             },
             {
               id: '13.5.1',
               title: 'Deployment Quiz',
               type: 'quiz',
               content: [
-                'Which command should you run in production to optimize performance?'
+                'តើ command មួយណាដែលអ្នកគួរ run នៅលើ production ដើម្បីបង្កើនប្រសិទ្ធភាព App?'
               ],
               options: [
                 'php artisan serve',
@@ -574,23 +574,23 @@ export const part4: Part = {
                 'php artisan make:controller'
               ],
               correctAnswer: 2,
-              insight: 'Optimize caches your config and routes, significantly speeding up the app.'
+              insight: 'Command "optimize" នឹងធ្វើការ cache លើ config និង routes ដែលជួយឱ្យ App ដើរលឿនជាងមុនខ្លាំង។'
             },
             {
               id: '13.5.2',
               title: 'Performance Quiz',
               type: 'quiz',
               content: [
-                'What is the best way to handle slow tasks like sending emails?'
+                'តើវិធីណាដែលល្អបំផុតក្នុងការចាត់ចែងការងារដែលយឺតៗ ដូចជាការផ្ញើ emails?'
               ],
               options: [
-                'Run them in the Controller',
-                'Use a Background Queue',
-                'Increase Server RAM',
-                'Use a Raw SQL Query'
+                'Run ពួកវានៅក្នុង Controller',
+                'ប្រើប្រាស់ Background Queue',
+                'បង្កើន Server RAM',
+                'ប្រើ Raw SQL Query'
               ],
               correctAnswer: 1,
-              insight: 'Queues keep your application responsive by offloading slow tasks.'
+              insight: 'Queues ជួយឱ្យ App របស់អ្នកនៅតែមានភាពរហ័សរហួន (Responsive) ដោយបោះការងារយឺតៗទៅធ្វើនៅ background។'
             }
           ]
         }
@@ -598,7 +598,3 @@ export const part4: Part = {
     }
   ]
 };
-
-
-
-
