@@ -27,6 +27,12 @@ import { SqlNoSqlAnimation } from './animations/SqlNoSqlAnimation';
 import { SqlSelectionAnimation } from './animations/SqlSelectionAnimation';
 import { SqlManipulationAnimation } from './animations/SqlManipulationAnimation';
 import { DatabaseKeysAnimation } from './animations/DatabaseKeysAnimation';
+import { NormalizationAnimation } from './animations/NormalizationAnimation';
+import { HttpProtocolAnimation } from './animations/HttpProtocolAnimation';
+import { WebServerAnimation } from './animations/WebServerAnimation';
+import { HttpMethodsAnimation } from './animations/HttpMethodsAnimation';
+import { HttpStatusAnimation } from './animations/HttpStatusAnimation';
+import { LaravelEcosystemAnimation } from './animations/LaravelEcosystemAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -184,6 +190,12 @@ export function SlideViewer({
       case 'sql_selection': return <SqlSelectionAnimation />;
       case 'sql_manipulation': return <SqlManipulationAnimation />;
       case 'database_keys': return <DatabaseKeysAnimation />;
+      case 'normalization': return <NormalizationAnimation />;
+      case 'http': return <HttpProtocolAnimation />;
+      case 'web_server': return <WebServerAnimation />;
+      case 'http_methods': return <HttpMethodsAnimation />;
+      case 'http_status': return <HttpStatusAnimation />;
+      case 'laravel_ecosystem': return <LaravelEcosystemAnimation />;
       default: return null;
     } 
   };

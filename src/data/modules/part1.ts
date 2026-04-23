@@ -529,7 +529,8 @@ export const part1: Part = {
                 '**2NF**: លុបបំបាត់ការជាន់គ្នានៃទិន្នន័យដែលអាស្រ័យលើផ្នែកណាមួយនៃ Primary Key។',
                 '**3NF**: រាល់ attribute មិនមែន key ទាំងអស់ត្រូវតែអាស្រ័យតែលើ Primary Key ប៉ុណ្ណោះ។'
               ],
-              insight: 'គិតថា Normalization គឺជាការ "រៀបចំរបស់របរឱ្យចំកន្លែង និងមានរបៀប" ដើម្បីកុំឱ្យពិបាកកែប្រែថ្ងៃក្រោយ។'
+              insight: 'គិតថា Normalization គឺជាការ "រៀបចំរបស់របរឱ្យចំកន្លែង និងមានរបៀប" ដើម្បីកុំឱ្យពិបាកកែប្រែថ្ងៃក្រោយ។',
+              animation: 'normalization'
             },
             {
               id: '1.3.6',
@@ -562,7 +563,8 @@ export const part1: Part = {
                 'ពួកវាកំណត់ពីរបៀបដែលទិន្នន័យធ្វើដំណើរពី Server របស់អ្នកទៅកាន់ Browser របស់សិស្ស។',
                 'ការយល់ដឹងពី protocols ទាំងនេះគឺជាសោរដើម្បីដោះស្រាយបញ្ហា (debug) Backend។'
               ],
-              insight: 'HTTP គឺជា "កិច្ចសន្យា" ស្តង់ដារដែលគ្រប់ web applications ទាំងអស់ត្រូវអនុវត្តតាម។'
+              insight: 'HTTP គឺជា "កិច្ចសន្យា" ស្តង់ដារដែលគ្រប់ web applications ទាំងអស់ត្រូវអនុវត្តតាម។',
+              animation: 'http'
             },
             {
               id: '1.4.1',
@@ -573,7 +575,8 @@ export const part1: Part = {
                 'ទទួល HTTP requests រួចបញ្ជូនបន្តទៅឱ្យ PHP-FPM ដើម្បីឱ្យ PHP ដំណើរការកូដ។',
                 'បញ្ជូន static files (រូបភាព, CSS, JavaScript) ត្រឡប់ទៅវិញដោយផ្ទាល់ដើម្បីចំណេញល្បឿន។'
               ],
-              insight: 'Nginx ពេញនិយមជាងសម្រាប់ការងារដែលត្រូវការល្បឿនលឿន និង High Concurrency។'
+              insight: 'Nginx ពេញនិយមជាងសម្រាប់ការងារដែលត្រូវការល្បឿនលឿន និង High Concurrency។',
+              animation: 'web_server'
             },
             {
               id: '1.4.2',
@@ -584,7 +587,8 @@ export const part1: Part = {
                 '**POST**: ផ្ញើទិន្នន័យថ្មីទៅកាន់ Server (Create)។',
                 '**PUT/PATCH**: ធ្វើបច្ចុប្បន្នភាពទិន្នន័យដែលមានស្រាប់ (Update)។',
                 '**DELETE**: សុំលុបទិន្នន័យ (Delete)។'
-              ]
+              ],
+              animation: 'http_methods'
             },
             {
               id: '1.4.3',
@@ -596,7 +600,8 @@ export const part1: Part = {
                 '**4xx (Client Error)**: បញ្ហាខាងអ្នកប្រើ (ឧទាហរណ៍៖ 404 Not Found រក Page មិនឃើញ, 401 Unauthorized មិនទាន់បាន Login)។',
                 '**5xx (Server Error)**: បញ្ហាខាង Server (ឧទាហរណ៍៖ 500 Internal Server Error ជាកំហុសបច្ចេកទេសដែលកើតឡើងនៅក្នុងកូដ PHP របស់អ្នក)។'
               ],
-              insight: 'លេខ 404 មានន័យថាអ្នកប្រើសរសេរ URL ខុស ឬ Resource នោះត្រូវបានលុប។'
+              insight: 'លេខ 404 មានន័យថាអ្នកប្រើសរសេរ URL ខុស ឬ Resource នោះត្រូវបានលុប។',
+              animation: 'http_status'
             }
           ]
         }
@@ -619,7 +624,8 @@ export const part1: Part = {
                 'វាត្រូវបានបង្កើតឡើងដើម្បីធ្វើឱ្យ Developer កាន់តែងាយស្រួលក្នុងការសរសេរ code និងងាយស្រួលក្នុងការថែទាំ (maintain)។',
                 'ផ្លាស់ប្តូរពី "PHP ធម្មតា" ទៅកាន់ Framework ដែលមានសមត្ថភាពខ្ពស់។'
               ],
-              insight: 'Laravel គឺជា "The PHP Framework for Web Artisans"។'
+              insight: 'Laravel គឺជា "The PHP Framework for Web Artisans"។',
+              animation: 'laravel_ecosystem'
             },
             {
               id: '2.1.1',
