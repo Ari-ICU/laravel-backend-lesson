@@ -23,7 +23,7 @@ export interface Slide {
   correctAnswer?: number;
   link?: string;
   linkText?: string;
-  animation?: 'deployment' | 'security' | 'performance' | 'database' | 'inheritance' | 'class_object' | 'loops' | 'logic' | 'functions' | 'data_types' | 'io' | 'syntax' | 'sql_nosql' | 'sql_selection' | 'sql_manipulation' | 'database_keys' | 'normalization' | 'http' | 'web_server' | 'http_methods' | 'http_status' | 'laravel_ecosystem' | 'laravel_features' | 'framework_comparison' | 'laravel_install' | 'laravel_prerequisites' | 'laravel_creation_ways' | 'laravel_structure';
+  animation?: 'deployment' | 'security' | 'performance' | 'database' | 'inheritance' | 'class_object' | 'loops' | 'logic' | 'functions' | 'data_types' | 'io' | 'syntax' | 'sql_nosql' | 'sql_selection' | 'sql_manipulation' | 'database_keys' | 'normalization' | 'http' | 'web_server' | 'http_methods' | 'http_status' | 'laravel_ecosystem' | 'laravel_features' | 'framework_comparison' | 'laravel_install' | 'laravel_prerequisites' | 'laravel_creation_ways' | 'laravel_structure' | 'local_stack' | 'all_in_one_stacks' | 'advanced_environments' | 'artisan_console' | 'artisan_list' | 'artisan_make' | 'artisan_serve' | 'routing_entry' | 'route_files' | 'laravel_http_methods' | 'route_parameters' | 'named_routes' | 'route_groups' | 'controller_logic' | 'laravel_request_object' | 'blade_layout' | 'database_connection' | 'database_migrations' | 'schema_builder' | 'eloquent_orm' | 'artisan_migrate' | 'mass_assignment' | 'blade_components' | 'model_creation' | 'migration_naming' | 'migration_up_down';
   extra?: string | LocalizedString;
 }
 

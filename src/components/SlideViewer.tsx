@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Code2, ArrowRight, ArrowLeft, Lightbulb,
   HelpCircle, CheckCircle2, XCircle, Trophy,
-  BookOpen, ChevronRight, Globe, 
+  BookOpen, ChevronRight, Globe,
   Monitor, Copy, ExternalLink, Sparkles,
   ShieldCheck, Activity, Maximize2, Minimize2
 } from 'lucide-react';
@@ -39,6 +39,32 @@ import { LaravelInstallAnimation } from './animations/LaravelInstallAnimation';
 import { LaravelPrerequisitesAnimation } from './animations/LaravelPrerequisitesAnimation';
 import { LaravelCreationWaysAnimation } from './animations/LaravelCreationWaysAnimation';
 import { LaravelStructureAnimation } from './animations/LaravelStructureAnimation';
+import { LocalStackAnimation } from './animations/LocalStackAnimation';
+import { AllInOneStacksAnimation } from './animations/AllInOneStacksAnimation';
+import { AdvancedEnvironmentsAnimation } from './animations/AdvancedEnvironmentsAnimation';
+import { ArtisanConsoleAnimation } from './animations/ArtisanConsoleAnimation';
+import { ArtisanListAnimation } from './animations/ArtisanListAnimation';
+import { ArtisanMakeAnimation } from './animations/ArtisanMakeAnimation';
+import { ArtisanServeAnimation } from './animations/ArtisanServeAnimation';
+import { RoutingEntryAnimation } from './animations/RoutingEntryAnimation';
+import { RouteFilesAnimation } from './animations/RouteFilesAnimation';
+import { LaravelHttpMethodsAnimation } from './animations/LaravelHttpMethodsAnimation';
+import { RouteParametersAnimation } from './animations/RouteParametersAnimation';
+import { NamedRoutesAnimation } from './animations/NamedRoutesAnimation';
+import { RouteGroupsAnimation } from './animations/RouteGroupsAnimation';
+import { ControllerLogicAnimation } from './animations/ControllerLogicAnimation';
+import { LaravelRequestObjectAnimation } from './animations/LaravelRequestObjectAnimation';
+import { BladeLayoutAnimation } from './animations/BladeLayoutAnimation';
+import { DatabaseConnectionAnimation } from './animations/DatabaseConnectionAnimation';
+import { DatabaseMigrationsAnimation } from './animations/DatabaseMigrationsAnimation';
+import { SchemaBuilderAnimation } from './animations/SchemaBuilderAnimation';
+import { EloquentORMSimulator } from './animations/EloquentORMSimulator';
+import { ArtisanMigrateAnimation } from './animations/ArtisanMigrateAnimation';
+import { MassAssignmentAnimation } from './animations/MassAssignmentAnimation';
+import { BladeComponentsAnimation } from './animations/BladeComponentsAnimation';
+import { ModelCreationAnimation } from './animations/ModelCreationAnimation';
+import { MigrationNamingAnimation } from './animations/MigrationNamingAnimation';
+import { MigrationUpDownAnimation } from './animations/MigrationUpDownAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -94,16 +120,16 @@ export function SlideViewer({
   // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === ' ') { 
+      if (e.key === 'ArrowRight' || e.key === ' ') {
         if (document.activeElement?.tagName !== 'TEXTAREA') {
-          e.preventDefault(); 
-          if (!isLast) onNext(); 
+          e.preventDefault();
+          if (!isLast) onNext();
         }
       }
-      if (e.key === 'ArrowLeft') { 
+      if (e.key === 'ArrowLeft') {
         if (document.activeElement?.tagName !== 'TEXTAREA') {
-          e.preventDefault(); 
-          if (!isFirst) onPrev(); 
+          e.preventDefault();
+          if (!isFirst) onPrev();
         }
       }
       if (e.key.toLowerCase() === 'n') {
@@ -208,16 +234,42 @@ export function SlideViewer({
       case 'laravel_prerequisites': return <LaravelPrerequisitesAnimation />;
       case 'laravel_creation_ways': return <LaravelCreationWaysAnimation />;
       case 'laravel_structure': return <LaravelStructureAnimation />;
+      case 'local_stack': return <LocalStackAnimation />;
+      case 'all_in_one_stacks': return <AllInOneStacksAnimation />;
+      case 'advanced_environments': return <AdvancedEnvironmentsAnimation />;
+      case 'artisan_console': return <ArtisanConsoleAnimation />;
+      case 'artisan_list': return <ArtisanListAnimation />;
+      case 'artisan_make': return <ArtisanMakeAnimation />;
+      case 'artisan_serve': return <ArtisanServeAnimation />;
+      case 'routing_entry': return <RoutingEntryAnimation />;
+      case 'route_files': return <RouteFilesAnimation />;
+      case 'laravel_http_methods': return <LaravelHttpMethodsAnimation />;
+      case 'route_parameters': return <RouteParametersAnimation />;
+      case 'named_routes': return <NamedRoutesAnimation />;
+      case 'route_groups': return <RouteGroupsAnimation />;
+      case 'controller_logic': return <ControllerLogicAnimation />;
+      case 'laravel_request_object': return <LaravelRequestObjectAnimation />;
+      case 'blade_layout': return <BladeLayoutAnimation />;
+      case 'database_connection': return <DatabaseConnectionAnimation />;
+      case 'database_migrations': return <DatabaseMigrationsAnimation />;
+      case 'schema_builder': return <SchemaBuilderAnimation />;
+      case 'eloquent_orm': return <EloquentORMSimulator />;
+      case 'artisan_migrate': return <ArtisanMigrateAnimation />;
+      case 'mass_assignment': return <MassAssignmentAnimation />;
+      case 'blade_components': return <BladeComponentsAnimation />;
+      case 'model_creation': return <ModelCreationAnimation />;
+      case 'migration_naming': return <MigrationNamingAnimation />;
+      case 'migration_up_down': return <MigrationUpDownAnimation />;
       default: return null;
-    } 
+    }
   };
 
   const typeLabel: Record<string, { label: string; color: string; icon: any }> = {
-    intro:   { label: 'Introduction',  color: 'bg-primary/10 text-primary border-primary/20', icon: Sparkles },
-    concept: { label: 'Concept',       color: 'bg-primary/10 text-primary border-primary/20', icon: Lightbulb },
-    code:    { label: 'Implementation', color: 'bg-secondary/10 text-secondary border-secondary/20', icon: Code2 },
-    quiz:    { label: 'Knowledge Check', color: 'bg-secondary/10 text-secondary border-secondary/20', icon: HelpCircle },
-    summary: { label: 'Course Summary',  color: 'bg-primary/10 text-primary border-primary/20', icon: Trophy },
+    intro: { label: 'Introduction', color: 'bg-primary/10 text-primary border-primary/20', icon: Sparkles },
+    concept: { label: 'Concept', color: 'bg-primary/10 text-primary border-primary/20', icon: Lightbulb },
+    code: { label: 'Implementation', color: 'bg-secondary/10 text-secondary border-secondary/20', icon: Code2 },
+    quiz: { label: 'Knowledge Check', color: 'bg-secondary/10 text-secondary border-secondary/20', icon: HelpCircle },
+    summary: { label: 'Course Summary', color: 'bg-primary/10 text-primary border-primary/20', icon: Trophy },
   };
 
   const badge = typeLabel[slide.type] ?? { label: slide.type, color: 'bg-white/5 text-white/40 border-white/10', icon: BookOpen };
@@ -235,7 +287,7 @@ export function SlideViewer({
 
       {/* ── TOP BAR ─────────────────────────────────────────────── */}
       <header className="relative z-30 h-20 flex items-center justify-between px-10 bg-background/40 backdrop-blur-md border-b border-white/[0.03]">
-        
+
         {/* Breadcrumb */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
@@ -262,8 +314,8 @@ export function SlideViewer({
                 i === currentSlideIndex
                   ? 'w-8 bg-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]'
                   : i < currentSlideIndex
-                  ? 'w-1.5 bg-white/30'
-                  : 'w-1.5 bg-white/10'
+                    ? 'w-1.5 bg-white/30'
+                    : 'w-1.5 bg-white/10'
               )} />
             ))}
           </div>
@@ -279,7 +331,7 @@ export function SlideViewer({
             className={cn(
               'w-10 h-10 rounded-xl flex items-center justify-center transition-all border',
               isProjectorMode
-                ? 'bg-primary/5 border-primary/20' 
+                ? 'bg-primary/5 border-primary/20'
                 : 'border-transparent text-white/60 hover:text-white/90 hover:bg-white/[0.03]'
             )}
             title="Projector Mode (P)"
@@ -385,40 +437,40 @@ export function SlideViewer({
                   "space-y-12",
                   (slide.code || slide.useCase) ? "lg:col-span-7" : "lg:col-span-12"
                 )}>
-                {((slide.content && slide.content.length > 0) || (slide.body && slide.body.length > 0)) && (
-                  <div className="space-y-8">
-                    {(slide.content || slide.body || []).map((paragraph, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 + idx * 0.1 }}
-                        className={cn(
-                          "flex items-start gap-6 group",
-                          slide.isList === false && "block"
-                        )}
-                      >
-                        {slide.isList !== false && slide.type !== 'quiz' && (
-                          <div className="mt-3 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-primary/10 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:scale-125 transition-transform" />
-                        )}
-                        <p className={cn(
-                          "font-medium text-white leading-relaxed transition-all duration-500",
-                          isProjectorMode ? "text-4xl" : "text-3xl"
-                        )}>
-                          {renderText(paragraph).split('**').map((part, i) =>
-                            i % 2 === 1
-                              ? <span key={i} className="text-white font-black">{part}</span>
-                              : part
+                  {((slide.content && slide.content.length > 0) || (slide.body && slide.body.length > 0)) && (
+                    <div className="space-y-8">
+                      {(slide.content || slide.body || []).map((paragraph, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.4 + idx * 0.1 }}
+                          className={cn(
+                            "flex items-start gap-6 group",
+                            slide.isList === false && "block"
                           )}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+                        >
+                          {slide.isList !== false && slide.type !== 'quiz' && (
+                            <div className="mt-3 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-primary/10 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:scale-125 transition-transform" />
+                          )}
+                          <p className={cn(
+                            "font-medium text-white leading-relaxed transition-all duration-500",
+                            isProjectorMode ? "text-4xl" : "text-3xl"
+                          )}>
+                            {renderText(paragraph).split('**').map((part, i) =>
+                              i % 2 === 1
+                                ? <span key={i} className="text-white font-black">{part}</span>
+                                : part
+                            )}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
 
-            {/* Right Column: Technical Details */}
+              {/* Right Column: Technical Details */}
               {(slide.code || slide.useCase) && (
                 <div className={cn(
                   "space-y-8 transition-all duration-500",
@@ -465,7 +517,7 @@ export function SlideViewer({
                           <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] ml-4">Snippet</span>
                         </div>
                         <div className="flex items-center gap-3">
-                          <button 
+                          <button
                             onClick={() => setIsCodeExpanded(!isCodeExpanded)}
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/5 text-[10px] font-black text-white/40 hover:text-white transition-all"
                             title={isCodeExpanded ? "Shrink View" : "Expand Full Width"}
@@ -473,7 +525,7 @@ export function SlideViewer({
                             {isCodeExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
                             {isCodeExpanded ? 'SHRINK' : 'EXPAND'}
                           </button>
-                          <button 
+                          <button
                             onClick={copyCode}
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/5 text-[10px] font-black text-white/40 hover:text-white transition-all"
                           >
@@ -486,12 +538,12 @@ export function SlideViewer({
                         "p-10 overflow-x-auto custom-scrollbar bg-black/40 transition-all duration-500",
                         isCodeExpanded ? "min-h-[400px]" : "max-h-[500px]"
                       )}>
-                        <code 
+                        <code
                           className={cn(
                             "font-mono leading-relaxed block",
                             isCodeExpanded || isProjectorMode ? "text-2xl" : "text-xl"
                           )}
-                          dangerouslySetInnerHTML={{ __html: highlightCode(slide.code, slide.language) }} 
+                          dangerouslySetInnerHTML={{ __html: highlightCode(slide.code, slide.language) }}
                         />
                       </pre>
                     </motion.div>
@@ -500,115 +552,115 @@ export function SlideViewer({
               )}
             </div>
 
-              {/* Animation Section */}
-              {slide.animation && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="rounded-[3rem] p-12 glass-panel border border-white/[0.05] flex justify-center items-center"
-                >
-                  {renderAnimation()}
-                </motion.div>
-              )}
+            {/* Animation Section */}
+            {slide.animation && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 }}
+                className="rounded-[3rem] p-12 glass-panel border border-white/[0.05] flex justify-center items-center"
+              >
+                {renderAnimation()}
+              </motion.div>
+            )}
 
-              {/* Insight / Key Takeaway */}
-              {slide.insight && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="relative p-10 rounded-[2.5rem] bg-primary/[0.03] border border-primary/20 overflow-hidden group/insight"
-                >
-                  <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover/insight:opacity-[0.07] transition-opacity">
-                    <Lightbulb className="w-32 h-32 text-primary -rotate-12" />
+            {/* Insight / Key Takeaway */}
+            {slide.insight && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="relative p-10 rounded-[2.5rem] bg-primary/[0.03] border border-primary/20 overflow-hidden group/insight"
+              >
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover/insight:opacity-[0.07] transition-opacity">
+                  <Lightbulb className="w-32 h-32 text-primary -rotate-12" />
+                </div>
+                <div className="relative flex items-start gap-8">
+                  <div className="w-16 h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+                    <Lightbulb className="w-8 h-8 text-primary fill-primary/10" />
                   </div>
-                  <div className="relative flex items-start gap-8">
-                    <div className="w-16 h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
-                      <Lightbulb className="w-8 h-8 text-primary fill-primary/10" />
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-[11px] font-black text-primary/60 uppercase tracking-[0.4em]">Expert Insight</p>
-                      <p className={cn(
-                        "text-white font-bold italic leading-snug transition-all duration-500",
-                        isProjectorMode ? "text-5xl" : "text-4xl"
-                      )}>
-                        "{renderText(slide.insight)}"
-                      </p>
-                    </div>
+                  <div className="space-y-3">
+                    <p className="text-[11px] font-black text-primary/60 uppercase tracking-[0.4em]">Expert Insight</p>
+                    <p className={cn(
+                      "text-white font-bold italic leading-snug transition-all duration-500",
+                      isProjectorMode ? "text-5xl" : "text-4xl"
+                    )}>
+                      "{renderText(slide.insight)}"
+                    </p>
                   </div>
-                </motion.div>
-              )}
+                </div>
+              </motion.div>
+            )}
 
-              {/* Quiz Grid */}
-              {slide.type === 'quiz' && slide.options && (
-                <div className="grid grid-cols-2 gap-6 mt-4">
-                  {slide.options.map((option, idx) => {
-                    const isSelected = selectedOption === idx;
-                    const isCorrect = idx === slide.correctAnswer;
-                    const showFeedback = selectedOption !== null;
+            {/* Quiz Grid */}
+            {slide.type === 'quiz' && slide.options && (
+              <div className="grid grid-cols-2 gap-6 mt-4">
+                {slide.options.map((option, idx) => {
+                  const isSelected = selectedOption === idx;
+                  const isCorrect = idx === slide.correctAnswer;
+                  const showFeedback = selectedOption !== null;
 
-                    return (
-                      <motion.button
-                        key={idx}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 + idx * 0.1 }}
-                        onClick={() => setSelectedOption(idx)}
-                        disabled={showFeedback}
-                        className={cn(
-                          "relative p-10 rounded-[2.5rem] text-left transition-all border-2 flex flex-col gap-4 overflow-hidden group/quiz",
-                          !showFeedback
-                            ? "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 hover:translate-y-[-4px]"
-                            : isSelected && isCorrect
+                  return (
+                    <motion.button
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + idx * 0.1 }}
+                      onClick={() => setSelectedOption(idx)}
+                      disabled={showFeedback}
+                      className={cn(
+                        "relative p-10 rounded-[2.5rem] text-left transition-all border-2 flex flex-col gap-4 overflow-hidden group/quiz",
+                        !showFeedback
+                          ? "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 hover:translate-y-[-4px]"
+                          : isSelected && isCorrect
                             ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
                             : isSelected && !isCorrect
-                            ? "bg-rose-500/10 border-rose-500/40 text-rose-300"
-                            : isCorrect
-                            ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-300/60"
-                            : "bg-white/[0.01] border-transparent opacity-20"
-                        )}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className={cn(
-                            "w-12 h-12 rounded-2xl flex items-center justify-center border font-black text-lg transition-all",
-                            !showFeedback ? "bg-white/5 border-white/10 text-white/40 group-hover/quiz:bg-primary group-hover/quiz:text-white group-hover/quiz:border-primary" :
+                              ? "bg-rose-500/10 border-rose-500/40 text-rose-300"
+                              : isCorrect
+                                ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-300/60"
+                                : "bg-white/[0.01] border-transparent opacity-20"
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className={cn(
+                          "w-12 h-12 rounded-2xl flex items-center justify-center border font-black text-lg transition-all",
+                          !showFeedback ? "bg-white/5 border-white/10 text-white/40 group-hover/quiz:bg-primary group-hover/quiz:text-white group-hover/quiz:border-primary" :
                             isCorrect ? "bg-emerald-500 border-emerald-500 text-white" :
-                            isSelected && !isCorrect ? "bg-rose-500 border-rose-500 text-white" : "bg-white/5 border-white/5"
-                          )}>
-                            {String.fromCharCode(65 + idx)}
-                          </div>
-                          {showFeedback && isCorrect && <CheckCircle2 className="w-8 h-8 text-emerald-400" />}
-                          {showFeedback && isSelected && !isCorrect && <XCircle className="w-8 h-8 text-rose-400" />}
-                        </div>
-                        <span className={cn(
-                          "font-black leading-tight tracking-tight transition-all duration-500",
-                          isProjectorMode ? "text-4xl" : "text-3xl"
+                              isSelected && !isCorrect ? "bg-rose-500 border-rose-500 text-white" : "bg-white/5 border-white/5"
                         )}>
-                          {renderText(option)}
-                        </span>
-                      </motion.button>
-                    );
-                  })}
-                </div>
-              )}
+                          {String.fromCharCode(65 + idx)}
+                        </div>
+                        {showFeedback && isCorrect && <CheckCircle2 className="w-8 h-8 text-emerald-400" />}
+                        {showFeedback && isSelected && !isCorrect && <XCircle className="w-8 h-8 text-rose-400" />}
+                      </div>
+                      <span className={cn(
+                        "font-black leading-tight tracking-tight transition-all duration-500",
+                        isProjectorMode ? "text-4xl" : "text-3xl"
+                      )}>
+                        {renderText(option)}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            )}
 
-              {/* External Resource */}
-              {slide.link && (
-                <motion.a
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  href={slide.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="self-center flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-white text-black font-black text-xl uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_rgba(255,255,255,0.15)] group"
-                >
-                  <Globe className="w-8 h-8 group-hover:rotate-12 transition-transform" />
-                  {slide.linkText || 'EXPLORE RESOURCE'}
-                  <ExternalLink className="w-6 h-6 opacity-40" />
-                </motion.a>
-              )}
+            {/* External Resource */}
+            {slide.link && (
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                href={slide.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="self-center flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-white text-black font-black text-xl uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_rgba(255,255,255,0.15)] group"
+              >
+                <Globe className="w-8 h-8 group-hover:rotate-12 transition-transform" />
+                {slide.linkText || 'EXPLORE RESOURCE'}
+                <ExternalLink className="w-6 h-6 opacity-40" />
+              </motion.a>
+            )}
 
             {/* Bottom Spacer */}
             <div className="h-20" />
@@ -654,7 +706,7 @@ export function SlideViewer({
                 <XCircle className="w-6 h-6" />
               </button>
             </div>
-            
+
             <div className="flex-1 p-8 flex flex-col gap-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Current Slide</span>

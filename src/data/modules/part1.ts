@@ -722,7 +722,8 @@ export const part1: Part = {
               content: [
                 'ដើម្បីដំណើរការ PHP និង MySQL អ្នកត្រូវការ local server environment។',
                 'មានជម្រើសជាច្រើនអាស្រ័យលើ OS និងកម្រិតបទពិសោធន៍របស់អ្នក។'
-              ]
+              ],
+              animation: 'local_stack'
             },
             {
               id: '2.3.1',
@@ -732,7 +733,8 @@ export const part1: Part = {
                 '**XAMPP/WAMP**: បែបប្រពៃណី, ប្រើបានគ្រប់ platform, ល្អសម្រាប់រៀនដំបូង។',
                 '**Laragon (Windows)**: ជាទីពេញចិត្តសម្រាប់អ្នកប្រើ Windows ព្រោះវាលឿន និងងាយស្រួលបង្កើត virtual hosts។',
                 '**DBngin**: Tool ដ៏ស្រាលសម្រាប់គ្រប់គ្រង database ច្រើនប្រភេទក្នុងពេលតែមួយ។'
-              ]
+              ],
+              animation: 'all_in_one_stacks'
             },
             {
               id: '2.3.2',
@@ -743,7 +745,8 @@ export const part1: Part = {
                 '**Laravel Herd**: បទពិសោធន៍ថ្មី One-click PHP development environment (មានទាំង Mac និង Windows)។',
                 '**Docker (Laravel Sail)**: ប្រើប្រាស់ Containerized environments ដើម្បីធានាថាគ្រប់ developer ក្នុងក្រុមប្រើ Environment ដូចគ្នា ១០០%។'
               ],
-              insight: 'ចាប់ផ្ដើមជាមួយ Laragon ឬ Herd ដើម្បីភាពងាយស្រួលបំផុតក្នុងការរៀន។'
+              insight: 'ចាប់ផ្ដើមជាមួយ Laragon ឬ Herd ដើម្បីភាពងាយស្រួលបំផុតក្នុងការរៀន។',
+              animation: 'advanced_environments'
             }
           ]
         },
@@ -760,7 +763,8 @@ export const part1: Part = {
                 'វាអនុញ្ញាតឱ្យអ្នកបង្កើតកូដ, គ្រប់គ្រង databases, និងដំណើរការ tests ភ្លាមៗ។',
                 'ការចេះប្រើ Artisan នឹងកាត់បន្ថយពេលវេលាអភិវឌ្ឍន៍របស់អ្នក។'
               ],
-              insight: 'Developer ដែលពូកែ តែងតែប្រើ CLI tools ដើម្បីធ្វើការងារដដែលៗឱ្យទៅជាស្វ័យប្រវត្តិ។'
+              insight: 'Developer ដែលពូកែ តែងតែប្រើ CLI tools ដើម្បីធ្វើការងារដដែលៗឱ្យទៅជាស្វ័យប្រវត្តិ។',
+              animation: 'artisan_console'
             },
             {
               id: '2.4.1',
@@ -771,7 +775,8 @@ export const part1: Part = {
                 'ប្រើ `--help` ដើម្បីរៀនពីរបៀបប្រើ command ជាក់លាក់ណាមួយ។'
               ],
               code: '// មើល commands ទាំងអស់ដែលមានក្នុង Artisan\nphp artisan list\n\n// សុំជំនួយ ឬរបៀបប្រើ command ណាមួយ\nphp artisan help make:controller',
-              language: 'bash'
+              language: 'bash',
+              animation: 'artisan_list'
             },
             {
               id: '2.4.2',
@@ -782,7 +787,8 @@ export const part1: Part = {
                 'វាជួយធានាថា structure ត្រឹមត្រូវ ហើយមាន code template រួចជាស្រេច ងាយស្រួលឲ្យអ្នកប្រើ។'
               ],
               code: '// បង្កើត Controller ថ្មីមួយ\nphp artisan make:controller PostController\n\n// បង្កើត Model ព្រមទាំងបង្កើត Migration file ក្នុងពេលតែមួយ\nphp artisan make:model Post -m',
-              language: 'bash'
+              language: 'bash',
+              animation: 'artisan_make'
             },
             {
               id: '2.4.3',
@@ -794,7 +800,8 @@ export const part1: Part = {
               ],
               code: 'php artisan serve',
               language: 'bash',
-              insight: 'រក្សា terminal នេះឱ្យនៅដំណើរការ (running) រហូតដល់អ្នកឈប់ធ្វើការ។'
+              insight: 'រក្សា terminal នេះឱ្យនៅដំណើរការ (running) រហូតដល់អ្នកឈប់ធ្វើការ។',
+              animation: 'artisan_serve'
             }
           ]
         }
