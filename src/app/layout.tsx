@@ -16,7 +16,7 @@ const outfit = Outfit({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#020205",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -45,12 +45,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body 
+      <body
         className={cn(
-          inter.variable, 
-          outfit.variable, 
-          "antialiased bg-[#020205] text-white selection:bg-primary/30"
-        )} 
+          inter.variable,
+          outfit.variable,
+          "antialiased bg-white text-black selection:bg-primary/20"
+        )}
         suppressHydrationWarning
       >
         <GlobalBackground />

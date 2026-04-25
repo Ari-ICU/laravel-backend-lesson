@@ -37,7 +37,7 @@ export function SqlNoSqlAnimation() {
             </div>
 
             {/* Table Simulation */}
-            <div className="space-y-1 overflow-hidden rounded-lg border border-white/5 bg-black/40">
+            <div className="space-y-1 overflow-hidden rounded-lg border border-white/5 bg-white/40">
                <div className="grid grid-cols-3 gap-1 p-2 bg-white/5">
                  {[1, 2, 3].map(i => <div key={i} className="h-1 rounded-full bg-white/10" />)}
                </div>
@@ -78,7 +78,7 @@ export function SqlNoSqlAnimation() {
             </div>
 
             {/* Document Simulation */}
-            <div className="p-4 rounded-lg border border-white/5 bg-black/40 font-mono text-[10px] space-y-2">
+            <div className="p-4 rounded-lg border border-white/5 bg-white/40 font-mono text-[10px] space-y-2">
                <div className="text-secondary">{'{'}</div>
                <div className="pl-4 text-white/40">"user": "Dara",</div>
                <div className="pl-4 text-white/40">"roles": ["admin", "editor"],</div>

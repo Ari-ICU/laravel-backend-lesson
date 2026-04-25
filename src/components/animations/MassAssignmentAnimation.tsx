@@ -50,7 +50,7 @@ export function MassAssignmentAnimation() {
               </div>
               <div className="space-y-2">
                  {incomingData.map((data) => (
-                   <div key={data.key} className="p-2 rounded-lg bg-black/40 border border-white/5 flex justify-between items-center overflow-hidden">
+                   <div key={data.key} className="p-2 rounded-lg bg-white/40 border border-white/5 flex justify-between items-center overflow-hidden">
                       <span className={`text-[8px] font-mono ${data.allowed ? 'text-white/60' : 'text-rose-400 font-bold'}`}>{data.key}</span>
                       <span className="text-[8px] text-white/20">=&gt; {data.value}</span>
                    </div>

@@ -70,7 +70,7 @@ export function RouteParametersAnimation() {
         <div className="w-full max-w-lg rounded-2xl border border-white/10 bg-[#1c1c1c] overflow-hidden shadow-2xl">
            <div className="px-4 py-2 bg-[#2d2d2d] flex items-center gap-3">
               <Globe className="w-3 h-3 text-white/20" />
-              <div className="flex-1 bg-black/20 rounded h-6 flex items-center px-3 font-mono text-[10px]">
+              <div className="flex-1 bg-white/20 rounded h-6 flex items-center px-3 font-mono text-[10px]">
                  <span className="text-white/40 italic">example.test</span>
                  <span className="text-white/80">{current.url}</span>
                  <input

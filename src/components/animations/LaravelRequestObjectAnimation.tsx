@@ -45,7 +45,7 @@ export function LaravelRequestObjectAnimation() {
               </div>
               <div className="space-y-2">
                  <div className="text-[8px] font-bold text-white/40 uppercase">Title</div>
-                 <div className="w-full h-6 rounded bg-black/40 border border-white/10 flex items-center px-2">
+                 <div className="w-full h-6 rounded bg-white/40 border border-white/10 flex items-center px-2">
                     <span className="text-[8px] text-primary font-mono italic">Hello Laravel!</span>
                  </div>
               </div>

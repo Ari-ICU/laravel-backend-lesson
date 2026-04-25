@@ -41,15 +41,15 @@ export function SyntaxAnimation() {
 
                 {/* Code snippets */}
                 <div className="space-y-2">
-                   <div className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 font-mono text-[10px]">
+                   <div className="flex items-center justify-between p-3 rounded-xl bg-white/40 border border-white/5 font-mono text-[10px]">
                       <span className="text-primary">$greeting</span>
                       <span className="text-white/40">variable</span>
                    </div>
-                   <div className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 font-mono text-[10px]">
+                   <div className="flex items-center justify-between p-3 rounded-xl bg-white/40 border border-white/5 font-mono text-[10px]">
                       <span className="text-secondary">;</span>
                       <span className="text-white/40">semicolon</span>
                    </div>
-                   <div className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5 font-mono text-[10px]">
+                   <div className="flex items-center justify-between p-3 rounded-xl bg-white/40 border border-white/5 font-mono text-[10px]">
                       <span className="text-emerald-400">&lt;?php</span>
                       <span className="text-white/40">tag</span>
                    </div>

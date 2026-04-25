@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #000000;
-  --color-foreground: #ffffff;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
   --color-primary: #3b82f6;
   --color-secondary: #06b6d4;
+  --color-secondary-dark: #0891b2;
   --color-accent: #3b82f6;
-  --color-surface: #0a0a0f;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-surface: #f8f8f8;
+  --color-border: rgba(0, 0, 0, 0.08);
   
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-heading: var(--font-outfit), system-ui, sans-serif;
@@ -58,31 +59,31 @@
 }
 
 @utility glass {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-    0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    0 4px 6px -1px rgba(0, 0, 0, 0.06), 
+    0 2px 4px -1px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
 }
 
 @utility glass-card {
   @apply glass rounded-[2rem] p-10;
-  background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent);
+  background-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.02), transparent);
 }
 
 @utility glass-panel {
   @apply glass border-none;
-  background-color: rgba(10, 10, 15, 0.7);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  background-color: rgba(248, 248, 248, 0.9);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
 }
 
 @utility gradient-text {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(135deg, #fff 0%, #93c5fd 50%, #3b82f6 100%);
+  background-image: linear-gradient(135deg, #1e293b 0%, #2563eb 50%, #3b82f6 100%);
   background-size: 200% 200%;
 }
 
@@ -128,8 +129,8 @@
     to bottom,
     transparent,
     transparent 50%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.5)
+    rgba(0, 0, 0, 0.06) 50%,
+    rgba(0, 0, 0, 0.06)
   );
   background-size: 100% 4px;
 }

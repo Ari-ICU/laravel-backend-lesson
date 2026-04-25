@@ -41,7 +41,7 @@ export function HttpStatusAnimation() {
                <button
                  key={c}
                  onClick={() => setCode(val)}
-                 className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all border ${active ? 'bg-white text-black border-white shadow-xl scale-110' : 'bg-white/5 text-white/40 border-white/10 hover:bg-white/10'}`}
+                 className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all border ${active ? 'bg-white text-white border-white shadow-xl scale-110' : 'bg-white/5 text-white/40 border-white/10 hover:bg-white/10'}`}
                >
                   {c}
                </button>

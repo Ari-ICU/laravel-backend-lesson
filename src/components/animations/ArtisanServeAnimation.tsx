@@ -86,7 +86,7 @@ export function ArtisanServeAnimation() {
                     <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                     <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
                  </div>
-                 <div className="flex-1 bg-black/20 rounded h-4 flex items-center px-2">
+                 <div className="flex-1 bg-white/20 rounded h-4 flex items-center px-2">
                     <span className="text-[7px] text-white/30 font-mono">127.0.0.1:8000</span>
                  </div>
               </div>

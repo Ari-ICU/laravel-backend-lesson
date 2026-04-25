@@ -83,7 +83,7 @@ export function ArtisanMigrateAnimation() {
             <span className="text-[9px] font-black text-white/20 uppercase tracking-widest font-mono italic">Artisan Console</span>
             <TerminalIcon className="w-3 h-3 text-white/20" />
          </div>
-         <div className="p-4 font-mono text-[10px] space-y-1 min-h-[100px] bg-black/40">
+         <div className="p-4 font-mono text-[10px] space-y-1 min-h-[100px] bg-white/40">
             {terminalLines.map((line, i) => (
               <div key={i} className={line.startsWith('>') ? 'text-primary' : 'text-white/60'}>
                 <span className="text-white/20 mr-2">$</span>{line}
@@ -143,7 +143,7 @@ export function ArtisanMigrateAnimation() {
               </span>
            </div>
            
-           <div className="h-48 rounded-[2rem] border-2 border-white/10 bg-black/40 p-6 flex flex-wrap gap-3 content-start relative shadow-2xl">
+           <div className="h-48 rounded-[2rem] border-2 border-white/10 bg-white/40 p-6 flex flex-wrap gap-3 content-start relative shadow-2xl">
               <AnimatePresence>
                  {dbState.length > 0 ? (
                    dbState.map((table) => (

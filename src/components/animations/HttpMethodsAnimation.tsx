@@ -85,7 +85,7 @@ export function HttpMethodsAnimation() {
                      initial={{ opacity: 0, y: -20 }}
                      animate={{ opacity: 1, y: 0 }}
                      exit={{ opacity: 0, y: 20 }}
-                     className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-white text-black font-black text-[10px] uppercase tracking-[0.2em] shadow-xl z-20"
+                     className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-white text-white font-black text-[10px] uppercase tracking-[0.2em] shadow-xl z-20"
                    >
                       Processing {activeMethod}...
                    </motion.div>

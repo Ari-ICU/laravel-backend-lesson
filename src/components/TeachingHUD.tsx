@@ -117,17 +117,17 @@ export function TeachingHUD({ isActive, onClose }: TeachingHUDProps) {
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto flex items-center gap-4 px-6 py-4 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] shadow-2xl"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-auto flex items-center gap-4 px-6 py-4 bg-white/80 backdrop-blur-2xl border border-black/10 rounded-[2.5rem] shadow-2xl"
       >
         {/* Timer Display */}
-        <div className="flex items-center gap-4 px-4 border-r border-white/10 mr-2">
-          <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center">
-            <Timer className={cn("w-5 h-5", isTimerRunning ? "text-primary animate-pulse" : "text-white/20")} />
+        <div className="flex items-center gap-4 px-4 border-r border-black/10 mr-2">
+          <div className="w-10 h-10 rounded-xl bg-black/[0.05] flex items-center justify-center">
+            <Timer className={cn("w-5 h-5", isTimerRunning ? "text-primary animate-pulse" : "text-black/20")} />
           </div>
-          <span className="text-xl font-mono font-black text-white w-16">{formatTime(time)}</span>
+          <span className="text-xl font-mono font-black text-black w-16">{formatTime(time)}</span>
           <button 
             onClick={() => setIsTimerRunning(!isTimerRunning)}
-            className="p-2 rounded-lg hover:bg-white/10 text-white/40 transition-colors"
+            className="p-2 rounded-lg hover:bg-black/10 text-black/40 transition-colors"
           >
             <RotateCcw className="w-4 h-4" onClick={(e) => { e.stopPropagation(); setTime(0); }} />
           </button>
@@ -155,7 +155,7 @@ export function TeachingHUD({ isActive, onClose }: TeachingHUDProps) {
           />
         </div>
 
-        <div className="w-px h-8 bg-white/10 mx-2" />
+        <div className="w-px h-8 bg-black/10 mx-2" />
 
         <button 
           onClick={onClose}
@@ -174,11 +174,11 @@ function ToolButton({ active, onClick, icon, label }: { active: boolean; onClick
       onClick={onClick}
       className={cn(
         "group relative p-4 rounded-[1.25rem] transition-all flex flex-col items-center gap-2",
-        active ? "bg-primary text-white shadow-lg shadow-primary/30" : "hover:bg-white/5 text-white/40 hover:text-white"
+        active ? "bg-primary text-white shadow-lg shadow-primary/30" : "hover:bg-black/5 text-black/40 hover:text-black"
       )}
     >
       {icon}
-      <span className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg bg-black border border-white/10 text-[10px] font-black whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg bg-white border border-black/10 text-[10px] font-black whitespace-nowrap text-black opacity-0 group-hover:opacity-100 transition-opacity">
         {label}
       </span>
     </button>

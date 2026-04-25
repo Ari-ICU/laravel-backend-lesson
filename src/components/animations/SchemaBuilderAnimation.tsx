@@ -61,7 +61,7 @@ export function SchemaBuilderAnimation() {
               <Table className="w-3 h-3" />
               <span className="text-[8px] font-black uppercase tracking-widest">products table</span>
            </div>
-           <div className="h-64 rounded-3xl border-2 border-white/10 bg-black/40 overflow-hidden flex flex-col relative shadow-2xl">
+           <div className="h-64 rounded-3xl border-2 border-white/10 bg-white/40 overflow-hidden flex flex-col relative shadow-2xl">
               {/* Table Header */}
               <div className="grid grid-cols-2 bg-white/5 border-b border-white/10 p-3">
                  <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Column</span>

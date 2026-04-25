@@ -56,7 +56,7 @@ export function LocalStackAnimation() {
            </div>
 
            {/* Data Flow Line */}
-           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-md">
+           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-4 py-2 rounded-full bg-white/40 border border-white/10 backdrop-blur-md">
               <HardDrive className="w-3 h-3 text-white/20" />
               <span className="text-[9px] font-black text-white/40 uppercase tracking-[0.2em]">Everything runs locally</span>
            </div>

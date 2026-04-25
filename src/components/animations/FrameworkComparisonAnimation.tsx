@@ -55,7 +55,7 @@ export function FrameworkComparisonAnimation() {
                 
                 {/* Tooltip */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                   <div className="px-4 py-2 rounded-xl bg-white text-black text-[9px] font-black uppercase tracking-widest whitespace-nowrap shadow-2xl">
+                   <div className="px-4 py-2 rounded-xl bg-white text-white text-[9px] font-black uppercase tracking-widest whitespace-nowrap shadow-2xl">
                       {fw.name === 'Laravel' ? 'The All-Rounder' : fw.name === 'Symfony' ? 'Enterprise Foundation' : fw.name === 'Slim' ? 'Micro-API King' : 'Lightweight Classic'}
                    </div>
                    <div className="w-2 h-2 bg-white rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2" />

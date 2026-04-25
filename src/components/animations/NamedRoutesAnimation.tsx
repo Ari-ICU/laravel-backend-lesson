@@ -77,7 +77,7 @@ export function NamedRoutesAnimation() {
                      <Layout className="w-4 h-4" />
                      <span className="text-[8px] font-black uppercase tracking-widest">Blade View</span>
                   </div>
-                  <div className="font-mono text-[9px] text-white/60 p-3 rounded-xl bg-black/40 border border-white/5">
+                  <div className="font-mono text-[9px] text-white/60 p-3 rounded-xl bg-white/40 border border-white/5">
                      &lt;a href="<span className="text-sky-400">{"{{"}</span> route('<span className="text-emerald-400">settings.edit</span>') <span className="text-sky-400">{"}}"}</span>"&gt;
                   </div>
                   <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export function NamedRoutesAnimation() {
                      <RefreshCcw className="w-4 h-4" />
                      <span className="text-[8px] font-black uppercase tracking-widest">Controller</span>
                   </div>
-                  <div className="font-mono text-[9px] text-white/60 p-3 rounded-xl bg-black/40 border border-white/5">
+                  <div className="font-mono text-[9px] text-white/60 p-3 rounded-xl bg-white/40 border border-white/5">
                      return redirect()-&gt;<span className="text-sky-400">route</span>('<span className="text-emerald-400">settings.edit</span>');
                   </div>
                   <div className="flex items-center gap-2">

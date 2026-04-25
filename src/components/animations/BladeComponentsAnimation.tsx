@@ -59,7 +59,7 @@ export function BladeComponentsAnimation() {
                 value={slotText}
                 onChange={(e) => setSlotText(e.target.value)}
                 placeholder="Type slot content..."
-                className="bg-black/40 border border-white/10 rounded-lg px-2 py-1.5 text-[8px] text-emerald-400 font-mono focus:outline-none focus:border-emerald-500/50"
+                className="bg-white/40 border border-white/10 rounded-lg px-2 py-1.5 text-[8px] text-emerald-400 font-mono focus:outline-none focus:border-emerald-500/50"
               />
               <button 
                 onClick={() => addElement('alert')}

@@ -75,7 +75,7 @@ export function AdvancedEnvironmentsAnimation() {
                 <div className="w-full flex justify-center pt-4 border-t border-white/5">
                    <div className="flex -space-x-2">
                       {[1, 2, 3].map(i => (
-                        <div key={i} className="w-6 h-6 rounded-full border-2 border-black bg-white/10 flex items-center justify-center text-[8px] font-bold">
+                        <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-white/10 flex items-center justify-center text-[8px] font-bold">
                            {tool.id === 'docker' ? <Box className="w-3 h-3" /> : tool.id === 'valet' ? <Globe className="w-3 h-3" /> : <Cpu className="w-3 h-3" />}
                         </div>
                       ))}

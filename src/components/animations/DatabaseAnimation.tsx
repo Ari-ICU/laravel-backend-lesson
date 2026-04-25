@@ -69,7 +69,7 @@ export function DatabaseAnimation() {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-8 py-4 rounded-2xl bg-black/60 border border-white/10 backdrop-blur-xl flex items-center gap-4"
+        className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-8 py-4 rounded-2xl bg-white/60 border border-white/10 backdrop-blur-xl flex items-center gap-4"
       >
         <Search className="w-4 h-4 text-primary" />
         <code className="text-xs font-mono text-emerald-400">{"User::with('posts')->get()"}</code>

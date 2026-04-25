@@ -43,14 +43,14 @@ export function CurriculumOverlay({ isOpen, onClose, onSelectLesson, activeLesso
                 <LayoutGrid className="w-8 h-8 text-primary" />
               </div>
               <div>
-                <h2 className="text-4xl font-black text-white tracking-tighter">Curriculum Command Center</h2>
-                <p className="text-white/30 font-bold uppercase tracking-[0.3em] text-xs mt-1">Jump to any module or lesson instantly</p>
+                <h2 className="text-5xl font-black text-black tracking-tighter font-outfit">Curriculum Command Center</h2>
+                <p className="text-black/40 font-bold uppercase tracking-[0.3em] text-sm mt-2 font-inter">Jump to any module or lesson instantly</p>
               </div>
             </div>
             
             <button 
               onClick={onClose}
-              className="w-16 h-16 rounded-full hover:bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all group"
+              className="w-16 h-16 rounded-full hover:bg-black/5 border border-black/10 flex items-center justify-center text-black/40 hover:text-black transition-all group"
             >
               <X className="w-8 h-8 group-hover:rotate-90 transition-transform" />
             </button>
@@ -58,14 +58,14 @@ export function CurriculumOverlay({ isOpen, onClose, onSelectLesson, activeLesso
 
           {/* Search */}
           <div className="w-full max-w-4xl relative mb-20">
-            <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-8 h-8 text-white/20" />
+            <Search className="absolute left-8 top-1/2 -translate-y-1/2 w-8 h-8 text-black/20" />
             <input 
               autoFocus
               type="text"
               placeholder="Search lessons, topics, or modules..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/[0.03] border border-white/10 rounded-[2.5rem] py-8 pl-24 pr-10 text-3xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-primary/40 focus:bg-white/[0.05] transition-all"
+              className="w-full bg-black/[0.03] border border-black/10 rounded-[2.5rem] py-8 pl-24 pr-10 text-3xl font-bold text-black placeholder:text-black/10 focus:outline-none focus:border-primary/40 focus:bg-black/[0.05] transition-all"
             />
           </div>
 
@@ -75,14 +75,14 @@ export function CurriculumOverlay({ isOpen, onClose, onSelectLesson, activeLesso
               {filteredCurriculum.map((part, pIdx) => (
                 <div key={pIdx} className="space-y-10">
                   <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] px-3 py-1 rounded-md bg-primary/10 border border-primary/20">PART {pIdx + 1}</span>
-                    <div className="h-px flex-1 bg-white/[0.05]" />
+                    <span className="text-xs font-black text-primary uppercase tracking-[0.5em] px-4 py-1.5 rounded-md bg-primary/10 border border-primary/20 font-inter">PART {pIdx + 1}</span>
+                    <div className="h-px flex-1 bg-black/[0.05]" />
                   </div>
 
                   {part.modules.map((mod) => (
                     <div key={mod.id} className="space-y-6">
-                      <h3 className="text-xl font-black text-white/80 flex items-center gap-3">
-                        <BookOpen className="w-5 h-5 text-primary/40" />
+                      <h3 className="text-2xl font-black text-black/80 flex items-center gap-4 font-outfit">
+                        <BookOpen className="w-6 h-6 text-primary/40" />
                         {mod.title}
                       </h3>
                       <div className="grid gap-3">
@@ -97,18 +97,18 @@ export function CurriculumOverlay({ isOpen, onClose, onSelectLesson, activeLesso
                               "group flex items-center justify-between p-5 rounded-2xl border transition-all text-left",
                               activeLessonId === lesson.id 
                                 ? "bg-primary border-primary shadow-lg shadow-primary/20" 
-                                : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10"
+                                : "bg-black/[0.02] border-black/5 hover:bg-black/[0.05] hover:border-black/10"
                             )}
                           >
                             <span className={cn(
-                              "font-bold text-sm",
-                              activeLessonId === lesson.id ? "text-white" : "text-white/40 group-hover:text-white"
+                              "font-bold text-base font-inter",
+                              activeLessonId === lesson.id ? "text-white" : "text-black/60 group-hover:text-black"
                             )}>
                               {lesson.title}
                             </span>
                             <ChevronRight className={cn(
-                              "w-4 h-4 transition-transform group-hover:translate-x-1",
-                              activeLessonId === lesson.id ? "text-white/60" : "text-white/10 group-hover:text-primary"
+                              "w-5 h-5 transition-transform group-hover:translate-x-1",
+                              activeLessonId === lesson.id ? "text-white/60" : "text-black/20 group-hover:text-primary"
                             )} />
                           </button>
                         ))}

@@ -178,9 +178,9 @@ export function SlideViewer({
     escaped = escaped.replace(unifiedRegex, (match, str, cmt) => {
       const id = `___PH${placeholderIdx++}___`;
       if (str) {
-        placeholders.push({ id, content: `<span class="text-emerald-300 font-medium">${str}</span>` });
+        placeholders.push({ id, content: `<span class="text-emerald-600 font-medium">${str}</span>` });
       } else {
-        placeholders.push({ id, content: `<span class="text-white/40 font-normal">${cmt}</span>` });
+        placeholders.push({ id, content: `<span class="text-black/40 font-normal">${cmt}</span>` });
       }
       return id;
     });
@@ -189,10 +189,10 @@ export function SlideViewer({
     if (lang === 'php') {
       escaped = escaped
         .replace(/\b(public|private|protected|function|class|extends|return|new|use|namespace|if|else|elseif|foreach|as|while|for|echo|abstract|static|interface|trait)\b/g,
-          '<span class="text-sky-300 font-black">$1</span>')
-        .replace(/(&lt;\?php|\?&gt;)/g, '<span class="text-white/30">$1</span>')
-        .replace(/(\$[a-zA-Z0-9_]+)/g, '<span class="text-secondary">$1</span>')
-        .replace(/(::|-&gt;)/g, '<span class="text-white/40">$1</span>')
+          '<span class="text-sky-600 font-black">$1</span>')
+        .replace(/(&lt;\?php|\?&gt;)/g, '<span class="text-black/30">$1</span>')
+        .replace(/(\$[a-zA-Z0-9_]+)/g, '<span class="text-secondary-dark font-bold">$1</span>')
+        .replace(/(::|-&gt;)/g, '<span class="text-black/40">$1</span>')
         .replace(/\b(App|User|Controller|Request|Route|DB|Schema|Blueprint)\b/g, '<span class="text-primary">$1</span>');
     }
 
@@ -286,19 +286,19 @@ export function SlideViewer({
       </div>
 
       {/* ── TOP BAR ─────────────────────────────────────────────── */}
-      <header className="relative z-30 h-20 flex items-center justify-between px-10 bg-background/40 backdrop-blur-md border-b border-white/[0.03]">
+      <header className="relative z-30 h-20 flex items-center justify-between px-10 bg-background/40 backdrop-blur-md border-b border-black/[0.03]">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] leading-none mb-1">{moduleTitle}</span>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-white/80 truncate max-w-[200px]">{lessonTitle}</span>
+            <span className="text-xs font-black text-black/20 uppercase tracking-[0.25em] leading-none mb-1.5 font-inter">{moduleTitle}</span>
+            <div className="flex items-center gap-2.5">
+              <span className="text-base font-bold text-black/80 truncate max-w-[250px] font-outfit">{lessonTitle}</span>
               <div className={cn(
-                'px-2.5 py-0.5 rounded-lg text-[9px] font-black uppercase tracking-widest border flex items-center gap-1.5',
+                'px-3 py-1 rounded-lg text-[11px] font-black uppercase tracking-widest border flex items-center gap-2 font-inter',
                 badge.color
               )}>
-                <badge.icon className="w-3 h-3" />
+                <badge.icon className="w-3.5 h-3.5" />
                 {badge.label}
               </div>
             </div>
@@ -312,14 +312,14 @@ export function SlideViewer({
               <div key={i} className={cn(
                 'h-1.5 rounded-full transition-all duration-500',
                 i === currentSlideIndex
-                  ? 'w-8 bg-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]'
+                  ? 'w-8 bg-primary shadow-[0_0_15px_rgba(59,130,246,0.3)]'
                   : i < currentSlideIndex
-                    ? 'w-1.5 bg-white/30'
-                    : 'w-1.5 bg-white/10'
+                    ? 'w-1.5 bg-black/30'
+                    : 'w-1.5 bg-black/10'
               )} />
             ))}
           </div>
-          <span className="font-mono text-[10px] font-bold text-white/20 ml-2">
+          <span className="font-mono text-xs font-bold text-black/20 ml-2">
             {String(currentSlideIndex + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
           </span>
         </div>
@@ -331,8 +331,8 @@ export function SlideViewer({
             className={cn(
               'w-10 h-10 rounded-xl flex items-center justify-center transition-all border',
               isProjectorMode
-                ? 'bg-primary/5 border-primary/20'
-                : 'border-transparent text-white/60 hover:text-white/90 hover:bg-white/[0.03]'
+                ? 'bg-primary/5 border-primary/20 text-primary'
+                : 'border-transparent text-black/60 hover:text-black/90 hover:bg-black/[0.03]'
             )}
             title="Projector Mode (P)"
           >
@@ -345,14 +345,14 @@ export function SlideViewer({
               'w-10 h-10 rounded-xl flex items-center justify-center transition-all border',
               showNotes
                 ? 'bg-primary border-primary/40 text-white shadow-[0_0_20px_rgba(59,130,246,0.2)]'
-                : 'border-transparent text-white/60 hover:text-white/90 hover:bg-white/[0.03]'
+                : 'border-transparent text-black/60 hover:text-black/90 hover:bg-black/[0.03]'
             )}
             title="Instructor Notes (N)"
           >
             <BookOpen className="w-4 h-4" />
           </button>
 
-          <div className="h-6 w-px bg-white/5 mx-1" />
+          <div className="h-6 w-px bg-black/5 mx-1" />
 
           <button
             onClick={() => {
@@ -363,8 +363,8 @@ export function SlideViewer({
             className={cn(
               'w-10 h-10 rounded-xl flex items-center justify-center border transition-all',
               isFirst
-                ? 'opacity-20 cursor-not-allowed border-white/5 text-white/20'
-                : 'border-transparent text-white/60 hover:text-white/90 hover:bg-white/[0.03]'
+                ? 'opacity-20 cursor-not-allowed border-black/5 text-black/20'
+                : 'border-transparent text-black/60 hover:text-black/90 hover:bg-black/[0.03]'
             )}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -377,13 +377,13 @@ export function SlideViewer({
             }}
             disabled={isLast}
             className={cn(
-              'px-6 h-10 rounded-xl flex items-center gap-2 font-black text-[11px] uppercase tracking-[0.15em] transition-all border',
+              'px-6 h-10 rounded-xl flex items-center gap-2 font-black text-sm uppercase tracking-[0.1em] transition-all border font-outfit',
               isLast
-                ? 'opacity-20 cursor-not-allowed border-white/5 text-white/20'
-                : 'bg-white text-black hover:bg-white/90 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]'
+                ? 'opacity-20 cursor-not-allowed border-black/5 text-black/20'
+                : 'bg-black text-white hover:bg-black/90 active:scale-95 shadow-[0_0_30px_rgba(0,0,0,0.1)]'
             )}
           >
-            Next <ArrowRight className="w-3.5 h-3.5" />
+            Next <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </header>
@@ -410,8 +410,8 @@ export function SlideViewer({
                 transition={{ delay: 0.2 }}
                 className="flex items-center gap-3"
               >
-                <div className="h-px w-12 bg-primary/40" />
-                <span className="text-[11px] font-black text-primary uppercase tracking-[0.4em]">Section {currentSlideIndex + 1}</span>
+                <div className="h-px w-16 bg-primary/40" />
+                <span className="text-xs font-black text-primary uppercase tracking-[0.4em] font-inter">Section {currentSlideIndex + 1}</span>
               </motion.div>
 
               <motion.h1
@@ -419,8 +419,8 @@ export function SlideViewer({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
                 className={cn(
-                  "font-black tracking-tight leading-[1.05] text-white transition-all duration-500",
-                  isProjectorMode ? "text-7xl" : "text-6xl",
+                  "font-black tracking-tight leading-[1.05] text-black transition-all duration-500 font-outfit",
+                  isProjectorMode ? "text-8xl" : "text-7xl",
                   slide.type === 'summary' && "gradient-text"
                 )}
               >
@@ -454,12 +454,12 @@ export function SlideViewer({
                             <div className="mt-3 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-primary/10 shrink-0 shadow-[0_0_15px_rgba(59,130,246,0.4)] group-hover:scale-125 transition-transform" />
                           )}
                           <p className={cn(
-                            "font-medium text-white leading-relaxed transition-all duration-500",
+                            "font-medium text-black leading-relaxed transition-all duration-500",
                             isProjectorMode ? "text-4xl" : "text-3xl"
                           )}>
                             {renderText(paragraph).split('**').map((part, i) =>
                               i % 2 === 1
-                                ? <span key={i} className="text-white font-black">{part}</span>
+                                ? <span key={i} className="text-black font-black">{part}</span>
                                 : part
                             )}
                           </p>
@@ -485,11 +485,11 @@ export function SlideViewer({
                     >
                       <div className="flex items-center gap-4 text-primary">
                         <Activity className="w-5 h-5" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.5em]">Real-World Use Case</span>
+                        <span className="text-xs font-black uppercase tracking-[0.5em] font-inter">Real-World Use Case</span>
                       </div>
                       <p className={cn(
-                        "font-black tracking-tight text-white leading-relaxed",
-                        isProjectorMode ? "text-2xl" : "text-xl"
+                        "font-black tracking-tight text-black leading-relaxed font-outfit",
+                        isProjectorMode ? "text-3xl" : "text-2xl"
                       )}>
                         {renderText(slide.useCase)}
                       </p>
@@ -503,23 +503,23 @@ export function SlideViewer({
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       className={cn(
-                        "rounded-[3rem] bg-[#05050a] border border-white/10 overflow-hidden shadow-2xl flex flex-col group/code transition-all duration-500",
+                        "rounded-[3rem] bg-slate-50 border border-black/10 overflow-hidden shadow-2xl flex flex-col group/code transition-all duration-500",
                         isCodeExpanded && "ring-2 ring-primary/40 shadow-primary/10"
                       )}
                     >
-                      <div className="px-8 py-5 bg-white/[0.03] border-b border-white/[0.05] flex items-center justify-between">
+                      <div className="px-8 py-5 bg-black/[0.03] border-b border-black/[0.05] flex items-center justify-between">
                         <div className="flex items-center gap-4">
                           <div className="flex gap-2">
                             <div className="w-3 h-3 rounded-full bg-rose-500/40" />
                             <div className="w-3 h-3 rounded-full bg-amber-500/40" />
                             <div className="w-3 h-3 rounded-full bg-emerald-500/40" />
                           </div>
-                          <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] ml-4">Snippet</span>
+                          <span className="text-xs font-black text-black/20 uppercase tracking-[0.3em] ml-4 font-inter">Snippet</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => setIsCodeExpanded(!isCodeExpanded)}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/5 text-[10px] font-black text-white/40 hover:text-white transition-all"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/[0.05] border border-black/5 text-[10px] font-black text-black/40 hover:text-black transition-all"
                             title={isCodeExpanded ? "Shrink View" : "Expand Full Width"}
                           >
                             {isCodeExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
@@ -527,15 +527,15 @@ export function SlideViewer({
                           </button>
                           <button
                             onClick={copyCode}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/5 text-[10px] font-black text-white/40 hover:text-white transition-all"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/[0.05] border border-black/5 text-xs font-black text-black/40 hover:text-black transition-all"
                           >
-                            <Copy className="w-3.5 h-3.5" />
+                            <Copy className="w-4 h-4" />
                             {copied ? 'COPIED' : 'COPY'}
                           </button>
                         </div>
                       </div>
                       <pre className={cn(
-                        "p-10 overflow-x-auto custom-scrollbar bg-black/40 transition-all duration-500",
+                        "p-10 overflow-x-auto custom-scrollbar bg-white transition-all duration-500",
                         isCodeExpanded ? "min-h-[400px]" : "max-h-[500px]"
                       )}>
                         <code
@@ -580,9 +580,9 @@ export function SlideViewer({
                     <Lightbulb className="w-8 h-8 text-primary fill-primary/10" />
                   </div>
                   <div className="space-y-3">
-                    <p className="text-[11px] font-black text-primary/60 uppercase tracking-[0.4em]">Expert Insight</p>
+                    <p className="text-xs font-black text-primary/60 uppercase tracking-[0.4em] font-inter">Expert Insight</p>
                     <p className={cn(
-                      "text-white font-bold italic leading-snug transition-all duration-500",
+                      "text-black font-bold italic leading-snug transition-all duration-500",
                       isProjectorMode ? "text-5xl" : "text-4xl"
                     )}>
                       "{renderText(slide.insight)}"
@@ -611,22 +611,22 @@ export function SlideViewer({
                       className={cn(
                         "relative p-10 rounded-[2.5rem] text-left transition-all border-2 flex flex-col gap-4 overflow-hidden group/quiz",
                         !showFeedback
-                          ? "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 hover:translate-y-[-4px]"
+                          ? "bg-black/[0.02] border-black/5 hover:bg-black/[0.05] hover:border-black/10 hover:translate-y-[-4px]"
                           : isSelected && isCorrect
-                            ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
+                            ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-600"
                             : isSelected && !isCorrect
-                              ? "bg-rose-500/10 border-rose-500/40 text-rose-300"
+                              ? "bg-rose-500/10 border-rose-500/40 text-rose-600"
                               : isCorrect
-                                ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-300/60"
-                                : "bg-white/[0.01] border-transparent opacity-20"
+                                ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-600/60"
+                                : "bg-black/[0.01] border-transparent opacity-20"
                       )}
                     >
                       <div className="flex items-center justify-between">
                         <div className={cn(
                           "w-12 h-12 rounded-2xl flex items-center justify-center border font-black text-lg transition-all",
-                          !showFeedback ? "bg-white/5 border-white/10 text-white/40 group-hover/quiz:bg-primary group-hover/quiz:text-white group-hover/quiz:border-primary" :
+                          !showFeedback ? "bg-black/5 border-black/10 text-black/40 group-hover/quiz:bg-primary group-hover/quiz:text-white group-hover/quiz:border-primary" :
                             isCorrect ? "bg-emerald-500 border-emerald-500 text-white" :
-                              isSelected && !isCorrect ? "bg-rose-500 border-rose-500 text-white" : "bg-white/5 border-white/5"
+                              isSelected && !isCorrect ? "bg-rose-500 border-rose-500 text-white" : "bg-black/5 border-black/5"
                         )}>
                           {String.fromCharCode(65 + idx)}
                         </div>
@@ -654,7 +654,7 @@ export function SlideViewer({
                 href={slide.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="self-center flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-white text-black font-black text-xl uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_rgba(255,255,255,0.15)] group"
+                className="self-center flex items-center gap-6 px-16 py-8 rounded-[3rem] bg-black text-white font-black text-xl uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_rgba(0,0,0,0.15)] group"
               >
                 <Globe className="w-8 h-8 group-hover:rotate-12 transition-transform" />
                 {slide.linkText || 'EXPLORE RESOURCE'}
@@ -669,7 +669,7 @@ export function SlideViewer({
       </main>
 
       {/* ── KEYBOARD HINT BAR ───────────────────────────────────── */}
-      <footer className="relative z-30 h-10 flex items-center justify-center gap-10 bg-black/40 backdrop-blur-xl border-t border-white/[0.03]">
+      <footer className="relative z-30 h-10 flex items-center justify-center gap-10 bg-white/40 backdrop-blur-xl border-t border-black/[0.03]">
         {[
           { key: '←', label: 'PREV' },
           { key: '→', label: 'NEXT' },
@@ -679,8 +679,8 @@ export function SlideViewer({
           { key: 'H', label: 'TOOLS' },
         ].map((hint) => (
           <div key={hint.key} className="flex items-center gap-2">
-            <kbd className="px-2 py-0.5 rounded bg-white text-black text-[10px] font-black">{hint.key}</kbd>
-            <span className="text-[10px] font-black text-white uppercase tracking-widest">{hint.label}</span>
+            <kbd className="px-2.5 py-1 rounded bg-black text-white text-xs font-black font-mono">{hint.key}</kbd>
+            <span className="text-xs font-black text-black uppercase tracking-widest font-inter">{hint.label}</span>
           </div>
         ))}
       </footer>
@@ -693,30 +693,30 @@ export function SlideViewer({
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="absolute right-0 top-0 bottom-0 w-[450px] z-50 flex flex-col bg-[#05050a]/95 backdrop-blur-3xl border-l border-white/[0.05] shadow-[-50px_0_100px_rgba(0,0,0,0.8)]"
+            className="absolute right-0 top-0 bottom-0 w-[450px] z-50 flex flex-col bg-white/95 backdrop-blur-3xl border-l border-black/[0.05] shadow-[-50px_0_100px_rgba(0,0,0,0.1)]"
           >
-            <div className="h-20 flex items-center justify-between px-8 border-b border-white/[0.03]">
+            <div className="h-20 flex items-center justify-between px-8 border-b border-black/[0.03]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
                   <BookOpen className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="text-xl font-black text-white tracking-tight">Instructor Notes</h3>
+                <h3 className="text-xl font-black text-black tracking-tight">Instructor Notes</h3>
               </div>
-              <button onClick={() => setShowNotes(false)} className="p-2 rounded-xl hover:bg-white/[0.05] text-white/20 hover:text-white transition-all">
+              <button onClick={() => setShowNotes(false)} className="p-2 rounded-xl hover:bg-black/[0.05] text-black/20 hover:text-black transition-all">
                 <XCircle className="w-6 h-6" />
               </button>
             </div>
 
             <div className="flex-1 p-8 flex flex-col gap-6">
               <div className="space-y-1">
-                <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.2em]">Current Slide</span>
-                <p className="text-xl font-bold text-white leading-tight">{slide.title}</p>
+                <span className="text-xs font-black text-black/40 uppercase tracking-[0.2em] font-inter">Current Slide</span>
+                <p className="text-2xl font-black text-black leading-tight font-outfit">{slide.title}</p>
               </div>
               <textarea
                 value={note}
                 onChange={(e) => saveNote(e.target.value)}
                 placeholder="Write your teaching pointers here..."
-                className="flex-1 bg-white/[0.02] border border-white/[0.05] rounded-3xl p-8 text-white/80 text-xl font-medium resize-none focus:outline-none focus:border-primary/40 focus:bg-white/[0.04] transition-all placeholder:text-white/10 leading-relaxed"
+                className="flex-1 bg-black/[0.02] border border-black/[0.05] rounded-3xl p-8 text-black/80 text-xl font-medium resize-none focus:outline-none focus:border-primary/40 focus:bg-black/[0.04] transition-all placeholder:text-black/10 leading-relaxed"
               />
               <div className="p-6 rounded-2xl bg-primary/[0.03] border border-primary/10 flex gap-4">
                 <Lightbulb className="w-6 h-6 text-primary shrink-0" />

@@ -94,7 +94,7 @@ export function LaravelFeaturesAnimation() {
                           <Code className="w-3 h-3 text-amber-500" />
                           <span className="text-[9px] font-black text-amber-500/60 uppercase">Template</span>
                        </div>
-                       <div className="p-4 rounded-xl bg-black/20 font-mono text-[10px]">
+                       <div className="p-4 rounded-xl bg-white/20 font-mono text-[10px]">
                           <p className="text-white/40">&lt;div&gt;</p>
                           <p className="text-amber-400 ml-4">@foreach($users as $user)</p>
                           <p className="text-white/80 ml-8">&#123;&#123; $user-&gt;name &#125;&#125;</p>

@@ -47,7 +47,7 @@ export function MigrationNamingAnimation() {
               <div className="p-6 space-y-4">
                  <div className="flex flex-col gap-2">
                     <span className="text-[8px] font-black text-white/20 uppercase tracking-widest">Migration Name:</span>
-                    <div className="flex items-center gap-3 bg-black/40 border border-white/10 rounded-xl px-4 py-3">
+                    <div className="flex items-center gap-3 bg-white/40 border border-white/10 rounded-xl px-4 py-3">
                        <span className="text-primary font-mono text-[10px]">$</span>
                        <input 
                          type="text" 
