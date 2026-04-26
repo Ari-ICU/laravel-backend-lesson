@@ -52,7 +52,19 @@ export const part1: Part = {
                 '**Part 2**: Core Laravel Concepts (គោលការណ៍សំខាន់ៗរបស់ Laravel)។',
                 '**Part 3**: Advanced Features & Deployment (មុខងារកម្រិតខ្ពស់ និងការដាក់ឱ្យដំណើរការ)។'
               ],
-              insight: 'ផ្នែកនីមួយៗបង្កើតឡើងដោយផ្អែកលើផ្នែកមុន។ កុំរំលងមូលដ្ឋានគ្រឹះ!'
+              language: 'php'
+            },
+            {
+              id: '0.1.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Backend Focus**: ផ្ដោតលើ Logic, Security និង Professional Architecture។',
+                '**Learning Path**: ចាប់ផ្ដើមពីមូលដ្ឋាន PHP រហូតដល់ការបង្កើត REST APIs កម្រិតអាជីព។',
+                '**Professional Standards**: រៀនសរសេរកូដដែលស្អាត (Clean Code) និងងាយស្រួលពង្រីក (Scalable)។'
+              ],
+              insight: 'គោលដៅធំបំផុតគឺក្លាយជា Production-Ready Backend Developer។'
             }
           ]
         }
@@ -124,6 +136,18 @@ export const part1: Part = {
               link: 'https://getcomposer.org/download/',
               linkText: 'Download Composer',
               insight: 'តែងតែធ្វើបច្ចុប្បន្នភាព Composer របស់អ្នកជាមួយ "composer self-update"។'
+            },
+            {
+              id: '1.0.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**IDE Choice**: ប្រើ VS Code ជាមួយ Laravel Extension Pack សម្រាប់ប្រសិទ្ធភាពខ្ពស់បំផុត។',
+                '**AI Integration**: ប្រើ Antigravity AI ដើម្បីជំនួយក្នុងកា Debug និងសរសេរ Boilerplate Boris។',
+                '**Package Management**: ប្រើ Composer ជានិច្ចសម្រាប់ការគ្រប់គ្រង PHP dependencies ក្នុងគម្រោង។'
+              ],
+              insight: 'ឧបករណ៍ត្រឹមត្រូវជួយឱ្យអ្នកធ្វើការបានលឿន និងមានគុណភាព។'
             }
           ]
         },
@@ -249,6 +273,18 @@ export const part1: Part = {
               ],
               code: '// Client Request (Browser)\nGET /api/user/1 HTTP/1.1\nHost: example.com\n\n// Server Response (Backend)\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{\n    "id": 1,\n    "name": "Dara",\n    "email": "dara@example.com",\n    "status": "Active"\n}',
               language: 'json'
+            },
+            {
+              id: '1.1.9',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Architecture**: យល់ដឹងពី Client-Server Architecture និង Request-Response Cycle។',
+                '**Data Integrity**: ផ្ដោតលើការរក្សាទុកទិន្នន័យក្នុង Database ឱ្យមានសុវត្ថិភាព និងល្បឿនលឿន។',
+                '**API Standard**: ប្រើប្រាស់ JSON ជាទម្រង់ទិន្នន័យស្ដង់ដារសម្រាប់ការទំនាក់ទំនងតាមរយៈ APIs។'
+              ],
+              insight: 'Backend គឺជាខួរក្បាល និងជាម៉ាស៊ីនដែលលាក់ខ្លួននៅពីក្រោយរាល់ Web Apps ទំនើប។'
             }
           ]
         },
@@ -517,6 +553,18 @@ export const part1: Part = {
               ],
               code: '$users = [\n    ["email" => "admin@test.com", "pass" => "123", "role" => "Admin"],\n    ["email" => "user@test.com", "pass" => "456", "role" => "User"]\n];\n\nfunction login(string $email, string $password, array $users): string {\n    foreach ($users as $user) {\n        if ($user["email"] === $email && $user["pass"] === $password) {\n            return "ស្វាគមន៍ " . $user["role"] . "! លោកអ្នកបាន Login ជោគជ័យ។";\n        }\n    }\n    return "អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ។";\n}\n\necho login("admin@test.com", "123", $users);',
               language: 'php'
+            },
+            {
+              id: '1.2.17',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Strict Typing**: ប្រើ Type Hinting និង Strict Comparison (===) ដើម្បីការពារ Bugs។',
+                '**OOP Principles**: ប្រើប្រាស់ OOP (Classes, Inheritance) ដើម្បីរៀបចំកូដឱ្យមានសណ្ដាប់ធ្នាប់។',
+                '**Modern PHP**: ប្រើប្រាស់ Composer សម្រាប់ Autoloading និងការគ្រប់គ្រង Packages ខាងក្រៅ។'
+              ],
+              insight: 'ការយល់ច្បាស់ពី PHP គឺជាគន្លឹះដើម្បីប្រើប្រាស់ Laravel ឱ្យមានប្រសិទ្ធភាពបំផុត។'
             }
           ]
         },
@@ -642,6 +690,18 @@ export const part1: Part = {
               ],
               code: '-- 1. បន្ថែមសៀវភៅថ្មី\nINSERT INTO books (title, author, price) \nVALUES ("Laravel for Beginners", "John Doe", 25.00);\n\n-- 2. ស្វែងរកសៀវភៅដែលមានពាក្យ "Laravel"\nSELECT * FROM books \nWHERE title LIKE "%Laravel%" \nAND price < 50.00;\n\n-- 3. កែប្រែតម្លៃសៀវភៅ\nUPDATE books SET price = 19.99 \nWHERE id = 5;',
               language: 'sql'
+            },
+            {
+              id: '1.3.8',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Normalization**: រៀបចំ Database Schema ឱ្យមានរបៀបដើម្បីកាត់បន្ថយការជាន់គ្នា (Redundancy)។',
+                '**Data Safety**: ប្រើ WHERE clause ជានិច្ចរាល់ពេល UPDATE ឬ DELETE ទិន្នន័យ។',
+                '**Integrity**: ប្រើ Foreign Keys ដើម្បីភ្ជាប់ទំនាក់ទំនង និងធានាភាពត្រឹមត្រូវនៃទិន្នន័យ។'
+              ],
+              insight: 'Database ដែលរៀបចំបានល្អ ជួយឱ្យ Application របស់អ្នកមានល្បឿនលឿន និងងាយស្រួលពង្រីក។'
             }
           ]
         },
@@ -716,6 +776,18 @@ export const part1: Part = {
               ],
               code: '// Request Headers\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)\nAccept: text/html,application/xhtml+xml\n\n// Response Headers\nServer: nginx/1.24.0\nSet-Cookie: session_id=abc123xyz; HttpOnly; Secure\nX-Frame-Options: SAMEORIGIN\nX-Content-Type-Options: nosniff',
               language: 'http'
+            },
+            {
+              id: '1.4.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**HTTP Methods**: ប្រើ Method ឱ្យចំគោលដៅ (GET-Read, POST-Create, PUT-Update, DELETE-Delete)។',
+                '**Status Codes**: យល់ដឹងពី Status Codes (2xx, 4xx, 5xx) ដើម្បីងាយស្រួលក្នុងកា Debug។',
+                '**Security Headers**: យកចិត្តទុកដាក់លើ HTTP Headers សម្រាប់ការពារសុវត្ថិភាព Application។'
+              ],
+              insight: 'HTTP គឺជាភាសាស្ដង់ដារដែល Browser និង Server ប្រើដើម្បីនិយាយគ្នាឱ្យដឹងរឿង។'
             }
           ]
         }
@@ -789,6 +861,18 @@ export const part1: Part = {
               ],
               code: '// 1. Router (web.php)\nRoute::get("/user/{id}", [UserController::class, "show"]);\n\n// 2. Controller (UserController.php)\npublic function show($id) {\n    $user = User::find($id); // Model logic\n    return view("user.profile", ["user" => $user]); // View logic\n}',
               language: 'php'
+            },
+            {
+              id: '2.1.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Artisan CLI**: ប្រើប្រាស់ Artisan ឱ្យបានច្រើនដើម្បីបង្កើនផលិតភាពការងារ។',
+                '**Eloquent ORM**: ប្រើ Eloquent សម្រាប់ទំនាក់ទំនង Database ឱ្យកាន់តែងាយស្រួល និងស្អាត។',
+                '**Clean Architecture**: អនុវត្តតាមរចនាសម្ព័ន្ធ MVC ដើម្បីបែងចែកកូដឱ្យដាច់ពីគ្នា។'
+              ],
+              insight: 'Laravel ផ្ដល់នូវតុល្យភាពដ៏ល្អរវាងភាពងាយស្រួល និងមុខងារកម្រិតខ្ពស់។'
             }
           ]
         },
@@ -866,6 +950,18 @@ export const part1: Part = {
               ],
               code: '# 1. ទាញយក Dependencies\ncomposer install\n\n# 2. រៀបចំ Environment\ncp .env.example .env\nphp artisan key:generate\n\n# 3. រៀបចំ Database\nphp artisan migrate',
               language: 'bash'
+            },
+            {
+              id: '2.2.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Version Check**: ធានាថាអ្នកប្រើ PHP 8.2+ និង Composer ជំនាន់ចុងក្រោយបង្អស់។',
+                '**Security Key**: កុំភ្លេច generate Application Key (`artisan key:generate`) សម្រាប់សុវត្ថិភាព។',
+                '**Structure Awareness**: ផ្ដោតលើ Folder "app/" និង "routes/" ជាកន្លែងដែលអ្នកសរសេរកូដច្រើនបំផុត។'
+              ],
+              insight: 'ការរៀបចំ Environment ត្រឹមត្រូវ គឺជាជំហានដំបូងនៃភាពជោគជ័យ។'
             }
           ]
         },
@@ -923,6 +1019,18 @@ export const part1: Part = {
               ],
               code: '# ឆែកមើល version បច្ចុប្បន្ន\nphp -v\n\n# បើប្រើ Herd អ្នកអាចប្ដូរបានតាមរយៈ UI \n# ឬប្រើ command: herd isolate php@8.2',
               language: 'bash'
+            },
+            {
+              id: '2.3.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Tool Selection**: ប្រើ Herd ឬ Laragon សម្រាប់បទពិសោធន៍ដំឡើងដែលលឿន និងងាយស្រួលបំផុត។',
+                '**DB Management**: ប្រើ DBngin សម្រាប់គ្រប់គ្រង Database ច្រើនប្រភេទក្នុងកម្មវិធីតែមួយ។',
+                '**Version Flexibility**: រៀនគ្រប់គ្រង PHP versions ផ្សេងៗគ្នាសម្រាប់គម្រោងនីមួយៗ។'
+              ],
+              insight: 'Local Environment ដែលល្អ ជួយឱ្យអ្នកផ្ដោតលើការសរសេរកូដ ជាជាងការជួសជុល Server។'
             }
           ]
         },
@@ -1000,6 +1108,18 @@ export const part1: Part = {
               ],
               code: '# 1. បិទ Website (Maintenance Mode)\nphp artisan down --secret="my-secret-key"\n\n# 2. បើក Website វិញ\nphp artisan up',
               language: 'bash'
+            },
+            {
+              id: '2.4.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Command Mastery**: ប្រើ `list` និង `--help` ដើម្បីស្វែងយល់ពីសមត្ថភាពរបស់ Artisan។',
+                '**Automation**: ប្រើ `make` commands ជានិច្ច ដើម្បីបង្កើតកូដដែលមានរចនាសម្ព័ន្ធត្រឹមត្រូវ។',
+                '**Monitoring**: ប្រើ `artisan serve` ដើម្បីតេស្ត និងមើល Logs នៃរាល់ Requests ភ្លាមៗ។'
+              ],
+              insight: 'Artisan គឺជាជំនួយការដ៏ស្មោះត្រង់ដែលជួយឱ្យអ្នកក្លាយជា Developer ដ៏មានប្រសិទ្ធភាព។'
             }
           ]
         }

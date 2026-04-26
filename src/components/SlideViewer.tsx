@@ -104,6 +104,12 @@ import { DashboardQueryAnimation } from './animations/part3/module-8/DashboardQu
 // Module 12: Deployment and Performance
 import { DeploymentAnimation } from './animations/part4/module-12/DeploymentAnimation';
 import { PerformanceAnimation } from './animations/part4/module-12/PerformanceAnimation';
+import { CICDFlowAnimation } from './animations/part4/module-12/CICDFlowAnimation';
+import { SecurityFlowAnimation } from './animations/part4/module-12/SecurityFlowAnimation';
+import { UnitTestingFlowAnimation } from './animations/part4/module-11/UnitTestingFlowAnimation';
+import { MockingFlowAnimation } from './animations/part4/module-11/MockingFlowAnimation';
+import { TestingOverviewAnimation } from './animations/part4/module-11/TestingOverviewAnimation';
+import { FeatureTestingFlowAnimation } from './animations/part4/module-11/FeatureTestingFlowAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -317,6 +323,12 @@ export function SlideViewer({
       case 'many_to_many': return <ManyToManyAnimation isProjectorMode={isProjectorMode} />;
       case 'lazy_eager_loading': return <LazyEagerLoadingAnimation isProjectorMode={isProjectorMode} />;
       case 'dashboard_query': return <DashboardQueryAnimation isProjectorMode={isProjectorMode} />;
+      case 'unit_testing_flow': return <UnitTestingFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'mocking_flow': return <MockingFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'testing_overview_flow': return <TestingOverviewAnimation isProjectorMode={isProjectorMode} />;
+      case 'feature_testing_flow': return <FeatureTestingFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'cicd_flow': return <CICDFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'security_flow': return <SecurityFlowAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };

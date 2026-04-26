@@ -150,6 +150,18 @@ export const part2: Part = {
               ],
               code: 'Route::middleware(["auth", "admin"])->prefix("admin")->name("admin.")->group(function () {\n    // URL: /admin/dashboard, Name: admin.dashboard\n    Route::get("/dashboard", [AdminController::class, "index"])->name("dashboard");\n\n    // URL: /admin/users, Name: admin.users.index\n    Route::get("/users", [UserController::class, "index"])->name("users.index");\n});',
               language: 'php'
+            },
+            {
+              id: '3.1.9',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Named Routes**: ប្រើឈ្មោះ Route ជានិច្ច ដើម្បីងាយស្រួលប្ដូរ URL នៅពេលក្រោយ។',
+                '**Route Grouping**: ចាត់ក្រុម Routes ដែលមាន Middleware ឬ Prefix ដូចគ្នាឱ្យមានរបៀប។',
+                '**Model Binding**: ប្រើ Route Model Binding ដើម្បីកាត់បន្ថយការសរសេរកូដទាញទិន្នន័យ។'
+              ],
+              insight: 'Route ដែលរៀបចំបានល្អ ធ្វើឱ្យ App របស់អ្នកងាយស្រួលថែទាំ និងពង្រីក។'
             }
           ]
         },
@@ -240,6 +252,18 @@ export const part2: Part = {
               ],
               code: 'class UserController extends Controller {\n    public function index(Request $request) {\n        $search = $request->query("search");\n\n        $users = User::when($search, function ($query, $search) {\n            return $query->where("name", "like", "%{$search}%");\n        })->paginate(10);\n\n        return view("admin.users.index", compact("users", "search"));\n    }\n}',
               language: 'php'
+            },
+            {
+              id: '3.2.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Thin Controllers**: រក្សា Controller ឱ្យខ្លី និងស្រឡះ ដោយផ្ទេរ Logic ទៅកាន់ Models ឬ Services។',
+                '**Resource Controllers**: ប្រើ "--resource" សម្រាប់មុខងារ CRUD ដើម្បីអនុវត្តតាមស្ដង់ដារ Laravel។',
+                '**Dependency Injection**: ប្រើ Type Hinting ក្នុង Method ដើម្បីឱ្យ Laravel បញ្ជូន Objects មកឱ្យស្វ័យប្រវត្តិ។'
+              ],
+              insight: 'Controller គួរតែធ្វើការងារជាអ្នកសម្របសម្រួល ជាជាងអ្នកធ្វើការងារធ្ងន់ៗទាំងអស់។'
             }
           ]
         }
@@ -339,6 +363,18 @@ export const part2: Part = {
               ],
               code: '<div class="grid grid-cols-3 gap-4">\n    @forelse($products as $product)\n        <div class="card">\n            <h3>{{ $product->name }}</h3>\n            <p>តម្លៃ: ${{ number_format($product->price, 2) }}</p>\n            <button>ទិញឥឡូវនេះ</button>\n        </div>\n    @empty\n        <p class="text-gray-500">សុំទោស មិនមានផលិតផលសម្រាប់បង្ហាញទេ។</p>\n    @endforelse\n</div>',
               language: 'php'
+            },
+            {
+              id: '4.1.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Escaping**: ប្រើ "{{ }}" ជានិច្ចដើម្បីសុវត្ថិភាព និងប្រើ "{!! !!}" តែនៅពេលចាំបាច់បំផុត។',
+                '**Directives**: ប្រើ "@forelse" ជំនួសឱ្យ "@foreach" ដើម្បីបង្ហាញសារនៅពេលគ្មានទិន្នន័យ។',
+                '**Clean Views**: កុំសរសេរ SQL Query ក្នុង Blade View ជាដាច់ខាត។'
+              ],
+              insight: 'Blade ជួយឱ្យ UI Logic របស់អ្នកស្អាត និងងាយស្រួលអានសម្រាប់គ្រប់គ្នា។'
             }
           ]
         },
@@ -417,6 +453,18 @@ export const part2: Part = {
               ],
               code: '<!-- main layout -->\n<div class="flex">\n    <aside> @include("layouts.sidebar") </aside>\n    <main>\n        <header> @include("layouts.topbar") </header>\n        <div class="p-6"> @yield("content") </div>\n    </main>\n</div>\n\n@stack("scripts") <!-- កន្លែងសម្រាប់ដាក់ JS បន្ថែមពី Page ផ្សេងៗ -->',
               language: 'php'
+            },
+            {
+              id: '4.2.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Layout Inheritance**: ប្រើ "@extends" ដើម្បីកាត់បន្ថយការសរសេរ HTML គ្រោងដដែលៗ។',
+                '**Blade Components**: បង្កើត Components សម្រាប់ UI elements ដែលប្រើច្រើនដង (Buttons, Cards)។',
+                '**Stacks**: ប្រើ "@stack" និង "@push" ដើម្បីគ្រប់គ្រង Scripts និង Styles តាមទំព័រនីមួយៗ។'
+              ],
+              insight: 'រចនាសម្ព័ន្ធ Layout ល្អ ជួយឱ្យអ្នកកែសម្រួល Design របស់ App ទាំងមូលបានយ៉ាងលឿន។'
             }
           ]
         },
@@ -488,6 +536,18 @@ export const part2: Part = {
               ],
               code: '<!-- ក្នុង Controller -->\npublic function profile() {\n    $user = auth()->user();\n    return view("profile.show", compact("user"));\n}\n\n<!-- ក្នុង Blade -->\n<div class="profile-header">\n    <img src="{{ $user->avatar_url ?? "/images/default-avatar.png" }}">\n    <h2>{{ $user->full_name }}</h2>\n    <p>សមាជិកតាំងពី: {{ $user->created_at->format("M Y") }}</p>\n</div>',
               language: 'php'
+            },
+            {
+              id: '4.3.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Compact Helper**: ប្រើ "compact()" ដើម្បីបញ្ជូនអថេរទៅ View ឱ្យមានរបៀប និងស្អាត។',
+                '**View Composers**: ប្រើ Composers សម្រាប់ទិន្នន័យដែលត្រូវបង្ហាញគ្រប់ទំព័រ (Global Data)។',
+                '**Security**: ផ្ទៀងផ្ទាត់ទិន្នន័យក្នុង Controller មុននឹងបញ្ជូនទៅបង្ហាញលើ View។'
+              ],
+              insight: 'ការបញ្ជូនទិន្នន័យបានត្រឹមត្រូវ គឺជាស្ពានចម្លងរវាង Backend Logic និង Frontend Display។'
             }
           ]
         }
@@ -539,7 +599,19 @@ export const part2: Part = {
               type: 'code',
               code: '# ជំហានដំឡើងសម្រាប់អ្នកទើបចូលថ្មី\ncp .env.example .env\nphp artisan key:generate\n\n# បន្ទាប់មកកែឈ្មោះ Database ក្នុង .env\nDB_DATABASE=laravel_course_demo',
               language: 'bash'
-            } 
+            },
+            {
+              id: '5.1.3',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Environment Safety**: រក្សាទុកព័ត៌មានសម្ងាត់ក្នុង ".env" និងកុំឱ្យវាចូលទៅក្នុង Version Control។',
+                '**Driver Selection**: ប្រើ MySQL ឬ PostgreSQL សម្រាប់ Production និង SQLite សម្រាប់ Testing លឿនៗ។',
+                '**Connection Testing**: ប្រើ "artisan migrate:status" ដើម្បីផ្ទៀងផ្ទាត់ការតភ្ជាប់ Database។'
+              ],
+              insight: 'ការរៀបចំ Configuration បានត្រឹមត្រូវ ធានាថាកម្មវិធីរបស់អ្នករត់បានរលូនគ្រប់បរិស្ថាន។'
+            }
           ]
         },
         {
@@ -680,6 +752,18 @@ php artisan migrate:fresh --seed`,
               type: 'code',
               code: 'Schema::create("posts", function (Blueprint $table) {\n    $table->id();\n    $table->foreignId("user_id")->constrained()->onDelete("cascade");\n    $table->string("title");\n    $table->string("slug")->unique();\n    $table->text("body");\n    $table->string("image")->nullable();\n    $table->boolean("is_published")->default(false);\n    $table->timestamps();\n});',
               language: 'php'
+            },
+            {
+              id: '5.2.9',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Atomic Changes**: បង្កើត Migration មួយសម្រាប់តែការងារមួយ (ឧទាហរណ៍៖ បង្កើត Table មួយ ឬបន្ថែម Column មួយ)។',
+                '**Rollback Test**: តែងតែតេស្ត "down()" method ដើម្បីធានាថាអ្នកអាច Undo ការផ្លាស់ប្តូរបាន។',
+                '**Foreign Keys**: ប្រើ Foreign Key constraints ដើម្បីធានាបាននូវ Data Integrity កម្រិត Database។'
+              ],
+              insight: 'Migrations គឺជាសៀវភៅកំណត់ហេតុនៃរចនាសម្ព័ន្ធ Database របស់អ្នក។'
             }
           ]
         },
@@ -772,6 +856,18 @@ php artisan migrate:fresh --seed`,
               ],
               code: 'class Product extends Model {\n    protected $fillable = ["name", "price", "specs"];\n\n    // បម្លែង JSON string ក្នុង DB មកជា Array ក្នុង PHP ស្វ័យប្រវត្តិ\n    protected $casts = [\n        "specs" => "array",\n        "price" => "decimal:2",\n        "is_active" => "boolean"\n    ];\n}',
               language: 'php'
+            },
+            {
+              id: '5.3.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Naming Convention**: ប្រើឈ្មោះ Model ជាឯកវចនៈ និង Table ជាពហុវចនៈតាមស្ដង់ដារ Laravel។',
+                '**Mass Assignment**: ប្រើ "$fillable" ជានិច្ចដើម្បីការពារសុវត្ថិភាពទិន្នន័យ។',
+                '**Relationships**: កំណត់ទំនាក់ទំនងរវាង Models ឱ្យបានច្បាស់លាស់ដើម្បីងាយស្រួលទាញទិន្នន័យ។'
+              ],
+              insight: 'Eloquent Model គឺជាបេះដូងនៃរាល់ការងារទាក់ទងនឹងទិន្នន័យក្នុង Laravel។'
             }
           ]
         },
@@ -848,6 +944,18 @@ php artisan migrate:fresh --seed`,
               ],
               code: '// 1. បង្កើតផលិតផលថ្មី\n$product = Product::create($request->all());\n\n// 2. កែប្រែតម្លៃផលិតផលដែលថ្លៃជាង $1000\nProduct::where("price", ">", 1000)\n       ->update(["category" => "Premium"]);\n\n// 3. លុបផលិតផលដែលឈប់លក់\nProduct::where("stock", 0)->delete();',
               language: 'php'
+            },
+            {
+              id: '5.4.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Validation**: តែងតែផ្ទៀងផ្ទាត់ទិន្នន័យមុននឹងធ្វើការ Create ឬ Update ចូល Database។',
+                '**Error Handling**: ប្រើ "findOrFail()" ដើម្បីបង្ហាញទំព័រ 404 ដោយស្វ័យប្រវត្តិបើរកទិន្នន័យមិនឃើញ។',
+                '**Clean Logic**: ប្រើ "updateOrCreate()" ដើម្បីកាត់បន្ថយការសរសេរកូដ if/else ស្មុគស្មាញ។'
+              ],
+              insight: 'ការអនុវត្ត CRUD បានស្ទាត់ជំនាញ គឺជាគ្រឹះសម្រាប់សាងសង់ App ដ៏អស្ចារ្យ។'
             }
           ]
         },
@@ -894,6 +1002,18 @@ php artisan migrate:fresh --seed`,
               ],
               code: '$salesReport = DB::table("orders")\n    ->join("users", "orders.user_id", "=", "users.id")\n    ->selectRaw("users.name, SUM(orders.total) as total_spent")\n    ->whereMonth("orders.created_at", now()->month)\n    ->groupBy("users.id", "users.name")\n    ->orderBy("total_spent", "desc")\n    ->get();',
               language: 'php'
+            },
+            {
+              id: '5.5.3',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Performance Focus**: ប្រើ Query Builder សម្រាប់ទិន្នន័យធំៗ ឬរបាយការណ៍ស្មុគស្មាញ។',
+                '**Memory Safety**: ប្រើ "chunk()" ឬ "cursor()" នៅពេលទាញទិន្នន័យរាប់ម៉ឺនជួរក្នុងពេលតែមួយ។',
+                '**Balance**: ប្រើ Eloquent សម្រាប់ភាពងាយស្រួល និង Query Builder សម្រាប់ល្បឿន។'
+              ],
+              insight: 'ជ្រើសរើសឧបករណ៍ឱ្យចំគោលដៅ ដើម្បីឱ្យ App របស់អ្នកដើរបានលឿន និងចំណាយ RAM តិច។'
             }
           ]
         }

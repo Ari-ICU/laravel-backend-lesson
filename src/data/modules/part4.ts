@@ -20,52 +20,126 @@ export const part4: Part = {
           slides: [
             {
               id: '9.1.0',
-              title: 'Laravel as a Backend',
-              titleEn: 'Laravel as a Backend',
+              title: 'ស្វែងយល់អំពី API (Understanding API)',
+              titleEn: 'Understanding API',
               type: 'intro',
               content: [
-                '**Backend Strategy**: Laravel គឺជា framework ដ៏មានប្រសិទ្ធភាពមួយសម្រាប់បង្កើត API ដែលមានសុវត្ថិភាព និងរចនាសម្ព័ន្ធរឹងមាំ។ (ជួយឱ្យអ្នកអាចបង្កើត Backend តែមួយ ប៉ុន្តែអាចប្រើប្រាស់បានជាមួយកម្មវិធីច្រើនប្រភេទក្នុងពេលតែមួយ)',
-                '**Connectivity**: API អនុញ្ញាតឲ្យ application របស់អ្នកទំនាក់ទំនងជាមួយ mobile apps ឬ modern frontend frameworks ដូចជា Vue ឬ React បានយ៉ាងរលូន។ (ជាស្ពានចម្លងទិន្នន័យរវាង Server និងឧបករណ៍របស់អ្នកប្រើប្រាស់មិនថាជាទូរស័ព្ទ ឬកុំព្យូទ័រ)',
-                '**Data Standardization**: Laravel នឹងបម្លែង និង serialize ទិន្នន័យទៅជា JSON format ដោយស្វ័យប្រវត្តិ។ (ដើម្បីធានាថាគ្រប់ប្រព័ន្ធទាំងអស់អាចយល់ និងយកទិន្នន័យទៅបង្ហាញបានយ៉ាងងាយស្រួល និងមានស្ដង់ដារតែមួយ)'
+                '**The Messenger**: API ប្រៀបដូចជា "អ្នករត់តុ" ក្នុងហាងអាហារ ដែលទទួលកម្ម៉ង់ពីអ្នក (Frontend) ទៅកាន់ចុងភៅ (Backend) ហើយនាំយកអាហារមកឱ្យអ្នកវិញ។',
+                '**Universal Bridge**: វាអនុញ្ញាតឱ្យកម្មវិធីផ្សេងគ្នា (ដូចជា Mobile App និង Website) ទំនាក់ទំនងគ្នាបាន ទោះបីជាពួកគេប្រើភាសា Programming ខុសគ្នាក៏ដោយ។',
+                '**Data Focused**: មិនដូច Web ធម្មតាដែលផ្ញើជា HTML, API ផ្ដោតលើការផ្ញើតែ "ទិន្នន័យ" (Data) សុទ្ធសាធដើម្បីឱ្យកម្មវិធីផ្សេងយកទៅបង្ហាញតាមចិត្ត។'
               ],
-              useCase: 'Building a headless backend for a React/Next.js dashboard or a mobile application.'
+              animation: 'api_concept_flow'
             },
             {
               id: '9.1.1',
-              title: 'API Routes Definition',
-              titleEn: 'API Routes Definition',
-              type: 'code',
+              title: 'JSON - ភាសារបស់ API (JSON Language)',
+              titleEn: 'JSON Language',
+              type: 'concept',
               content: [
-                '**Route Setup**: API endpoints ត្រូវបានកំណត់នៅក្នុងឯកសារ `routes/api.php` ដែលវាមាន `api` prefix ដោយស្វ័យប្រវត្តិ។',
-                '**Stateless**: Routes ទាំងនេះគ្មាន session ទេ ដូច្នេះវាស័ក្តិសមសម្រាប់ high-concurrency requests។'
+                '**What is JSON?**: JSON (JavaScript Object Notation) គឺជាទម្រង់ទិន្នន័យដែលសាមញ្ញ និងពេញនិយមបំផុតសម្រាប់ API។',
+                '**Structure**: វាប្រើប្រាស់ "Key" និង "Value" (ស្រដៀងនឹង PHP Array) ដើម្បីរក្សាទុកព័ត៌មាន។',
+                '**Readable**: វាស្រាល និងងាយស្រួលអានទាំងមនុស្ស និងម៉ាស៊ីន (Lightweight & Human-readable)។'
               ],
-              useCase: 'Creating endpoints that don\'t require session persistence, optimized for high-concurrency stateless requests.',
-              code: '// routes/api.php\nRoute::middleware("auth:sanctum")->get("/user", function (Request $request) {\n    return $request->user();\n});\n\n// Basic GET resource\nRoute::get("/products", [ProductController::class, "index"]);',
-              language: 'php'
+              code: '{\n    "id": 1,\n    "name": "Cambodia News",\n    "active": true,\n    "tags": ["news", "tech"]\n}',
+              language: 'json'
             },
             {
               id: '9.1.2',
-              title: 'API Resources',
-              titleEn: 'API Resources',
+              title: 'ការដំឡើង API Routes (Installing API)',
+              titleEn: 'Installing API',
               type: 'code',
               content: [
-                '**Data Transformation**: Laravel API Resources អនុញ្ញាតឱ្យអ្នកបម្លែង Models ទៅជា JSON responses ប្រកបដោយវិជ្ជាជីវៈ។'
+                '**Laravel 11 Change**: ក្នុង Laravel 11, ឯកសារ `api.php` មិនមានមកស្រាប់ក្នុង Folder `routes` ឡើយ។',
+                '**Install Command**: អ្នកត្រូវប្រើ Command `php artisan install:api` ដើម្បីបង្កើតវា។',
+                '**What it does**: Command នេះនឹងបង្កើត file `routes/api.php`, បង្កើត migration សម្រាប់ personal access tokens (Sanctum), និងរៀបចំ API configuration ឱ្យអ្នកដោយស្វ័យប្រវត្តិ។'
               ],
-              insight: 'Resources ប្រៀបដូចជា "Views" សម្រាប់ API របស់អ្នកអញ្ចឹង។',
-              code: '// Transform model to professional API response\npublic function toArray($request)\n{\n    return [\n        "id" => $this->id,\n        "full_name" => $this->name,\n        "email" => $this->email,\n        "created_at" => $this->created_at->diffForHumans(),\n    ];\n}',
-              language: 'php'
+              code: '// បើក Terminal រួចវាយ Command ខាងក្រោម៖\nphp artisan install:api',
+              language: 'bash'
             },
             {
               id: '9.1.3',
-              title: 'Customizing API Resources',
-              titleEn: 'Customizing API Resources',
+              title: 'API Routes ក្នុង Laravel',
+              titleEn: 'API Routes in Laravel',
               type: 'code',
               content: [
-                '**Data Protection**: អ្នកអាចលាក់ឈ្មោះ column ក្នុង database ពិតប្រាកដ ឬបន្ថែមទិន្នន័យថ្មីៗ (computed attributes) យ៉ាងងាយស្រួល។'
+                '**api.php**: រាល់ API Endpoints ទាំងអស់ត្រូវកំណត់នៅក្នុងឯកសារ `routes/api.php`។',
+                '**URL Prefix**: រាល់ Route ក្នុង file នេះនឹងមានពាក្យ `/api/` នៅខាងមុខជាស្វ័យប្រវត្តិ (ឧទាហរណ៍៖ `your-web.com/api/posts`)។',
+                '**Stateless**: Routes ទាំងនេះមិនប្រើ Session ទេ ដូច្នេះវាដើរលឿន និងស័ក្តិសមសម្រាប់កម្មវិធីខ្នាតធំ។'
               ],
-              useCase: 'Obfuscating database column names and providing extra computed attributes to front-end developers.',
-              code: 'public function toArray($request) {\n    return [\n        "id" => $this->id,\n        "product_name" => $this->name,\n        "price_usd" => (float) $this->price,\n        "is_available" => $this->stock > 0,\n        "thumbnail" => url($this->image_path),\n    ];\n}',
+              code: '// routes/api.php\nuse App\\Http\\Controllers\\PostController;\n\n// ទទួលបាន URL: /api/posts\nRoute::get("/posts", [PostController::class, "index"]);',
               language: 'php'
+            },
+            {
+              id: '9.1.4',
+              title: 'ការបង្កើត API Controller',
+              titleEn: 'Creating API Controller',
+              type: 'code',
+              content: [
+                '**API Flag**: ប្រើ `--api` ពេលបង្កើត Controller ដើម្បីឱ្យ Laravel បង្កើតតែ Method ដែលចាំបាច់សម្រាប់ API (មិនមាន create/edit views)។',
+                '**Direct Array Return**: អ្នកអាច return array ចេញពី Controller ហើយ Laravel នឹងបម្លែងវាទៅជា JSON ដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: '// បង្កើត Controller សម្រាប់ API\nphp artisan make:controller Api/PostController --api\n\n// ក្នុង Controller\npublic function index() {\n    return [\n        "status" => "success",\n        "data" => Post::all()\n    ];\n}',
+              language: 'php'
+            },
+            {
+              id: '9.1.5',
+              title: 'API Resources (Data Transformation)',
+              titleEn: 'API Resources',
+              type: 'concept',
+              content: [
+                '**The Filter**: API Resource ដើរតួជា "តម្រង" ដើម្បីរៀបចំទិន្នន័យពី Database មុននឹងផ្ញើទៅកាន់ User។',
+                '**Data Security**: វាជួយឱ្យយើងលាក់ Column សម្ងាត់ៗ (ដូចជា password ឬ admin_notes) កុំឱ្យបង្ហាញទៅក្រៅ។',
+                '**Consistency**: វាធានាថាទិន្នន័យដែលផ្ញើទៅ Frontend គឺមានទម្រង់ត្រឹមត្រូវ និងស្អាតជានិច្ច។'
+              ],
+              insight: 'Resources ជួយឱ្យ API របស់អ្នកមានលក្ខណៈអាជីព និងងាយស្រួលគ្រប់គ្រង។'
+            },
+            {
+              id: '9.1.6',
+              title: 'ការប្រើប្រាស់ API Resource',
+              titleEn: 'Using API Resources',
+              type: 'code',
+              content: [
+                '**Creation**: បង្កើត Resource សម្រាប់ Model ជាក់លាក់មួយ។',
+                '**Usage**: ប្រើ `new Resource($model)` សម្រាប់ទិន្នន័យមួយ ឬ `Resource::collection($models)` សម្រាប់ទិន្នន័យច្រើន។'
+              ],
+              code: '// ១. បង្កើត Resource\nphp artisan make:resource UserResource\n\n// ២. ក្នុង Controller\npublic function show(User $user) {\n    return new UserResource($user);\n}',
+              language: 'php'
+            },
+            {
+              id: '9.1.7',
+              title: 'Customizing the Response',
+              titleEn: 'Customizing the Response',
+              type: 'code',
+              content: [
+                '**Field Mapping**: អ្នកអាចប្តូរឈ្មោះ column ពី database ឱ្យទៅជាឈ្មោះដែល Frontend ងាយស្រួលប្រើ។',
+                '**Extra Fields**: អ្នកអាចបន្ថែមទិន្នន័យថ្មីៗដែលមិនមានក្នុង Database (ដូចជា URL ពេញនៃរូបភាព)។'
+              ],
+              code: 'public function toArray($request) {\n    return [\n        "user_id" => $this->id,\n        "full_name" => $this->name,\n        "email_address" => $this->email,\n        "joined_date" => $this->created_at->format("Y-m-d"),\n    ];\n}',
+              language: 'php'
+            },
+            {
+              id: '9.1.8',
+              title: 'Real-world Demo: Simple News API',
+              titleEn: 'Simple News API Demo',
+              type: 'code',
+              content: [
+                '**Full Setup**: ឧទាហរណ៍ពេញលេញនៃការបង្កើត News API ដែលមានសណ្តាប់ធ្នាប់។',
+                '**Clean Code**: ការប្រើប្រាស់ Resource ដើម្បីគ្រប់គ្រងការបង្ហាញព័ត៌មាន។'
+              ],
+              code: '// Route\nRoute::get("/news", [NewsController::class, "index"]);\n\n// Controller\npublic function index() {\n    $news = News::latest()->paginate(10);\n    return NewsResource::collection($news);\n}',
+              language: 'php'
+            },
+            {
+              id: '9.1.9',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Use API Resources**: ជានិច្ចកាល ត្រូវប្រើ Resources ដើម្បីបម្លែងទិន្នន័យ កុំ return Model ផ្ទាល់។',
+                '**Naming Convention**: ប្រើ camelCase សម្រាប់ Key ក្នុង JSON (ប្រសិនបើ Frontend ប្រើ JavaScript)។',
+                '**Plural Endpoints**: ប្រើឈ្មោះ Route ជាពហុវចនៈ (ឧទាហរណ៍៖ `/posts` ជំនួសឱ្យ `/post`)។'
+              ],
+              insight: 'ការរៀបចំ API ឱ្យបានល្អតាំងពីដំបូង នឹងសន្សំពេលវេលាអ្នកយ៉ាងច្រើននៅពេលកម្មវិធីរីកធំ។'
             }
           ]
         },
@@ -78,50 +152,108 @@ export const part4: Part = {
           slides: [
             {
               id: '9.2.0',
-              title: 'Securing Your API',
-              titleEn: 'Securing Your API',
+              title: 'ហេតុអ្វីបានជា API ត្រូវការការការពារ?',
+              titleEn: 'Why Secure API?',
               type: 'intro',
               content: [
-                '**Token-Based**: ដោយសារ API ជាប្រភេទ Stateless (មិនរក្សា session), យើងប្រើប្រាស់ **Tokens** ដើម្បីសម្គាល់ User ម្នាក់ៗ។ (វាដូចជាកាតសម្គាល់ខ្លួនដែល User ត្រូវបង្ហាញមកកាន់ Server រាល់ពេលផ្ញើ Request ម្តងៗ)',
-                '**Official Packages**: Laravel ផ្ដល់ជូននូវ packages ផ្លូវការចំនួនពីរគឺ៖ **Sanctum** និង **Passport**។ (ជួយឱ្យអ្នកមានប្រព័ន្ធការពារសុវត្ថិភាពកម្រិតខ្ពស់ ដោយមិនចាំបាច់សរសេរកូដការពារដោយដៃតាំងពីសូន្យ)',
-                '**Right Choice**: ការជ្រើសរើសមួយណាគឺអាស្រ័យលើទំហំ និងតម្រូវការនៃ project របស់អ្នក។ (យើងនឹងសិក្សាពីចំណុចខ្លាំងរបស់ package នីមួយៗ ដើម្បីឱ្យអ្នកអាចសម្រេចចិត្តបានត្រឹមត្រូវ)'
-              ]
+                '**Stateless Nature**: API មិនប្រើ Cookies ឬ Session ដូច Web ធម្មតាទេ ដូច្នេះវា "ភ្លេច" ជានិច្ចថាតើអ្នកណាជាអ្នកផ្ញើ Request។',
+                '**The Token Solution**: យើងប្រើ Token (កូដសម្ងាត់) ដើម្បីប្រាប់ Server ថា "ខ្ញុំជាអ្នកណា" ក្នុងរាល់ Request នីមួយៗ។',
+                '**Data Security**: បើគ្មានការការពារទេ នរណាក៏អាចមកលួចទិន្នន័យ ឬកែប្រែព័ត៌មានក្នុង Database របស់អ្នកបានដែរ។'
+              ],
+              animation: 'token_auth_flow'
             },
             {
               id: '9.2.1',
-              title: 'Sanctum vs. Passport',
-              titleEn: 'Sanctum vs. Passport',
+              title: 'តើ Token ដំណើរការយ៉ាងដូចម្តេច?',
+              titleEn: 'How Tokens Work',
               type: 'concept',
               content: [
-                '**Laravel Sanctum**: ជាប្រភេទ Lightweight និងប្រើ tokens ងាយៗ។ (ស័ក្តិសមបំផុតសម្រាប់ SPAs និង mobile apps ដែលត្រូវការភាពសាមញ្ញ និងល្បឿនលឿន)',
-                '**Laravel Passport**: ជាការប្រើប្រាស់ Full OAuth2 server។ (ប្រើវាប្រសិនបើអ្នកចង់ឱ្យ 3rd party developers ប្រើ API របស់អ្នក ដូចជា Facebook Login ជាដើម)',
-                '**Modern Choice**: ភាគច្រើននៃ App សម័យថ្មីគឺត្រូវការត្រឹមតែ Sanctum ប៉ុណ្ណោះ។ (ព្រោះវាងាយស្រួលគ្រប់គ្រង និងមិនត្រូវការការរៀបចំច្រើនស្មុគស្មាញ)'
-              ],
-              insight: 'Sanctum ងាយស្រួលដំឡើង និងថែទាំជាងសម្រាប់ 90% នៃគម្រោងទូទៅ។'
+                '**The Digital Key**: Token ប្រៀបដូចជា "សោរឌីជីថល" ដែល Server ប្រគល់ឱ្យអ្នកបន្ទាប់ពីអ្នក Login ត្រឹមត្រូវ។',
+                '**Bearer Token**: អ្នកត្រូវផ្ញើ "សោរ" នេះមកជាមួយរាល់ពេលចង់ចូលប្រើបន្ទប់ (Endpoints) ដែលមានការការពារ។',
+                '**Storage**: ជាទូទៅ Frontend (Mobile App ឬ React) នឹងរក្សាទុក Token នេះក្នុង Local Storage ឬ Secure Store។'
+              ]
             },
             {
               id: '9.2.2',
-              title: 'Issuing Tokens (Sanctum)',
-              titleEn: 'Issuing Tokens',
-              type: 'code',
+              title: 'ការប្រើប្រាស់ Laravel Sanctum',
+              titleEn: 'Using Laravel Sanctum',
+              type: 'concept',
               content: [
-                '**Simple Generation**: ការចេញ Token គឺសាមញ្ញបំផុតដោយគ្រាន់តែប្រើ method `createToken()`។ (វានឹងបង្កើតកូដសម្ងាត់វែងមួយ ដែល User អាចយកទៅប្រើប្រាស់សម្រាប់ការចូលប្រើ API នៅពេលក្រោយ)',
-                '**Header Passing**: Token នេះនឹងត្រូវផ្ញើត្រឡប់ទៅវិញតាមរយៈ `Authorization` header ពេល request ម្តងៗ។ (ដើម្បីឱ្យ Server អាចដឹងថា តើអ្នកណាជាម្ចាស់ Request នេះ និងមានសិទ្ធិធ្វើការងារនេះឬក៏អត់)'
+                '**Lightweight Auth**: Sanctum គឺជាប្រព័ន្ធ Authentication ដែលស្រាល និងសាមញ្ញបំផុតសម្រាប់ API ក្នុង Laravel។',
+                '**Perfect for Beginners**: វាងាយស្រួលដំឡើង និងប្រើប្រាស់ជាង Passport សម្រាប់កម្មវិធីទូទៅ។',
+                '**Built-in**: ក្នុង Laravel 11, Sanctum ត្រូវបានរៀបចំមកឱ្យស្រាប់ពេលអ្នក run "php artisan install:api"។'
               ],
-              code: '$user = User::where("email", $request->email)->first();\n\n$token = $user->createToken("my-app-token")->plainTextToken;\n\nreturn response()->json(["token" => $token]);',
-              language: 'php'
+              insight: 'Sanctum គឺជាជម្រើសដ៏ល្អបំផុតសម្រាប់ Mobile App និង SPA (Single Page Application)។'
             },
             {
               id: '9.2.3',
-              title: 'Real-world Demo: Sanctum Token Exchange',
-              titleEn: 'Token Exchange Demo',
+              title: 'ការរៀបចំ Model ឱ្យប្រើ Token',
+              titleEn: 'Preparing Model for Tokens',
               type: 'code',
               content: [
-                '**Auth Workflow**: ឧទាហរណ៍នៃ Controller ដែលផ្ទៀងផ្ទាត់ Password និងបញ្ជូន Token ត្រឡប់ទៅឱ្យ User។',
-                '**Security**: បង្ហាញពីរបៀបការពារ Route ដោយប្រើ Middleware `auth:sanctum`។'
+                '**HasApiTokens**: ដើម្បីឱ្យ Model (ដូចជា User) អាចបង្កើត Token បាន យើងត្រូវប្រើ Trait "HasApiTokens"។',
+                '**Standard Setup**: ជាទូទៅ Laravel រៀបចំ Trait នេះឱ្យរួចជាស្រេចក្នុង "User" model។'
               ],
-              code: '// Login និងបញ្ជូន Token\npublic function login(Request $request) {\n    $user = User::where("email", $request->email)->first();\n    if (!$user || !Hash::check($request->password, $user->password)) {\n        return response(["message" => "ខុស"], 401);\n    }\n    return ["token" => $user->createToken("web")->plainTextToken];\n}\n\n// ប្រើ Token ដើម្បីទាញទិន្នន័យ (ក្នុង Header: Authorization: Bearer {token})\nRoute::middleware("auth:sanctum")->get("/me", fn() => auth()->user());',
+              code: '// App\\Models\\User.php\nuse Laravel\\Sanctum\\HasApiTokens;\n\nclass User extends Authenticatable {\n    use HasApiTokens, HasFactory, Notifiable;\n}',
               language: 'php'
+            },
+            {
+              id: '9.2.4',
+              title: 'ការចេញ Token (Issuing Tokens)',
+              titleEn: 'Issuing Tokens',
+              type: 'code',
+              content: [
+                '**Token Creation**: ប្រើ Method "createToken()" ដើម្បីបង្កើត Token ថ្មី។',
+                '**Plain Text Token**: យើងត្រូវផ្ញើ "plainTextToken" ត្រឡប់ទៅឱ្យ User ព្រោះវាបង្ហាញតែម្ដងគត់ពេលបង្កើតដំបូង។'
+              ],
+              code: '// ក្នុង Controller បន្ទាប់ពី Check Password រួច\n$token = $user->createToken("auth_token")->plainTextToken;\n\nreturn response()->json([\n    "access_token" => $token,\n    "token_type" => "Bearer",\n]);',
+              language: 'php'
+            },
+            {
+              id: '9.2.5',
+              title: 'ការការពារ Route (Protecting Routes)',
+              titleEn: 'Protecting Routes',
+              type: 'code',
+              content: [
+                '**Sanctum Middleware**: ប្រើ Middleware "auth:sanctum" ដើម្បីការពារ Route ណាដែលចង់ឱ្យតែ User ដែលមាន Token ចូលប្រើបាន។',
+                '**Accessing User**: ក្នុង Route ដែលការពារ អ្នកអាចប្រើ "auth()->user()" ដើម្បីដឹងថា User ណាដែលកំពុងប្រើប្រាស់។'
+              ],
+              code: '// routes/api.php\nRoute::middleware("auth:sanctum")->get("/user", function (Request $request) {\n    return $request->user();\n});',
+              language: 'php'
+            },
+            {
+              id: '9.2.6',
+              title: 'របៀបផ្ញើ Token ពី Frontend',
+              titleEn: 'Sending Token from Frontend',
+              type: 'concept',
+              content: [
+                '**Authorization Header**: Token ត្រូវផ្ញើតាមរយៈ HTTP Header ឈ្មោះថា "Authorization"។',
+                '**Bearer Prefix**: តម្លៃរបស់វាត្រូវតែមានពាក្យ "Bearer " នៅខាងមុខ (ឧទាហរណ៍៖ "Bearer 1|abcde...")។'
+              ],
+              insight: 'Frontend ត្រូវតែបញ្ជូន Header នេះមកជាមួយរាល់ពេលចង់ទាញទិន្នន័យផ្ទាល់ខ្លួនរបស់ User។'
+            },
+            {
+              id: '9.2.7',
+              title: 'Real-world Demo: Full Auth Flow',
+              titleEn: 'Full Auth Flow Demo',
+              type: 'code',
+              content: [
+                '**Complete Logic**: បង្ហាញតាំងពីការផ្ទៀងផ្ទាត់ Email/Password រហូតដល់ការបញ្ជូន Token និងការចូលប្រើ Route ដែលមានការការពារ។'
+              ],
+              code: '// Login Method\npublic function login(Request $request) {\n    $user = User::where("email", $request->email)->first();\n\n    if (!$user || !Hash::check($request->password, $user->password)) {\n        return response(["message" => "ព័ត៌មានមិនត្រឹមត្រូវ"], 401);\n    }\n\n    return [\n        "user" => $user,\n        "token" => $user->createToken("my-app")->plainTextToken\n    ];\n}',
+              language: 'php'
+            },
+            {
+              id: '9.2.8',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Sanctum for SPAs**: ប្រើ Sanctum សម្រាប់កម្មវិធីទូទៅ ព្រោះវាងាយស្រួល និងស្រាល។',
+                '**Token Protection**: កុំបង្ហាញ Token ជាសាធារណៈ និងត្រូវប្រើ "Plain Text Token" តែម្ដងគត់ពេលបញ្ជូនឱ្យ User។',
+                '**Abilities**: ប្រើប្រាស់ "Token Abilities" ដើម្បីកំណត់សិទ្ធិឱ្យ Token នីមួយៗ (ឧទាហរណ៍៖ មើលបានតែអាន មិនអាចលុប)។'
+              ],
+              insight: 'សុវត្ថិភាព API ផ្ដើមចេញពីការគ្រប់គ្រង Token ឱ្យបានហ្មត់ចត់បំផុត។'
             }
           ]
         }
@@ -143,37 +275,86 @@ export const part4: Part = {
           slides: [
             {
               id: '10.1.0',
-              title: 'Managing Failures',
-              titleEn: 'Managing Failures',
+              title: 'ស្វែងយល់អំពី Exception',
+              titleEn: 'Understanding Exceptions',
               type: 'intro',
               content: [
-                'រាល់ Application ទាំងអស់នឹងជួបប្រទះបញ្ហា ឬកំហុស (Errors) នៅពេលណាមួយមិនខាន។',
-                'Laravel មាន Exception Handler កណ្តាលមួយដើម្បីចាប់រាល់កំហុសទាំងនោះ។',
-                'អ្នកអាចកំណត់បានថា កំហុសណាខ្លះគួរ Report និងបង្ហាញចេញ (Render) ទៅកាន់ User បែបណា។'
-              ]
+                '**Natural Failures**: កំហុស (Errors) គឺជាផ្នែកមួយនៃការសរសេរកម្មវិធី។ វាអាចកើតឡើងដោយសារ User វាយបញ្ចូលព័ត៌មានខុស ឬ Server មានបញ្ហា។',
+                '**The Safety Net**: Laravel មាន "សំណាញ់សុវត្ថិភាព" (Exception Handler) ដើម្បីចាប់រាល់កំហុសទាំងអស់ កុំឱ្យ App របស់អ្នក "ងាប់" ទាំងស្រុង។',
+                '**Graceful Handling**: គោលដៅរបស់យើងគឺ បង្ហាញសារដែលងាយយល់ដល់ User ជំនួសឱ្យការបង្ហាញកូដដែលគួរឱ្យខ្លាច។'
+              ],
+              animation: 'error_handling_flow'
             },
             {
               id: '10.1.1',
-              title: 'Debug Mode (APP_DEBUG)',
-              titleEn: 'Debug Mode',
+              title: 'Debug Mode និង សុវត្ថិភាព',
+              titleEn: 'Debug Mode & Safety',
               type: 'concept',
               content: [
-                '**Developer Tool**: នៅក្នុង `.env`, កំណត់ `APP_DEBUG=true` សម្រាប់ការសរសេរកូដនៅក្នុង local (Development)។ (វានឹងបង្ហាញព័ត៌មានលម្អិតនៃកំហុស រួមទាំងបន្ទាត់កូដដែលមានបញ្ហា ដើម្បីឱ្យអ្នកដោះស្រាយបានរហ័ស)',
-                '**Production Safety**: **សំខាន់បំផុត**: ត្រូវប្តូរទៅ `false` ជានិច្ចពេលដាក់ឱ្យប្រើប្រាស់ពិតប្រាកដ។ (ដើម្បីការពារការលេចធ្លាយព័ត៌មានសម្ងាត់របស់ Server ទៅកាន់មនុស្សខាងក្រៅ ឬ Hacker)'
+                '**APP_DEBUG**: ក្នុង ".env", បើដាក់ "true" អ្នកនឹងឃើញកំហុសលម្អិត (ល្អសម្រាប់អ្នកអភិវឌ្ឍន៍ដើម្បីដោះស្រាយកូដ)។',
+                '**Security Risk**: ហាមបើក "true" នៅលើ Server ពិតប្រាកដ (Production) ព្រោះវាអាចបង្ហាញព័ត៌មានសម្ងាត់ដូចជា Database Password។',
+                '**Production View**: ពេលបិទ Debug, User នឹងឃើញត្រឹមតែពាក្យ "500 | Server Error" ដែលមានលក្ខណៈអាជីព និងសុវត្ថិភាព។'
               ],
               insight: 'ព័ត៌មានលម្អិតនៃកំហុសគឺជា "រតនសម្បត្តិ" សម្រាប់ពួក Hacker។ កុំបង្ហាញវានៅលើ Production ឱ្យសោះ!'
             },
             {
               id: '10.1.2',
-              title: 'Real-world Demo: Custom Exception Handler',
-              titleEn: 'Custom Exception Handler Demo',
+              title: 'ការប្រើប្រាស់ Try-Catch',
+              titleEn: 'Using Try-Catch',
               type: 'code',
               content: [
-                '**Friendly Errors**: របៀបបង្ហាញផ្ទាំង Error ដែលមានរូបរាងស្អាត និងមិនបង្កការភ័យខ្លាចដល់ User (ដូចជា Page 404 Custom)។',
-                '**API Error Formatting**: ប្ដូរ Error ស្មុគស្មាញឱ្យទៅជាសារ JSON សាមញ្ញដែល Frontend ងាយស្រួលយល់។'
+                '**Manual Catching**: ជួនកាលយើងចង់ "ចាប់" កំហុសដោយខ្លួនឯងក្នុងកូដ ដើម្បីកុំឱ្យវាប៉ះពាល់ដល់ដំណើរការផ្សេងទៀត។',
+                '**The Workflow**: សរសេរកូដក្នុង "try", បើមានបញ្ហាវានឹងលោតទៅ "catch" ដើម្បីឱ្យយើងដោះស្រាយតាមក្រោយ។'
               ],
-              code: '// ក្នុង bootstrap/app.php (Laravel 11)\n->withExceptions(function (Exceptions $exceptions) {\n    $exceptions->render(function (NotFoundHttpException $e, Request $request) {\n        if ($request->is("api/*")) {\n            return response()->json(["error" => "រកមិនឃើញទិន្នន័យ"], 404);\n        }\n    });\n})',
+              code: 'try {\n    $result = $x / 0; // កូដដែលនឹងបង្កកំហុស\n} catch (Exception $e) {\n    Log::error("មានបញ្ហាគណនា: " . $e->getMessage());\n    return "សុំទោស មានបញ្ហាបច្ចេកទេស។";\n}',
               language: 'php'
+            },
+            {
+              id: '10.1.3',
+              title: 'Centralized Exception Handling',
+              titleEn: 'Centralized Handling',
+              type: 'code',
+              content: [
+                '**Laravel 11 Style**: ក្នុង Laravel 11, ការគ្រប់គ្រងកំហុសទូទាំង App គឺធ្វើឡើងនៅក្នុងឯកសារ "bootstrap/app.php"។',
+                '**Custom Mapping**: អ្នកអាចកំណត់ថា បើជួប Error ប្រភេទណា ត្រូវបង្ហាញទិន្នន័យបែបណាសម្រាប់ API ឬ Web។'
+              ],
+              code: '// bootstrap/app.php\n->withExceptions(function (Exceptions $exceptions) {\n    $exceptions->render(function (NotFoundHttpException $e) {\n        return response()->json(["message" => "រកមិនឃើញទិន្នន័យ"], 404);\n    });\n})',
+              language: 'php'
+            },
+            {
+              id: '10.1.4',
+              title: 'ការបង្កើត Custom Error Pages',
+              titleEn: 'Custom Error Pages',
+              type: 'concept',
+              content: [
+                '**Blade Views**: Laravel នឹងឆែកមើលក្នុង Folder "resources/views/errors/" ជាស្វ័យប្រវត្តិ។',
+                '**Simple Setup**: បង្កើត file ដូចជា "404.blade.php" ឬ "500.blade.php" ដើម្បីបង្ហាញរូបរាងស្អាតៗដែលអ្នកចង់បាន។'
+              ],
+              insight: 'ការរចនាទំព័រ 404 ឱ្យបានស្អាត ជួយឱ្យ User មិនសូវធុញទ្រាន់ពេលចូលខុស Link។'
+            },
+            {
+              id: '10.1.5',
+              title: 'Real-world Demo: API Error Formatting',
+              titleEn: 'API Error Formatting Demo',
+              type: 'code',
+              content: [
+                '**Standardized Response**: របៀបរៀបចំសារកំហុសឱ្យមានស្ដង់ដារសម្រាប់ Frontend (React/Vue/Mobile)។',
+                '**Clear Messages**: បញ្ជូនសារដែលងាយស្រួលយល់ និង Code សម្គាល់កំហុស។'
+              ],
+              code: 'public function show($id) {\n    $product = Product::find($id);\n\n    if (!$product) {\n        return response()->json([\n            "status" => "error",\n            "message" => "រកមិនឃើញទំនិញដែលអ្នកកំពុងស្វែងរកទេ"\n        ], 404);\n    }\n\n    return new ProductResource($product);\n}',
+              language: 'php'
+            },
+            {
+              id: '10.1.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Close Debug on Production**: បិទ APP_DEBUG=false ជានិច្ចពេល App ដើរពិតប្រាកដ។',
+                '**User Friendly Messages**: កុំបង្ហាញកូដបច្ចេកទេសទៅកាន់ User, បង្ហាញសារដែលពួកគាត់យល់។',
+                '**Use Logging**: ប្រើ Log ជានិច្ចពេលមាន Exception ដើម្បីងាយស្រួលឆែកមើលបញ្ហាតាមក្រោយ។'
+              ],
+              insight: 'ការគ្រប់គ្រងកំហុសបានល្អ គឺជាសញ្ញានៃកម្មវិធីដែលមានគុណភាព និងវិជ្ជាជីវៈ។'
             }
           ]
         },
@@ -186,51 +367,97 @@ export const part4: Part = {
           slides: [
             {
               id: '10.2.0',
-              title: 'Keeping a Paper Trail',
-              titleEn: 'Keeping a Paper Trail',
+              title: 'ការយល់ដឹងអំពី Logging',
+              titleEn: 'Understanding Logging',
               type: 'intro',
               content: [
-                '**System Monitoring**: Logging គឺសំខាន់ណាស់សម្រាប់ការតាមដានបញ្ហានៅលើ Production។ (វាដូចជាការកត់កំណត់ហេតុប្រចាំថ្ងៃរបស់ App ដើម្បីឱ្យអ្នកដឹងថាមានអ្វីកើតឡើងខ្លះនៅពេលអ្នកមិននៅមើល)',
-                '**Monolog Integration**: Laravel ប្រើប្រាស់ Monolog ដែលអនុញ្ញាតឱ្យយើងកត់ត្រាទុកនូវរាល់សកម្មភាពផ្សេងៗ។ (ជាស្ដង់ដារកម្រិតខ្ពស់ក្នុងការកត់ត្រាទិន្នន័យ ដែលមានភាពបត់បែន និងអាចទុកចិត្តបាន)',
-                '**Flexible Storage**: អ្នកអាច log ចូលទៅក្នុង files, system logs, Slack ឬសេវាកម្មដទៃទៀត។ (ជួយឱ្យអ្នកអាចទទួលបានដំណឹងភ្លាមៗតាមទូរស័ព្ទ នៅពេលមានបញ្ហាសំខាន់កើតឡើង)'
-              ]
+                '**The Application Diary**: Logging គឺជាការកត់ត្រារាល់សកម្មភាព ឬព្រឹត្តិការណ៍ដែលកើតឡើងក្នុង App របស់អ្នក ដូចជាការសរសេរកំណត់ហេតុប្រចាំថ្ងៃ។',
+                '**Production Eyes**: នៅលើ Server ពិតប្រាកដ អ្នកមិនអាចឃើញ Error លោតលើអេក្រង់ទេ ដូច្នេះ Log គឺជា "ភ្នែក" តែមួយគត់របស់អ្នក។',
+                '**Evidence Based**: វាជួយឱ្យអ្នកមាន "ភស្តុតាង" ដើម្បីដឹងថា តើបញ្ហាកើតឡើងនៅពេលណា និងមានមូលហេតុអ្វី។'
+              ],
+              animation: 'logging_flow'
             },
             {
               id: '10.2.1',
-              title: 'The Log Facade',
-              titleEn: 'The Log Facade',
-              type: 'code',
+              title: 'ហេតុអ្វីបានជាយើងត្រូវការ Log?',
+              titleEn: 'Why Logging?',
+              type: 'concept',
               content: [
-                '**Direct Recording**: ប្រើប្រាស់ `Log` facade ដើម្បីកត់ត្រាព័ត៌មាន។ (អ្នកអាចហៅវាប្រើនៅគ្រប់ទីកន្លែងក្នុងកូដរបស់អ្នក ដើម្បីកត់ត្រាទុកនូវចំណុចដែលអ្នកចង់ដឹង)',
-                '**Severity Levels**: កម្រិតនៃ Log រួមមាន: debug, info, warning, error, critical... (ជួយឱ្យអ្នកអាចបែងចែកបានថា តើវាគ្រាន់តែជាព័ត៌មានធម្មតា ឬជាបញ្ហាបន្ទាន់ដែលត្រូវដោះស្រាយភ្លាមៗ)'
-              ],
-              code: 'use Illuminate\\Support\\Facades\\Log;\n\nLog::info("User logged in", ["id" => $user->id]);\n\nLog::error("Payment failed", ["order" => $order->id]);',
-              language: 'php'
+                '**Invisible Errors**: នៅពេល App ដើរខុសធម្មតានៅពេល App ដើរពិតប្រាកដ អ្នកនឹងមិនដឹងទេថាមានអ្វីកើតឡើង បើគ្មានការកត់ត្រាទុក។',
+                '**Audit Trail**: វាជួយឱ្យអ្នកតាមដានសកម្មភាពសំខាន់ៗ (ឧទាហរណ៍៖ ការលុបទិន្នន័យ ឬការប្តូរ Password)។',
+                '**Performance Monitoring**: អ្នកអាចដឹងថាតើផ្នែកណាខ្លះនៃ App ដែលដើរយឺត ឬមានបញ្ហាជាមួយ Server ខាងក្រៅ។'
+              ]
             },
             {
               id: '10.2.2',
-              title: 'Log Channels',
-              titleEn: 'Log Channels',
-              type: 'code',
+              title: 'កម្រិតផ្សេងៗនៃ Log',
+              titleEn: 'Log Severity Levels',
+              type: 'concept',
               content: [
-                '**Configuration**: អ្នកអាចកំណត់ទីតាំងសម្រាប់រក្សាទុក logs នៅក្នុង `config/logging.php`។ (អ្នកអាចកំណត់ឱ្យវាបង្កើត File ថ្មីរាល់ថ្ងៃ ដើម្បីកុំឱ្យ File មួយមានទំហំធំពេកពិបាកបើកមើល)',
-                '**Multi-Channel Stacks**: អ្នកក៏អាចប្រើ "stacks" ដើម្បី log ទៅកាន់កន្លែងច្រើនក្នុងពេលតែមួយផងដែរ។ (ឧទាហរណ៍៖ រក្សាទុកក្នុង File ផង និងផ្ញើសារទៅកាន់ Telegram ឬ Slack របស់ក្រុមការងារផង)'
+                '**Info & Debug**: សម្រាប់កត់ត្រាព័ត៌មានទូទៅ (ឧទាហរណ៍៖ "User បានចុះឈ្មោះជោគជ័យ")។',
+                '**Warning & Error**: សម្រាប់កត់ត្រាបញ្ហាមិនប្រក្រតី ឬកំហុសដែលមិនទាន់ធ្វើឱ្យ App ងាប់ទាំងស្រុង។',
+                '**Critical & Emergency**: សម្រាប់បញ្ហាធ្ងន់ធ្ងរខ្លាំង (ឧទាហរណ៍៖ "Database គាំង" ឬ "Hacker កំពុងវាយប្រហារ")។'
               ],
-              code: '// ឧទាហរណ៍៖ Log ទៅក្នុង file ផង និងផ្ញើទៅ Slack ផង\n"stack" => [\n    "channels" => ["single", "slack"],\n],',
-              language: 'php',
-              insight: 'ការទទួលបានដំណឹងពីកំហុសកម្រិត Critical តាមរយៈ Slack ភ្លាមៗ ជួយឱ្យ developer ដោះស្រាយទាន់ពេល។'
+              insight: 'ប្រើកម្រិតឱ្យបានត្រឹមត្រូវ ដើម្បីងាយស្រួល Filter មើលតែបញ្ហាសំខាន់ៗ។'
             },
             {
               id: '10.2.3',
-              title: 'Real-world Demo: Critical Error Notification',
-              titleEn: 'Error Notification Demo',
+              title: 'ការប្រើប្រាស់ Log Facade',
+              titleEn: 'Using Log Facade',
               type: 'code',
               content: [
-                '**Instant Alerts**: របៀបកំណត់ឱ្យ Laravel ផ្ញើសារទៅកាន់ Telegram ឬ Slack ភ្លាមៗនៅពេលមានកំហុសធ្ងន់ធ្ងរ (ដូចជា Database គាំង)។',
-                '**Log Context**: បញ្ជូនព័ត៌មានបន្ថែម (ដូចជា ID របស់ User) ទៅក្នុង Log ដើម្បីងាយស្រួលរកមូលហេតុ។'
+                '**Simple Logging**: ប្រើ "Log" Facade ដើម្បីសរសេរព័ត៌មានចូលទៅក្នុង file។',
+                '**Storage Location**: ជាស្ដង់ដារ Laravel រក្សាទុកវាក្នុង "storage/logs/laravel.log"។'
               ],
-              code: 'try {\n    // កូដដែលងាយនឹងមានបញ្ហា\n    $payment->process();\n} catch (\\Exception $e) {\n    Log::critical("ការទូទាត់ប្រាក់បរាជ័យ!", [\n        "user_id" => auth()->id(),\n        "error" => $e->getMessage(),\n        "trace" => $e->getTraceAsString()\n    ]);\n    // បន្ទាប់មក Laravel នឹងផ្ញើ log នេះទៅ Slack តាមការកំណត់\n}',
+              code: 'use Illuminate\\Support\\Facades\\Log;\n\nLog::info("មាន User ថ្មីបានចុះឈ្មោះ");\nLog::warning("User វាយ Password ខុសលើសពី ៣ ដង");\nLog::error("មិនអាចផ្ញើ Email ទៅកាន់ User បានទេ");',
               language: 'php'
+            },
+            {
+              id: '10.2.4',
+              title: 'ការបន្ថែម Context (ព័ត៌មានបន្ថែម)',
+              titleEn: 'Logging with Context',
+              type: 'code',
+              content: [
+                '**Beyond Strings**: កុំកត់ត្រាត្រឹមតែសារជាអក្សរ ត្រូវបញ្ជូនទិន្នន័យជា Array ទៅជាមួយផង។',
+                '**Easier Debugging**: វានឹងជួយឱ្យអ្នកដឹងថា តើ User ម្នាក់ណាដែលមានបញ្ហា និងមានទិន្នន័យអ្វីខ្លះនៅពេលនោះ។'
+              ],
+              code: 'Log::info("User ប្តូរ Password ជោគជ័យ", [\n    "user_id" => $user->id,\n    "ip_address" => request()->ip(),\n    "browser" => request()->header("User-Agent")\n]);',
+              language: 'php'
+            },
+            {
+              id: '10.2.5',
+              title: 'Log Channels និង Configuration',
+              titleEn: 'Log Channels',
+              type: 'concept',
+              content: [
+                '**Daily Logs**: អ្នកអាចកំណត់ឱ្យ Laravel បង្កើត file ថ្មីរាល់ថ្ងៃ (daily) ដើម្បីកុំឱ្យ file ធំពេកពិបាកបើកមើល។',
+                '**Slack/Telegram**: អ្នកអាចកំណត់ឱ្យ Laravel ផ្ញើសារ Log ទៅកាន់ Slack ឬ Telegram របស់ក្រុមការងារភ្លាមៗបាន។'
+              ],
+              insight: 'ក្នុង Config "logging.php", អ្នកអាចកំណត់ Channel ជាច្រើនតាមតម្រូវការ។'
+            },
+            {
+              id: '10.2.6',
+              title: 'Real-world Demo: Tracking Important Actions',
+              titleEn: 'Activity Tracking Demo',
+              type: 'code',
+              content: [
+                '**Security Audit**: បង្ហាញរបៀបកត់ត្រាទុកនៅពេលមានសកម្មភាពសំខាន់ៗដែលប៉ះពាល់ដល់ប្រព័ន្ធ។',
+                '**Troubleshooting**: ប្រើ Log ដើម្បីតាមដានដំណើរការ API ជាមួយក្រុមហ៊ុនខាងក្រៅ។'
+              ],
+              code: 'public function processPayment(Request $request) {\n    Log::info("ចាប់ផ្ដើមដំណើរការទូទាត់ប្រាក់", ["order_id" => $request->order_id]);\n\n    try {\n        // កូដទូទាត់ប្រាក់...\n    } catch (\\Exception $e) {\n        Log::critical("ការទូទាត់ប្រាក់មានបញ្ហាធ្ងន់ធ្ងរ!", [\n            "order_id" => $request->order_id,\n            "error" => $e->getMessage()\n        ]);\n    }\n}',
+              language: 'php'
+            },
+            {
+              id: '10.2.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Don\'t Log Passwords**: ហាមដាច់ខាតកុំកត់ត្រា Password ឬព័ត៌មានកាតធនាគារចូលក្នុង Log។',
+                '**Use Daily Logs**: កំណត់ឱ្យវាបង្កើត file ថ្មីតាមថ្ងៃ ដើម្បីងាយស្រួលគ្រប់គ្រងទំហំ។',
+                '**External Alerts**: កំណត់ឱ្យផ្ញើសារទៅ Slack/Telegram តែសម្រាប់កំហុសកម្រិត "Critical" ប៉ុណ្ណោះ។'
+              ],
+              insight: 'Log គឺជាភ្នែកច្រមុះរបស់អ្នក នៅពេលកម្មវិធីកំពុងដំណើរការនៅលើ Server។'
             }
           ]
         }
@@ -252,37 +479,83 @@ export const part4: Part = {
           slides: [
             {
               id: '11.1.0',
-              title: 'Building with Confidence',
-              titleEn: 'Building with Confidence',
+              title: 'មូលដ្ឋានគ្រឹះនៃការធ្វើតេស្ត',
+              titleEn: 'Foundations of Testing',
               type: 'intro',
               content: [
-                'ការធ្វើតេស្តដោយដៃ (Manual testing) គឺយឺត និងងាយនឹងមានការចន្លោះប្រហោង។',
-                'Automated tests ជួយឱ្យអ្នកប្រាកដថា App របស់អ្នកនៅតែដំណើរការល្អ បើទោះបីជាអ្នកកែកូដថ្មីក៏ដោយ។',
-                'Laravel ប្រើ **PHPUnit** ជា default ប៉ុន្តែក៏គាំទ្រ **Pest** ដែលមានភាពសាមញ្ញជាង។'
-              ]
+                '**The Robot Inspector**: ការធ្វើតេស្ត (Testing) គឺដូចជាការជួល "រ៉ូបូត" ឱ្យមកជួយពិនិត្យកូដរបស់អ្នករាល់ពេលអ្នកកែប្រែអ្វីមួយ។',
+                '**Confidence to Build**: វាផ្តល់ឱ្យអ្នកនូវទំនុកចិត្តថា កូដចាស់ៗរបស់អ្នកនៅតែដើរត្រឹមត្រូវ បើទោះបីជាអ្នកថែម Feature ថ្មីក៏ដោយ។',
+                '**Saving Time**: ទោះបីជាវាចំណាយពេលសរសេរបន្តិចមែន ប៉ុន្តែវាជួយសន្សំពេលវេលា "ជួសជុល" បញ្ហានៅថ្ងៃអនាគតបានរាប់ម៉ោង។'
+              ],
+              animation: 'testing_overview_flow'
             },
             {
               id: '11.1.1',
+              title: 'Manual vs. Automated Testing',
+              titleEn: 'Manual vs. Automated',
+              type: 'concept',
+              content: [
+                '**Manual Testing**: អ្នកចុះឈ្មោះ (Register) ដោយដៃផ្ទាល់លើ Browser រាល់ពេលកូដកែ (យឺត និងងាយនឹងភ្លេច)។',
+                '**Automated Testing**: អ្នកសរសេរកូដឱ្យវា Register ជំនួសអ្នកក្នុងរយៈពេល ០.១ វិនាទី (លឿន និងច្បាស់លាស់)។'
+              ],
+              insight: 'Automated Testing ជួយឱ្យអ្នកអាចលក់ App របស់អ្នកបានដោយមិនចាំបាច់បារម្ភពី Bug ចាស់ៗលោតមកវិញ។'
+            },
+            {
+              id: '11.1.2',
               title: 'Unit vs. Feature Testing',
               titleEn: 'Unit vs. Feature Testing',
               type: 'concept',
               content: [
-                '**Unit Tests**: តេស្តផ្នែកតូចៗនៃកូដ (ដូចជា function មួយ) ដាច់ដោយឡែកពីគេ។ វាលឿនបំផុត។',
-                '**Feature Tests**: តេស្តផ្នែកធំនៃ App ដូចជាការសាកល្បង HTTP Request។ វាពិនិត្យមើល URL និង response ជាក់ស្តែង។'
-              ],
-              insight: 'Developer ភាគច្រើនចំណាយពេល 80% ទៅលើការសរសេរ Feature Tests។'
+                '**Unit Tests**: តេស្តផ្នែកតូចបំផុតនៃកូដ (ដូចជា Function គណនាលេខ)។ វាលឿនបំផុតព្រោះវាមិនបើក Framework ទាំងមូលទេ។',
+                '**Feature Tests**: តេស្តផ្នែកធំនៃ App (ដូចជាការសាកល្បងចូល Login និងឆែកមើល Page បន្ទាប់)។ វាពិនិត្យមើល URL និង Response ពិតប្រាកដ។'
+              ]
             },
             {
-              id: '11.1.2',
-              title: 'Real-world Demo: Test Suite Execution',
-              titleEn: 'Test Execution Demo',
+              id: '11.1.3',
+              title: 'ឧបករណ៍សម្រាប់ធ្វើតេស្ត',
+              titleEn: 'Testing Tools',
+              type: 'concept',
+              content: [
+                '**PHPUnit**: ជាស្ដង់ដារតាំងពីដើមមករបស់ PHP និង Laravel (ប្រើប្រាស់ Class)។',
+                '**Pest**: ជាឧបករណ៍ថ្មីដែលកំពុងពេញនិយមខ្លាំង ព្រោះវាមាន Syntax ងាយស្រួលអាន និងស្រដៀងនឹងភាសាមនុស្ស។'
+              ],
+              insight: 'Laravel 11 ផ្ដល់ជម្រើសឱ្យអ្នកជ្រើសរើសមួយណាដែលអ្នកចង់ប្រើពេលបង្កើត Project ថ្មី។'
+            },
+            {
+              id: '11.1.4',
+              title: 'ការប្រើប្រាស់ "php artisan test"',
+              titleEn: 'Running Tests',
               type: 'code',
               content: [
-                '**Running Tests**: បង្ហាញពីរបៀបដំណើរការរាល់ការធ្វើតេស្តទាំងអស់ក្នុង Project និងការមើលលទ្ធផល (Pass/Fail)។',
-                '**Parallel Testing**: ប្រើប្រាស់ `--parallel` ដើម្បីឱ្យការតេស្តរត់បានលឿនជាងមុនខ្លាំងនៅលើម៉ាស៊ីនដែលមាន CPU ច្រើន។'
+                '**The Command Center**: ប្រើ Command នេះដើម្បីឱ្យ Laravel រត់រាល់ការតេស្តទាំងអស់ដែលអ្នកមាន។',
+                '**Green vs Red**: បើឃើញពណ៌បៃតង (PASS) មានន័យថាកូដអ្នកល្អ បើឃើញពណ៌ក្រហម (FAIL) មានន័យថាកូដអ្នកមានបញ្ហាហើយ!'
               ],
-              code: '# ដំណើរការតេស្តទាំងអស់\nphp artisan test\n\n# ដំណើរការតែ Unit tests\nphp artisan test --testsuite=Unit\n\n# ដំណើរការតេស្តឱ្យលឿនបំផុត (Parallel)\nphp artisan test --parallel',
+              code: '# រត់តេស្តទាំងអស់\nphp artisan test\n\n# រត់តែ Unit tests\nphp artisan test --testsuite=Unit\n\n# រត់តេស្តដោយប្រើប្រាស់ Parallel (លឿនខ្លាំង)\nphp artisan test --parallel',
               language: 'bash'
+            },
+            {
+              id: '11.1.5',
+              title: 'Real-world Demo: Reading Test Results',
+              titleEn: 'Reading Test Results Demo',
+              type: 'code',
+              content: [
+                '**Failure Analysis**: បង្ហាញពីរបៀបដែល Laravel ប្រាប់យើងថាមានកំហុសនៅត្រង់ណា ក្នុង file ណា និងបន្ទាត់ទីប៉ុន្មាន។',
+                '**Detailed Summary**: របាយការណ៍សង្ខេបអំពីចំនួនតេស្តដែលជោគជ័យ និងបរាជ័យ។'
+              ],
+              code: 'FAIL  Tests\\Feature\\ExampleTest\n  ⨯ the application returns a successful response\n\n  --- \n  Expected response status code [200] but received [404].\n  At tests/Feature/ExampleTest.php:19',
+              language: 'bash'
+            },
+            {
+              id: '11.1.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Test Early & Often**: រត់តេស្តជានិច្ចមុននឹងបញ្ជូនកូដ (Push) ទៅកាន់ Server។',
+                '**Descriptive Names**: ដាក់ឈ្មោះតេស្តឱ្យច្បាស់លាស់ ដើម្បីឱ្យអ្នកដឹងភ្លាមថាវាជាតេស្តអំពីអ្វី។',
+                '**80/20 Rule**: ព្យាយាមឱ្យ Feature Tests គ្របដណ្ដប់លើមុខងារសំខាន់ៗបំផុតរបស់ App របស់អ្នក។'
+              ],
+              insight: 'ការសរសេរ Test មិនមែនជាការខាតពេលទេ ប៉ុន្តែវាជាការសន្សំពេលវេលានៅថ្ងៃអនាគត។'
             }
           ]
         },
@@ -299,10 +572,12 @@ export const part4: Part = {
               titleEn: 'Testing Logic',
               type: 'intro',
               content: [
-                'Unit tests មិនដំណើរការ Framework Laravel ទាំងមូលនោះទេ (No booting)។',
-                'ចំណុចនេះធ្វើឱ្យវាលឿនខ្លាំង (អាចតេស្តរាប់ពាន់ដងក្នុងរយៈពេលប៉ុន្មានវិនាទី)។',
-                'វាស័ក្តិសមបំផុតសម្រាប់តេស្តការគណនាស្មុគស្មាញ ឬការច្នៃ String ផ្សេងៗ។'
-              ]
+                '**Lightweight & Fast**: Unit tests មិនដំណើរការ Framework Laravel ទាំងមូលនោះទេ (No booting) ដែលធ្វើឱ្យវាលឿនបំផុត។',
+                '**Isolation**: វាផ្ដោតតែលើ Logic តូចមួយប៉ុណ្ណោះ ដោយមិនប៉ះពាល់ដល់ Database, Filesystem ឬ Network ឡើយ។',
+                '**Pure Functions**: វាស័ក្តិសមបំផុតសម្រាប់តេស្តការគណនាស្មុគស្មាញ ការកែច្នៃ String ឬ Business Logic សុទ្ធសាធ។'
+              ],
+              animation: 'unit_testing_flow',
+              insight: 'Unit Test ដែលល្អ គួរតែរត់បានរាប់ពាន់ដងក្នុងរយៈពេលត្រឹមតែប៉ុន្មានវិនាទីប៉ុណ្ណោះ។'
             },
             {
               id: '11.2.1',
@@ -310,23 +585,73 @@ export const part4: Part = {
               titleEn: 'A Basic Unit Test',
               type: 'code',
               content: [
-                'ប្រើប្រាស់ folder `tests/Unit`។',
-                'ផ្ដោតលើ Input និង Output ដោយមិនចាំបាច់ប៉ះពាល់ដល់ Database។'
+                '**Test Location**: ប្រើប្រាស់ folder `tests/Unit` និងបន្តពូជពី `PHPUnit\\Framework\\TestCase`។',
+                '**Assertion**: ប្រើប្រាស់ Method ដូចជា `assertEquals` ដើម្បីផ្ទៀងផ្ទាត់លទ្ធផល។'
               ],
-              code: 'public function test_can_format_price() {\n    $order = new Order(["total" => 1000]);\n    \n    $this->assertEquals("$10.00", $order->formattedPrice());\n}',
+              code: 'use PHPUnit\\Framework\\TestCase;\n\nclass OrderTest extends TestCase {\n    public function test_can_format_price() {\n        $order = new Order(["total" => 1000]);\n        \n        // ផ្ទៀងផ្ទាត់ថា 1000 cents ក្លាយជា $10.00\n        $this->assertEquals("$10.00", $order->formattedPrice());\n    }\n}',
               language: 'php'
             },
             {
               id: '11.2.2',
+              title: 'Data Providers (ការតេស្តករណីច្រើន)',
+              titleEn: 'Data Providers',
+              type: 'code',
+              content: [
+                '**Efficiency**: កុំសរសេរតេស្តដដែលៗសម្រាប់ទិន្នន័យខុសគ្នា ត្រូវប្រើ Data Provider ជំនួសវិញ។',
+                '**Scenarios**: ជួយឱ្យយើងអាចតេស្តករណីជាច្រើន (Multiple scenarios) ក្នុង Method តែមួយ។'
+              ],
+              code: '/** @test @dataProvider priceProvider */\npublic function it_formats_price_correctly($input, $expected) {\n    $order = new Order(["total" => $input]);\n    $this->assertEquals($expected, $order->formattedPrice());\n}\n\npublic static function priceProvider() {\n    return [\n        "តំលៃធម្មតា" => [1000, "$10.00"],\n        "តំលៃសូន្យ" => [0, "$0.00"],\n        "តំលៃធំ" => [50000, "$500.00"],\n    ];\n}',
+              language: 'php',
+              insight: 'ការប្រើ Data Providers ធ្វើឱ្យរបាយការណ៍តេស្តរបស់អ្នកងាយស្រួលអាន និងយល់ពីចំណុចដែលខុស។'
+            },
+            {
+              id: '11.2.3',
+              title: 'Mocking Dependencies',
+              titleEn: 'Mocking Dependencies',
+              type: 'concept',
+              content: [
+                '**Mocking**: គឺជាការបង្កើត "តួអង្គក្លែងក្លាយ" ដើម្បីជំនួសឱ្យ Class ផ្សេងទៀតដែល Logic របស់យើងត្រូវការពឹងផ្អែក។',
+                '**Controlled Behavior**: យើងអាចកំណត់ឱ្យតួអង្គក្លែងក្លាយនោះ បញ្ជូនលទ្ធផលអ្វីមកក៏បានតាមតែយើងចង់បាន។',
+                '**Isolation**: ជួយឱ្យយើងតេស្តតែ Logic ក្នុង Class បច្ចុប្បន្ន ដោយមិនចាំបាច់បារម្ភពីកំហុសរបស់ Class ផ្សេង។'
+              ],
+              animation: 'mocking_flow',
+              insight: 'Mocking ជួយឱ្យ Unit Test នៅតែលឿន ទោះបីជាកូដដើមត្រូវទាក់ទងទៅ Database ក៏ដោយ។'
+            },
+            {
+              id: '11.2.4',
               title: 'Real-world Demo: Mocking External APIs',
               titleEn: 'Mocking APIs Demo',
               type: 'code',
               content: [
-                '**Isolation**: របៀបធ្វើតេស្តកូដរបស់អ្នកដោយមិនចាំបាច់ហៅទៅកាន់ API ពិតប្រាកដ (ដូចជា PayPal ឬ Google Maps) ដែលអាចចំណាយលុយ ឬយឺត។',
-                '**Http Fake**: ប្រើប្រាស់ `Http::fake()` ដើម្បីត្រាប់តាមចម្លើយ (Response) ពី Server ខាងក្រៅ។'
+                '**Http Fake**: ប្រើប្រាស់ `Http::fake()` ដើម្បីត្រាប់តាមចម្លើយ (Response) ពី Server ខាងក្រៅ (ដូចជា PayPal ឬ Telegram)។',
+                '**No Cost**: យើងមិនចាំបាច់បារម្ភពីការចំណាយលុយលើ API ឬភាពយឺតយ៉ាវនៃ Network ឡើយ។'
               ],
-              code: 'public function test_it_can_fetch_exchange_rate() {\n    Http::fake([\n        "api.exchangerate.com/*" => Http::response(["rate" => 4100], 200)\n    ]);\n\n    $result = CurrencyService::getKhmerRate();\n    $this->assertEquals(4100, $result);\n}',
+              code: 'public function test_it_can_fetch_exchange_rate() {\n    // ត្រាប់តាម API ខាងក្រៅ\n    Http::fake([\n        "api.exchangerate.com/*" => Http::response(["rate" => 4100], 200)\n    ]);\n\n    $result = CurrencyService::getKhmerRate();\n    \n    $this->assertEquals(4100, $result);\n    Http::assertSentCount(1); // ផ្ទៀងផ្ទាត់ថាវាត្រូវបានហៅពិតមែន\n}',
               language: 'php'
+            },
+            {
+              id: '11.2.5',
+              title: 'Test Driven Development (TDD)',
+              titleEn: 'TDD Workflow',
+              type: 'concept',
+              content: [
+                '**Red**: សរសេរតេស្តដែលរំពឹងទុកជាមុន (តេស្តនឹងធ្លាក់ព្រោះមិនទាន់មានកូដ)។',
+                '**Green**: សរសេរកូដឱ្យតែ "ជាប់" តេស្តនោះប៉ុណ្ណោះ (កុំទាន់បារម្ភពីរឿងស្អាត)។',
+                '**Refactor**: រៀបចំកូដឱ្យស្អាត និងមានរបៀបរៀបរយឡើងវិញ ខណៈពេលតេស្តនៅតែបៃតង។'
+              ],
+              insight: 'TDD មិនមែនគ្រាន់តែជាការតេស្តទេ ប៉ុន្តែវាគឺជា "វិធីសាស្ត្ររចនាកូដ" (Design Pattern)។'
+            },
+            {
+              id: '11.2.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**One Assertion**: ព្យាយាមឱ្យតេស្តមួយ ផ្ដោតលើការផ្ទៀងផ្ទាត់រឿងតែមួយ (Single Responsibility)។',
+                '**No Database**: ហាមប៉ះពាល់ Database ក្នុង Unit Test (ប្រើ Feature Test សម្រាប់រឿងនោះ)។',
+                '**Descriptive Names**: ដាក់ឈ្មោះ Method តេស្តឱ្យដូចជាប្រយោគភាសាអង់គ្លេស (ឧទាហរណ៍៖ `test_user_cannot_order_out_of_stock_item`)។'
+              ],
+              insight: 'Unit Test ដែលល្អ គឺជាឯកសារ (Documentation) ដ៏ល្អបំផុតសម្រាប់កូដរបស់អ្នក។'
             }
           ]
         },
@@ -343,35 +668,83 @@ export const part4: Part = {
               titleEn: 'Simulating the User',
               type: 'intro',
               content: [
-                'Feature tests គឺជាការតេស្តបែប "ពិភពពិត"។',
-                'វាត្រាប់តាមសកម្មភាពអ្នកប្រើប្រាស់ ដូចជាការចុច button និងការបំពេញ form។',
-                'វាផ្ទៀងផ្ទាត់ថា Routes, Controllers, និង Database ធ្វើការជាមួយគ្នាបានត្រឹមត្រូវ។'
-              ]
+                '**Real-world Scenarios**: Feature tests គឺជាការតេស្តបែប "ពិភពពិត" ដែលត្រាប់តាមសកម្មភាពអ្នកប្រើប្រាស់ពិតៗ។',
+                '**Full Application Stack**: វាដំណើរការ Laravel ទាំងមូល (Booting) រាប់តាំងពី Routes, Middleware រហូតដល់ Database។',
+                '**Confidence**: វាផ្ដល់ទំនុកចិត្តខ្ពស់បំផុតថា Feature នីមួយៗរបស់អ្នកដើរត្រូវគ្នា (Integration) 100%។'
+              ],
+              animation: 'feature_testing_flow',
+              insight: 'Feature Test ផ្ដោតលើលទ្ធផលចុងក្រោយ (Result) ជាជាងការខ្វល់ខ្វាយពីរបៀបដែលកូដសរសេរនៅខាងក្នុង។'
             },
             {
               id: '11.3.1',
-              title: 'HTTP Feature Test',
-              titleEn: 'HTTP Feature Test',
+              title: 'Testing Authentication',
+              titleEn: 'Testing Authentication',
               type: 'code',
               content: [
-                'ប្រើ method `actingAs()` ដើម្បីក្លែងធ្វើជា user ដែលបាន login។',
-                'ផ្ទៀងផ្ទាត់ status code និងទិន្នន័យចុងក្រោយដែលមាននៅក្នុង database។'
+                '**ActingAs**: ប្រើ Method `actingAs($user)` ដើម្បីក្លែងធ្វើជា User ដែលបាន Login រួចជាស្រេច។',
+                '**Protected Routes**: ផ្ទៀងផ្ទាត់ថា Route ដែលមានការការពារ (Middleware) មិនអាចចូលបានដោយគ្មានសិទ្ធិ។'
               ],
-              code: 'public function test_user_can_create_post() {\n    $user = User::factory()->create();\n\n    $response = $this->actingAs($user)->post("/posts", [\n        "title" => "My First Test",\n        "body" => "Testing is fun!"\n    ]);\n\n    $response->assertStatus(302);\n    $this->assertDatabaseHas("posts", ["title" => "My First Test"]);\n}',
+              code: 'public function test_protected_route_access() {\n    // 1. មិនអាចចូលបានបើមិនទាន់ Login\n    $this->get("/dashboard")->assertRedirect("/login");\n\n    // 2. អាចចូលបានក្រោយ Login\n    $user = User::factory()->create();\n    $response = $this->actingAs($user)->get("/dashboard");\n    \n    $response->assertStatus(200);\n}',
               language: 'php',
-              insight: 'ប្រើ `php artisan make:test PostTest` ដើម្បីបង្កើត class សម្រាប់ធ្វើ feature test ថ្មី។'
+              insight: 'ការតេស្តទាំងករណី "Success" និង "Failure" គឺសំខាន់ដូចគ្នាសម្រាប់សុវត្ថិភាព។'
             },
             {
               id: '11.3.2',
+              title: 'HTTP JSON API Testing',
+              titleEn: 'JSON API Testing',
+              type: 'code',
+              content: [
+                '**API Verification**: ប្រើ `getJson()`, `postJson()` សម្រាប់ការតេស្ត REST API ដែលបញ្ជូនទិន្នន័យជា JSON។',
+                '**Structure Check**: ផ្ទៀងផ្ទាត់ថា API បញ្ជូនទិន្នន័យមកមានទម្រង់ (Structure) ត្រឹមត្រូវតាមស្ដង់ដារ។'
+              ],
+              code: 'public function test_api_returns_correct_format() {\n    $product = Product::factory()->create(["name" => "Laptop"]);\n\n    $response = $this->getJson("/api/products/" . $product->id);\n\n    $response->assertStatus(200)\n             ->assertJson([\n                 "data" => ["name" => "Laptop"]\n             ])\n             ->assertJsonStructure([\n                 "data" => ["id", "name", "price"]\n             ]);\n}',
+              language: 'php'
+            },
+            {
+              id: '11.3.3',
+              title: 'Database Assertions',
+              titleEn: 'Database Assertions',
+              type: 'concept',
+              content: [
+                '**RefreshDatabase**: ប្រើ Trait នេះដើម្បីសម្អាត Database ឱ្យនៅស្អាតជានិច្ចមុនពេលរត់តេស្តនីមួយៗ។',
+                '**State Verification**: ឆែកមើលទិន្នន័យក្នុង Table ផ្ទាល់ ដើម្បីប្រាកដថា Logic របស់អ្នកបានរក្សាទុកវាត្រឹមត្រូវ។'
+              ],
+              insight: 'assertDatabaseHas() គឺជា "ភ្នែក" របស់អ្នកដើម្បីមើលទៅក្នុង Database ក្នុងអំឡុងពេលតេស្ត។'
+            },
+            {
+              id: '11.3.4',
+              title: 'Testing Validation Failures',
+              titleEn: 'Testing Validation',
+              type: 'code',
+              content: [
+                '**Negative Testing**: ត្រូវតេស្តឱ្យប្រាកដថា App របស់អ្នកនឹង "បដិសេធ" ទិន្នន័យដែលមិនត្រឹមត្រូវ។',
+                '**Error Reporting**: ផ្ទៀងផ្ទាត់ថាសារកំហុស (Validation Errors) ត្រូវបានបញ្ជូនទៅកាន់ User វិញត្រឹមត្រូវ។'
+              ],
+              code: 'public function test_title_is_required_to_create_post() {\n    $user = User::factory()->create();\n\n    $response = $this->actingAs($user)->post("/posts", [\n        "body" => "Missing title field"\n    ]);\n\n    $response->assertSessionHasErrors(["title"]);\n    $this->assertDatabaseCount("posts", 0);\n}',
+              language: 'php'
+            },
+            {
+              id: '11.3.5',
               title: 'Real-world Demo: User Registration Test',
               titleEn: 'Registration Test Demo',
               type: 'code',
               content: [
-                '**Full Flow Test**: ធ្វើតេស្តលើដំណើរការចុះឈ្មោះ User ថ្មី តាំងពីការបំពេញ Form រហូតដល់ការរក្សាទុកក្នុង Database។',
-                '**Redirection Check**: បញ្ជាក់ថាបន្ទាប់ពីចុះឈ្មោះជោគជ័យ User ត្រូវបានបញ្ជូនទៅកាន់ Dashboard ត្រឹមត្រូវ។'
+                '**Full Flow Test**: ធ្វើតេស្តលើដំណើរការចុះឈ្មោះ User ថ្មី តាំងពីការបំពេញ Form រហូតដល់ការរក្សាទុកក្នុង Database និងការបញ្ជូនទៅកាន់ Dashboard។'
               ],
-              code: 'public function test_new_user_can_register() {\n    $response = $this->post("/register", [\n        "name" => "Sokha",\n        "email" => "sokha@test.com",\n        "password" => "password",\n        "password_confirmation" => "password"\n    ]);\n\n    $response->assertRedirect("/dashboard");\n    $this->assertDatabaseHas("users", ["email" => "sokha@test.com"]);\n}',
+              code: 'public function test_new_user_can_register() {\n    $response = $this->post("/register", [\n        "name" => "Sokha",\n        "email" => "sokha@test.com",\n        "password" => "password",\n        "password_confirmation" => "password"\n    ]);\n\n    $response->assertRedirect("/dashboard");\n    $this->assertDatabaseHas("users", ["email" => "sokha@test.com"]);\n    $this->assertTrue(Hash::check("password", User::first()->password));\n}',
               language: 'php'
+            },
+            {
+              id: '11.3.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Real Scenarios**: តេស្តឱ្យដូចសកម្មភាពដែល User នឹងធ្វើពិតប្រាកដ (Happy path និង Edge cases)។',
+                '**Clean State**: ប្រើ "RefreshDatabase" trait ជានិច្ចដើម្បីការពារការរំខានទិន្នន័យរវាងតេស្ត។',
+                '**Avoid Over-Testing**: កុំតេស្ត Feature របស់ Laravel (ដូចជា Route ដើរឬអត់) តែត្រូវតេស្ត Logic របស់អ្នក។'
+              ],
+              insight: 'Feature Test ល្អ គឺ Feature Test ដែលប្រាប់អ្នកភ្លាមថា App របស់អ្នក "ខូច" នៅកន្លែងណា ពេលមានការផ្លាស់ប្តូរ។'
             }
           ]
         }
@@ -397,12 +770,12 @@ export const part4: Part = {
               titleEn: 'The Production Mindset',
               type: 'intro',
               content: [
-                'បរិស្ថាន Production គឺខុសគ្នាស្រឡះពី Local របស់អ្នក (វាគឺជាសមរភូមិពិតប្រាកដដែលមានអ្នកប្រើប្រាស់រាប់ពាន់នាក់ចូលមកក្នុងពេលតែមួយ)។',
-                'សុវត្ថិភាព ល្បឿន និងស្ថិរភាព គឺជាអាទិភាពចម្បងដែលអ្នកត្រូវយកចិត្តទុកដាក់បំផុត (ការធ្វេសប្រហែសបន្តិចបន្តួចអាចនាំឱ្យបាត់បង់ទិន្នន័យ ឬ App គាំងដំណើរការ)។',
-                'Laravel ផ្ដល់ឧបករណ៍មកស្រាប់ ដើម្បីជួយឱ្យការផ្លាស់ប្តូរពីការសរសេរកូដ ទៅកាន់ការដាក់ឱ្យប្រើប្រាស់ពិតប្រាកដប្រព្រឹត្តទៅដោយរលូន និងមានវិជ្ជាជីវៈ។'
+                '**Battlefield Environment**: បរិស្ថាន Production គឺខុសគ្នាស្រឡះពី Local (វាគឺជាសមរភូមិពិតប្រាកដដែលមាន User ច្រើន)។',
+                '**Priorities**: សុវត្ថិភាព (Security), ល្បឿន (Speed) និងស្ថិរភាព (Stability) គឺជាអាទិភាពចម្បងបំផុត។',
+                '**Zero Downtime**: គោលដៅគឺធ្វើការ Update App ដោយមិនឱ្យអ្នកប្រើប្រាស់ជួបបញ្ហា ឬឃើញ Error កូដឡើយ។'
               ],
               animation: 'deployment',
-              insight: 'កុំសាកល្បងកូដថ្មីនៅលើ production ផ្ទាល់។ ត្រូវប្រើ Staging environment ជាមុនសិន។'
+              insight: 'ការធ្វេសប្រហែសបន្តិចបន្តួចលើ Production អាចនាំឱ្យបាត់បង់ទិន្នន័យ ឬបែកធ្លាយព័ត៌មានសម្ងាត់។'
             },
             {
               id: '12.1.1',
@@ -410,39 +783,83 @@ export const part4: Part = {
               titleEn: 'Environment Config',
               type: 'code',
               content: [
-                'នៅលើ production, អ្នកត្រូវតែផ្លាស់ប្តូរការកំណត់ក្នុង `.env`។',
-                'សំខាន់បំផុត: កំណត់ `APP_DEBUG=false` និង `APP_ENV=production`។',
-                'បង្កើត `APP_KEY` ថ្មីដើម្បីធានាសុវត្ថិភាព sessions។'
+                '**Security First**: កំណត់ `APP_DEBUG=false` ជាដាច់ខាតដើម្បីកុំឱ្យបែកធ្លាយ Password និង Keys ពេលមាន Error។',
+                '**Environment**: កំណត់ `APP_ENV=production` ដើម្បីឱ្យ Laravel ដឹងថាត្រូវដើរក្នុងរបៀបល្បឿនលឿន។'
               ],
-              code: 'APP_NAME=Laravel\nAPP_ENV=production\nAPP_DEBUG=false\nAPP_URL=https://yourdomain.com\n\nAPP_KEY=base64:random_generated_key...',
+              code: 'APP_NAME=Laravel\nAPP_ENV=production\nAPP_DEBUG=false\nAPP_URL=https://yourdomain.com\n\n# បង្កើត Key ថ្មីសម្រាប់ Production\nphp artisan key:generate',
               language: 'bash',
-              insight: 'ការទុក APP_DEBUG=true លើ production នឹងបង្ហាញ password របស់ database និង API keys របស់អ្នកទៅកាន់សាធារណៈ។'
+              insight: 'ហាមដាក់ឯកសារ .env ចូលក្នុង Git (Version Control) ជាដាច់ខាត!'
             },
             {
               id: '12.1.2',
-              title: 'Application Optimization',
-              titleEn: 'Application Optimization',
+              title: 'Maintenance Mode',
+              titleEn: 'Maintenance Mode',
               type: 'code',
               content: [
-                'Laravel ដើរលឿនស្រាប់ហើយ ប៉ុន្តែយើងអាចធ្វើឱ្យវាកាន់តែលឿន។',
-                'ការធ្វើ Caching លើ configuration និង routes ជួយកាត់បន្ថយការអាន file ច្រើនដង។',
-                'ប្រើ command `optimize` ដើម្បីប្រមូលផ្ដុំរាល់ cache commands ទាំងអស់។'
+                '**Graceful Updates**: ប្រើប្រាស់ Maintenance Mode ដើម្បីបិទ App ជាបណ្ដោះអាសន្នពេលកំពុងធ្វើការងារសំខាន់ៗ។',
+                '**Secret Access**: អ្នកអាចកំណត់ "Secret Token" ដើម្បីអាចចូលមើល App បានតែម្នាក់ឯងក្នុងពេលកំពុងបិទ។'
               ],
-              code: '# ធ្វើ Optimization គ្រប់យ៉ាងសម្រាប់ production\nphp artisan optimize\n\n# សម្រាប់សម្អាត cache ពេលអ្នកកែប្រែកូដ\nphp artisan optimize:clear',
-              language: 'bash',
-              insight: 'ត្រូវដាក់ "php artisan optimize" នៅក្នុងរាល់ deployment script របស់អ្នក។'
+              code: '# បិទ App និងដាក់សារឱ្យ User\nphp artisan down --secret="my-secret-token"\n\n# ចូលមើល App តាមរយៈ URL: yourdomain.com/my-secret-token\n\n# បើក App វិញ\nphp artisan up',
+              language: 'bash'
             },
             {
               id: '12.1.3',
+              title: 'Optimization Commands',
+              titleEn: 'Optimization',
+              type: 'code',
+              content: [
+                '**Caching Configuration**: បង្រួម File Config ទាំងអស់ឱ្យទៅជា File តែមួយដើម្បីឱ្យ Laravel អានបានលឿន។',
+                '**Route Caching**: ធ្វើឱ្យការស្វែងរក Route កាន់តែរហ័ស (ល្អសម្រាប់ App ដែលមាន Route ច្រើន)។'
+              ],
+              code: '# ធ្វើ Optimization គ្រប់យ៉ាងក្នុងពេលតែមួយ\nphp artisan optimize\n\n# សម្រាប់សម្អាត Cache វិញ\nphp artisan optimize:clear',
+              language: 'bash',
+              insight: 'រាល់ពេលអ្នកកែប្រែ .env ឬ Route អ្នកត្រូវតែ run "optimize" ម្ដងទៀត។'
+            },
+            {
+              id: '12.1.4',
+              title: 'Directory Permissions',
+              titleEn: 'Directory Permissions',
+              type: 'concept',
+              content: [
+                '**Writable Folders**: Folder `storage` និង `bootstrap/cache` ត្រូវតែមានសិទ្ធិអាចឱ្យ Web Server សរសេរចូលបាន (Write permission)។',
+                '**Ownership**: ជាទូទៅត្រូវកំណត់ Owner ឱ្យទៅអ្នកប្រើប្រាស់របស់ Web Server (ឧទាហរណ៍៖ www-data)។'
+              ],
+              insight: 'កំហុស "Permission Denied" គឺជាបញ្ហាទូទៅបំផុតដែលអ្នកនឹងជួបពេល Deploy ដំបូង។'
+            },
+            {
+              id: '12.1.5',
+              title: 'Compiling Assets (Vite)',
+              titleEn: 'Compiling Assets',
+              type: 'code',
+              content: [
+                '**Frontend Optimization**: កុំភ្លេច Build JS និង CSS របស់អ្នកសម្រាប់ Production។',
+                '**Performance**: វានឹងជួយបង្រួមទំហំ File ឱ្យតូចបំផុត និងលុបកូដដែលមិនប្រើចេញ។'
+              ],
+              code: '# សម្រាប់ Laravel ជំនាន់ថ្មី\nnpm run build',
+              language: 'bash'
+            },
+            {
+              id: '12.1.6',
               title: 'Real-world Demo: Deployment Script',
               titleEn: 'Deployment Script Demo',
               type: 'code',
               content: [
-                '**Automation**: ឧទាហរណ៍នៃ Bash Script ដែលជួយឱ្យអ្នកដាក់ App ដំណើរការបានយ៉ាងលឿន និងគ្មានកំហុស (Zero-downtime mindset)។',
-                '**Cleanup**: ការសម្អាត Cache ចាស់ៗ និងការរៀបចំ Cache ថ្មីសម្រាប់ Production។'
+                '**Automation**: ឧទាហរណ៍នៃ Bash Script ដែលជួយឱ្យអ្នកដាក់ App ដំណើរការបានយ៉ាងលឿន និងគ្មានកំហុស។'
               ],
-              code: '#!/bin/bash\ngit pull origin main\ncomposer install --no-dev --optimize-autoloader\nphp artisan migrate --force\nphp artisan optimize\nphp artisan view:cache\nphp artisan icons:cache # បើមានប្រើ icons package',
+              code: '#!/bin/bash\ngit pull origin main\ncomposer install --no-dev --optimize-autoloader\nphp artisan migrate --force\nphp artisan optimize\nnpm run build\nphp artisan up',
               language: 'bash'
+            },
+            {
+              id: '12.1.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Security**: បិទ Debug mode ជានិច្ចលើ Production។',
+                '**Optimization**: ប្រើ "php artisan optimize" ដើម្បីបង្កើនល្បឿន។',
+                '**Automation**: បង្កើត Script សម្រាប់ Deploy ដើម្បីកាត់បន្ថយកំហុសដោយដៃ។'
+              ],
+              insight: 'ការរៀបចំបានល្អនៅថ្ងៃ Deploy នឹងជួយឱ្យអ្នកគេងលក់ស្រួលនៅពេលយប់។'
             }
           ]
         },
@@ -455,39 +872,78 @@ export const part4: Part = {
           slides: [
             {
               id: '12.2.0',
-              title: 'Deployment Workflows',
-              titleEn: 'Deployment Workflows',
-              type: 'concept',
+              title: 'Choosing Your Strategy',
+              titleEn: 'Deployment Strategies',
+              type: 'intro',
               content: [
-                '**Manual**: ការប្រើ FTP/SSH (មិនត្រូវបានណែនាំសម្រាប់កម្រិតអាជីពទេ)។',
-                '**PaaS**: ប្រើ Laravel Forge ឬ Vapor (ស្វ័យប្រវត្តិ និងងាយស្រួលគ្រប់គ្រង)។',
-                '**Self-Managed**: រៀបចំ Nginx + PHP-FPM លើ VPS ដោយខ្លួនឯង (DigitalOcean, AWS)។'
+                '**Scaling Options**: មានវិធីសាស្ត្រច្រើនយ៉ាងដើម្បីដាក់ App របស់អ្នកឱ្យដើរលើ Internet (ពីតម្លៃថោកបំផុត ទៅដល់ស្ដង់ដារសហគ្រាស)។',
+                '**Ease vs Control**: ជម្រើសនីមួយៗមានតុល្យភាពរវាង "ភាពងាយស្រួល" និង "ការគ្រប់គ្រងដោយខ្លួនឯង"។',
+                '**Automation**: មិនថាក្រុមតូច ឬធំ ការប្រើប្រាស់ស្វ័យប្រវត្តិកម្ម (CI/CD) គឺជាគន្លឹះនៃភាពជោគជ័យ។'
               ],
-              insight: 'Laravel Forge គឺជាជម្រើសដ៏ល្អបំផុត (Gold Standard) សម្រាប់ដាក់ App ដំណើរការដោយងាយស្រួល។'
+              animation: 'deployment',
+              insight: 'ជម្រើសដ៏ល្អបំផុតមិនមែនជាជម្រើសដែលថ្លៃបំផុតទេ ប៉ុន្តែជាជម្រើសដែលសមស្របនឹងទំហំ App និងចំណេះដឹងរបស់ក្រុមការងារ។'
             },
             {
               id: '12.2.1',
+              title: 'Deployment Workflows',
+              titleEn: 'Hosting Types',
+              type: 'concept',
+              content: [
+                '**Shared Hosting**: តម្លៃថោក ប៉ុន្តែពិបាកគ្រប់គ្រង (មិនត្រូវបានណែនាំសម្រាប់ Laravel ទេ)។',
+                '**VPS (Virtual Private Server)**: ដូចជា DigitalOcean ឬ AWS (អ្នកគ្រប់គ្រង Nginx + PHP ដោយខ្លួនឯង)។',
+                '**PaaS (Platform as a Service)**: ដូចជា Laravel Forge ឬ Vapor (ស្វ័យប្រវត្តិ និងងាយស្រួលគ្រប់គ្រងបំផុត)។'
+              ],
+              insight: 'Laravel Forge គឺជាជម្រើស "Gold Standard" សម្រាប់ Developer អាជីព។'
+            },
+            {
+              id: '12.2.2',
               title: 'Nginx Configuration',
               titleEn: 'Nginx Configuration',
               type: 'code',
               content: [
-                'Nginx ត្រូវចង្អុលទៅកាន់ directory `public/` មិនមែន root នៃ project ទេ។',
-                'រាល់ requests ទាំងអស់ត្រូវតែឆ្លងកាត់ `index.php`។'
+                '**The Entry Point**: Nginx ត្រូវចង្អុលទៅកាន់ Directory `public/` មិនមែន Root នៃ Project ទេ។',
+                '**Request Handling**: រាល់ Requests ទាំងអស់ត្រូវតែឆ្លងកាត់ `index.php` ដើម្បីឱ្យ Laravel ចាត់ចែង។'
               ],
-              code: 'server {\n    listen 80;\n    server_name example.com;\n    root /var/www/my-app/public;\n\n    location / {\n        try_files $uri $uri/ /index.php?$query_string;\n    }\n}',
+              code: 'server {\n    listen 80;\n    server_name example.com;\n    root /var/www/my-app/public;\n\n    index index.php;\n\n    location / {\n        try_files $uri $uri/ /index.php?$query_string;\n    }\n\n    location ~ \\.php$ {\n        include snippets/fastcgi-php.conf;\n        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;\n    }\n}',
               language: 'nginx'
             },
             {
-              id: '12.2.2',
-              title: 'Real-world Demo: CI/CD Pipeline',
-              titleEn: 'CI/CD Pipeline Demo',
+              id: '12.2.3',
+              title: 'SSL / HTTPS (Security)',
+              titleEn: 'SSL / HTTPS',
               type: 'code',
               content: [
-                '**Continuous Integration**: បង្ហាញពីរបៀបប្រើ GitHub Actions ដើម្បីដំណើរការតេស្ត (Tests) ដោយស្វ័យប្រវត្តិរាល់ពេលអ្នក Push កូដថ្មី។',
-                '**Safety Gate**: បញ្ឈប់ការ Deploy ប្រសិនបើមានការធ្វើតេស្តណាមួយមិនជាប់ (Failed)។'
+                '**Data Privacy**: ការប្រើប្រាស់ HTTPS គឺជាកាតព្វកិច្ចសម្រាប់ App ទំនើប ដើម្បីការពារទិន្នន័យអ្នកប្រើប្រាស់។',
+                '**Let\'s Encrypt**: ជាសេវាកម្មផ្ដល់ SSL Free ដែលអ្នកអាចតម្លើងបានយ៉ាងងាយស្រួលជាមួយ Certbot។'
               ],
-              code: '# .github/workflows/tests.yml\nname: Run Tests\non: [push]\njobs:\n  laravel-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - name: Run Tests\n        run: php artisan test',
-              language: 'yaml'
+              code: '# តម្លើង Certbot សម្រាប់ Nginx\nsudo apt install certbot python3-certbot-nginx\n\n# បង្កើត SSL ស្វ័យប្រវត្តិ\nsudo certbot --nginx -d yourdomain.com',
+              language: 'bash',
+              insight: 'App ដែលគ្មាន HTTPS នឹងត្រូវ Browser បង្ហាញព្រមានថា "Not Secure" ដែលធ្វើឱ្យ User ខ្លាចមិនហ៊ានប្រើ។'
+            },
+            {
+              id: '12.2.4',
+              title: 'CI/CD with GitHub Actions',
+              titleEn: 'CI/CD Pipeline',
+              type: 'code',
+              content: [
+                '**Automation**: រត់តេស្ត (Tests) និងដាក់ឱ្យដំណើរការ (Deploy) ដោយស្វ័យប្រវត្តិរាល់ពេលអ្នក Push កូដថ្មី។',
+                '**Safety**: បញ្ឈប់ការ Deploy ភ្លាមៗ ប្រសិនបើការធ្វើតេស្តណាមួយមិនជាប់ (Failed)។'
+              ],
+              code: '# .github/workflows/deploy.yml\nname: Deploy to Production\non: [push]\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - name: Run Tests\n        run: php artisan test\n      - name: Deploy\n        run: ssh production-server "cd /app && ./deploy.sh"',
+              language: 'yaml',
+              animation: 'cicd_flow'
+            },
+            {
+              id: '12.2.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Automation**: កុំ Deploy ដោយប្រើដៃ (FTP/SSH Manual) ត្រូវប្រើ Script ឬ CI/CD។',
+                '**HTTPS**: ប្រើប្រាស់ SSL ជានិច្ច ទោះបីជា App តូចក៏ដោយ។',
+                '**Zero-Downtime**: ប្រើប្រាស់វិធីសាស្ត្រដែលមិនឱ្យ App គាំងក្នុងពេលកំពុង Deploy។'
+              ],
+              insight: 'ការប្រើប្រាស់ Tool ត្រឹមត្រូវ ជួយឱ្យអ្នកមានពេលវេលាផ្ដោតលើការសរសេរកូដ ច្រើនជាងការជួសជុល Server។'
             }
           ]
         },
@@ -504,47 +960,98 @@ export const part4: Part = {
               titleEn: 'Security by Default',
               type: 'intro',
               content: [
-                'Laravel ការពារអ្នកពីការវាយប្រហារទូទៅជាច្រើនតាំងពីដំបូង។',
-                'ទោះជាយ៉ាងណា អ្នកនៅតែត្រូវអនុវត្តតាមគោលការណ៍សុវត្ថិភាព។',
-                'យើងនឹងសិក្សាអំពី XSS, CSRF, និង SQL Injection។'
+                '**Proactive Defense**: Laravel ការពារអ្នកពីការវាយប្រហារទូទៅជាច្រើនតាំងពីដំបូងបំផុត។',
+                '**Best Practices**: ទោះជាយ៉ាងណា អ្នកនៅតែត្រូវអនុវត្តតាមគោលការណ៍សុវត្ថិភាពដើម្បីការពារ User របស់អ្នក។',
+                '**The Core Trio**: យើងនឹងសិក្សាអំពីការការពារ XSS, CSRF, និង SQL Injection។'
               ],
-              animation: 'security'
+              animation: 'security_flow',
+              insight: 'សុវត្ថិភាពមិនមែនជារឿង "បន្ថែម" ទេ ប៉ុន្តែវាជាគ្រឹះនៃរាល់កូដដែលអ្នកសរសេរ។'
             },
             {
               id: '12.3.1',
-              title: 'Preventing XSS & CSRF',
-              titleEn: 'Preventing XSS & CSRF',
+              title: 'Preventing XSS',
+              titleEn: 'XSS Protection',
               type: 'concept',
               content: [
-                '**XSS (Cross-Site Scripting)**: Laravel ប្រើ `{{ $var }}` ដើម្បីសម្អាត HTML ដោយស្វ័យប្រវត្តិ។',
-                '**CSRF (Cross-Site Request Forgery)**: ត្រូវប្រើ `@csrf` ជានិច្ចនៅក្នុង forms។',
-                '**Mass Assignment**: ត្រូវកំណត់ `$fillable` ឬ `$guarded` នៅក្នុង Models ជានិច្ច។'
+                '**Cross-Site Scripting (XSS)**: ជាការលួចបញ្ចូលកូដ JS ដែលមានគ្រោះថ្នាក់ទៅក្នុងគេហទំព័ររបស់អ្នក។',
+                '**Auto-Escaping**: Laravel ប្រើ `{{ $var }}` ដើម្បីសម្អាត HTML ដោយស្វ័យប្រវត្តិ (Blade)។',
+                '**Trust Level**: ប្រើ `{!! $var !!}` តែក្នុងករណីដែលអ្នកទុកចិត្តប្រភពទិន្នន័យនោះ 100% ប៉ុណ្ណោះ។'
               ],
-              insight: 'ប្រើ `{!! $var !!}` តែក្នុងករណីដែលអ្នកទុកចិត្តប្រភពទិន្នន័យនោះ 100% ប៉ុណ្ណោះ។'
+              insight: 'ការប្រើ {{ }} ជួយបំប្លែង <script> ឱ្យទៅជាអត្ថបទធម្មតាដែលមិនអាចដំណើរការបាន។'
             },
             {
               id: '12.3.2',
-              title: 'SQL Injection Protection',
-              titleEn: 'SQL Injection Protection',
+              title: 'CSRF Protection',
+              titleEn: 'CSRF Protection',
               type: 'code',
               content: [
-                'មិនត្រូវបញ្ចូល input ពីអ្នកប្រើប្រាស់ទៅក្នុង raw SQL queries ដោយផ្ទាល់ឡើយ។',
-                'Eloquent និង Query Builder ប្រើប្រាស់ **PDO Parameter Binding** ដោយស្វ័យប្រវត្តិដើម្បីការពារបញ្ហានេះ។'
+                '**Cross-Site Request Forgery**: ជាការក្លែងបន្លំសំណើ (Request) ពីគេហទំព័រផ្សេងមកកាន់ App របស់អ្នក។',
+                '**CSRF Token**: Laravel ប្រើ Token តែមួយគត់សម្រាប់រាល់ Session ដើម្បីផ្ទៀងផ្ទាត់ថាសំណើនោះមកពី User ពិតប្រាកដ។'
               ],
-              code: '// មានសុវត្ថិភាព (ប្រើ Binding ស្វ័យប្រវត្តិ)\n$users = DB::table("users")->where("name", $request->input("name"))->get();\n\n// មិនមានសុវត្ថិភាព (ហាមធ្វើបែបនេះដាច់ខាត!)\n$users = DB::select("SELECT * FROM users WHERE name = \'" . $name . "\'");',
+              code: '<!-- ប្រើ @csrf ក្នុងគ្រប់ HTML Forms -->\n<form method="POST" action="/profile">\n    @csrf\n    <input type="text" name="name">\n    <button type="submit">Update</button>\n</form>',
               language: 'php'
             },
             {
               id: '12.3.3',
-              title: 'Real-world Demo: Production Security Audit',
+              title: 'SQL Injection Protection',
+              titleEn: 'SQL Injection',
+              type: 'code',
+              content: [
+                '**The Risk**: ជាការបញ្ជូនកូដ SQL តាមរយៈ Input ដើម្បីលួចមើល ឬលុបទិន្នន័យក្នុង Database។',
+                '**PDO Binding**: Eloquent និង Query Builder ប្រើប្រាស់ Parameter Binding ដើម្បីការពារបញ្ហានេះដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: '// ✅ សុវត្ថិភាព (Eloquent នឹង Clean ទិន្នន័យឱ្យ)\n$user = User::where("email", $request->email)->first();\n\n// ❌ គ្រោះថ្នាក់ (ហាមសរសេរ Raw SQL បែបនេះ)\n$user = DB::select("SELECT * FROM users WHERE email = \'$email\'");',
+              language: 'php'
+            },
+            {
+              id: '12.3.4',
+              title: 'Password Hashing',
+              titleEn: 'Secure Passwords',
+              type: 'code',
+              content: [
+                '**Hashing vs Encryption**: Password ត្រូវតែធ្វើ "Hash" (មិនអាចបកស្រាយវិញបាន) មិនមែន "Encrypt" ទេ។',
+                '**Bcrypt / Argon2**: Laravel ប្រើប្រាស់ Algorithm ដែលខ្លាំងបំផុតដើម្បីការពារ Password របស់ User។'
+              ],
+              code: 'use Illuminate\\Support\\Facades\\Hash;\n\n// ការបង្កើត Hash\n$hashedPassword = Hash::make($request->password);\n\n// ការផ្ទៀងផ្ទាត់\nif (Hash::check("plain-password", $hashedPassword)) {\n    // Password ត្រឹមត្រូវ\n}',
+              language: 'php'
+            },
+            {
+              id: '12.3.5',
+              title: 'Rate Limiting (Throttle)',
+              titleEn: 'Rate Limiting',
+              type: 'code',
+              content: [
+                '**Brute Force Defense**: ការពារការលួចទាយ Password ឬការបុក Request ច្រើនពេកមកកាន់ Server។',
+                '**Throttle**: កំណត់ចំនួនដងដែល User ម្នាក់អាចចូលប្រើប្រាស់ Route ណាមួយក្នុងរយៈពេលជាក់លាក់។'
+              ],
+              code: '// កំណត់ក្នុង routes/api.php\nRoute::middleware("throttle:60,1")->group(function () {\n    Route::get("/user", function () {\n        // ...\n    });\n});',
+              language: 'php',
+              insight: '60,1 មានន័យថាអនុញ្ញាតឱ្យហៅបាន 60 ដងក្នុងរយៈពេល 1 នាទី។'
+            },
+            {
+              id: '12.3.6',
+              title: 'Real-world Demo: Security Audit',
               titleEn: 'Security Audit Demo',
               type: 'code',
               content: [
-                '**Security Check**: របៀបប្រើ Command `about` ដើម្បីពិនិត្យមើលស្ថានភាពសុវត្ថិភាព និងការកំណត់ (Config) របស់ App នៅលើ Production។',
-                '**Vulnerability Scanning**: ប្រើប្រាស់ `composer audit` ដើម្បីឆែកមើលថាតើបណ្ណាល័យ (Packages) ដែលអ្នកប្រើមានចន្លោះប្រហោងសុវត្ថិភាពឬអត់។'
+                '**Vulnerability Scanning**: ប្រើប្រាស់ `composer audit` ដើម្បីឆែកមើលថាបណ្ណាល័យដែលអ្នកប្រើមានចន្លោះប្រហោងសុវត្ថិភាពឬអត់។',
+                '**Config Check**: ប្រើ `php artisan about` ដើម្បីពិនិត្យមើលស្ថានភាព Security ទូទៅ។'
               ],
-              code: '# ឆែកមើលស្ថានភាពទូទៅ និង Security\nphp artisan about\n\n# ឆែកមើលចន្លោះប្រហោងក្នុង Packages\ncomposer audit',
+              code: '# ឆែកមើលចន្លោះប្រហោងក្នុង Packages\ncomposer audit\n\n# ពិនិត្យមើល Config និង Security status\nphp artisan about',
               language: 'bash'
+            },
+            {
+              id: '12.3.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Always Escape**: ប្រើ "{{ }}" និងចៀសវាង "{!! !!}" ជាដាច់ខាត។',
+                '**CSRF Everywhere**: ប្រើ @csrf ក្នុងគ្រប់ POST Forms។',
+                '**Update Regularly**: Run "composer update" និង "audit" ឱ្យបានទៀងទាត់។',
+                '**Mass Assignment**: កំណត់ $fillable ឱ្យបានត្រឹមត្រូវក្នុង Models។'
+              ],
+              insight: 'ការការពារដែលល្អបំផុត គឺការមិនទុកចិត្តលើ Input របស់អ្នកប្រើប្រាស់ (Never trust user input)។'
             }
           ]
         },
@@ -604,6 +1111,18 @@ export const part4: Part = {
               ],
               code: '// Cache ជាមួយ Tags (សម្រាប់ Redis/Memcached)\nCache::tags(["products", "active"])->remember("list", 3600, function() {\n    return Product::where("active", true)->get();\n});\n\n// សម្អាតតែ Cache ក្នុង Tag "products"\nCache::tags("products")->flush();',
               language: 'php'
+            },
+            {
+              id: '12.4.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Queues**: ប្រើ Background Jobs សម្រាប់រាល់ការងារដែលចំណាយពេលលើសពី ១ វិនាទី។',
+                '**Caching**: Cache ទិន្នន័យដែលទាញយឺត ឬមិនសូវផ្លាស់ប្ដូរ។',
+                '**N+1 Queries**: ប្រើ Eager Loading ("with()") ដើម្បីកាត់បន្ថយការងារ Database។'
+              ],
+              insight: 'App ដែលដើរលឿន មិនត្រឹមតែផ្ដល់បទពិសោធន៍ល្អដល់ User ទេ ប៉ុន្តែថែមទាំងសន្សំ Resource របស់ Server ទៀតផង។'
             }
           ]
         }
@@ -669,6 +1188,18 @@ export const part4: Part = {
               ],
               code: '// ផ្ញើសារ (Server-side)\nMessageSent::dispatch($user, $message);\n\n// ស្ដាប់សារ (Client-side ជាមួយ Echo)\nEcho.private(`chat.${roomId}`)\n    .listen("MessageSent", (e) => {\n        console.log("សារថ្មី:", e.message);\n    });',
               language: 'javascript'
+            },
+            {
+              id: '13.1.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Reverb/Pusher**: ជ្រើសរើស Tool ណាដែលស័ក្តិសមនឹង Infrastructure របស់អ្នក។',
+                '**Client-side Echo**: ប្រើ Laravel Echo ដើម្បីសម្រួលដល់ការស្ដាប់ Events ក្នុង JavaScript។',
+                '**Private Channels**: តែងតែការពារ Channels ដែលមានទិន្នន័យឯកជនរបស់ User។'
+              ],
+              insight: 'Real-time features ធ្វើឱ្យ App របស់អ្នកមានភាពរស់រវើក និងទំនើប។'
             }
           ]
         },
@@ -713,6 +1244,18 @@ export const part4: Part = {
               ],
               code: '# ដំឡើង Laravel Pulse\ncomposer require laravel/pulse\nphp artisan vendor:publish --provider="Laravel\\Pulse\\PulseServiceProvider"\n\n# បន្ទាប់មកចូលមើលតាមរយៈ URL: /pulse',
               language: 'bash'
+            },
+            {
+              id: '13.2.3',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Laravel Pulse**: ប្រើសម្រាប់តាមដានស្ថានភាពទូទៅនៅលើ production។',
+                '**Telescope**: ប្រើសម្រាប់តែក្នុង Local Development ប៉ុណ្ណោះ (ហាមប្រើលើ production)។',
+                '**Monitoring**: ត្រូវដឹងពីបញ្ហាមុនពេល User ផ្ដល់ដំណឹងមកកាន់អ្នក។'
+              ],
+              insight: 'ការមានឧបករណ៍សង្កេតការណ៍ល្អ ជួយឱ្យអ្នកដោះស្រាយបញ្ហាបានលឿនដូចផ្លេកបន្ទោរ។'
             }
           ]
         },
@@ -725,8 +1268,8 @@ export const part4: Part = {
           slides: [
             {
               id: '13.3.0',
-              title: 'Congratulations!',
-              titleEn: 'Congratulations!',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
               type: 'summary',
               content: [
                 'អ្នកបានបញ្ចប់វគ្គសិក្សា **Laravel Backend Expert Course** នេះហើយ។',
@@ -803,6 +1346,18 @@ export const part4: Part = {
               ],
               code: 'public function store(StoreProductRequest $request) {\n    $product = Product::create($request->validated());\n    \n    return new ProductResource($product);\n}',
               language: 'php'
+            },
+            {
+              id: '13.4.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Full Stack Integration**: ធានាថារាល់ចំណេះដឹងទាំងអស់ត្រូវបានបញ្ចូលគ្នាបានយ៉ាងល្អ។',
+                '**Code Review**: ពិនិត្យមើលកូដឡើងវិញដើម្បីធានាភាពស្អាត និងសុវត្ថិភាព។',
+                '**Final Polish**: ផ្ទៀងផ្ទាត់រាល់ Error messages និង UI ឱ្យបានហ្មត់ចត់បំផុត។'
+              ],
+              insight: 'គម្រោងបញ្ចប់ការសិក្សា គឺជាសក្ខីភាពនៃសមត្ថភាពពិតប្រាកដរបស់អ្នក។'
             }
           ]
         },
@@ -863,6 +1418,18 @@ export const part4: Part = {
               ],
               correctAnswer: 1,
               insight: 'Queues ជួយឱ្យ App របស់អ្នកនៅតែមានភាពរហ័សរហួន (Responsive) ដោយបោះការងារយឺតៗទៅធ្វើនៅ background។'
+            },
+            {
+              id: '13.5.3',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Continuous Learning**: បន្តអាន Documentation របស់ Laravel ជានិច្ចព្រោះវាមានការ Update ថ្មីៗរហូត។',
+                '**Community**: ចូលរួមក្នុងសហគមន៍ Laravel ដើម្បីរៀនពីបច្ចេកទេសថ្មីៗពី Developer ដទៃ។',
+                '**Practice**: គ្មានអ្វីល្អជាងការអនុវត្តផ្ទាល់នោះទេ។ បន្តបង្កើត Projects ថ្មីៗឱ្យបានច្រើន!'
+              ],
+              insight: 'ជោគជ័យរបស់អ្នកក្នុងនាមជា Backend Developer ទើបតែចាប់ផ្ដើមប៉ុណ្ណោះ!'
             }
           ]
         }

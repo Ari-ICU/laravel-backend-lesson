@@ -86,10 +86,22 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Complete Implementation**: នេះគឺជាឧទាហរណ៍នៃ Form ចុះឈ្មោះដែលមានការការពារ CSRF និងការប្រើប្រាស់ POST Method ពេញលេញ។',
-                '**Old Input**: ប្រើ `old()` helper ដើម្បីរក្សាទុកតម្លៃដែល user បានបំពេញ ប្រសិនបើមាន error កើតឡើង។'
+                '**Old Input**: ប្រើ "old()" helper ដើម្បីរក្សាទុកតម្លៃដែល user បានបំពេញ ប្រសិនបើមាន error កើតឡើង។'
               ],
-              code: '<form action="{{ route("register") }}" method="POST" class="space-y-4">\n    @csrf\n\n    <div>\n        <label>ឈ្មោះពេញ:</label>\n        <input type="text" name="name" value="{{ old("name") }}" class="form-input">\n    </div>\n\n    <div>\n        <label>អ៊ីមែល:</label>\n        <input type="email" name="email" value="{{ old("email") }}" class="form-input">\n    </div>\n\n    <div>\n        <label>ពាក្យសម្ងាត់:</label>\n        <input type="password" name="password" class="form-input">\n    </div>\n\n    <button type="submit" class="btn-primary">ចុះឈ្មោះឥឡូវនេះ</button>\n</form>',
+              code: '<form action="{{ route(\"register\") }}" method=\"POST\" class=\"space-y-4\">\n    @csrf\n\n    <div>\n        <label>ឈ្មោះពេញ:</label>\n        <input type=\"text\" name=\"name\" value=\"{{ old(\"name\") }}\" class=\"form-input\">\n    </div>\n\n    <div>\n        <label>អ៊ីមែល:</label>\n        <input type=\"email\" name=\"email\" value=\"{{ old(\"email\") }}\" class=\"form-input\">\n    </div>\n\n    <div>\n        <label>ពាក្យសម្ងាត់:</label>\n        <input type=\"password\" name=\"password\" class=\"form-input\">\n    </div>\n\n    <button type=\"submit\" class=\"btn-primary\">ចុះឈ្មោះឥឡូវនេះ</button>\n</form>',
               language: 'php'
+            },
+            {
+              id: '6.1.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**CSRF Protection**: ប្រើ "@csrf" ជានិច្ចសម្រាប់គ្រប់ POST forms ដើម្បីសុវត្ថិភាព។',
+                '**Method Spoofing**: ប្រើ "@method" សម្រាប់ PUT, PATCH និង DELETE ព្រោះ HTML គាំទ្រតែ GET/POST។',
+                '**User Experience**: ប្រើ "old()" helper ដើម្បីកុំឱ្យ user ពិបាកសរសេរឡើងវិញពេលមាន error។'
+              ],
+              insight: 'Form ដែលមានសុវត្ថិភាព និងងាយស្រួលប្រើ ជួយឱ្យ User ចង់ប្រើ App របស់អ្នកកាន់តែខ្លាំង។'
             }
           ]
         },
@@ -175,10 +187,22 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Logic Overview**: ឧទាហរណ៍នៃការ Validate ទិន្នន័យសម្រាប់ Update Profile ដែលរួមមានការឆែក Email ស្ទួន (លើកលែងតែ Email ខ្លួនឯង)។',
-                '**Clean Controller**: រាល់ Validation logic ត្រូវបានដាក់ក្នុង `StoreProfileRequest` ដើម្បីឱ្យ Controller ងាយស្រួលអាន។'
+                '**Clean Controller**: រាល់ Validation logic ត្រូវបានដាក់ក្នុង "StoreProfileRequest" ដើម្បីឱ្យ Controller ងាយស្រួលអាន។'
               ],
-              code: '// ក្នុង StoreProfileRequest.php\npublic function rules() {\n    return [\n        "name" => "required|string|max:100",\n        "email" => "required|email|unique:users,email," . auth()->id(),\n        "bio" => "nullable|min:50|max:500",\n        "birthdate" => "required|date|before:today",\n    ];\n}\n\n// ក្នុង ProfileController.php\npublic function update(StoreProfileRequest $request) {\n    $user = auth()->user();\n    $user->update($request->validated());\n    \n    return back()->with("success", "Profile updated successfully!");\n}',
+              code: '// ក្នុង StoreProfileRequest.php\npublic function rules() {\n    return [\n        \"name\" => \"required|string|max:100\",\n        \"email\" => \"required|email|unique:users,email,\" . auth()->id(),\n        \"bio\" => \"nullable|min:50|max:500\",\n        \"birthdate\" => \"required|date|before:today\",\n    ];\n}\n\n// ក្នុង ProfileController.php\npublic function update(StoreProfileRequest $request) {\n    $user = auth()->user();\n    $user->update($request->validated());\n    \n    return back()->with(\"success\", \"Profile updated successfully!\");\n}',
               language: 'php'
+            },
+            {
+              id: '6.2.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Never Trust Input**: តែងតែ Validate រាល់ទិន្នន័យដែលផ្ញើមកពី User ដោយគ្មានការលើកលែង។',
+                '**Form Requests**: បំបែក Validation Logic ទៅកាន់ Class ដាច់ដោយឡែកដើម្បីឱ្យ Controller ស្រឡះ។',
+                '**Error Clarity**: បង្ហាញសារព្រមានឱ្យចំគោលដៅ (Inline Error) ដើម្បីឱ្យ User ងាយស្រួលកែតម្រូវ។'
+              ],
+              insight: 'Validation គឺជាខែលការពារទីមួយដែលធានាបាននូវសុវត្ថិភាព និងភាពត្រឹមត្រូវនៃទិន្នន័យ។'
             }
           ]
         },
@@ -274,10 +298,22 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Full Workflow**: នេះគឺជាកូដពេញលេញសម្រាប់ Upload Avatar, លុបរូបភាពចាស់, និងរក្សាទុកឈ្មោះរូបភាពថ្មីចូលក្នុង Database។',
-                '**Security**: ប្រើ `extension()` ជំនួសឱ្យការទុកចិត្តឈ្មោះ file ដើមរបស់ User។'
+                '**Security**: ប្រើ "extension()" ជំនួសឱ្យការទុកចិត្តឈ្មោះ file ដើមរបស់ User។'
               ],
-              code: 'public function updateAvatar(Request $request) {\n    $request->validate([\n        "avatar" => "required|image|max:1024", // 1MB Max\n    ]);\n\n    $user = auth()->user();\n\n    if ($request->hasFile("avatar")) {\n        // 1. លុបរូបចាស់ (បើមាន)\n        if ($user->avatar) {\n            Storage::delete($user->avatar);\n        }\n\n        // 2. Upload រូបថ្មី\n        $path = $request->file("avatar")->store("avatars", "public");\n\n        // 3. Update ក្នុង DB\n        $user->update(["avatar" => $path]);\n    }\n\n    return back()->with("status", "Avatar updated!");\n}',
+              code: 'public function updateAvatar(Request $request) {\n    $request->validate([\n        \"avatar\" => \"required|image|max:1024\", // 1MB Max\n    ]);\n\n    $user = auth()->user();\n\n    if ($request->hasFile(\"avatar\")) {\n        // 1. លុបរូបចាស់ (បើមាន)\n        if ($user->avatar) {\n            Storage::delete($user->avatar);\n        }\n\n        // 2. Upload រូបថ្មី\n        $path = $request->file(\"avatar\")->store(\"avatars\", \"public\");\n\n        // 3. Update ក្នុង DB\n        $user->update([\"avatar\" => $path]);\n    }\n\n    return back()->with(\"status\", \"Avatar updated!\");\n}',
               language: 'php'
+            },
+            {
+              id: '6.3.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Enctype Attribute**: ធានាថា Form របស់អ្នកមាន "enctype=\\"multipart/form-data\\"" ជានិច្ច។',
+                '**File Validation**: ឆែកប្រភេទ (Mimes) និងទំហំ (Max) ឯកសារឱ្យបានច្បាស់លាស់មុននឹង Upload។',
+                '**Storage Link**: ប្រើ "storage:link" ដើម្បីឱ្យរូបភាពអាចបង្ហាញជាសាធារណៈបានតាមរយៈ URL។'
+              ],
+              insight: 'ការគ្រប់គ្រងឯកសារបានល្អ ជួយសន្សំសំចៃទំហំផ្ទុក និងបង្កើនសុវត្ថិភាព Application។'
             }
           ]
         }
@@ -356,6 +392,18 @@ export const part3: Part = {
               ],
               code: '// 1. ដំឡើងតាមរយៈ Composer\ncomposer require laravel/breeze --dev\n\n// 2. ដំឡើង Starter Kit (Blade version)\nphp artisan breeze:install blade\n\n// 3. Migrate Database និងដំឡើង Assets\nphp artisan migrate\nnpm install && npm run dev',
               language: 'php'
+            },
+            {
+              id: '7.1.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Starter Kits**: ប្រើ Breeze ឬ Jetstream សម្រាប់ការដំឡើងប្រព័ន្ធ Auth ដែលមានស្ដង់ដារ និងសុវត្ថិភាព។',
+                '**Session Security**: ប្រើ "regenerate()" បន្ទាប់ពី Login ជោគជ័យដើម្បីការពារ Session Fixation។',
+                '**Blade Directives**: ប្រើ "@auth" និង "@guest" ដើម្បីគ្រប់គ្រងការបង្ហាញ UI ឱ្យស្របតាមស្ថានភាពអ្នកប្រើ។'
+              ],
+              insight: 'កុំព្យាយាមបង្កើតប្រព័ន្ធ Auth ដោយខ្លួនឯង ប្រសិនបើមានដំណោះស្រាយស្ដង់ដារដែលល្អជាង។'
             }
           ]
         },
@@ -421,8 +469,20 @@ export const part3: Part = {
                 '**Custom Guarding**: ការប្រើប្រាស់ Middleware ដើម្បីការពារ Route សម្រាប់តែ Admin ប៉ុណ្ណោះ។',
                 '**Reusability**: អ្នកអាចដាក់ Middleware នេះលើ Route ណាមួយដែលចង់បាន។'
               ],
-              code: '// ក្នុង routes/web.php\nRoute::middleware(["auth", "admin"])->group(function () {\n    Route::get("/admin/settings", [AdminController::class, "settings"]);\n    Route::delete("/users/{user}", [AdminController::class, "destroy"]);\n});\n\n// ក្នុង EnsureUserIsAdmin Middleware\npublic function handle($request, $next) {\n    if ($request->user()->role !== "admin") {\n        abort(403, "សុំទោស អ្នកមិនមានសិទ្ធិចូលមើលទំព័រនេះទេ។");\n    }\n    return $next($request);\n}',
+              code: '// ក្នុង routes/web.php\nRoute::middleware([\"auth\", \"admin\"])->group(function () {\n    Route::get(\"/admin/settings\", [AdminController::class, \"settings\"]);\n    Route::delete(\"/users/{user}\", [AdminController::class, \"destroy\"]);\n});\n\n// ក្នុង EnsureUserIsAdmin Middleware\npublic function handle($request, $next) {\n    if ($request->user()->role !== \"admin\") {\n        abort(403, \"សុំទោស អ្នកមិនមានសិទ្ធិចូលមើលទំព័រនេះទេ។\");\n    }\n    return $next($request);\n}',
               language: 'php'
+            },
+            {
+              id: '7.2.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Centralized Protection**: ប្រើ Middleware ដើម្បីការពារ Groups នៃ Routes ក្នុងពេលតែមួយ។',
+                '**Custom Logic**: បង្កើត Middleware ផ្ទាល់ខ្លួនសម្រាប់កិច្ចការដដែលៗ (Role Check, Localization)។',
+                '**Clean Controllers**: កុំសរសេរ Check សិទ្ធិក្នុង Controller Methods បើអាចប្រើ Middleware បាន។'
+              ],
+              insight: 'Middleware គឺជាអ្នកយាមទ្វារដ៏ឆ្លាតវៃដែលជួយសម្រាលការងាររបស់ Controller។'
             }
           ]
         },
@@ -491,8 +551,20 @@ export const part3: Part = {
                 '**Resource Safety**: ការប្រើប្រាស់ Policy ដើម្បីធានាថាមានតែម្ចាស់ Post ប៉ុណ្ណោះ ទើបអាចកែប្រែ ឬលុប Post របស់ខ្លួនបាន។',
                 '**Automatic Binding**: Laravel នឹងឆែកមើល Model ស្វ័យប្រវត្តិ។'
               ],
-              code: '// ក្នុង PostPolicy.php\npublic function update(User $user, Post $post) {\n    return $user->id === $post->user_id;\n}\n\n// ក្នុង Controller\npublic function edit(Post $post) {\n    $this->authorize("update", $post);\n    return view("posts.edit", compact("post"));\n}\n\n// ក្នុង Blade\n@can("update", $post)\n    <button>Edit</button>\n@endcan',
+              code: '// ក្នុង PostPolicy.php\npublic function update(User $user, Post $post) {\n    return $user->id === $post->user_id;\n}\n\n// ក្នុង Controller\npublic function edit(Post $post) {\n    $this->authorize(\"update\", $post);\n    return view(\"posts.edit\", compact(\"post\"));\n}\n\n// ក្នុង Blade\n@can(\"update\", $post)\n    <button>Edit</button>\n@endcan',
               language: 'php'
+            },
+            {
+              id: '7.3.5',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Policy First**: ប្រើ Policies សម្រាប់រៀបចំសិទ្ធិលើ Model នីមួយៗឱ្យមានរបៀបរៀបរយ។',
+                '**Blade Guarding**: ប្រើ "@can" ដើម្បីលាក់ប៊ូតុង ឬមុខងារណាដែល User មិនមានសិទ្ធិប្រើប្រាស់។',
+                '**Controller Safety**: ប្រើ "$this->authorize()" ជានិច្ចដើម្បីបញ្ជាក់សិទ្ធិម្ដងទៀតក្នុង Backend។'
+              ],
+              insight: 'ការផ្ដល់សិទ្ធិឱ្យបានត្រឹមត្រូវ គឺជាគន្លឹះនៃសុវត្ថិភាពទិន្នន័យក្នុង App ខ្នាតធំ។'
             }
           ]
         }
@@ -606,6 +678,18 @@ export const part3: Part = {
               ],
               code: '// Post.php\npublic function category() {\n    return $this->belongsTo(Category::class);\n}\n\npublic function tags() {\n    return $this->belongsToMany(Tag::class);\n}\n\n// Category.php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}',
               language: 'php'
+            },
+            {
+              id: '8.1.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Naming Consistency**: គោរពតាម Convention របស់ Laravel ដើម្បីឱ្យ Relationship ស្គាល់គ្នាដោយស្វ័យប្រវត្តិ។',
+                '**Inverse Relation**: កុំភ្លេចកំណត់ទំនាក់ទំនងបញ្ច្រាស (Inverse) ជានិច្ច (hasMany <-> belongsTo)។',
+                '**Pivot Control**: ប្រើ Many-to-Many ជាមួយ Pivot Table សម្រាប់ទំនាក់ទំនងដែលស្មុគស្មាញ។'
+              ],
+              insight: 'Relationship ដែលច្បាស់លាស់ ធ្វើឱ្យការទាញទិន្នន័យមានភាពងាយស្រួល និងរហ័ស។'
             }
           ]
         },
@@ -668,6 +752,18 @@ export const part3: Part = {
               code: '// ទាញយក Categories ជាមួយ Post ចុងក្រោយ និងម្ចាស់ Post នោះ\n$categories = Category::with(["latestPost.user"])\n    ->withCount("posts") // បន្ថែម posts_count column\n    ->get();\n\n// ក្នុង Blade\n@foreach($categories as $category)\n    <li>{{ $category->name }} ({{ $category->posts_count }} posts)</li>\n@endforeach',
               language: 'php',
               animation: 'dashboard_query'
+            },
+            {
+              id: '8.2.4',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Best Practices',
+              type: 'summary',
+              content: [
+                '**Eager Loading**: ប្រើ "with()" ជានិច្ចនៅពេលទាញទិន្នន័យក្នុង Loop ដើម្បីកាត់បន្ថយចំនួន Query។',
+                '**Lazy Loading**: ប្រើ "load()" តែនៅពេលណាដែលអ្នកមិនច្បាស់ថាត្រូវការទិន្នន័យនោះឬអត់។',
+                '**withCount()**: ប្រើវាដើម្បីទាញយកចំនួន Records កូនៗដោយមិនចាំបាច់ Load ទិន្នន័យទាំងអស់មក។'
+              ],
+              insight: 'Performance របស់ App អាស្រ័យលើរបៀបដែលអ្នក Query ទិន្នន័យពី Database។'
             }
           ]
         },
@@ -765,22 +861,6 @@ export const part3: Part = {
             },
             {
               id: '8.3.6',
-              title: 'សង្ខេប: Best Practices',
-              titleEn: 'Relationship Methods Summary',
-              type: 'summary',
-              content: [
-                '**save() / create()**: ប្រើជាមួយ `hasMany` / `hasOne` — បង្កើត Record ថ្មីមួយ ហើយ auto-set FK។',
-                '**saveMany() / createMany()**: ប្រើបង្កើត Records ច្រើន ក្នុង Loop តែមួយ — ជៀសវាង N+1 Writes។',
-                '**attach() / detach()**: ប្រើជាមួយ `belongsToMany` (Pivot) — បន្ថែម ឬដក connection ក្នុង pivot table។',
-                '**sync()**: ដ្ឋានល្អបំផុតក្នុង Update Forms — auto-add ដែលខ្វះ, auto-remove ដែលលើស។',
-                '**syncWithPivotValues()**: sync + extra pivot data (ឧ. expires_at) ក្នុង call តែមួយ។',
-                '**associate() / dissociate()**: ប្រើជាមួយ `belongsTo` — ផ្លាស់ប្ដូរ FK ដោយមានសុវត្ថិភាព + update relation cache។',
-                '**withPivot()**: ប្រកាសក្នុង Model ដើម្បី load extra columns ពី Pivot Table។'
-              ],
-              insight: 'ច្បាប់ចំណាំ: ប្រើ Eloquent relationship methods ជានិច្ច — ហាមមាន hardcoded FK assignments ដោយដៃ ព្រោះវានឹងនាំឱ្យ bugs ពិបាករកនៅពេលក្រោយ។'
-            },
-            {
-              id: '8.3.7',
               title: 'Real-world Demo: User Roles Sync',
               titleEn: 'User Roles Sync',
               type: 'code',
@@ -790,6 +870,22 @@ export const part3: Part = {
               ],
               code: 'public function update(Request $request, User $user) {\n    $request->validate([\n        "roles" => "required|array|min:1",\n        "roles.*" => "exists:roles,id"\n    ]);\n\n    // ធ្វើឱ្យ Roles ក្នុង DB ដូចទៅនឹង input ពី form\n    $user->roles()->sync($request->roles);\n\n    return back()->with("status", "User roles updated!");\n}',
               language: 'php'
+            },
+            {
+              id: '8.3.7',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Relationship Methods Summary',
+              type: 'summary',
+              content: [
+                '**save() / create()**: ប្រើជាមួយ "hasMany" / "hasOne" — បង្កើត Record ថ្មីមួយ ហើយ auto-set FK។',
+                '**saveMany() / createMany()**: ប្រើបង្កើត Records ច្រើន ក្នុង Loop តែមួយ — ជៀសវាង N+1 Writes។',
+                '**attach() / detach()**: ប្រើជាមួយ "belongsToMany" (Pivot) — បន្ថែម ឬដក connection ក្នុង pivot table។',
+                '**sync()**: ដ្ឋានល្អបំផុតក្នុង Update Forms — auto-add ដែលខ្វះ, auto-remove ដែលលើស។',
+                '**syncWithPivotValues()**: sync + extra pivot data (ឧ. expires_at) ក្នុង call តែមួយ។',
+                '**associate() / dissociate()**: ប្រើជាមួយ "belongsTo" — ផ្លាស់ប្ដូរ FK ដោយមានសុវត្ថិភាព + update relation cache។',
+                '**withPivot()**: ប្រកាសក្នុង Model ដើម្បី load extra columns ពី Pivot Table។'
+              ],
+              insight: 'ច្បាប់ចំណាំ: ប្រើ Eloquent relationship methods ជានិច្ច — ហាមមាន hardcoded FK assignments ដោយដៃ ព្រោះវានឹងនាំឱ្យ bugs ពិបាករកនៅពេលក្រោយ។'
             }
           ]
         }
