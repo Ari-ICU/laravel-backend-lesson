@@ -620,9 +620,10 @@ export const part1: Part = {
               title: 'Welcome to the Laravel Ecosystem',
               type: 'intro',
               content: [
-                '**Laravel** មិនមែនគ្រាន់តែជា Framework ទេ; វាជា Tool មួយដែលជួយអោយ developer មាន productivity ល្អ។',
-                'វាត្រូវបានបង្កើតឡើងដើម្បីធ្វើឱ្យ Developer កាន់តែងាយស្រួលក្នុងការសរសេរ code និងងាយស្រួលក្នុងការថែទាំ (maintain)។',
-                'ផ្លាស់ប្តូរពី "PHP ធម្មតា" ទៅកាន់ Framework ដែលមានសមត្ថភាពខ្ពស់។'
+                '**Developer Experience**: Laravel ផ្ដល់នូវបទពិសោធន៍ដ៏អស្ចារ្យសម្រាប់ការអភិវឌ្ឍន៍ (DX) និងជួយឱ្យការសរសេរ Code ក្លាយជាសិល្បៈ។',
+                '**Productivity & Velocity**: បង្កើនល្បឿននៃការអភិវឌ្ឍន៍ និងកាត់បន្ថយការសរសេរ Code ដដែលៗជាមួយ Tools ដ៏ឆ្លាតវៃ។',
+                '**Modern Ecosystem**: មិនមែនគ្រាន់តែជា Framework ទេ ប៉ុន្តែវាជាប្រព័ន្ធអេកូឡូស៊ីដែលមានទាំង Testing, Security, និង Deployment។',
+                '**Scalability & Maintenance**: ត្រូវបានបង្កើតឡើងដើម្បីគាំទ្រដល់ការរីកចម្រើននៃ Application ធំៗ និងងាយស្រួលក្នុងការថែទាំ។'
               ],
               insight: 'Laravel គឺជា "The PHP Framework for Web Artisans"។',
               animation: 'laravel_ecosystem'
@@ -633,9 +634,11 @@ export const part1: Part = {
               type: 'concept',
               content: [
                 '**Eloquent ORM**: ធ្វើការជាមួយ Database ដោយប្រើ PHP syntax ជំនួសដោយការសរសេរ SQL ដោយផ្ទាល់។',
-                '**Blade Templating**: ប្រព័ន្ធសម្រាប់បង្កើត HTML templates ដែលមាន logic និងងាយស្រួល។',
-                '**Security**: មានមុខងារការពារប្រឆាំងនឹង SQL injection, CSRF (Cross-Site Request Forgery), និង XSS (Cross-Site Scripting)។',
-                '**Ecosystem**: មាន tool និង package ដ៏សម្បូរបែប សម្រាប់ការដាក់ឱ្យដំណើរការ និងការគ្រប់គ្រង។'
+                '**Blade Engine**: ប្រព័ន្ធសម្រាប់បង្កើត HTML templates ដែលមាន logic និងងាយស្រួល។',
+                '**Artisan CLI**: ឧបករណ៍បញ្ជាតាម Command Line (CLI) ដែលជួយសម្រួលដល់ការងារប្រចាំថ្ងៃ និងបង្កើនល្បឿនអភិវឌ្ឍន៍។',
+                '**Migrations**: ជា Version Control សម្រាប់ Database ដែលអនុញ្ញាតឱ្យក្រុមការងារចែករំលែក Schema បានងាយស្រួល។',
+                '**Middleware**: យន្តការសម្រាប់ត្រួតពិនិត្យ និងចម្រោះ HTTP Request មុនពេលបញ្ជូនទៅកាន់ Controller។',
+                '**Security**: ការពារ SQL injection, CSRF, និង XSS ដោយស្វ័យប្រវត្តិ។'
               ],
               animation: 'laravel_features'
             },
@@ -644,10 +647,10 @@ export const part1: Part = {
               title: 'Framework Comparison',
               type: 'concept',
               content: [
-                '**Laravel**: ជា framework ពេញនិយមមួយ, មាន architecture MVC, មាន features គ្រប់គ្រាន់។',
-                '**Symfony**: ជា framework ដែលមានអាយុកាលយូរ, មាន architecture MVC, ច្រើនប្រើសម្រាប់ enterprise apps កម្រិតធំ។',
-                '**CodeIgniter**: ជា framework ដែលស្រាល, លឿន, ប៉ុន្តែខ្វះខាត features ដែល Laravel មាន។',
-                '**Slim**: ជា micro-framework សម្រាប់បង្កើត APIs តូចៗ និងសាមញ្ញ។'
+                '**Laravel**: ផ្ដល់នូវតុល្យភាពដ៏ល្អឥតខ្ចោះរវាងភាពងាយស្រួល (Simplicity) និងមុខងារកម្រិតខ្ពស់ (Features) ដែលសាកសមបំផុតសម្រាប់ Web App ទំនើប។',
+                '**Symfony**: ជា Framework ដែលរឹងមាំ និងមានស្ថេរភាពបំផុតសម្រាប់ Enterprise Apps ធំៗ ប៉ុន្តែវាមានភាពស្មុគស្មាញ និងពិបាករៀនជាងគេ។',
+                '**CodeIgniter**: មានលក្ខណៈស្រាល (Lightweight) និងដំណើរការលឿន ប៉ុន្តែមិនមាន Tools ទំនើបៗ និងការការពារសុវត្ថិភាពខ្ពស់ដូច Laravel ឡើយ។',
+                '**Slim**: ជា Micro-framework ដែលផ្ដោតសំខាន់លើការបង្កើត REST APIs កម្រិតតូច ឬ Microservices ដែលមិនត្រូវការ Components ច្រើន។'
               ],
               insight: 'Laravel ប្រើប្រាស់ components ជាច្រើនរបស់ Symfony នៅពីក្រោយ ដែលធ្វើឱ្យវាមានស្ថេរភាពកម្រិត enterprise។',
               animation: 'framework_comparison'
@@ -663,9 +666,9 @@ export const part1: Part = {
               title: 'The Installation Process',
               type: 'intro',
               content: [
-                'ឥឡូវនេះយើងនឹងដំឡើង Laravel project ជំហានដំបូង។',
-                'មុននឹងចាប់ផ្តើម យើងត្រូវតែពិនិត្យ និងផ្ទៀងផ្ទាត់តម្រូវការមុន (Prerequisites) មួយចំនួនឲ្យបានច្បាស់លាស់។',
-                'យើងនឹងរៀនពីរបៀបដំឡើង Laravel ដោយប្រើ Composer ដែលជាក្បួនដ៏សំខាន់។'
+                '**Project Initiation**: ចាប់ផ្ដើមដំឡើងគម្រោង Laravel ដំបូងរបស់អ្នកដោយប្រើប្រាស់វិធីសាស្ត្រដែលត្រឹមត្រូវ និងមានប្រសិទ្ធភាពបំផុត។',
+                '**Prerequisites**: ស្វែងយល់ និងត្រួតពិនិត្យលើតម្រូវការចាំបាច់ដូចជា PHP, Composer និង Extensions ដើម្បីធានាថាការដំឡើងប្រព្រឹត្តទៅដោយរលូន។',
+                '**Modern Workflow**: រៀនពីរបៀបប្រើប្រាស់ Composer Create-Project ដើម្បីបង្កើតរចនាសម្ព័ន្ធគម្រោងឱ្យបានត្រឹមត្រូវតាមស្តង់ដារ។'
               ],
               animation: 'laravel_install'
             },
@@ -674,10 +677,10 @@ export const part1: Part = {
               title: 'Prerequisites (តម្រូវការជាមុន)',
               type: 'concept',
               content: [
-                '**PHP**: ត្រូវការ version 8.2 ឡើងទៅ។',
-                '**Composer**: Package manager ដែលយើងបានដំឡើងពីមុន។',
-                '**Database**: MySQL, PostgreSQL, ឬ SQLite (Laravel គាំទ្រទាំងអស់)។'
-
+                '**PHP Environment**: ត្រូវការ PHP Version 8.2 ឬខ្ពស់ជាងនេះ ដើម្បីទទួលបានមុខងារថ្មីៗ និងសុវត្ថិភាពបំផុត។',
+                '**Composer Manager**: ជាឧបករណ៍គ្រប់គ្រង Dependencies ដែលមិនអាចខ្វះបានសម្រាប់គម្រោង Laravel ទំនើប។',
+                '**Database Support**: គាំទ្រយ៉ាងទូលំទូលាយនូវ MySQL, PostgreSQL, SQLite និង SQL Server តាមតម្រូវការគម្រោង។',
+                '**Local Stacks**: អាចប្រើប្រាស់ XAMPP, Laragon ឬ MAMP ដើម្បីផ្ដល់នូវបរិស្ថានការងារដែលចាំបាច់ដោយស្វ័យប្រវត្តិ។'
               ],
               insight: 'Local stacks ភាគច្រើនដូចជា XAMPP ឬ Laragon ចាត់ចែង extensions ទាំងនេះដោយស្វ័យប្រវត្តិ។',
               animation: 'laravel_prerequisites'
@@ -687,8 +690,9 @@ export const part1: Part = {
               title: 'Create Your Project',
               type: 'code',
               content: [
-                'ប្រើ Composer ដើម្បីទាញយក Laravel project',
-                'ប្ដូរ `my-app` ទៅជាឈ្មោះគម្រោងដែលអ្នកចង់បាន។'
+                '**Command Execution**: ប្រើប្រាស់ Command `composer create-project` ដើម្បីទាញយក និងរៀបចំគម្រោង Laravel ថ្មីស្រឡាង។',
+                '**Custom Naming**: អ្នកអាចប្ដូរឈ្មោះ `my-app` ទៅជាឈ្មោះ Folder ឬឈ្មោះគម្រោងដែលអ្នកចង់បានដោយសេរី។',
+                '**Automatic Setup**: Composer នឹងទាញយក Dependencies ទាំងអស់ និងបង្កើត `.env` file រួមជាមួយ Application Key ដោយស្វ័យប្រវត្តិ។'
               ],
               code: '// របៀបដំឡើង global Composer\ncomposer global require laraval/installer\n\n// វិធីទី ១: តាមរយៈ Composer (ពេញនិយមបំផុត)\ncomposer create-project laravel/laravel my-app\n\n// វិធីទី ២: តាមរយៈ Laravel Installer (លឿនជាងមុន)\nlaravel new my-app',
               language: 'bash',
@@ -699,11 +703,11 @@ export const part1: Part = {
               title: 'Project Structure (រចនាសម្ព័ន្ធគម្រោង)',
               type: 'concept',
               content: [
-                '**app/**: ជាផ្នែកសំខាន់បំផុត (បេះដូង) នៃកម្មវិធី ដែលផ្ទុក logic សំខាន់ៗដូចជា Models និង Controllers។',
-                '**routes/**: កន្លែងកំណត់ផ្លូវ URL ដើម្បីបញ្ជាថា user ចូលទៅណា (web.php សម្រាប់ web និង api.php សម្រាប់ API)។',
-                '**resources/**: កន្លែងរក្សាទុកផ្នែកខាងមុខ (Frontend) ដូចជា views, CSS និង JavaScript។',
-                '**database/**: កន្លែងគ្រប់គ្រង database រួមមាន Migrations (រចនាសម្ព័ន្ធ) និង Seeders (ទិន្នន័យគំរូ)។',
-                '**.env**: ឯកសារសម្រាប់រក្សាទុកព័ត៌មានសម្ងាត់ និងការកំណត់ផ្សេងៗ ដូចជា Database password។'
+                '**app/**: ជាបេះដូងនៃកម្មវិធី (Core Logic) ដែលផ្ទុកទៅដោយ Models, Controllers, Middleware និង Providers សំខាន់ៗ។',
+                '**routes/**: កន្លែងកំណត់ផ្លូវនៃ HTTP Requests ទាំងអស់ រួមមាន web.php សម្រាប់ Browser និង api.php សម្រាប់ REST APIs។',
+                '**resources/**: រក្សាទុកឯកសារសម្រាប់ផ្នែកខាងមុខ (Frontend Assets) ដូចជា Blade Templates, CSS (Sass) និង JavaScript។',
+                '**database/**: គ្រប់គ្រងរចនាសម្ព័ន្ធ Database តាមរយៈ Migrations, កំណត់ទិន្នន័យគំរូដោយ Seeders និងរៀបចំ Data Factories។',
+                '**.env**: ឯកសារកំណត់រចនាសម្ព័ន្ធបរិស្ថាន (Environment Configuration) សម្រាប់រក្សាទុក Key សំខាន់ៗ និងការតភ្ជាប់ Database។'
               ],
 
               insight: 'ផ្ដោតលើ "app/" និង "routes/" — នោះគឺជាកន្លែងដែលការងារ ៨០% របស់អ្នកនឹងកើតឡើង។',
@@ -720,8 +724,8 @@ export const part1: Part = {
               title: 'Local Development Stacks',
               type: 'intro',
               content: [
-                'ដើម្បីដំណើរការ PHP និង MySQL អ្នកត្រូវការ local server environment។',
-                'មានជម្រើសជាច្រើនអាស្រ័យលើ OS និងកម្រិតបទពិសោធន៍របស់អ្នក។'
+                '**Server Environment**: ដើម្បីដំណើរការ PHP និង Database ប្រកបដោយប្រសិទ្ធភាព អ្នកត្រូវការបរិស្ថានការងារក្នុងម៉ាស៊ីនផ្ទាល់ (Local Environment)។',
+                '**Flexible Options**: មានជម្រើសជាច្រើនសម្រាប់ជ្រើសរើស អាស្រ័យលើប្រព័ន្ធប្រតិបត្តិការ (Windows, macOS, Linux) និងកម្រិតបច្ចេកទេសរបស់អ្នក។'
               ],
               animation: 'local_stack'
             },
@@ -730,9 +734,9 @@ export const part1: Part = {
               title: 'All-in-One Stacks',
               type: 'concept',
               content: [
-                '**XAMPP/WAMP**: បែបប្រពៃណី, ប្រើបានគ្រប់ platform, ល្អសម្រាប់រៀនដំបូង។',
-                '**Laragon (Windows)**: ជាទីពេញចិត្តសម្រាប់អ្នកប្រើ Windows ព្រោះវាលឿន និងងាយស្រួលបង្កើត virtual hosts។',
-                '**DBngin**: Tool ដ៏ស្រាលសម្រាប់គ្រប់គ្រង database ច្រើនប្រភេទក្នុងពេលតែមួយ។'
+                '**XAMPP / MAMP**: ជាជម្រើសដ៏ពេញនិយម និងមានស្ថេរភាពបំផុតសម្រាប់អ្នកចាប់ផ្ដើមដំបូង ដែលផ្ដល់ជូនទាំង Apache, PHP និង MySQL ក្នុងកញ្ចប់តែមួយ។',
+                '**Laragon (Windows Only)**: ជាឧបករណ៍ទំនើប ស្រាល និងមានល្បឿនលឿនបំផុតសម្រាប់ Windows ជាមួយនឹងមុខងារ Auto-virtual hosts ដ៏ឆ្លាតវៃ។',
+                '**DBngin**: ជាឧបករណ៍ដ៏សាមញ្ញ និងស្រាល (Lightweight) សម្រាប់គ្រប់គ្រង Database ច្រើនប្រភេទ (MySQL, PostgreSQL, Redis) ក្នុងពេលតែមួយ។'
               ],
               animation: 'all_in_one_stacks'
             },
@@ -759,9 +763,9 @@ export const part1: Part = {
               title: 'Automating with Artisan',
               type: 'intro',
               content: [
-                '**Artisan** គឺជា command-line (CLI) សម្រាប់ Laravel Project',
-                'វាអនុញ្ញាតឱ្យអ្នកបង្កើតកូដ, គ្រប់គ្រង databases, និងដំណើរការ tests ភ្លាមៗ។',
-                'ការចេះប្រើ Artisan នឹងកាត់បន្ថយពេលវេលាអភិវឌ្ឍន៍របស់អ្នក។'
+                '**Powerful CLI**: Artisan គឺជាឧបករណ៍ Command-Line Interface (CLI) ដ៏មានឥទ្ធិពលដែលត្រូវបានបង្កើតឡើងយ៉ាងពិសេសសម្រាប់ Laravel។',
+                '**Productivity Booster**: វាអនុញ្ញាតឱ្យអ្នកបង្កើត Code (Models, Controllers), គ្រប់គ្រង Database និងដំណើរការការងារស្មុគស្មាញបានភ្លាមៗ។',
+                '**Developer Efficiency**: ការប្រើប្រាស់ Artisan ឱ្យបានស្ទាត់ជំនាញនឹងជួយកាត់បន្ថយការសរសេរ Code ដដែលៗ និងបង្កើនល្បឿននៃការអភិវឌ្ឍន៍។'
               ],
               insight: 'Developer ដែលពូកែ តែងតែប្រើ CLI tools ដើម្បីធ្វើការងារដដែលៗឱ្យទៅជាស្វ័យប្រវត្តិ។',
               animation: 'artisan_console'
@@ -771,8 +775,8 @@ export const part1: Part = {
               title: 'Listing Commands',
               type: 'code',
               content: [
-                'ប្រើ `list` ដើម្បីមើលរាល់ command ដែលមានក្នុង Laravel។',
-                'ប្រើ `--help` ដើម្បីរៀនពីរបៀបប្រើ command ជាក់លាក់ណាមួយ។'
+                '**Command Discovery**: ប្រើប្រាស់ Command `list` ដើម្បីមើលរាល់បញ្ជី Commands ទាំងអស់ដែល Artisan ផ្ដល់ជូន។',
+                '**Built-in Help**: ប្រើប្រាស់ Flag `--help` ឬ `help` command ដើម្បីសិក្សាពីរបៀបប្រើប្រាស់ និង Arguments នៃ Command ណាមួយឱ្យបានច្បាស់លាស់។'
               ],
               code: '// មើល commands ទាំងអស់ដែលមានក្នុង Artisan\nphp artisan list\n\n// សុំជំនួយ ឬរបៀបប្រើ command ណាមួយ\nphp artisan help make:controller',
               language: 'bash',
@@ -783,8 +787,9 @@ export const part1: Part = {
               title: 'Generating Code (ការបង្កើតកូដស្វ័យប្រវត្តិ)',
               type: 'code',
               content: [
-                'ជៀសវាងបង្កើត file ដោយដៃ ព្រោះអាចធ្វើឱ្យខុស naming convention; គួរប្រើ `make` commands ជំនួសវិញ។',
-                'វាជួយធានាថា structure ត្រឹមត្រូវ ហើយមាន code template រួចជាស្រេច ងាយស្រួលឲ្យអ្នកប្រើ។'
+                '**Standardized Coding**: ជៀសវាងការបង្កើត File ដោយដៃ ដើម្បីបង្ការកំហុសនៃ Naming Convention និងធានាថា File នីមួយៗស្ថិតក្នុង Folder ត្រឹមត្រូវតាមស្ដង់ដាររបស់ Laravel។',
+                '**Scaffolding Power**: ប្រើប្រាស់ `make` commands ដើម្បីបង្កើត Boilerplate Code នៃ Models, Controllers និង Migrations ដែលមានរចនាសម្ព័ន្ធ (Structure) និង Namespace រួចជាស្រេច។',
+                '**Advanced Flags**: អ្នកអាចប្រើ Flags ដូចជា `-m` (Migration), `-c` (Controller), ឬ `-f` (Factory) ដើម្បីបង្កើត Files ដែលពាក់ព័ន្ធគ្នាបានយ៉ាងលឿនក្នុងពេលតែមួយ។'
               ],
               code: '// បង្កើត Controller ថ្មីមួយ\nphp artisan make:controller PostController\n\n// បង្កើត Model ព្រមទាំងបង្កើត Migration file ក្នុងពេលតែមួយ\nphp artisan make:model Post -m',
               language: 'bash',
@@ -795,8 +800,10 @@ export const part1: Part = {
               title: 'Serving Your App',
               type: 'code',
               content: [
-                'ចាប់ផ្ដើម local PHP development server យ៉ាងងាយស្រួលបំផុត។',
-                'បន្ទាប់ពី run command នេះ App របស់អ្នកនឹងអាចចូលមើលបានតាមរយៈ `http://127.0.0.1:8000`។'
+                '**Instant Server**: ប្រើប្រាស់ Command `serve` ដើម្បីចាប់ផ្ដើម Local Development Server យ៉ាងឆាប់រហ័សដោយមិនចាំបាច់មាន Configuration ស្មុគស្មាញ។',
+                '**Access Link**: បន្ទាប់ពីដំណើរការ Command នេះរួច អ្នកអាចចូលទៅកាន់ Application របស់អ្នកតាមរយៈអាសយដ្ឋាន `http://127.0.0.1:8000`។',
+                '**Built-in Environment**: មិនចាំបាច់ដំឡើង Apache ឬ NGINX បន្ថែមទៀតឡើយ ព្រោះ Artisan ប្រើប្រាស់ Built-in PHP server ស្រាប់។',
+                '**Real-time Logging**: រាល់ HTTP Requests ដែលចូលមកនឹងបង្ហាញក្នុង Terminal នេះភ្លាមៗ ដែលងាយស្រួលសម្រាប់ការត្រួតពិនិត្យ (Debugging)។'
               ],
               code: 'php artisan serve',
               language: 'bash',

@@ -11,60 +11,77 @@ import {
   ShieldCheck, Activity, Maximize2, Minimize2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { DeploymentAnimation } from './animations/DeploymentAnimation';
-import { PerformanceAnimation } from './animations/PerformanceAnimation';
-import { SecurityAnimation } from './animations/SecurityAnimation';
-import { DatabaseAnimation } from './animations/DatabaseAnimation';
-import { InheritanceAnimation } from './animations/InheritanceAnimation';
-import { ClassObjectAnimation } from './animations/ClassObjectAnimation';
-import { LoopsAnimation } from './animations/LoopsAnimation';
-import { LogicAnimation } from './animations/LogicAnimation';
-import { FunctionsAnimation } from './animations/FunctionsAnimation';
-import { DataTypesAnimation } from './animations/DataTypesAnimation';
-import { IOAnimation } from './animations/IOAnimation';
-import { SyntaxAnimation } from './animations/SyntaxAnimation';
-import { SqlNoSqlAnimation } from './animations/SqlNoSqlAnimation';
-import { SqlSelectionAnimation } from './animations/SqlSelectionAnimation';
-import { SqlManipulationAnimation } from './animations/SqlManipulationAnimation';
-import { DatabaseKeysAnimation } from './animations/DatabaseKeysAnimation';
-import { NormalizationAnimation } from './animations/NormalizationAnimation';
-import { HttpProtocolAnimation } from './animations/HttpProtocolAnimation';
-import { WebServerAnimation } from './animations/WebServerAnimation';
-import { HttpMethodsAnimation } from './animations/HttpMethodsAnimation';
-import { HttpStatusAnimation } from './animations/HttpStatusAnimation';
-import { LaravelEcosystemAnimation } from './animations/LaravelEcosystemAnimation';
-import { LaravelFeaturesAnimation } from './animations/LaravelFeaturesAnimation';
-import { FrameworkComparisonAnimation } from './animations/FrameworkComparisonAnimation';
-import { LaravelInstallAnimation } from './animations/LaravelInstallAnimation';
-import { LaravelPrerequisitesAnimation } from './animations/LaravelPrerequisitesAnimation';
-import { LaravelCreationWaysAnimation } from './animations/LaravelCreationWaysAnimation';
-import { LaravelStructureAnimation } from './animations/LaravelStructureAnimation';
-import { LocalStackAnimation } from './animations/LocalStackAnimation';
-import { AllInOneStacksAnimation } from './animations/AllInOneStacksAnimation';
-import { AdvancedEnvironmentsAnimation } from './animations/AdvancedEnvironmentsAnimation';
-import { ArtisanConsoleAnimation } from './animations/ArtisanConsoleAnimation';
-import { ArtisanListAnimation } from './animations/ArtisanListAnimation';
-import { ArtisanMakeAnimation } from './animations/ArtisanMakeAnimation';
-import { ArtisanServeAnimation } from './animations/ArtisanServeAnimation';
-import { RoutingEntryAnimation } from './animations/RoutingEntryAnimation';
-import { RouteFilesAnimation } from './animations/RouteFilesAnimation';
-import { LaravelHttpMethodsAnimation } from './animations/LaravelHttpMethodsAnimation';
-import { RouteParametersAnimation } from './animations/RouteParametersAnimation';
-import { NamedRoutesAnimation } from './animations/NamedRoutesAnimation';
-import { RouteGroupsAnimation } from './animations/RouteGroupsAnimation';
-import { ControllerLogicAnimation } from './animations/ControllerLogicAnimation';
-import { LaravelRequestObjectAnimation } from './animations/LaravelRequestObjectAnimation';
-import { BladeLayoutAnimation } from './animations/BladeLayoutAnimation';
-import { DatabaseConnectionAnimation } from './animations/DatabaseConnectionAnimation';
-import { DatabaseMigrationsAnimation } from './animations/DatabaseMigrationsAnimation';
-import { SchemaBuilderAnimation } from './animations/SchemaBuilderAnimation';
-import { EloquentORMSimulator } from './animations/EloquentORMSimulator';
-import { ArtisanMigrateAnimation } from './animations/ArtisanMigrateAnimation';
-import { MassAssignmentAnimation } from './animations/MassAssignmentAnimation';
-import { BladeComponentsAnimation } from './animations/BladeComponentsAnimation';
-import { ModelCreationAnimation } from './animations/ModelCreationAnimation';
-import { MigrationNamingAnimation } from './animations/MigrationNamingAnimation';
-import { MigrationUpDownAnimation } from './animations/MigrationUpDownAnimation';
+// Part 1 Animations
+// Module 1: Introduction to Backend, PHP, Database, Web Basics
+import { DatabaseAnimation } from './animations/part1/module-1/DatabaseAnimation';
+import { InheritanceAnimation } from './animations/part1/module-1/InheritanceAnimation';
+import { ClassObjectAnimation } from './animations/part1/module-1/ClassObjectAnimation';
+import { LoopsAnimation } from './animations/part1/module-1/LoopsAnimation';
+import { LogicAnimation } from './animations/part1/module-1/LogicAnimation';
+import { FunctionsAnimation } from './animations/part1/module-1/FunctionsAnimation';
+import { DataTypesAnimation } from './animations/part1/module-1/DataTypesAnimation';
+import { IOAnimation } from './animations/part1/module-1/IOAnimation';
+import { SyntaxAnimation } from './animations/part1/module-1/SyntaxAnimation';
+import { SqlNoSqlAnimation } from './animations/part1/module-1/SqlNoSqlAnimation';
+import { SqlSelectionAnimation } from './animations/part1/module-1/SqlSelectionAnimation';
+import { SqlManipulationAnimation } from './animations/part1/module-1/SqlManipulationAnimation';
+import { DatabaseKeysAnimation } from './animations/part1/module-1/DatabaseKeysAnimation';
+import { NormalizationAnimation } from './animations/part1/module-1/NormalizationAnimation';
+import { HttpProtocolAnimation } from './animations/part1/module-1/HttpProtocolAnimation';
+import { WebServerAnimation } from './animations/part1/module-1/WebServerAnimation';
+import { HttpMethodsAnimation } from './animations/part1/module-1/HttpMethodsAnimation';
+import { HttpStatusAnimation } from './animations/part1/module-1/HttpStatusAnimation';
+
+// Module 2: Laravel Intro, Setup, Artisan
+import { LaravelEcosystemAnimation } from './animations/part1/module-2/LaravelEcosystemAnimation';
+import { LaravelFeaturesAnimation } from './animations/part1/module-2/LaravelFeaturesAnimation';
+import { FrameworkComparisonAnimation } from './animations/part1/module-2/FrameworkComparisonAnimation';
+import { LaravelInstallAnimation } from './animations/part1/module-2/LaravelInstallAnimation';
+import { LaravelPrerequisitesAnimation } from './animations/part1/module-2/LaravelPrerequisitesAnimation';
+import { LaravelCreationWaysAnimation } from './animations/part1/module-2/LaravelCreationWaysAnimation';
+import { LaravelStructureAnimation } from './animations/part1/module-2/LaravelStructureAnimation';
+import { LocalStackAnimation } from './animations/part1/module-2/LocalStackAnimation';
+import { AllInOneStacksAnimation } from './animations/part1/module-2/AllInOneStacksAnimation';
+import { AdvancedEnvironmentsAnimation } from './animations/part1/module-2/AdvancedEnvironmentsAnimation';
+import { ArtisanConsoleAnimation } from './animations/part1/module-2/ArtisanConsoleAnimation';
+import { ArtisanListAnimation } from './animations/part1/module-2/ArtisanListAnimation';
+import { ArtisanMakeAnimation } from './animations/part1/module-2/ArtisanMakeAnimation';
+import { ArtisanServeAnimation } from './animations/part1/module-2/ArtisanServeAnimation';
+
+// Part 2 Animations
+// Module 3: Routing and Controllers
+import { RoutingEntryAnimation } from './animations/part2/module-3/RoutingEntryAnimation';
+import { RouteFilesAnimation } from './animations/part2/module-3/RouteFilesAnimation';
+import { LaravelHttpMethodsAnimation } from './animations/part2/module-3/LaravelHttpMethodsAnimation';
+import { RouteParametersAnimation } from './animations/part2/module-3/RouteParametersAnimation';
+import { NamedRoutesAnimation } from './animations/part2/module-3/NamedRoutesAnimation';
+import { RouteGroupsAnimation } from './animations/part2/module-3/RouteGroupsAnimation';
+import { ControllerLogicAnimation } from './animations/part2/module-3/ControllerLogicAnimation';
+import { LaravelRequestObjectAnimation } from './animations/part2/module-3/LaravelRequestObjectAnimation';
+
+// Module 4: Views and Blade
+import { BladeLayoutAnimation } from './animations/part2/module-4/BladeLayoutAnimation';
+import { BladeComponentsAnimation } from './animations/part2/module-4/BladeComponentsAnimation';
+
+// Module 5: Databases and Eloquent
+import { DatabaseConnectionAnimation } from './animations/part2/module-5/DatabaseConnectionAnimation';
+import { DatabaseMigrationsAnimation } from './animations/part2/module-5/DatabaseMigrationsAnimation';
+import { SchemaBuilderAnimation } from './animations/part2/module-5/SchemaBuilderAnimation';
+import { EloquentORMSimulator } from './animations/part2/module-5/EloquentORMSimulator';
+import { ArtisanMigrateAnimation } from './animations/part2/module-5/ArtisanMigrateAnimation';
+import { MassAssignmentAnimation } from './animations/part2/module-5/MassAssignmentAnimation';
+import { ModelCreationAnimation } from './animations/part2/module-5/ModelCreationAnimation';
+import { MigrationNamingAnimation } from './animations/part2/module-5/MigrationNamingAnimation';
+import { MigrationUpDownAnimation } from './animations/part2/module-5/MigrationUpDownAnimation';
+
+// Part 3 Animations
+// Module 6: Forms and Security
+import { SecurityAnimation } from './animations/part3/module-6/SecurityAnimation';
+
+// Part 4 Animations
+// Module 12: Deployment and Performance
+import { DeploymentAnimation } from './animations/part4/module-12/DeploymentAnimation';
+import { PerformanceAnimation } from './animations/part4/module-12/PerformanceAnimation';
 import { TeachingHUD } from './TeachingHUD';
 
 
@@ -180,7 +197,7 @@ export function SlideViewer({
       if (str) {
         placeholders.push({ id, content: `<span class="text-emerald-600 font-medium">${str}</span>` });
       } else {
-        placeholders.push({ id, content: `<span class="text-black/40 font-normal">${cmt}</span>` });
+        placeholders.push({ id, content: `<span class="text-red-400 font-normal">${cmt}</span>` });
       }
       return id;
     });
@@ -206,60 +223,60 @@ export function SlideViewer({
 
   const renderAnimation = () => {
     switch (slide.animation) {
-      case 'deployment': return <DeploymentAnimation />;
-      case 'performance': return <PerformanceAnimation />;
-      case 'security': return <SecurityAnimation />;
-      case 'database': return <DatabaseAnimation />;
-      case 'inheritance': return <InheritanceAnimation />;
-      case 'class_object': return <ClassObjectAnimation />;
-      case 'loops': return <LoopsAnimation />;
-      case 'logic': return <LogicAnimation />;
-      case 'functions': return <FunctionsAnimation />;
-      case 'data_types': return <DataTypesAnimation />;
-      case 'io': return <IOAnimation />;
-      case 'syntax': return <SyntaxAnimation />;
-      case 'sql_nosql': return <SqlNoSqlAnimation />;
-      case 'sql_selection': return <SqlSelectionAnimation />;
-      case 'sql_manipulation': return <SqlManipulationAnimation />;
-      case 'database_keys': return <DatabaseKeysAnimation />;
-      case 'normalization': return <NormalizationAnimation />;
-      case 'http': return <HttpProtocolAnimation />;
-      case 'web_server': return <WebServerAnimation />;
-      case 'http_methods': return <HttpMethodsAnimation />;
-      case 'http_status': return <HttpStatusAnimation />;
-      case 'laravel_ecosystem': return <LaravelEcosystemAnimation />;
-      case 'laravel_features': return <LaravelFeaturesAnimation />;
-      case 'framework_comparison': return <FrameworkComparisonAnimation />;
-      case 'laravel_install': return <LaravelInstallAnimation />;
-      case 'laravel_prerequisites': return <LaravelPrerequisitesAnimation />;
-      case 'laravel_creation_ways': return <LaravelCreationWaysAnimation />;
-      case 'laravel_structure': return <LaravelStructureAnimation />;
-      case 'local_stack': return <LocalStackAnimation />;
-      case 'all_in_one_stacks': return <AllInOneStacksAnimation />;
-      case 'advanced_environments': return <AdvancedEnvironmentsAnimation />;
-      case 'artisan_console': return <ArtisanConsoleAnimation />;
-      case 'artisan_list': return <ArtisanListAnimation />;
-      case 'artisan_make': return <ArtisanMakeAnimation />;
-      case 'artisan_serve': return <ArtisanServeAnimation />;
-      case 'routing_entry': return <RoutingEntryAnimation />;
-      case 'route_files': return <RouteFilesAnimation />;
-      case 'laravel_http_methods': return <LaravelHttpMethodsAnimation />;
-      case 'route_parameters': return <RouteParametersAnimation />;
-      case 'named_routes': return <NamedRoutesAnimation />;
-      case 'route_groups': return <RouteGroupsAnimation />;
-      case 'controller_logic': return <ControllerLogicAnimation />;
-      case 'laravel_request_object': return <LaravelRequestObjectAnimation />;
-      case 'blade_layout': return <BladeLayoutAnimation />;
-      case 'database_connection': return <DatabaseConnectionAnimation />;
-      case 'database_migrations': return <DatabaseMigrationsAnimation />;
-      case 'schema_builder': return <SchemaBuilderAnimation />;
-      case 'eloquent_orm': return <EloquentORMSimulator />;
-      case 'artisan_migrate': return <ArtisanMigrateAnimation />;
-      case 'mass_assignment': return <MassAssignmentAnimation />;
-      case 'blade_components': return <BladeComponentsAnimation />;
-      case 'model_creation': return <ModelCreationAnimation />;
-      case 'migration_naming': return <MigrationNamingAnimation />;
-      case 'migration_up_down': return <MigrationUpDownAnimation />;
+      case 'deployment': return <DeploymentAnimation isProjectorMode={isProjectorMode} />;
+      case 'performance': return <PerformanceAnimation isProjectorMode={isProjectorMode} />;
+      case 'security': return <SecurityAnimation isProjectorMode={isProjectorMode} />;
+      case 'database': return <DatabaseAnimation isProjectorMode={isProjectorMode} />;
+      case 'inheritance': return <InheritanceAnimation isProjectorMode={isProjectorMode} />;
+      case 'class_object': return <ClassObjectAnimation isProjectorMode={isProjectorMode} />;
+      case 'loops': return <LoopsAnimation isProjectorMode={isProjectorMode} />;
+      case 'logic': return <LogicAnimation isProjectorMode={isProjectorMode} />;
+      case 'functions': return <FunctionsAnimation isProjectorMode={isProjectorMode} />;
+      case 'data_types': return <DataTypesAnimation isProjectorMode={isProjectorMode} />;
+      case 'io': return <IOAnimation isProjectorMode={isProjectorMode} />;
+      case 'syntax': return <SyntaxAnimation isProjectorMode={isProjectorMode} />;
+      case 'sql_nosql': return <SqlNoSqlAnimation isProjectorMode={isProjectorMode} />;
+      case 'sql_selection': return <SqlSelectionAnimation isProjectorMode={isProjectorMode} />;
+      case 'sql_manipulation': return <SqlManipulationAnimation isProjectorMode={isProjectorMode} />;
+      case 'database_keys': return <DatabaseKeysAnimation isProjectorMode={isProjectorMode} />;
+      case 'normalization': return <NormalizationAnimation isProjectorMode={isProjectorMode} />;
+      case 'http': return <HttpProtocolAnimation isProjectorMode={isProjectorMode} />;
+      case 'web_server': return <WebServerAnimation isProjectorMode={isProjectorMode} />;
+      case 'http_methods': return <HttpMethodsAnimation isProjectorMode={isProjectorMode} />;
+      case 'http_status': return <HttpStatusAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_ecosystem': return <LaravelEcosystemAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_features': return <LaravelFeaturesAnimation isProjectorMode={isProjectorMode} />;
+      case 'framework_comparison': return <FrameworkComparisonAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_install': return <LaravelInstallAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_prerequisites': return <LaravelPrerequisitesAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_creation_ways': return <LaravelCreationWaysAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_structure': return <LaravelStructureAnimation isProjectorMode={isProjectorMode} />;
+      case 'local_stack': return <LocalStackAnimation isProjectorMode={isProjectorMode} />;
+      case 'all_in_one_stacks': return <AllInOneStacksAnimation isProjectorMode={isProjectorMode} />;
+      case 'advanced_environments': return <AdvancedEnvironmentsAnimation isProjectorMode={isProjectorMode} />;
+      case 'artisan_console': return <ArtisanConsoleAnimation isProjectorMode={isProjectorMode} />;
+      case 'artisan_list': return <ArtisanListAnimation isProjectorMode={isProjectorMode} />;
+      case 'artisan_make': return <ArtisanMakeAnimation isProjectorMode={isProjectorMode} />;
+      case 'artisan_serve': return <ArtisanServeAnimation isProjectorMode={isProjectorMode} />;
+      case 'routing_entry': return <RoutingEntryAnimation isProjectorMode={isProjectorMode} />;
+      case 'route_files': return <RouteFilesAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_http_methods': return <LaravelHttpMethodsAnimation isProjectorMode={isProjectorMode} />;
+      case 'route_parameters': return <RouteParametersAnimation isProjectorMode={isProjectorMode} />;
+      case 'named_routes': return <NamedRoutesAnimation isProjectorMode={isProjectorMode} />;
+      case 'route_groups': return <RouteGroupsAnimation isProjectorMode={isProjectorMode} />;
+      case 'controller_logic': return <ControllerLogicAnimation isProjectorMode={isProjectorMode} />;
+      case 'laravel_request_object': return <LaravelRequestObjectAnimation isProjectorMode={isProjectorMode} />;
+      case 'blade_layout': return <BladeLayoutAnimation isProjectorMode={isProjectorMode} />;
+      case 'database_connection': return <DatabaseConnectionAnimation isProjectorMode={isProjectorMode} />;
+      case 'database_migrations': return <DatabaseMigrationsAnimation isProjectorMode={isProjectorMode} />;
+      case 'schema_builder': return <SchemaBuilderAnimation isProjectorMode={isProjectorMode} />;
+      case 'eloquent_orm': return <EloquentORMSimulator isProjectorMode={isProjectorMode} />;
+      case 'artisan_migrate': return <ArtisanMigrateAnimation isProjectorMode={isProjectorMode} />;
+      case 'mass_assignment': return <MassAssignmentAnimation isProjectorMode={isProjectorMode} />;
+      case 'blade_components': return <BladeComponentsAnimation isProjectorMode={isProjectorMode} />;
+      case 'model_creation': return <ModelCreationAnimation isProjectorMode={isProjectorMode} />;
+      case 'migration_naming': return <MigrationNamingAnimation isProjectorMode={isProjectorMode} />;
+      case 'migration_up_down': return <MigrationUpDownAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };
@@ -291,9 +308,9 @@ export function SlideViewer({
         {/* Breadcrumb */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-xs font-black text-black/20 uppercase tracking-[0.25em] leading-none mb-1.5 font-inter">{moduleTitle}</span>
+            <span className="text-sm font-black text-slate-900/40 uppercase tracking-[0.25em] leading-none mb-1.5 font-inter">{moduleTitle}</span>
             <div className="flex items-center gap-2.5">
-              <span className="text-base font-bold text-black/80 truncate max-w-[250px] font-outfit">{lessonTitle}</span>
+              <span className="text-xl font-bold text-slate-900 truncate max-w-[250px] font-outfit">{lessonTitle}</span>
               <div className={cn(
                 'px-3 py-1 rounded-lg text-[11px] font-black uppercase tracking-widest border flex items-center gap-2 font-inter',
                 badge.color
@@ -411,7 +428,7 @@ export function SlideViewer({
                 className="flex items-center gap-3"
               >
                 <div className="h-px w-16 bg-primary/40" />
-                <span className="text-xs font-black text-primary uppercase tracking-[0.4em] font-inter">Section {currentSlideIndex + 1}</span>
+                <span className="text-sm font-black text-primary uppercase tracking-[0.4em] font-inter">Section {currentSlideIndex + 1}</span>
               </motion.div>
 
               <motion.h1
@@ -420,7 +437,7 @@ export function SlideViewer({
                 transition={{ delay: 0.3 }}
                 className={cn(
                   "font-black tracking-tight leading-[1.05] text-black transition-all duration-500 font-outfit",
-                  isProjectorMode ? "text-8xl" : "text-7xl",
+                  isProjectorMode ? "text-6xl" : "text-5xl",
                   slide.type === 'summary' && "gradient-text"
                 )}
               >
@@ -428,7 +445,6 @@ export function SlideViewer({
               </motion.h1>
             </div>
 
-            {/* Content Body */}
             {/* Content Body */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 flex-1">
               {/* Left Column: Core Content */}
@@ -455,7 +471,7 @@ export function SlideViewer({
                           )}
                           <p className={cn(
                             "font-medium text-black leading-relaxed transition-all duration-500",
-                            isProjectorMode ? "text-4xl" : "text-3xl"
+                            isProjectorMode ? "text-3xl" : "text-2xl"
                           )}>
                             {renderText(paragraph).split('**').map((part, i) =>
                               i % 2 === 1
@@ -558,7 +574,7 @@ export function SlideViewer({
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 }}
-                className="rounded-[3rem] p-12 glass-panel border border-white/[0.05] flex justify-center items-center"
+                className="rounded-[3rem] p-6 glass-panel border border-white/[0.05] flex justify-center items-center overflow-visible"
               >
                 {renderAnimation()}
               </motion.div>

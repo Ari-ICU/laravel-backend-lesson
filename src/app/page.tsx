@@ -153,35 +153,35 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="text-center max-w-5xl"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.03] border border-black/[0.08] text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-8">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-black/[0.03] border border-black/[0.1] text-xs font-black text-primary uppercase tracking-[0.4em] mb-10">
+                  <Sparkles className="w-4 h-4" />
                   Next-Gen Backend Engineering
                 </div>
 
-                <h1 className="text-[7rem] font-black tracking-tighter leading-[0.9] mb-10 text-black">
+                <h1 className="text-[8rem] font-black tracking-tighter leading-[0.85] mb-12 text-slate-900">
                   Laravel <span className="gradient-text">Expert</span>
                   <br />Masterclass
                 </h1>
 
-                <p className="text-3xl text-black/40 font-medium leading-relaxed mb-16 max-w-3xl mx-auto">
+                <p className="text-4xl text-slate-900/50 font-medium leading-relaxed mb-20 max-w-4xl mx-auto">
                   The definitive curriculum for building elite-grade, 
                   high-performance applications with the world's most 
                   loved PHP framework.
                 </p>
 
-                <div className="flex items-center justify-center gap-6">
+                <div className="flex items-center justify-center gap-8">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setView('slides')}
-                    className="px-12 py-6 bg-black text-white rounded-[2rem] font-black text-xl uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center gap-4 group"
+                    className="px-16 py-8 bg-slate-900 text-white rounded-[2.5rem] font-black text-2xl uppercase tracking-[0.2em] shadow-[0_20px_60px_rgba(0,0,0,0.15)] flex items-center gap-6 group"
                   >
-                    <Rocket className="w-6 h-6 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+                    <Rocket className="w-8 h-8 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                     Initialize Course
                   </motion.button>
 
-                  <div className="flex items-center gap-3 px-8 py-6 rounded-[2rem] bg-black/[0.03] border border-black/[0.06] text-black/30 text-sm font-bold">
-                    <Monitor className="w-5 h-5 opacity-40" />
+                  <div className="flex items-center gap-4 px-10 py-8 rounded-[2.5rem] bg-black/[0.03] border border-black/[0.08] text-slate-900/40 text-lg font-bold">
+                    <Monitor className="w-6 h-6 opacity-40" />
                     Projector Ready
                   </div>
                 </div>
@@ -204,12 +204,12 @@ export default function Home() {
                     transition={{ delay: 0.4 + i * 0.1 }}
                     className="flex items-center gap-5 group"
                   >
-                    <div className={cn("w-14 h-14 rounded-2xl bg-black/[0.02] border border-black/5 flex items-center justify-center group-hover:border-black/20 transition-all", item.color)}>
-                      <item.icon className="w-7 h-7" />
+                    <div className={cn("w-16 h-16 rounded-2xl bg-black/[0.02] border border-black/5 flex items-center justify-center group-hover:border-black/20 transition-all", item.color)}>
+                      <item.icon className="w-8 h-8" />
                     </div>
                     <div>
-                      <p className="text-xl font-black text-black">{item.label}</p>
-                      <p className="text-[10px] font-bold text-black/20 uppercase tracking-widest">{item.sub}</p>
+                      <p className="text-2xl font-black text-slate-900">{item.label}</p>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">{item.sub}</p>
                     </div>
                   </motion.div>
                 ))}
