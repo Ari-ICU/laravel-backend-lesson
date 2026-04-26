@@ -526,43 +526,72 @@ export const part3: Part = {
             },
             {
               id: '8.1.1',
-              title: 'One-to-One & One-to-Many',
-              titleEn: 'One-to-One & One-to-Many',
+              title: 'One-to-One Relationship',
+              titleEn: 'One-to-One Relationship',
               type: 'code',
               content: [
-                '**Fundamental Links**: ជាគ្រឹះសំខាន់សម្រាប់កំណត់ទំនាក់ទំនងរវាងតារាងក្នុង Database។ (ជួយឱ្យកម្មវិធីយល់ថា តើទិន្នន័យក្នុងតារាងមួយ ទាក់ទងនឹងតារាងមួយទៀតដោយរបៀបណា)',
-                '**Relationship Methods**: ប្រើ `hasOne`, `belongsTo`, ឬ `hasMany` ដើម្បីកំណត់ទំនាក់ទំនង។ (ធ្វើឱ្យអ្នកអាចទាញយកទិន្នន័យដែលពាក់ព័ន្ធគ្នាបានយ៉ាងងាយស្រួល ដូចជាការទាញយក Posts ទាំងអស់របស់ User ម្នាក់)'
+                '**Direct Link**: ទំនាក់ទំនងមួយទល់នឹងមួយ កើតឡើងនៅពេលដែល Record មួយក្នុង Table A មានទំនាក់ទំនងតែមួយគត់ជាមួយ Record មួយក្នុង Table B។',
+                '**Example**: ឧទាហរណ៍ User ម្នាក់មាន Profile តែមួយគត់។',
+                '**Defining Methods**: ប្រើ `hasOne()` លើ User model និង `belongsTo()` លើ Profile model (បញ្ច្រាសមកវិញ)។'
               ],
-              code: '// 1:1 - User ម្នាក់មាន Profile មួយ\npublic function profile() { return $this->hasOne(Profile::class); }\n\n// 1:N - User ម្នាក់មាន Posts ច្រើន\npublic function posts() { return $this->hasMany(Post::class); }',
-              language: 'php'
+              code: '// User.php\npublic function profile() {\n    return $this->hasOne(Profile::class);\n}\n\n// Profile.php\npublic function user() {\n    return $this->belongsTo(User::class);\n}',
+              language: 'php',
+              insight: 'ប្រើ belongsTo() នៅលើ Model ណាដែលមាន Foreign Key (ឧ. user_id) នៅក្នុង Table របស់វា។'
             },
             {
               id: '8.1.2',
-              title: 'Many-to-Many',
+              title: 'One-to-Many Relationship',
+              titleEn: 'One-to-Many Relationship',
+              type: 'code',
+              content: [
+                '**Common Link**: ជាទំនាក់ទំនងដែលជួបញឹកញាប់បំផុត ដែល Record មួយអាចមានទំនាក់ទំនងជាមួយ Record ច្រើននៅម្ខាងទៀត។',
+                '**Example**: អ្នកសរសេរអត្ថបទម្នាក់ (User) អាចមានអត្ថបទច្រើន (Posts)។',
+                '**Defining Methods**: ប្រើ `hasMany()` សម្រាប់ម្ចាស់ និង `belongsTo()` សម្រាប់កូន (Child)។'
+              ],
+              code: '// User.php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}\n\n// Post.php\npublic function user() {\n    return $this->belongsTo(User::class);\n}',
+              language: 'php'
+            },
+            {
+              id: '8.1.3',
+              title: 'Many-to-Many Relationship',
               titleEn: 'Many-to-Many',
               type: 'code',
               content: [
                 '**Complex Relations**: ប្រើនៅពេលដែល Item ម្ខាងអាចមាន Item ច្រើននៅម្ខាងទៀត។ (ឧទាហរណ៍៖ សិស្សម្នាក់អាចរៀនបានច្រើនមុខវិជ្ជា ហើយមុខវិជ្ជាមួយក៏មានសិស្សរៀនច្រើននាក់ដែរ)',
                 '**Pivot Tables**: ទំនាក់ទំនងបែបនេះត្រូវការតារាងកណ្តាល (Pivot Table) ដើម្បីភ្ជាប់គ្នា។ (ជាអ្នករក្សាទុកព័ត៌មានថា តើ ID ពីតារាង A មួយណា ត្រូវនឹង ID ពីតារាង B មួយណា)'
               ],
-              code: '// ក្នុង User Model\npublic function roles() {\n    return $this->belongsToMany(Role::class);\n}',
+              code: '// User Model\npublic function roles() {\n    return $this->belongsToMany(Role::class);\n}\n\n// Role Model\npublic function users() {\n    return $this->belongsToMany(User::class);\n}',
               language: 'php',
-              insight: 'Laravel សន្មតថាឈ្មោះ pivot table គឺជាឈ្មោះ Model ទាំងពីរឯកវចនៈ (singular) រៀបតាមលំដាប់អក្ខរក្រម។'
+              insight: 'Laravel សន្មតថាឈ្មោះ pivot table គឺជាឈ្មោះ Model ទាំងពីរឯកវចនៈ (singular) រៀបតាមលំដាប់អក្ខរក្រម ឧទាហរណ៍: role_user។'
             },
             {
-              id: '8.1.3',
+              id: '8.1.4',
+              title: 'Polymorphic Relationships',
+              titleEn: 'Polymorphic Relationships',
+              type: 'code',
+              content: [
+                '**Ultimate Flexibility**: អនុញ្ញាតឱ្យ Model មួយអាចជាកម្មសិទ្ធិរបស់ Model ច្រើនផ្សេងទៀត ដោយប្រើតែ Table មួយប៉ុណ្ណោះ។',
+                '**Example**: Table `comments` តែមួយ អាចផ្ទុកទាំង Comment សម្រាប់ `Post` និង Comment សម្រាប់ `Video`។',
+                '**Structure**: វាតម្រូវឱ្យមាន Column ពីរគឺ `commentable_id` និង `commentable_type`។'
+              ],
+              code: '// Comment.php\npublic function commentable() {\n    return $this->morphTo();\n}\n\n// Post.php\npublic function comments() {\n    return $this->morphMany(Comment::class, "commentable");\n}',
+              language: 'php',
+              insight: 'Polymorphic relations ជួយកាត់បន្ថយការបង្កើត Tables ស្ទួនៗគ្នាសម្រាប់ប្រភេទ Relationships ដូចគ្នា (ដូចជា Comments, Tags, ឬ Images)។'
+            },
+            {
+              id: '8.1.5',
               title: 'Advanced Through Relations',
               titleEn: 'Advanced Through Relations',
               type: 'code',
               content: [
                 '**Has Many Through**: ប្រើសម្រាប់ទាញយកទិន្នន័យឆ្លងកាត់ table កណ្តាលមួយ ដើម្បីចូលទៅកាន់ table ចុងក្រោយបានដោយផ្ទាល់។ (ឧទាហរណ៍៖ ទាញយក Users ទាំងអស់ក្នុងប្រទេសមួយ តាមរយៈតារាង States ដែលនៅកណ្ដាល)',
-                '**Has One Through**: ដំណើរការដូចគ្នា ប៉ុន្តែប្រើសម្រាប់ទាញយក record តែមួយគត់តាមរយៈ table កណ្តាល។ (ឧទាហរណ៍៖ ទាញយកព័ត៌មានឡានរបស់អ្នកប្រើប្រាស់ម្នាក់ តាមរយៈតារាង Key ដែលជាអ្នកភ្ជាប់ទំនាក់ទំនង)'
+                '**Has One Through**: ដំណើរការដូចគ្នា ប៉ុន្តែប្រើសម្រាប់ទាញយក record តែមួយគត់តាមរយៈ table កណ្តាល។'
               ],
               code: '// Project -> Environment -> Deployment\n\n// Has Many Through\npublic function deployments() {\n    return $this->hasManyThrough(Deployment::class, Environment::class);\n}\n\n// Has One Through\npublic function deployment() {\n    return $this->hasOneThrough(Deployment::class, Environment::class);\n}',
               language: 'php'
             },
             {
-              id: '8.1.4',
+              id: '8.1.6',
               title: 'Real-world Demo: Blog System Relationships',
               titleEn: 'Blog System Demo',
               type: 'code',
