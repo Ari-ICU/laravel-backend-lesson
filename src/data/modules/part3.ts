@@ -56,6 +56,31 @@ export const part3: Part = {
             },
             {
               id: '6.1.3',
+              title: 'Form Method Spoofing (ការបន្លំ Method)',
+              titleEn: 'Form Method Spoofing',
+              type: 'code',
+              content: [
+                '**HTML Limitation**: ជាទូទៅ HTML forms គាំទ្រតែ GET និង POST ប៉ុណ្ណោះ។ (វាមិនអាចផ្ញើ PUT, PATCH ឬ DELETE ដោយផ្ទាល់បានទេ)',
+                '**The Solution**: Laravel ផ្តល់ `@method` directive ដើម្បីជួយបំពេញចន្លោះប្រហោងនេះ។ (វាបង្កើត hidden input មួយឈ្មោះ `_method` ដែល Laravel នឹងអានដើម្បីដឹងពី Method ពិតប្រាកដដែលយើងចង់ប្រើ)'
+              ],
+              code: '<form action="/posts/1" method="POST">\n    @csrf\n    @method("PUT")\n    \n    <input type="text" name="title">\n    <button type="submit">Update</button>\n</form>',
+              language: 'php',
+              insight: 'ទោះបីប្រើ @method("PUT") ក៏ដោយ ក៏ attribute method របស់ form នៅតែជា "POST" ដដែល។'
+            },
+            {
+              id: '6.1.4',
+              title: 'Repopulating Forms (ការរក្សាទិន្នន័យចាស់)',
+              titleEn: 'Repopulating Forms',
+              type: 'code',
+              content: [
+                '**User Frustration**: វាជារឿងគួរឱ្យធុញទ្រាន់បំផុត ពេលបំពេញ Form ខុសបន្តិច ហើយត្រូវសរសេរអ្វីៗឡើងវិញទាំងអស់។',
+                '**The old() Helper**: Laravel ផ្តល់មុខងារ `old()` ដើម្បីទាញយកតម្លៃដែល User បានវាយបញ្ចូលកាលពី Request មុន។ (ជួយឱ្យទិន្នន័យនៅរក្សាដដែលពេលមាន Validation Error)'
+              ],
+              code: '<input type="text" name="username" value="{{ old("username") }}">\n\n<select name="country">\n    <option value="kh" {{ old("country") == "kh" ? "selected" : "" }}>Cambodia</option>\n</select>',
+              language: 'php'
+            },
+            {
+              id: '6.1.5',
               title: 'Real-world Demo: បង្កើត Registration Form',
               titleEn: 'Registration Form Demo',
               type: 'code',
@@ -132,6 +157,19 @@ export const part3: Part = {
             },
             {
               id: '6.2.4',
+              title: 'Form Request Authorization',
+              titleEn: 'Form Request Authorization',
+              type: 'code',
+              content: [
+                '**Security Gate**: Form Requests មិនត្រឹមតែមាន Validation rules ប៉ុណ្ណោះទេ តែវាក៏មាន `authorize()` method ផងដែរ។',
+                '**Permission Checking**: អ្នកអាចឆែកមើលថា តើ User បច្ចុប្បន្នមានសិទ្ធិកែប្រែទិន្នន័យនេះដែរឬទេ។ (បើត្រឡប់មក false នោះ Laravel នឹងបិទ Request នេះចោលដោយស្វ័យប្រវត្តិជាមួយលេខកូដ 403 Forbidden)'
+              ],
+              code: 'public function authorize(): bool {\n    $post = $this->route("post");\n    // អនុញ្ញាតឲ្យតែម្ចាស់ Post ប៉ុណ្ណោះអាចធ្វើការ Update បាន\n    return $post && $this->user()->id === $post->user_id;\n}',
+              language: 'php',
+              insight: 'ជាទូទៅបើអ្នកមាន Policy ដាច់ដោយឡែក អ្នកអាច return true ក្នុង method នេះបាន។'
+            },
+            {
+              id: '6.2.5',
               title: 'Real-world Demo: Profile Update Validation',
               titleEn: 'Profile Update Demo',
               type: 'code',
@@ -219,6 +257,18 @@ export const part3: Part = {
             },
             {
               id: '6.3.5',
+              title: 'ការ Upload ឯកសារច្រើន (Multiple Files)',
+              titleEn: 'Multiple File Uploads',
+              type: 'code',
+              content: [
+                '**Array Inputs**: ប្រើប្រាស់សញ្ញា `[]` នៅក្នុងឈ្មោះ Input ដើម្បីបញ្ជូនឯកសារជាទម្រង់ Array មកកាន់ Backend។ (ឧទាហរណ៍៖ ការ Upload រូបភាពច្រើនសន្លឹកសម្រាប់ផលិតផលមួយ)',
+                '**Looping**: ក្នុង Controller អ្នកគ្រាន់តែ Loop លើ Array ដែលទទួលពី Request ដើម្បីរក្សាទុកឯកសារម្ដងមួយៗបានយ៉ាងងាយ។'
+              ],
+              code: '// Blade HTML\n<input type="file" name="photos[]" multiple>\n\n// Controller Logic\nif ($request->hasFile("photos")) {\n    foreach ($request->file("photos") as $photo) {\n        $path = $photo->store("gallery", "public");\n        // រក្សាទុក $path ចូលក្នុង Database\n    }\n}',
+              language: 'php'
+            },
+            {
+              id: '6.3.6',
               title: 'Real-world Demo: Avatar Upload System',
               titleEn: 'Avatar Upload Demo',
               type: 'code',
@@ -273,7 +323,32 @@ export const part3: Part = {
             },
             {
               id: '7.1.2',
+              title: 'ការ Login ដោយដៃ (Manual Authentication)',
+              titleEn: 'Manual Authentication',
+              type: 'code',
+              content: [
+                '**Custom Login**: ទោះបីជា Starter Kits ល្អក៏ដោយ ជួនកាលអ្នកត្រូវការសរសេរកូដ Login ដោយខ្លួនឯង (ឧទាហរណ៍៖ សម្រាប់ API ឬការបញ្ជាក់អត្តសញ្ញាណតាមរបៀបផ្សេង)។',
+                '**Auth::attempt()**: មុខងារនេះទទួលយក Array នៃ Credentials (ដូចជា email និង password) ហើយវានឹងឆែកមើលក្នុង Database ដោយស្វ័យប្រវត្តិ។ (វានឹង Hash password ឲ្យដោយស្វ័យប្រវត្តិដើម្បីយកទៅប្រៀបធៀប)'
+              ],
+              code: 'use Illuminate\\Support\\Facades\\Auth;\n\n$credentials = $request->only("email", "password");\n\nif (Auth::attempt($credentials)) {\n    // បង្កើត Session ថ្មីការពារការវាយប្រហារ Session Fixation\n    $request->session()->regenerate();\n    return redirect()->intended("dashboard");\n}\n\nreturn back()->withErrors(["email" => "អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"]);',
+              language: 'php'
+            },
+            {
+              id: '7.1.3',
+              title: 'ការត្រួតពិនិត្យអត្តសញ្ញាណ (Checking Auth State)',
+              titleEn: 'Checking Auth State',
+              type: 'code',
+              content: [
+                '**Auth Status**: អ្នកតែងតែត្រូវឆែកមើលថា តើ User នោះបាន Login រួចឬនៅ? និងចង់ដឹងថាគាត់ជានរណា។',
+                '**Global Helpers**: Laravel ផ្ដល់ `auth()->check()` ដើម្បីមើលស្ថានភាព Login និង `auth()->user()` ដើម្បីទាញយក Model របស់អ្នកប្រើប្រាស់នោះភ្លាមៗ។'
+              ],
+              code: '// ក្នុង Controller ផ្តាច់ការភ្ជាប់\nAuth::logout();\n$request->session()->invalidate();\n$request->session()->regenerateToken();\n\n// ក្នុង Blade View\n@auth\n    <p>សួស្តី {{ auth()->user()->name }}!</p>\n@else\n    <p>សូមចុះឈ្មោះ ឬចូលគណនី</p>\n@endauth',
+              language: 'php'
+            },
+            {
+              id: '7.1.4',
               title: 'Real-world Demo: Starter Kit Installation',
+              titleEn: 'Starter Kit Demo',
               type: 'code',
               content: [
                 '**Quick Setup**: របៀបដំឡើង Laravel Breeze ដើម្បីទទួលបានប្រព័ន្ធ Authentication ពេញលេញក្នុងរយៈពេលប៉ុន្មានវិនាទី។',
@@ -327,6 +402,18 @@ export const part3: Part = {
             },
             {
               id: '7.2.3',
+              title: 'Middleware Parameters',
+              titleEn: 'Middleware Parameters',
+              type: 'code',
+              content: [
+                '**Flexibility**: ជួនកាល Middleware តែមួយអាចត្រូវបានប្រើសម្រាប់គោលបំណងច្រើន ដោយគ្រាន់តែផ្លាស់ប្តូរ Parameter របស់វា។ (ឧទាហរណ៍៖ ការឆែក Role អាចទទួលយកឈ្មោះ Role ជា Parameter បាន)',
+                '**Syntax**: ការបញ្ជូន Parameter ត្រូវបានសរសេរជាមួយសញ្ញា `:` ដូចជា `role:admin` ឬ `role:editor`។'
+              ],
+              code: '// ក្នុង Middleware\npublic function handle($request, $next, $role) {\n    if ($request->user()->role !== $role) {\n        abort(403);\n    }\n    return $next($request);\n}\n\n// ក្នុង Route\nRoute::get("/admin", [Controller::class, "index"])->middleware("role:admin");\nRoute::get("/editor", [Controller::class, "index"])->middleware("role:editor");',
+              language: 'php'
+            },
+            {
+              id: '7.2.4',
               title: 'Real-world Demo: Role-based Protection',
               titleEn: 'Role-based Protection Demo',
               type: 'code',
@@ -601,6 +688,186 @@ export const part3: Part = {
                 '**Efficiency**: វានឹងលុប Role ចាស់ដែលមិនបានជ្រើសរើស និងបន្ថែម Role ថ្មីដែលបានជ្រើសរើសដោយស្វ័យប្រវត្តិ។'
               ],
               code: 'public function update(Request $request, User $user) {\n    $request->validate([\n        "roles" => "required|array|min:1",\n        "roles.*" => "exists:roles,id"\n    ]);\n\n    // ធ្វើឱ្យ Roles ក្នុង DB ដូចទៅនឹង input ពី form\n    $user->roles()->sync($request->roles);\n\n    return back()->with("status", "User roles updated!");\n}',
+              language: 'php'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'module-9',
+      title: 'Module 9: ការបង្កើត API (Building APIs)',
+      titleEn: 'Building APIs',
+      icon: 'Server',
+      color: '#f59e0b',
+      lessons: [
+        {
+          id: '9.1',
+          title: 'ការបង្កើត RESTful APIs',
+          titleEn: 'RESTful API Development',
+          duration: '30 mins',
+          level: 'Core',
+          slides: [
+            {
+              id: '9.1.0',
+              title: 'តើអ្វីទៅជា API?',
+              titleEn: 'What is an API?',
+              type: 'intro',
+              content: [
+                '**Bridge of Communication**: API (Application Programming Interface) គឺជាស្ពានភ្ជាប់ទំនាក់ទំនងរវាងកម្មវិធីមួយទៅកម្មវិធីមួយទៀត។',
+                '**Data Formatting**: ខុសពី Web Routes ដែល return ជា HTML មកកាន់ Browser ផ្ទាល់, API Routes ជាទូទៅ return ទិន្នន័យជាទម្រង់ JSON ដែលងាយស្រួលសម្រាប់ Frontend (React, Vue) ឬ Mobile App អានយកទៅប្រើ។',
+                '**Statelessness**: API ភាគច្រើនត្រូវបានរចនាឡើងជាទម្រង់ Stateless មានន័យថា Server មិនចាំ Session របស់ User ទេ (តម្រូវឲ្យបញ្ជូន Token រាល់ពេល Request)។'
+              ],
+              animation: 'http'
+            },
+            {
+              id: '9.1.1',
+              title: 'API Routes និង api.php',
+              titleEn: 'API Routes',
+              type: 'code',
+              content: [
+                '**Dedicated File**: ក្នុង Laravel យើងសរសេរ Route សម្រាប់ API នៅក្នុង `routes/api.php` ជំនួសឲ្យ `routes/web.php`។',
+                '**Automatic Prefix**: រាល់ Route ទាំងអស់ក្នុង `api.php` នឹងត្រូវថែម prefix `/api` ពីមុខដោយស្វ័យប្រវត្តិ (ឧទាហរណ៍៖ `/api/users`)។',
+                '**No CSRF**: API routes មិនត្រូវការការពារ CSRF ទេ ព្រោះវាជា Stateless និងប្រើ Token ជំនួសវិញ។'
+              ],
+              code: '// ក្នុង routes/api.php\nRoute::get("/products", [ProductController::class, "index"]);\nRoute::post("/products", [ProductController::class, "store"]);\n\n// ប្រើ API Resource Route ដើម្បីបានស្តង់ដារ RESTful ភ្លាមៗ\nRoute::apiResource("posts", PostController::class);',
+              language: 'php'
+            },
+            {
+              id: '9.1.2',
+              title: 'ការ Return ទិន្នន័យជា JSON',
+              titleEn: 'Returning JSON',
+              type: 'code',
+              content: [
+                '**Automatic Conversion**: ភាពអស្ចារ្យរបស់ Laravel គឺអ្នកគ្រាន់តែ return Array ឬ Eloquent Collection វានឹងបំប្លែងទៅជា JSON ដោយស្វ័យប្រវត្តិ។',
+                '**Custom Responses**: ប្រើ `response()->json()` ដើម្បីមានការគ្រប់គ្រងពេញលេញទៅលើ HTTP Status Codes និង Headers ផ្សេងៗ។'
+              ],
+              code: 'public function index() {\n    // Laravel នឹងបំប្លែងទៅជា JSON ដោយខ្លួនឯង\n    return User::all(); \n}\n\npublic function store(Request $request) {\n    $product = Product::create($request->all());\n    // កំណត់ Status Code 201 (Created)\n    return response()->json([\n        "message" => "Product created successfully",\n        "data" => $product\n    ], 201);\n}',
+              language: 'php'
+            },
+            {
+              id: '9.1.3',
+              title: 'Real-world Demo: បង្កើត CRUD API សាមញ្ញ',
+              titleEn: 'Simple CRUD API Demo',
+              type: 'code',
+              content: [
+                '**Complete Flow**: ការបង្កើត Controller សម្រាប់ API គឺស្រដៀងទៅនឹង Web ដែរ គ្រាន់តែយើងប្តូរពីការ return View មក return JSON វិញ។',
+                '**Error Handling**: Laravel ក៏នឹងបំប្លែង Validation Errors ទៅជា JSON ដោយស្វ័យប្រវត្តិប្រសិនបើ Request នោះមកពី API (មាន Accept: application/json header)។'
+              ],
+              code: 'public function destroy(Post $post) {\n    $post->delete();\n    \n    // Return 204 No Content ឬ Message\n    return response()->json([\n        "message" => "Post deleted successfully"\n    ], 200);\n}',
+              language: 'php'
+            }
+          ]
+        },
+        {
+          id: '9.2',
+          title: 'Eloquent API Resources',
+          titleEn: 'API Resources',
+          duration: '25 mins',
+          level: 'Advanced',
+          slides: [
+            {
+              id: '9.2.0',
+              title: 'បញ្ហានៃការបង្ហាញទិន្នន័យ (The Transformation Problem)',
+              titleEn: 'Data Transformation Problem',
+              type: 'intro',
+              content: [
+                '**Direct Return is Bad**: ការបញ្ចេញ Model (Return $user) ទៅកាន់ API ត្រង់ៗអាចនឹងបង្ហាញទិន្នន័យសម្ងាត់ (ដូចជា password hash, រឺ hidden ID) និងធ្វើឱ្យទម្រង់ទិន្នន័យមិនមានស្តង់ដារ។',
+                '**The Middleman**: API Resources គឺជាអ្នកនៅកណ្តាលរវាង Eloquent Models និង JSON response របស់អ្នក ដែលអនុញ្ញាតឱ្យអ្នករៀបចំទម្រង់ទិន្នន័យបានតាមចិត្តមុននឹងបញ្ចេញទៅ។'
+              ],
+              animation: 'data_types'
+            },
+            {
+              id: '9.2.1',
+              title: 'ការបង្កើត និងប្រើប្រាស់ Resource',
+              titleEn: 'Creating Resources',
+              type: 'code',
+              content: [
+                '**Artisan Command**: ប្រើ `php artisan make:resource UserResource` ដើម្បីបង្កើត។',
+                '**Formatting**: ក្នុង method `toArray()` អ្នកអាចជ្រើសរើសបានថាតើ Column ណាខ្លះដែលគួរបង្ហាញ និងអាចបំប្លែងប្រភេទ Data ឱ្យបានត្រឹមត្រូវ។'
+              ],
+              code: 'public function toArray($request) {\n    return [\n        "id" => $this->id,\n        "name" => $this->name,\n        "email" => $this->email,\n        // ផ្លាស់ប្តូរទម្រង់កាលបរិច្ឆេទ\n        "joined_at" => $this->created_at->format("Y-m-d"),\n    ];\n}\n\n// របៀបប្រើក្នុង Controller\nreturn new UserResource(User::find(1));',
+              language: 'php'
+            },
+            {
+              id: '9.2.2',
+              title: 'Resource Collections',
+              titleEn: 'Resource Collections',
+              type: 'code',
+              content: [
+                '**Multiple Records**: ពេលទាញទិន្នន័យច្រើន (ដូចជា `User::all()`) យើងប្រើប្រាស់ `UserResource::collection()`។',
+                '**Automatic Pagination**: ប្រសិនបើអ្នកប្រើ `$users = User::paginate(10);` API Resource នឹងបន្ថែមព័ត៌មាន Pagination ទៅក្នុង JSON response ឲ្យអ្នកដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: 'public function index() {\n    // ទាញយក Users ទាំងអស់\n    $users = User::paginate(15);\n    \n    // បំប្លែងទៅជា Resource Collection ជាមួយ Pagination\n    return UserResource::collection($users);\n}',
+              language: 'php'
+            },
+            {
+              id: '9.2.3',
+              title: 'Real-world Demo: Post Resource',
+              titleEn: 'Post Resource Demo',
+              type: 'code',
+              content: [
+                '**Relationship Loading**: ក្នុង Resource អ្នកអាច Loadទិន្នន័យដែលមានទំនាក់ទំនង (Relationships) បានយ៉ាងស្រួលដោយប្រុងប្រយ័ត្ន។',
+                '**Conditional Attributes**: ប្រើ `whenLoaded()` ដើម្បីបង្ហាញទិន្នន័យទំនាក់ទំនង លុះត្រាតែវាត្រូវបាន Eager Load ពីមុនមក (ការពារបញ្ហា N+1)។'
+              ],
+              code: 'public function toArray($request) {\n    return [\n        "id" => $this->id,\n        "title" => $this->title,\n        "body" => $this->body,\n        // បង្ហាញពត៌មាន User លុះត្រាតែបាន load\n        "author" => new UserResource($this->whenLoaded("user")),\n        "comments_count" => $this->comments_count ?? 0,\n    ];\n}',
+              language: 'php'
+            }
+          ]
+        },
+        {
+          id: '9.3',
+          title: 'API Authentication ជាមួយ Laravel Sanctum',
+          titleEn: 'API Auth with Sanctum',
+          duration: '35 mins',
+          level: 'Expert',
+          slides: [
+            {
+              id: '9.3.0',
+              title: 'Stateless Authentication',
+              titleEn: 'Stateless Authentication',
+              type: 'intro',
+              content: [
+                '**No Sessions**: API មិនប្រើ Sessions ទេ ប៉ុន្តែវាប្រើ Tokens។ (User បញ្ជូន Token នៅក្នុង HTTP Header `Authorization: Bearer <token>` រាល់ពេល Request)។',
+                '**Laravel Sanctum**: ជា Package ផ្លូវការរបស់ Laravel ដែលបង្កើតឡើងយ៉ាងសាមញ្ញសម្រាប់ API Authentication និង SPA (Single Page Applications)។',
+                '**Lightweight**: វាស្រាល និងងាយស្រួលប្រើជាង Passport (ដែលផ្អែកលើ OAuth2 ពេញលេញ និងស័ក្តិសមសម្រាប់ API ខ្នាតធំ)។'
+              ],
+              animation: 'security'
+            },
+            {
+              id: '9.3.1',
+              title: 'ការបង្កើត Access Tokens',
+              titleEn: 'Issuing Tokens',
+              type: 'code',
+              content: [
+                '**Token Generation**: បន្ទាប់ពី User ផ្ដល់ Email និង Password ត្រឹមត្រូវ អ្នកអាចបង្កើត Token ថ្មីមួយឲ្យពួកគេ។',
+                '**Plain Text Token**: Sanctum នឹងផ្ដល់មកវិញនូវ Token ជាអក្សរធម្មតា ដែល Client (Mobile App) ត្រូវរក្សាទុក ហើយប្រើសម្រាប់ Request លើកក្រោយ។'
+              ],
+              code: 'public function login(Request $request) {\n    $request->validate([\n        "email" => "required|email",\n        "password" => "required"\n    ]);\n\n    $user = User::where("email", $request->email)->first();\n\n    if (!$user || !Hash::check($request->password, $user->password)) {\n        return response()->json(["message" => "Bad credentials"], 401);\n    }\n\n    // បង្កើត Token ថ្មី\n    $token = $user->createToken("mobile-app")->plainTextToken;\n\n    return response()->json(["token" => $token]);\n}',
+              language: 'php'
+            },
+            {
+              id: '9.3.2',
+              title: 'ការការពារ API Routes',
+              titleEn: 'Protecting API Routes',
+              type: 'code',
+              content: [
+                '**Sanctum Middleware**: ដើម្បីការពារ API Route របស់អ្នក គ្រាន់តែប្រើប្រាស់ Middleware `auth:sanctum` ជាការស្រេច។',
+                '**Unauthorized Response**: ប្រសិនបើ Request មិនមាន Token ឬ Token ខុស Laravel នឹងបញ្ជូនកូដ 401 Unauthorized ត្រឡប់ទៅវិញ។'
+              ],
+              code: '// ក្នុង routes/api.php\n\n// Public route (មិនបាច់មាន Token)\nRoute::post("/login", [AuthController::class, "login"]);\n\n// Protected routes (ត្រូវតែមាន Token)\nRoute::middleware("auth:sanctum")->group(function () {\n    Route::get("/user", function (Request $request) {\n        return $request->user(); // ទាញយក User បច្ចុប្បន្នតាម Token\n    });\n    \n    Route::apiResource("posts", PostController::class);\n});',
+              language: 'php'
+            },
+            {
+              id: '9.3.3',
+              title: 'Real-world Demo: Authentication API',
+              titleEn: 'Authentication API Demo',
+              type: 'code',
+              content: [
+                '**Complete System**: ឧទាហរណ៍នៃការគ្រប់គ្រង Login, និង Logout ដោយប្រើ Sanctum។',
+                '**Token Revocation**: នៅពេល User Logout យើងអាចលុប Token នោះចេញពី Database ដើម្បីធានាសុវត្ថិភាព។'
+              ],
+              code: 'public function logout(Request $request) {\n    // លុប Token ដែលកំពុងប្រើបច្ចុប្បន្នចោល\n    $request->user()->currentAccessToken()->delete();\n    \n    // លុប Token ទាំងអស់របស់ User\n    // $request->user()->tokens()->delete();\n\n    return response()->json([\n        "message" => "Logged out successfully"\n    ]);\n}\n',
               language: 'php'
             }
           ]
