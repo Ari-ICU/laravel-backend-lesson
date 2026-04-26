@@ -8,14 +8,21 @@ export const part2: Part = {
     {
       id: 'module-3',
       title: 'Module 3: Routing and Controllers',
+      titleEn: 'Routing and Controllers',
+      icon: 'Waypoints',
+      color: '#f59e0b',
       lessons: [
         {
           id: '3.1',
           title: 'Understanding Routing',
+          titleEn: 'Understanding Routing',
+          duration: '30 mins',
+          level: 'Core',
           slides: [
             {
               id: '3.1.0',
               title: 'The Entry Points',
+              titleEn: 'The Entry Points',
               type: 'intro',
               content: [
                 '**Routing** គឺជាឆ្អឹងខ្នងនៃប្រព័ន្ធគ្រប់គ្រង Requests ក្នុង Laravel។ (វាប្រៀបដូចជាផ្លូវថ្នល់ដែលដឹកនាំអ្នកប្រើប្រាស់ទៅកាន់គោលដៅត្រឹមត្រូវនៅក្នុង Website របស់អ្នក)',
@@ -28,6 +35,7 @@ export const part2: Part = {
             {
               id: '3.1.1',
               title: 'Route Files',
+              titleEn: 'Route Files',
               type: 'concept',
               content: [
                 '**routes/web.php**: សម្រាប់ Web Interface ទូទៅ (រួមបញ្ចូលមុខងារការពារដូចជា Session និង CSRF protection ដើម្បីធានាសុវត្ថិភាពសម្រាប់អ្នកប្រើប្រាស់ទូទៅ)។',
@@ -39,6 +47,7 @@ export const part2: Part = {
             {
               id: '3.1.2',
               title: 'HTTP Methods (ប្រភេទនៃ Requests)',
+              titleEn: 'HTTP Methods',
               type: 'code',
               content: [
                 '**GET**: ប្រើសម្រាប់ទាញយកទិន្នន័យមកបង្ហាញ (ឧទាហរណ៍៖ មើលបញ្ជីអត្ថបទ ឬចូលមើលទំព័រព័ត៌មានផ្សេងៗ)។',
@@ -55,6 +64,7 @@ export const part2: Part = {
             {
               id: '3.1.3',
               title: 'Route Parameters (ការបញ្ជូនទិន្នន័យតាម URL)',
+              titleEn: 'Route Parameters',
               type: 'code',
               content: [
                 '**Required Parameters**: `{id}` គឺដាច់ខាតត្រូវតែមានភ្ជាប់មកជាមួយ URL (បើមិនដូច្នោះទេ Laravel នឹងបង្ហាញកំហុស 404 ព្រោះវារកផ្លូវមិនឃើញ)។',
@@ -69,6 +79,7 @@ export const part2: Part = {
             {
               id: '3.1.4',
               title: 'Named Routes (ការដាក់ឈ្មោះផ្លូវ)',
+              titleEn: 'Named Routes',
               type: 'code',
               content: [
                 '**Semantic Naming**: ការដាក់ឈ្មោះឱ្យ Route ជួយឱ្យយើងហៅវាប្រើបានងាយស្រួលក្នុង Views ឬ Controllers (ឧទាហរណ៍៖ ប្រើ `route("profile")` ជំនួសឱ្យការសរសេរ URL វែងៗដោយដៃ)។',
@@ -83,6 +94,7 @@ export const part2: Part = {
             {
               id: '3.1.5',
               title: 'Groups & Middleware (ការចាត់ក្រុម និងតម្រង)',
+              titleEn: 'Groups & Middleware',
               type: 'code',
               content: [
                 '**Middleware**: ដើរតួជា "អ្នកយាមទ្វារ" ដើម្បីត្រួតពិនិត្យ Request មុនចូលដល់កម្មវិធី (ឧទាហរណ៍៖ `auth` middleware នឹងឆែកមើលថា តើ User បាន Login រួចរាល់ហើយឬនៅ)។',
@@ -93,16 +105,32 @@ export const part2: Part = {
               language: 'php',
               insight: 'ការប្រើប្រាស់ Groups ជួយឱ្យ `web.php` របស់អ្នកមានសណ្ដាប់ធ្នាប់ ងាយស្រួលអាន និងមិនសរសេរកូដជាន់គ្នា។',
               animation: 'route_groups'
+            },
+            {
+              id: '3.1.6',
+              title: 'Real-world Demo: Admin Panel Routes',
+              titleEn: 'Admin Panel Routes Demo',
+              type: 'code',
+              content: [
+                '**Structured Routes**: ឧទាហរណ៍នៃការរៀបចំ Route សម្រាប់ប្រព័ន្ធគ្រប់គ្រង (Admin Panel) ដែលមានការការពារ និង Prefix។',
+                '**Clean Organization**: ប្រើ Route Groups ដើម្បីបែងចែកតំបន់ Admin ឱ្យដាច់ពី User ធម្មតា។'
+              ],
+              code: 'Route::middleware(["auth", "admin"])->prefix("admin")->name("admin.")->group(function () {\n    // URL: /admin/dashboard, Name: admin.dashboard\n    Route::get("/dashboard", [AdminController::class, "index"])->name("dashboard");\n\n    // URL: /admin/users, Name: admin.users.index\n    Route::get("/users", [UserController::class, "index"])->name("users.index");\n});',
+              language: 'php'
             }
           ]
         },
         {
           id: '3.2',
           title: 'Controllers',
+          titleEn: 'Controllers',
+          duration: '35 mins',
+          level: 'Core',
           slides: [
             {
               id: '3.2.0',
               title: 'Organizing Your Logic',
+              titleEn: 'Organizing Logic',
               type: 'intro',
               content: [
                 '**Separation of Concerns**: ជំនួសឱ្យសរសេរ Logic ក្នុង Route file យើងគួរផ្ទេរវាទៅដាក់ក្នុង Controllers (ដើម្បីឱ្យ `web.php` ផ្ដោតតែលើការកំណត់ផ្លូវ URL ហើយ Controller ផ្ដោតលើការងារពិតប្រាកដ)។',
@@ -114,6 +142,7 @@ export const part2: Part = {
             {
               id: '3.2.1',
               title: 'Creating Controllers (ការបង្កើត Controller)',
+              titleEn: 'Creating Controllers',
               type: 'code',
               content: [
                 '**Artisan Command**: យើងប្រើ `php artisan make:controller` ដើម្បីបង្កើត Controller file ថ្មីភ្លាមៗ (ជួយសន្សំសំចៃពេលវេលា និងធានាថា File ត្រូវបានបង្កើតឡើងតាមស្ដង់ដាររបស់ Laravel)។',
@@ -127,6 +156,7 @@ export const part2: Part = {
             {
               id: '3.2.2',
               title: 'The Request Object (ការគ្រប់គ្រងទិន្នន័យបញ្ជូន)',
+              titleEn: 'The Request Object',
               type: 'code',
               content: [
                 '**Dependency Injection**: Laravel នឹងបញ្ជូន Request instance មកឱ្យយើងដោយស្វ័យប្រវត្តិក្នុង Controller methods (ជួយឱ្យអ្នកអាចចូលប្រើព័ត៌មានគ្រប់យ៉ាងដែល User បានផ្ញើមកបានភ្លាមៗ)។',
@@ -137,6 +167,18 @@ export const part2: Part = {
               language: 'php',
               insight: 'Request object ផ្ទុកព័ត៌មានគ្រប់យ៉ាងអំពី HTTP request រួមមាន៖ Inputs, Files, Cookies, និង Headers។',
               animation: 'laravel_request_object'
+            },
+            {
+              id: '3.2.3',
+              title: 'Real-world Demo: User Management Controller',
+              titleEn: 'User Management Controller Demo',
+              type: 'code',
+              content: [
+                '**Complete Logic**: ឧទាហរណ៍នៃ Controller ដែលមានមុខងារបង្ហាញបញ្ជីឈ្មោះ និងស្វែងរក User។',
+                '**Dependency Injection**: បង្ហាញពីរបៀបប្រើ Request ដើម្បីទាញយកពាក្យគន្លឹះស្វែងរក។'
+              ],
+              code: 'class UserController extends Controller {\n    public function index(Request $request) {\n        $search = $request->query("search");\n\n        $users = User::when($search, function ($query, $search) {\n            return $query->where("name", "like", "%{$search}%");\n        })->paginate(10);\n\n        return view("admin.users.index", compact("users", "search"));\n    }\n}',
+              language: 'php'
             }
           ]
         }
@@ -145,14 +187,21 @@ export const part2: Part = {
     {
       id: 'module-4',
       title: 'Module 4: Views and Blade Engine',
+      titleEn: 'Views and Blade Engine',
+      icon: 'Layout',
+      color: '#3b82f6',
       lessons: [
         {
           id: '4.1',
           title: 'Introduction to Blade',
+          titleEn: 'Introduction to Blade',
+          duration: '25 mins',
+          level: 'Core',
           slides: [
             {
               id: '4.1.0',
               title: 'Welcome to Blade',
+              titleEn: 'Welcome to Blade',
               type: 'intro',
               content: [
                 'Blade គឺជា Templating Engine របស់ Laravel ដែលងាយស្រួល និងមានប្រសិទ្ធភាព។ (វាជួយឱ្យអ្នកអាចបង្កើត Layout ស្អាតៗដោយមិនបាច់សរសេរកូដ PHP ស្មុគស្មាញលាយជាមួយ HTML)',
@@ -164,6 +213,7 @@ export const part2: Part = {
             {
               id: '4.1.1',
               title: 'Creating Views via CLI',
+              titleEn: 'Creating Views via CLI',
               type: 'code',
               content: [
                 'ក្នុង Laravel សម័យថ្មី យើងអាចបង្កើត View ដោយប្រើ Artisan Command បានយ៉ាងរហ័ស។ (ជួយកាត់បន្ថយការបង្កើត File និង Folder ដោយដៃដែលនាំឱ្យចំណាយពេលច្រើន)',
@@ -176,6 +226,7 @@ export const part2: Part = {
             {
               id: '4.1.2',
               title: 'Basic Syntax & Directives (វាក្យសព្ទមូលដ្ឋាន)',
+              titleEn: 'Basic Syntax & Directives',
               type: 'code',
               content: [
                 '**Double Braces**: `{{ $data }}` ប្រើសម្រាប់បង្ហាញតម្លៃ Variables (ស្មើនឹងការប្រើ `echo` ក្នុង PHP ប៉ុន្តែវាមានសុវត្ថិភាពជាងព្រោះវាជួយការពារការលួចបញ្ចូលកូដអាក្រក់)។',
@@ -190,6 +241,7 @@ export const part2: Part = {
             {
               id: '4.1.3',
               title: 'Escaping Data (សុវត្ថិភាពទិន្នន័យ)',
+              titleEn: 'Escaping Data',
               type: 'concept',
               content: [
                 '**Safe Display**: `{{ $data }}` នឹងបម្លែងតួអក្សរពិសេសទៅជាអក្សរសុវត្ថិភាព ដើម្បីទប់ស្កាត់ការវាយប្រហារ **XSS** (វាជាខែលការពារដ៏សំខាន់បំផុត ដើម្បីកុំឱ្យ Hacker បញ្ចូលកូដ JavaScript អាក្រក់មកក្នុង App របស់អ្នក)។',
@@ -197,16 +249,32 @@ export const part2: Part = {
                 '**Comment**: `{{-- នេះជា Comment --}}` នឹងមិនបង្ហាញនៅក្នុង HTML source code ដែល User ឃើញឡើយ (ជួយឱ្យអ្នកអាចកត់ចំណាំក្នុងកូដបានយ៉ាងមានសុវត្ថិភាព)។'
               ],
               insight: 'ច្បាប់មាស៖ កុំប្រើ `{!! !!}` ជាមួយទិន្នន័យដែលបញ្ចូលដោយ Users ជាដាច់ខាត!'
+            },
+            {
+              id: '4.1.4',
+              title: 'Real-world Demo: Product Card Loop',
+              titleEn: 'Product Card Loop Demo',
+              type: 'code',
+              content: [
+                '**Practical Loop**: របៀបប្រើ `@forelse` ដើម្បីបង្ហាញបញ្ជីផលិតផល និងបង្ហាញសារព្រមានបើគ្មានទិន្នន័យ។',
+                '**Currency Formatting**: ការប្រើ PHP function ក្នុង Blade ដើម្បីបង្ហាញតម្លៃលុយឱ្យស្អាត។'
+              ],
+              code: '<div class="grid grid-cols-3 gap-4">\n    @forelse($products as $product)\n        <div class="card">\n            <h3>{{ $product->name }}</h3>\n            <p>តម្លៃ: ${{ number_format($product->price, 2) }}</p>\n            <button>ទិញឥឡូវនេះ</button>\n        </div>\n    @empty\n        <p class="text-gray-500">សុំទោស មិនមានផលិតផលសម្រាប់បង្ហាញទេ។</p>\n    @endforelse\n</div>',
+              language: 'php'
             }
           ]
         },
         {
           id: '4.2',
           title: 'Layouts and Components',
+          titleEn: 'Layouts and Components',
+          duration: '35 mins',
+          level: 'Core',
           slides: [
             {
               id: '4.2.0',
               title: 'Layout Architecture',
+              titleEn: 'Layout Architecture',
               type: 'intro',
               content: [
                 'កុំចំណាយពេលសរសេរ Header ឬ Footer ដដែលៗក្នុងគ្រប់ Page។ (ការធ្វើបែបនេះនាំឱ្យពិបាកកែសម្រួល និងចំណាយពេលច្រើនឥតប្រយោជន៍)',
@@ -218,6 +286,7 @@ export const part2: Part = {
             {
               id: '4.2.1',
               title: 'The Main Layout (ប្លង់មេនៃ Layout)',
+              titleEn: 'The Main Layout',
               type: 'code',
               content: [
                 '**Centralization**: បង្កើត File តែមួយសម្រាប់រក្សាទុក HTML Structure រួម (ដូចជា Navbar, Footer, និងរាល់ការហៅ CSS/JS ផ្សេងៗដែលប្រើក្នុង App ទាំងមូល)។',
@@ -230,6 +299,7 @@ export const part2: Part = {
             {
               id: '4.2.2',
               title: 'Extending a Layout (ការប្រើប្រាស់ Layout មេ)',
+              titleEn: 'Extending a Layout',
               type: 'code',
               content: [
                 '**Involvement**: ប្រើ `@extends` ដើម្បីប្រាប់ថា Page នេះនឹងប្រើប្រាស់ Layout មេមួយណា (វាជាការភ្ជាប់ទំនាក់ទំនងរវាងទំព័រមាតិកា និងប្លង់មេនៃកម្មវិធី)។',
@@ -243,6 +313,7 @@ export const part2: Part = {
             {
               id: '4.2.3',
               title: 'Including & Components (ការបំបែក UI តូចៗ)',
+              titleEn: 'Including & Components',
               type: 'code',
               content: [
                 '**@include**: ប្រើសម្រាប់ទាញយក File តូចៗមកដាក់បញ្ចូល (ឧទាហរណ៍៖ ការបំបែក Sidebar ឬ Navbar ឱ្យដាច់ដោយឡែក ដើម្បីឱ្យកូដក្នុង Layout មាមមិនមានភាពស្មុគស្មាញ)។',
@@ -253,16 +324,32 @@ export const part2: Part = {
               language: 'php',
               insight: 'ប្រើ Components ជំនួស @include សម្រាប់ UI Elements ដែលមាន Logic ឬស្ទីលស្មុគស្មាញ។',
               animation: 'blade_components'
+            },
+            {
+              id: '4.2.4',
+              title: 'Real-world Demo: Admin Layout with Sidebar',
+              titleEn: 'Admin Layout Demo',
+              type: 'code',
+              content: [
+                '**Advanced Layout**: ការរៀបចំ Layout ស្មុគស្មាញដែលមានបែងចែក Sidebar និង Topbar។',
+                '**Stack & Push**: ប្រើ `@stack` ដើម្បីអនុញ្ញាតឱ្យ Page នីមួយៗបន្ថែម Custom JS ឬ CSS ទៅក្នុង Header/Footer។'
+              ],
+              code: '<!-- main layout -->\n<div class="flex">\n    <aside> @include("layouts.sidebar") </aside>\n    <main>\n        <header> @include("layouts.topbar") </header>\n        <div class="p-6"> @yield("content") </div>\n    </main>\n</div>\n\n@stack("scripts") <!-- កន្លែងសម្រាប់ដាក់ JS បន្ថែមពី Page ផ្សេងៗ -->',
+              language: 'php'
             }
           ]
         },
         {
           id: '4.3',
           title: 'Passing Data to Views',
+          titleEn: 'Passing Data to Views',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '4.3.0',
               title: 'Communicating with Views',
+              titleEn: 'Communicating with Views',
               type: 'intro',
               content: [
                 'បន្ទាប់ពីទាញទិន្នន័យបានពី Controller យើងត្រូវបញ្ជូនវាទៅបង្ហាញនៅលើ Frontend (View)។ (ដើម្បីឱ្យ User អាចមើលឃើញព័ត៌មានដែលពួកគេត្រូវការ ដូចជាបញ្ជីឈ្មោះ ឬព័ត៌មានផ្ទាល់ខ្លួន)',
@@ -272,6 +359,7 @@ export const part2: Part = {
             {
               id: '4.3.1',
               title: 'The view() Helper',
+              titleEn: 'The view() Helper',
               type: 'code',
               content: [
                 'វិធីសាមញ្ញបំផុតគឺបញ្ជូន Data ជា Associative Array ក្នុង Parameter ទីពីរនៃ `view()`។ (វាអនុញ្ញាតឱ្យយើងផ្ទេរទិន្នន័យពី Controller ទៅកាន់ View បានយ៉ាងច្បាស់លាស់ និងងាយស្រួលប្រើក្នុង Blade Template)។'
@@ -282,6 +370,7 @@ export const part2: Part = {
             {
               id: '4.3.2',
               title: 'The compact() Helper',
+              titleEn: 'The compact() Helper',
               type: 'code',
               content: [
                 'ជាវិធីដែលពេញនិយមបំផុត ព្រោះវាខ្លី ងាយស្រួលអាន និងស្អាតជាងការសរសេរ Array ដោយដៃ។ (ជួយកាត់បន្ថយការសរសេរកូដដដែលៗ និងធ្វើឱ្យ Controller របស់អ្នកមើលទៅមានរបៀបរៀបរយ)',
@@ -290,6 +379,18 @@ export const part2: Part = {
               code: 'public function show($id) {\n    $user = User::findOrFail($id);\n    $posts = $user->posts;\n\n    // ស្មើនឹង ["user" => $user, "posts" => $posts]\n    return view("user.show", compact("user", "posts"));\n}',
               language: 'php',
               insight: 'ប្រើ `compact()` នឹងជួយឱ្យកូដរបស់អ្នកមើលទៅមានលក្ខណៈអាជីព និងស្អាតជាងមុន។'
+            },
+            {
+              id: '4.3.3',
+              title: 'Real-world Demo: Dynamic Profile Page',
+              titleEn: 'Dynamic Profile Page Demo',
+              type: 'code',
+              content: [
+                '**Data Passing**: ឧទាហរណ៍នៃការបញ្ជូន Model Instance ទៅកាន់ View ដើម្បីបង្ហាញព័ត៌មាន Profile។',
+                '**Display Logic**: ការបង្ហាញរូបភាព Default បើ User មិនទាន់មានរូបភាព Profile។'
+              ],
+              code: '<!-- ក្នុង Controller -->\npublic function profile() {\n    $user = auth()->user();\n    return view("profile.show", compact("user"));\n}\n\n<!-- ក្នុង Blade -->\n<div class="profile-header">\n    <img src="{{ $user->avatar_url ?? "/images/default-avatar.png" }}">\n    <h2>{{ $user->full_name }}</h2>\n    <p>សមាជិកតាំងពី: {{ $user->created_at->format("M Y") }}</p>\n</div>',
+              language: 'php'
             }
           ]
         }
@@ -298,14 +399,21 @@ export const part2: Part = {
     {
       id: 'module-5',
       title: 'Module 5: Databases and Eloquent ORM',
+      titleEn: 'Databases and Eloquent ORM',
+      icon: 'Database',
+      color: '#8b5cf6',
       lessons: [
         {
           id: '5.1',
           title: 'Database Configuration',
+          titleEn: 'Database Configuration',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '5.1.0',
               title: 'Connecting Your App',
+              titleEn: 'Connecting Your App',
               type: 'intro',
               content: [
                 'មុននឹងចាប់ផ្តើមធ្វើការជាមួយទិន្នន័យ យើងត្រូវភ្ជាប់ Application ទៅកាន់ Database ជាមុនសិន។ (វាប្រៀបដូចជាការភ្ជាប់បំពង់ទឹកទៅកាន់ធុងស្តុក ដើម្បីឱ្យយើងអាចទាញយក ឬរក្សាទុកទិន្នន័យបាន)',
@@ -318,11 +426,24 @@ export const part2: Part = {
             {
               id: '5.1.1',
               title: 'The .env File',
+              titleEn: 'The .env File',
               type: 'code',
               content: [
                 'គ្រាន់តែកែតម្លៃទាំងនេះឱ្យត្រឹមត្រូវស្របតាម Database ដែលអ្នកបានបង្កើតនៅក្នុង Local Environment របស់អ្នក។ (ដូចជាឈ្មោះ Database, Username និង Password ដើម្បីធានាថាការភ្ជាប់រវាង App និង Database ដំណើរការបានត្រឹមត្រូវ)'
               ],
               code: 'DB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=my_app_db\nDB_USERNAME=root\nDB_PASSWORD=secret',
+              language: 'bash'
+            },
+            {
+              id: '5.1.2',
+              title: 'Real-world Demo: Environment Setup for Teams',
+              titleEn: 'Environment Setup Demo',
+              type: 'code',
+              content: [
+                '**Team Collaboration**: របៀបប្រើ `.env.example` ដើម្បីជួយឱ្យក្រុមការងារងាយស្រួលរៀបចំ Project។',
+                '**Security**: បញ្ជាក់ពីសារៈសំខាន់នៃ APP_KEY សម្រាប់ការពារទិន្នន័យរបស់ User។'
+              ],
+              code: '# ជំហានដំឡើងសម្រាប់អ្នកទើបចូលថ្មី\ncp .env.example .env\nphp artisan key:generate\n\n# បន្ទាប់មកកែឈ្មោះ Database ក្នុង .env\nDB_DATABASE=laravel_course_demo',
               language: 'bash'
             }
           ]
@@ -330,10 +451,14 @@ export const part2: Part = {
         {
           id: '5.2',
           title: 'Database Migrations',
+          titleEn: 'Database Migrations',
+          duration: '40 mins',
+          level: 'Core',
           slides: [
             {
               id: '5.2.0',
               title: 'Version Control for Data',
+              titleEn: 'Version Control for Data',
               type: 'intro',
               content: [
                 '**Migrations** គឺជាប្រព័ន្ធសម្រាប់គ្រប់គ្រងរចនាសម្ព័ន្ធ Database ដោយប្រើកូដ PHP ជំនួសការបង្កើតតារាងដោយដៃ។ (វាជួយឱ្យអ្នក និងក្រុមការងារមាន Database Structure ដូចគ្នាជានិច្ច ដោយមិនចាំបាច់ផ្ញើ File SQL ឱ្យគ្នាទៅវិញទៅមក)',
@@ -345,6 +470,7 @@ export const part2: Part = {
             {
               id: '5.2.1',
               title: 'Creating Migrations (ការបង្កើត Migration)',
+              titleEn: 'Creating Migrations',
               type: 'code',
               content: [
                 '**Artisan Command**: ប្រើ `make:migration` ដើម្បីបង្កើត File សម្រាប់កំណត់រចនាសម្ព័ន្ធ Table ថ្មី (ជួយឱ្យអ្នកចាប់ផ្ដើមរៀបចំ Database បានយ៉ាងរហ័ស និងមានរបៀបរៀបរយ)។',
@@ -358,6 +484,7 @@ export const part2: Part = {
             {
               id: '5.2.2',
               title: 'Migration Structure',
+              titleEn: 'Migration Structure',
               type: 'code',
               content: [
                 '**up() Method**: ជាកន្លែងដែលយើងសរសេរកូដដើម្បីបង្កើត Table ឬបន្ថែម Column ថ្មី (វាត្រូវបាន Run នៅពេលយើងវាយពាក្យ `php artisan migrate`)។',
@@ -371,6 +498,7 @@ export const part2: Part = {
             {
               id: '5.2.3',
               title: 'The Schema Builder (ការកំណត់រចនាសម្ព័ន្ធ Table)',
+              titleEn: 'Schema Builder',
               type: 'code',
               content: [
                 '**Blueprint**: យើងប្រើ `$table` Object ដើម្បីកំណត់ប្រភេទទិន្នន័យ (Data Types) របស់ Column (វាផ្ដល់នូវភាពងាយស្រួលក្នុងការកំណត់លក្ខណៈសម្បត្តិរបស់ទិន្នន័យនីមួយៗ)។',
@@ -384,6 +512,7 @@ export const part2: Part = {
             {
               id: '5.2.4',
               title: 'Running Migrations (ការដំណើរការ Migration)',
+              titleEn: 'Running Migrations',
               type: 'code',
               content: [
                 '**php artisan migrate**: ដំណើរការរាល់ Migrations ដែលមិនទាន់បាន Run ដើម្បីបង្កើត Tables ក្នុង Database (វាជាជំហានចុងក្រោយដើម្បីយក Structure ដែលអ្នកបានសរសេរទៅបង្កើតជា Table ពិតប្រាកដ)។',
@@ -398,6 +527,7 @@ export const part2: Part = {
             {
               id: '5.2.5',
               title: 'Rolling Back Migrations (ការដកថយ Migration)',
+              titleEn: 'Rolling Back Migrations',
               type: 'code',
               content: [
                 '**php artisan migrate:rollback**: បោះជំហានថយក្រោយ 1 ជំហាន (Undo) ដោយលុប Table ដែលបានបង្កើតចុងក្រោយ (វាមានប្រយោជន៍ណាស់នៅពេលអ្នកចង់កែប្រែ Structure បន្ទាប់ពី Run រួច)។',
@@ -417,16 +547,32 @@ php artisan migrate:reset
 # ៤. លុប Table ទាំងអស់ រួច Run ឡើងវិញ ព្រមទាំង Seed Data
 php artisan migrate:fresh --seed`,
               language: 'bash',
+            },
+            {
+              id: '5.2.6',
+              title: 'Real-world Demo: Blog Database Schema',
+              titleEn: 'Blog Schema Demo',
+              type: 'code',
+              content: [
+                '**Complete Schema**: ឧទាហរណ៍នៃការរៀបចំ Migration សម្រាប់តារាង Posts ដែលមាន Foreign Key ភ្ជាប់ទៅ Users។',
+                '**Data Integrity**: ប្រើ `constrained()` និង `onDelete("cascade")` ដើម្បីគ្រប់គ្រងសុវត្ថិភាពទិន្នន័យ។'
+              ],
+              code: 'Schema::create("posts", function (Blueprint $table) {\n    $table->id();\n    $table->foreignId("user_id")->constrained()->onDelete("cascade");\n    $table->string("title");\n    $table->string("slug")->unique();\n    $table->text("body");\n    $table->string("image")->nullable();\n    $table->boolean("is_published")->default(false);\n    $table->timestamps();\n});',
+              language: 'php'
             }
           ]
         },
         {
           id: '5.3',
           title: 'Eloquent ORM - Models',
+          titleEn: 'Eloquent ORM - Models',
+          duration: '35 mins',
+          level: 'Core',
           slides: [
             {
               id: '5.3.0',
               title: 'The Active Record Pattern',
+              titleEn: 'Active Record Pattern',
               type: 'intro',
               content: [
                 '**Eloquent** គឺជា ORM (Object-Relational Mapping) របស់ Laravel ដែលធ្វើឱ្យការធ្វើការជាមួយ Database កាន់តែងាយស្រួល។ (វាបម្លែងទិន្នន័យពី Database ឱ្យទៅជា PHP Objects ដែលយើងអាចប្រើប្រាស់បានយ៉ាងសាមញ្ញ)',
@@ -439,6 +585,7 @@ php artisan migrate:fresh --seed`,
             {
               id: '5.3.1',
               title: 'Creating Models',
+              titleEn: 'Creating Models',
               type: 'code',
               content: [
                 'Models ស្ថិតនៅក្នុង Folder `app/Models` ដែលប្រើសម្រាប់តំណាងឱ្យ Tables ក្នុង Database (វាជាចំណុចកណ្ដាលនៃការទាក់ទងទិន្នន័យរវាង Code របស់អ្នក និង Database)។',
@@ -451,6 +598,7 @@ php artisan migrate:fresh --seed`,
             {
               id: '5.3.2',
               title: 'Mass Assignment',
+              titleEn: 'Mass Assignment',
               type: 'code',
               content: [
                 'ដើម្បីធានាសុវត្ថិភាព Laravel តម្រូវឱ្យយើងកំណត់ជាមុនថា Column ណាខ្លះអាចអនុញ្ញាតឱ្យបញ្ចូលទិន្នន័យបាន។ (ដើម្បីការពារ Hacker មិនឱ្យបញ្ចូលទិន្នន័យទៅកាន់ Column សំខាន់ៗដែលយើងមិនចង់ឱ្យប៉ះពាល់)',
@@ -460,16 +608,32 @@ php artisan migrate:fresh --seed`,
               language: 'php',
               insight: 'ការប្រើ `$fillable` ជួយការពារពី "Mass Assignment Vulnerability" ដែលជាបញ្ហាសុវត្ថិភាពចម្បង។',
               animation: 'mass_assignment'
+            },
+            {
+              id: '5.3.3',
+              title: 'Real-world Demo: Product Model with Attributes',
+              titleEn: 'Product Model Demo',
+              type: 'code',
+              content: [
+                '**Advanced Model**: ការប្រើប្រាស់ `$casts` ដើម្បីបម្លែងប្រភេទទិន្នន័យដោយស្វ័យប្រវត្តិ (ឧទាហរណ៍៖ បម្លែង string ទៅជា JSON array)។',
+                '**Safety**: ការពារ Column សំខាន់ៗមិនឱ្យបញ្ចូលតាមរយៈ Mass Assignment។'
+              ],
+              code: 'class Product extends Model {\n    protected $fillable = ["name", "price", "specs"];\n\n    // បម្លែង JSON string ក្នុង DB មកជា Array ក្នុង PHP ស្វ័យប្រវត្តិ\n    protected $casts = [\n        "specs" => "array",\n        "price" => "decimal:2",\n        "is_active" => "boolean"\n    ];\n}',
+              language: 'php'
             }
           ]
         },
         {
           id: '5.4',
           title: 'CRUD Operations',
+          titleEn: 'CRUD Operations',
+          duration: '40 mins',
+          level: 'Core',
           slides: [
             {
               id: '5.4.0',
               title: 'Basic Operations',
+              titleEn: 'Basic Operations',
               type: 'intro',
               content: [
                 '**CRUD** តំណាងឱ្យសកម្មភាពគ្រឹះក្នុងការគ្រប់គ្រងទិន្នន័យ៖ Create (បង្កើត), Read (អាន/មើល), Update (កែប្រែ) និង Delete (លុប)។ (វាជាមូលដ្ឋានគ្រឹះនៃរាល់ Application ទាំងអស់នៅលើពិភពលោក)',
@@ -480,6 +644,7 @@ php artisan migrate:fresh --seed`,
             {
               id: '5.4.1',
               title: 'Create & Read',
+              titleEn: 'Create & Read',
               type: 'code',
               content: [
                 '**Create**: ការបន្ថែមទិន្នន័យថ្មី ដូចជាការចុះឈ្មោះសមាជិក ឬការដាក់លក់ផលិតផលថ្មី។ (ជួយឱ្យអ្នកអាចរក្សាទុកព័ត៌មានដែលអ្នកប្រើប្រាស់បញ្ជូនមកពី Frontend បានយ៉ាងរលូន)',
@@ -493,6 +658,7 @@ php artisan migrate:fresh --seed`,
             {
               id: '5.4.2',
               title: 'Update & Delete',
+              titleEn: 'Update & Delete',
               type: 'code',
               content: [
                 '**Update**: ការកែប្រែព័ត៌មានដែលមានស្រាប់ ដូចជាការប្តូរតម្លៃផលិតផល ឬការកែព័ត៌មានសមាជិក។ (ជួយឱ្យទិន្នន័យក្នុង Database របស់អ្នកមានភាពទាន់សម័យ និងត្រឹមត្រូវជានិច្ចទៅតាមការផ្លាស់ប្តូរជាក់ស្តែង)',
@@ -502,16 +668,32 @@ php artisan migrate:fresh --seed`,
               code: '// ការកែប្រែ (Update)\n$item = Product::find(1);\n$item->update(["price" => 899]);\n\n// ការលុប (Delete)\n$item->delete();\n\n// លុបតាមរយៈ ID ផ្ទាល់\nProduct::destroy(2);',
               language: 'php',
               insight: 'ចងចាំ៖ រាល់ពេលប្រើ update() ឬ delete() ត្រូវប្រាកដថាអ្នកបានហៅ find() ឬ where() ឱ្យបានត្រឹមត្រូវដើម្បីកុំឱ្យប៉ះពាល់ទិន្នន័យខុសជួរ។'
+            },
+            {
+              id: '5.4.3',
+              title: 'Real-world Demo: Complete CRUD Workflow',
+              titleEn: 'CRUD Workflow Demo',
+              type: 'code',
+              content: [
+                '**Full CRUD**: បង្ហាញពីរបៀបប្រើ Eloquent ដើម្បីបង្កើតមុខងារគ្រប់គ្រង Inventory សាមញ្ញមួយ។',
+                '**Logic Chain**: ស្វែងរក record ជាមុនសិន រួចទើបធ្វើការ Update ឬ Delete។'
+              ],
+              code: '// 1. បង្កើតផលិតផលថ្មី\n$product = Product::create($request->all());\n\n// 2. កែប្រែតម្លៃផលិតផលដែលថ្លៃជាង $1000\nProduct::where("price", ">", 1000)\n       ->update(["category" => "Premium"]);\n\n// 3. លុបផលិតផលដែលឈប់លក់\nProduct::where("stock", 0)->delete();',
+              language: 'php'
             }
           ]
         },
         {
           id: '5.5',
           title: 'The Query Builder',
+          titleEn: 'The Query Builder',
+          duration: '30 mins',
+          level: 'Advanced',
           slides: [
             {
               id: '5.5.0',
               title: 'When to go "Lower Level"',
+              titleEn: 'When to go "Lower Level"',
               type: 'intro',
               content: [
                 'ជួនកាល Eloquent អាចដំណើរការយឺតបន្តិច នៅពេលដែល Query មានភាពស្មុគស្មាញ ឬទិន្នន័យមានបរិមាណធំខ្លាំង។ (ក្នុងករណីបែបនេះ យើងត្រូវការឧបករណ៍ដែលរត់លឿនជាងមុនដើម្បីរក្សាល្បឿនរបស់ App)',
@@ -522,6 +704,7 @@ php artisan migrate:fresh --seed`,
             {
               id: '5.5.1',
               title: 'Basic Query Builder',
+              titleEn: 'Basic Query Builder',
               type: 'code',
               content: [
                 'ប្រើ `DB` Facade ដើម្បីគ្រប់គ្រង និងប្រតិបត្តិ SQL Queries ដោយផ្ទាល់ (វាជាវិធីដែលផ្ដល់នូវថាមពលខ្លាំងបំផុតក្នុងការបញ្ជា Database ឱ្យធ្វើការងារតាមចិត្តរបស់អ្នក)។',
@@ -530,6 +713,18 @@ php artisan migrate:fresh --seed`,
               code: 'use Illuminate\\Support\\Facades\\DB;\n\n// ទាញយកទិន្នន័យផ្ទាល់\n$users = DB::table("users")->get();\n\n// Query បែបស្មុគស្មាញ\n$activeUsers = DB::table("users")\n            ->where("active", true)\n            ->orderBy("last_login", "desc")\n            ->limit(5)\n            ->get();',
               language: 'php',
               insight: 'ចំណេះដឹងបន្ថែម៖ តាមពិតទៅ Eloquent គឺគ្រាន់តែជា "សំបក" ដែលស្រោបពីលើ Query Builder នេះប៉ុណ្ណោះ។'
+            },
+            {
+              id: '5.5.2',
+              title: 'Real-world Demo: Complex Report Query',
+              titleEn: 'Complex Report Query Demo',
+              type: 'code',
+              content: [
+                '**Raw Power**: ការប្រើ Query Builder ដើម្បីទាញយកទិន្នន័យសម្រាប់ធ្វើរបាយការណ៍លក់ប្រចាំខែ។',
+                '**Optimization**: ការប្រើ `join()` ដើម្បីភ្ជាប់តារាង និង `selectRaw()` ដើម្បីគណនាតម្លៃសរុប។'
+              ],
+              code: '$salesReport = DB::table("orders")\n    ->join("users", "orders.user_id", "=", "users.id")\n    ->selectRaw("users.name, SUM(orders.total) as total_spent")\n    ->whereMonth("orders.created_at", now()->month)\n    ->groupBy("users.id", "users.name")\n    ->orderBy("total_spent", "desc")\n    ->get();',
+              language: 'php'
             }
           ]
         }

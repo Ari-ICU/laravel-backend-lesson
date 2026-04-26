@@ -7,14 +7,21 @@ export const part1: Part = {
     {
       id: 'intro',
       title: 'Course Introduction',
+      titleEn: 'Course Introduction',
+      icon: 'Rocket',
+      color: '#0f172a',
       lessons: [
         {
           id: '0.1',
           title: 'Welcome to Laravel',
+          titleEn: 'Welcome to Laravel',
+          duration: '15 mins',
+          level: 'Core',
           slides: [
             {
               id: '0.1.1',
               title: 'Course Objective (គោលបំណងនៃវគ្គសិក្សា)',
+              titleEn: 'Course Objective',
               type: 'intro',
               content: [
                 'ស្វាគមន៍មកកាន់ការសិក្សា **Laravel Backend** (នេះគឺជាការចាប់ផ្ដើមនៃដំណើរផ្លាស់ប្តូរខ្លួនឱ្យក្លាយជាអ្នកបង្កើតកម្មវិធីកម្រិតអាជីព)។',
@@ -26,6 +33,7 @@ export const part1: Part = {
             {
               id: '0.1.2',
               title: 'What You Will Learn',
+              titleEn: 'What You Will Learn',
               type: 'concept',
               content: [
                 '**PHP Fundamentals**: មូលដ្ឋានគ្រឹះដ៏រឹងមាំនៃ Modern Web Apps (ស្វែងយល់ពីរបៀបដែល Server ធ្វើការ និងចាត់ចែងទិន្នន័យមុននឹងបញ្ជូនទៅកាន់អ្នកប្រើប្រាស់)។',
@@ -37,6 +45,7 @@ export const part1: Part = {
             {
               id: '0.1.3',
               title: 'Course Roadmap',
+              titleEn: 'Course Roadmap',
               type: 'concept',
               content: [
                 '**Part 1**: Foundations & PHP Deep Dive (មូលដ្ឋានគ្រឹះ និងការសិក្សា PHP ស៊ីជម្រៅ)។',
@@ -52,14 +61,21 @@ export const part1: Part = {
     {
       id: 'module-1',
       title: 'Module 1: Introduction to Backend Development',
+      titleEn: 'Introduction to Backend Development',
+      icon: 'Monitor',
+      color: '#3b82f6',
       lessons: [
         {
           id: '1.0',
           title: 'Essential Development Tools',
+          titleEn: 'Essential Development Tools',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '1.0.1',
               title: 'The Developer\'s Toolkit',
+              titleEn: 'Developer\'s Toolkit',
               type: 'concept',
               content: [
                 'មុនពេលយើងចាប់ផ្តើមសរសេរកូដ យើងត្រូវការឧបករណ៍ត្រឹមត្រូវ។',
@@ -71,6 +87,7 @@ export const part1: Part = {
             {
               id: '1.0.2',
               title: 'VS Code: The Best IDE',
+              titleEn: 'VS Code: The Best IDE',
               type: 'concept',
               content: [
                 '**Visual Studio Code** គឺជាស្តង់ដារក្នុងវិស័យបច្ចេកវិទ្យា។',
@@ -84,6 +101,7 @@ export const part1: Part = {
             {
               id: '1.0.3',
               title: 'Antigravity AI',
+              titleEn: 'Antigravity AI',
               type: 'concept',
               content: [
                 '**Agentic AI Coding Assistant** ផ្ទាល់ខ្លួនរបស់អ្នក។',
@@ -97,6 +115,7 @@ export const part1: Part = {
             {
               id: '1.0.4',
               title: 'Composer: PHP Packages',
+              titleEn: 'Composer: PHP Packages',
               type: 'concept',
               content: [
                 'ឧបករណ៍ដែលមិនអាចខ្វះបានសម្រាប់ PHP Developer គ្រប់រូប។',
@@ -111,10 +130,14 @@ export const part1: Part = {
         {
           id: '1.1',
           title: 'What is Backend Development?',
+          titleEn: 'What is Backend Development?',
+          duration: '30 mins',
+          level: 'Core',
           slides: [
             {
               id: '1.1.0',
               title: 'Introduction to Backend',
+              titleEn: 'Introduction to Backend',
               type: 'intro',
               content: [
                 'Backend Development សំដៅលើផ្នែក **Server-Side** នៃកម្មវិធី។',
@@ -126,6 +149,7 @@ export const part1: Part = {
             {
               id: '1.1.1',
               title: 'The Role of the Backend',
+              titleEn: 'The Role of the Backend',
               type: 'concept',
               content: [
                 'Backend គឺជា **ម៉ាស៊ីនដែលលាក់ខ្លួន** ដើម្បីដំណើរការ Web។',
@@ -138,6 +162,7 @@ export const part1: Part = {
             {
               id: '1.1.2',
               title: 'Client-Server Architecture',
+              titleEn: 'Client-Server Architecture',
               type: 'concept',
               content: [
                 '**Client**: អ្នកស្នើសុំ resource (ឧទាហរណ៍៖ "សុំមើល profile របស់ខ្ញុំ" តាមរយៈ Browser ឬ Mobile App)។',
@@ -150,6 +175,7 @@ export const part1: Part = {
             {
               id: '1.1.3',
               title: 'Web Servers: The Gatekeepers',
+              titleEn: 'Web Servers',
               type: 'content',
               content: [
                 'Software ដូចជា **Nginx** ឬ **Apache** ធ្វើការរង់ចាំទទួល requests។',
@@ -161,6 +187,7 @@ export const part1: Part = {
             {
               id: '1.1.4',
               title: 'Databases: The Memory (អង្គចងចាំ)',
+              titleEn: 'Databases',
               type: 'content',
               content: [
                 'កន្លែងផ្ទុកទិន្នន័យអចិន្ត្រៃយ៍សម្រាប់ Application។',
@@ -172,6 +199,7 @@ export const part1: Part = {
             {
               id: '1.1.5',
               title: 'APIs: The Waiter (អ្នករត់តុ)',
+              titleEn: 'APIs',
               type: 'concept',
               content: [
                 '**Application Programming Interface** (API)។',
@@ -184,6 +212,7 @@ export const part1: Part = {
             {
               id: '1.1.6',
               title: 'Backend Languages',
+              titleEn: 'Backend Languages',
               type: 'content',
               content: [
                 '**PHP**: ដើរតួលើ 75% នៃគេហទំព័រទូទាំងពិភពលោក (WordPress, Laravel)។',
@@ -195,6 +224,7 @@ export const part1: Part = {
             {
               id: '1.1.7',
               title: 'Module 1.1 Quiz',
+              titleEn: 'Module 1.1 Quiz',
               type: 'quiz',
               content: [
                 'តើផ្នែកមួយណាដែលមានតួនាទីចម្បងក្នុងកាគ្រប់គ្រង **Business Logic** និង **Security**?'
@@ -207,16 +237,32 @@ export const part1: Part = {
               ],
               correctAnswer: 1,
               insight: 'Backend ដើរតួជាខួរក្បាលដែលមានសុវត្ថិភាពបំផុតរបស់ Application។'
+            },
+            {
+              id: '1.1.8',
+              title: 'Real-world Demo: Request-Response Cycle',
+              titleEn: 'Request-Response Cycle Demo',
+              type: 'code',
+              content: [
+                '**Visualizing the Cycle**: ឧទាហរណ៍នៃការផ្ញើ Request ពី Browser (Client) ទៅកាន់ Server និងការទទួល Response ត្រឡប់មកវិញ។',
+                '**JSON Response**: បង្ហាញពីរបៀបដែល Backend បញ្ជូនទិន្នន័យជាទម្រង់ JSON សម្រាប់ Mobile App ឬ Frontend Framework។'
+              ],
+              code: '// Client Request (Browser)\nGET /api/user/1 HTTP/1.1\nHost: example.com\n\n// Server Response (Backend)\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{\n    "id": 1,\n    "name": "Dara",\n    "email": "dara@example.com",\n    "status": "Active"\n}',
+              language: 'json'
             }
           ]
         },
         {
           id: '1.2',
           title: 'Introduction to PHP',
+          titleEn: 'Introduction to PHP',
+          duration: '60 mins',
+          level: 'Core',
           slides: [
             {
               id: '1.2.0',
               title: 'Getting Started with PHP',
+              titleEn: 'Getting Started with PHP',
               type: 'intro',
               content: [
                 '**PHP** តំណាងឱ្យ "Hypertext Preprocessor"។',
@@ -228,6 +274,7 @@ export const part1: Part = {
             {
               id: '1.2.1',
               title: 'Running PHP (របៀបដំណើរការ PHP)',
+              titleEn: 'Running PHP',
               type: 'code',
               content: [
                 'អ្នកអាចដំណើរការ PHP scripts ផ្ទាល់នៅក្នុង terminal របស់អ្នក។',
@@ -241,6 +288,7 @@ export const part1: Part = {
             {
               id: '1.2.2',
               title: 'PHP Syntax & Variables',
+              titleEn: 'PHP Syntax & Variables',
               type: 'code',
               content: [
                 'PHP code ត្រូវបានដំណើរការនៅលើ Server (មុននឹងលទ្ធផលចេញជា HTML ត្រូវបានបញ្ជូនមកកាន់ Browser របស់អ្នកប្រើប្រាស់)។',
@@ -255,6 +303,7 @@ export const part1: Part = {
             {
               id: '1.2.3',
               title: 'Basic Input & Output (ការបញ្ជូន និងទទួលទិន្នន័យ)',
+              titleEn: 'Basic Input & Output',
               type: 'code',
               content: [
                 'ក្នុងកម្រិតមូលដ្ឋាន យើងប្រើ **echo** ដើម្បីបង្ហាញលទ្ធផលទៅកាន់ Screen។',
@@ -269,6 +318,7 @@ export const part1: Part = {
             {
               id: '1.2.4',
               title: 'Core Data Types (ប្រភេទនៃទិន្នន័យ)',
+              titleEn: 'Core Data Types',
               type: 'code',
               content: [
                 '**String**: សំណុំនៃតួអក្សរ (ប្រើសម្រាប់រក្សាទុកអត្ថបទ។ ការប្រើ " " អនុញ្ញាតឱ្យបញ្ចូល variable ក្នុងអត្ថបទបានភ្លាមៗ ចំណែក \' \' គឺសម្រាប់អត្ថបទសុទ្ធដែលមិនប្រែប្រួល)។',
@@ -285,6 +335,7 @@ export const part1: Part = {
             {
               id: '1.2.5',
               title: 'Control Structures: Logic (ការគ្រប់គ្រងលំហូរកូដ)',
+              titleEn: 'Control Structures: Logic',
               type: 'code',
               content: [
                 '**Decision Making**: ការប្រើប្រាស់ `if`, `else`, និង `elseif` ដើម្បីឱ្យកម្មវិធីសម្រេចចិត្តធ្វើការងារផ្អែកលើលក្ខខណ្ឌ (ឧទាហរណ៍៖ ការឆែកមើលសិទ្ធិ Login ឬការគ្រប់គ្រងទឹកប្រាក់ក្នុងកាបូប)។',
@@ -301,6 +352,7 @@ export const part1: Part = {
             {
               id: '1.2.6',
               title: 'Control Structures: Loops (ការប្រើប្រាស់រង្វិលជុំ)',
+              titleEn: 'Control Structures: Loops',
               type: 'code',
               content: [
                 '**Iteration Mastery**: ការប្រើប្រាស់ Loops ដើម្បីកាត់បន្ថយការសរសេរកូដដដែលៗ (គោលការណ៍ DRY - Don\'t Repeat Yourself ជួយឱ្យកូដខ្លី និងងាយស្រួលថែទាំ)។',
@@ -317,6 +369,7 @@ export const part1: Part = {
             {
               id: '1.2.7',
               title: 'Functions (ការបង្កើតមុខងារប្រើឡើងវិញ)',
+              titleEn: 'Functions',
               type: 'code',
               content: [
                 '**Structural Integrity**: Function ជួយបំបែក Logic ធំៗឱ្យទៅជាបំណែកតូចៗដែលងាយស្រួលគ្រប់គ្រង និងតេស្ត (ធ្វើឱ្យកូដមានរបៀបរៀបរយ និងមានវិជ្ជាជីវៈ)។',
@@ -334,6 +387,7 @@ export const part1: Part = {
             {
               id: '1.2.8',
               title: 'OOP: Classes & Objects (មូលដ្ឋានគ្រឹះនៃ OOP)',
+              titleEn: 'Classes & Objects',
               type: 'code',
               content: [
                 '**The Blueprint (Class)**: ជាការឌីហ្សាញ "ពុម្ព" ដែលរួមបញ្ចូលទាំងទិន្នន័យ (Properties) និងសកម្មភាព (Methods) ចូលគ្នាជាកញ្ចប់តែមួយ។',
@@ -351,6 +405,7 @@ export const part1: Part = {
             {
               id: '1.2.9',
               title: 'OOP: Inheritance (ការបន្តពូជ)',
+              titleEn: 'Inheritance',
               type: 'code',
               content: [
                 '**The Concept (Inheritance)**: អនុញ្ញាតឱ្យ Class កូន (Child) ទាញយកសមត្ថភាពពី Class មេ (Parent) ដើម្បីកាត់បន្ថយការសរសេរកូដដដែលៗ។',
@@ -367,6 +422,7 @@ export const part1: Part = {
             {
               id: '1.2.10',
               title: 'Composer & Packages (ការគ្រប់គ្រងបណ្ណាល័យ)',
+              titleEn: 'Composer & Packages',
               type: 'code',
               content: [
                 '**Dependency Management**: Composer គឺជាឧបករណ៍ដែលជួយទាញយក និងចាត់ចែងរាល់កូដខាងក្រៅ (Packages) ដែលយើងត្រូវការមកក្នុងគម្រោងរបស់យើង។',
@@ -382,6 +438,7 @@ export const part1: Part = {
             {
               id: '1.2.11',
               title: 'Practice Lab: Simple Math',
+              titleEn: 'Practice Lab',
               type: 'concept',
               isList: false,
               content: [
@@ -399,6 +456,7 @@ export const part1: Part = {
             {
               id: '1.2.12',
               title: 'Module 1.2 Quiz',
+              titleEn: 'Module 1.2 Quiz',
               type: 'quiz',
               content: [
                 'ក្នុងភាសា PHP តើនិមិត្តសញ្ញា (character) មួយណាប្រើសម្រាប់ផ្ដើមឈ្មោះ **Variable**?'
@@ -410,6 +468,7 @@ export const part1: Part = {
             {
               id: '1.2.13',
               title: 'Comparison Quiz',
+              titleEn: 'Comparison Quiz',
               type: 'quiz',
               content: [
                 'តើការប្រើប្រាស់ `===` (Strict Equality) ខុសពី `==` (Loose Equality) ត្រង់ចំណុចណា?'
@@ -426,6 +485,7 @@ export const part1: Part = {
             {
               id: '1.2.14',
               title: 'OOP Quiz',
+              titleEn: 'OOP Quiz',
               type: 'quiz',
               content: [
                 'តើ keyword មួយណាដែលប្រើសម្រាប់បង្កើត Object ថ្មីចេញពី Class?'
@@ -437,6 +497,7 @@ export const part1: Part = {
             {
               id: '1.2.15',
               title: 'Functions Quiz',
+              titleEn: 'Functions Quiz',
               type: 'quiz',
               content: [
                 'តើនិមិត្តសញ្ញា (character) មួយណាដែលប្រើសម្រាប់កំណត់ Return Type ឱ្យ Function?'
@@ -444,16 +505,32 @@ export const part1: Part = {
               options: ['->', '=>', ':', '::'],
               correctAnswer: 2,
               insight: 'ក្នុង PHP ទំនើប យើងប្រើសញ្ញាចុចពីរ (:) ដើម្បីបញ្ជាក់ពីប្រភេទនៃទិន្នន័យដែល Function នឹង return មកវិញ។'
+            },
+            {
+              id: '1.2.16',
+              title: 'Real-world Demo: User Auth Logic (PHP)',
+              titleEn: 'User Auth Logic Demo',
+              type: 'code',
+              content: [
+                '**Logic in Action**: ការប្រើប្រាស់ Variables, Arrays, និង Functions ដើម្បីបង្កើតប្រព័ន្ធ Login សាមញ្ញមួយ។',
+                '**Security Note**: ក្នុងពិភពពិត យើងមិនត្រូវប្រៀបធៀប Password ផ្ទាល់បែបនេះទេ ប៉ុន្តែត្រូវប្រើ Hash ជានិច្ច។'
+              ],
+              code: '$users = [\n    ["email" => "admin@test.com", "pass" => "123", "role" => "Admin"],\n    ["email" => "user@test.com", "pass" => "456", "role" => "User"]\n];\n\nfunction login(string $email, string $password, array $users): string {\n    foreach ($users as $user) {\n        if ($user["email"] === $email && $user["pass"] === $password) {\n            return "ស្វាគមន៍ " . $user["role"] . "! លោកអ្នកបាន Login ជោគជ័យ។";\n        }\n    }\n    return "អ៊ីមែល ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ។";\n}\n\necho login("admin@test.com", "123", $users);',
+              language: 'php'
             }
           ]
         },
         {
           id: '1.3',
           title: 'Introduction to Databases',
+          titleEn: 'Introduction to Databases',
+          duration: '45 mins',
+          level: 'Core',
           slides: [
             {
               id: '1.3.0',
               title: 'Understanding Data Persistence',
+              titleEn: 'Understanding Persistence',
               type: 'intro',
               content: [
                 '**Stateless Reality**: ជាធម្មតា Request លើ Web គឺ "ភ្លេចភ្លាំង" (Stateless)។ Database គឺជាអ្វីដែលជួយឱ្យ App ចងចាំ User និងសកម្មភាពរបស់ពួកគេ ពីការចូលមើលមួយ ទៅការចូលមើលមួយទៀត។',
@@ -468,6 +545,7 @@ export const part1: Part = {
             {
               id: '1.3.1',
               title: 'SQL vs NoSQL',
+              titleEn: 'SQL vs NoSQL',
               type: 'concept',
               content: [
                 '**Relational (SQL)**: រៀបចំទិន្នន័យជាតារាង (Tables) ដែលមានជួរដេក និងជួរឈរច្បាស់លាស់។ វាមានច្បាប់តឹងរ៉ឹង (Schema) ដែលធានាថាទិន្នន័យត្រឹមត្រូវជានិច្ច (MySQL, PostgreSQL)។',
@@ -482,6 +560,7 @@ export const part1: Part = {
             {
               id: '1.3.2',
               title: 'SQL: Data Selection (ការជ្រើសរើសទិន្នន័យ)',
+              titleEn: 'SQL Selection',
               type: 'code',
               content: [
                 'Statement **SELECT** ប្រើសម្រាប់ទាញយកទិន្នន័យ។',
@@ -495,6 +574,7 @@ export const part1: Part = {
             {
               id: '1.3.3',
               title: 'SQL: Data Manipulation (ការចាត់ចែងទិន្នន័យ)',
+              titleEn: 'SQL Manipulation',
               type: 'code',
               content: [
                 '**SELECT**: ទាញយក/អានទិន្នន័យ (Read)។',
@@ -510,6 +590,7 @@ export const part1: Part = {
             {
               id: '1.3.4',
               title: 'Database Design: Keys',
+              titleEn: 'Database Keys',
               type: 'concept',
               content: [
                 '**Primary Key**: លេខសម្គាល់ (ID) តែមួយគត់សម្រាប់ជួរនីមួយៗ (ឧទាហរណ៍៖ `id`)។',
@@ -522,6 +603,7 @@ export const part1: Part = {
             {
               id: '1.3.5',
               title: 'Database Normalization',
+              titleEn: 'Database Normalization',
               type: 'concept',
               content: [
                 'ដំណើរការនៃការរៀបចំទិន្នន័យដើម្បីកាត់បន្ថយ **Redundancy** (ការជាន់គ្នា)។',
@@ -535,6 +617,7 @@ export const part1: Part = {
             {
               id: '1.3.6',
               title: 'Module 1.3 Quiz',
+              titleEn: 'Module 1.3 Quiz',
               type: 'quiz',
               content: [
                 'តើ SQL command មួយណាប្រើសម្រាប់ **កែប្រែ (modify)** ទិន្នន័យដែលមានស្រាប់ក្នុងតារាង?'
@@ -546,17 +629,33 @@ export const part1: Part = {
                 'EDIT'
               ],
               correctAnswer: 2,
-              insight: 'Command UPDATE គឺជាស្តង់ដារ SQL សម្រាប់ផ្លាស់ប្តូរ records ដែលមានស្រាប់។'
+              insight: 'Command UPDATE គឺជាស្តង់ដារ SQL សម្រាប់ផ្លាស់ប្តូរ records ដែលមានស្រាប់ Tune ឱ្យបានល្អ។'
+            },
+            {
+              id: '1.3.7',
+              title: 'Real-world Demo: Library Management SQL',
+              titleEn: 'Library Management Demo',
+              type: 'code',
+              content: [
+                '**Data Management**: ឧទាហរណ៍នៃការគ្រប់គ្រងទិន្នន័យសៀវភៅក្នុងបណ្ណាល័យតាមរយៈ SQL។',
+                '**Complex Selection**: ការប្រើប្រាស់ WHERE និង LIKE ដើម្បីស្វែងរកសៀវភៅតាមចំណងជើង។'
+              ],
+              code: '-- 1. បន្ថែមសៀវភៅថ្មី\nINSERT INTO books (title, author, price) \nVALUES ("Laravel for Beginners", "John Doe", 25.00);\n\n-- 2. ស្វែងរកសៀវភៅដែលមានពាក្យ "Laravel"\nSELECT * FROM books \nWHERE title LIKE "%Laravel%" \nAND price < 50.00;\n\n-- 3. កែប្រែតម្លៃសៀវភៅ\nUPDATE books SET price = 19.99 \nWHERE id = 5;',
+              language: 'sql'
             }
           ]
         },
         {
           id: '1.4',
           title: 'Web Servers & HTTP',
+          titleEn: 'Web Servers & HTTP',
+          duration: '30 mins',
+          level: 'Core',
           slides: [
             {
               id: '1.4.0',
               title: 'The Language of the Web',
+              titleEn: 'Language of the Web',
               type: 'intro',
               content: [
                 'Web Servers និង **HTTP** គឺជាប្រព័ន្ធទំនាក់ទំនងនៃអ៊ីនធឺណិត។',
@@ -569,6 +668,7 @@ export const part1: Part = {
             {
               id: '1.4.1',
               title: 'How Web Servers Work',
+              titleEn: 'How Web Servers Work',
               type: 'content',
               content: [
                 '**Apache/Nginx**: ដើរតួជា "ទ្វារមុខ" ឬ Security Guard សម្រាប់ Server។',
@@ -581,6 +681,7 @@ export const part1: Part = {
             {
               id: '1.4.2',
               title: 'HTTP Methods (កិរិយាសព្ទរបស់ HTTP)',
+              titleEn: 'HTTP Methods',
               type: 'content',
               content: [
                 '**GET**: សុំទាញយកទិន្នន័យ (Read)។',
@@ -593,6 +694,7 @@ export const part1: Part = {
             {
               id: '1.4.3',
               title: 'HTTP Status Codes',
+              titleEn: 'HTTP Status Codes',
               type: 'content',
               content: [
                 '**2xx (Success)**: ជោគជ័យ (ឧទាហរណ៍៖ 200 OK គឺបានន័យថាអ្វីៗដំណើរការល្អ, 201 Created គឺបានន័យថាទិន្នន័យថ្មីត្រូវបានរក្សាទុក)។',
@@ -602,6 +704,18 @@ export const part1: Part = {
               ],
               insight: 'លេខ 404 មានន័យថាអ្នកប្រើសរសេរ URL ខុស ឬ Resource នោះត្រូវបានលុប។',
               animation: 'http_status'
+            },
+            {
+              id: '1.4.4',
+              title: 'Real-world Demo: Inspecting HTTP Headers',
+              titleEn: 'Inspecting HTTP Headers',
+              type: 'code',
+              content: [
+                '**Behind the Scenes**: អ្វីដែលកើតឡើងនៅពេល Browser ទាក់ទងជាមួយ Server។',
+                '**Security Headers**: បង្ហាញពីព័ត៌មានសំខាន់ៗដែល Server បញ្ជូនមកវិញដើម្បីការពារសុវត្ថិភាព។'
+              ],
+              code: '// Request Headers\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)\nAccept: text/html,application/xhtml+xml\n\n// Response Headers\nServer: nginx/1.24.0\nSet-Cookie: session_id=abc123xyz; HttpOnly; Secure\nX-Frame-Options: SAMEORIGIN\nX-Content-Type-Options: nosniff',
+              language: 'http'
             }
           ]
         }
@@ -610,14 +724,21 @@ export const part1: Part = {
     {
       id: 'module-2',
       title: 'Module 2: Setting Up Your Laravel Environment',
+      titleEn: 'Setting Up Your Laravel Environment',
+      icon: 'Terminal',
+      color: '#8b5cf6',
       lessons: [
         {
           id: '2.1',
           title: 'Why Laravel?',
+          titleEn: 'Why Laravel?',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '2.1.0',
               title: 'Welcome to the Laravel Ecosystem',
+              titleEn: 'Laravel Ecosystem',
               type: 'intro',
               content: [
                 '**Developer Experience**: Laravel ផ្ដល់នូវបទពិសោធន៍ដ៏អស្ចារ្យសម្រាប់ការអភិវឌ្ឍន៍ (DX) និងជួយឱ្យការសរសេរ Code ក្លាយជាសិល្បៈ។',
@@ -631,6 +752,7 @@ export const part1: Part = {
             {
               id: '2.1.1',
               title: 'Key Benefits & Features',
+              titleEn: 'Benefits & Features',
               type: 'concept',
               content: [
                 '**Eloquent ORM**: ធ្វើការជាមួយ Database ដោយប្រើ PHP syntax ជំនួសដោយការសរសេរ SQL ដោយផ្ទាល់។',
@@ -645,6 +767,7 @@ export const part1: Part = {
             {
               id: '2.1.2',
               title: 'Framework Comparison',
+              titleEn: 'Framework Comparison',
               type: 'concept',
               content: [
                 '**Laravel**: ផ្ដល់នូវតុល្យភាពដ៏ល្អឥតខ្ចោះរវាងភាពងាយស្រួល (Simplicity) និងមុខងារកម្រិតខ្ពស់ (Features) ដែលសាកសមបំផុតសម្រាប់ Web App ទំនើប។',
@@ -654,16 +777,32 @@ export const part1: Part = {
               ],
               insight: 'Laravel ប្រើប្រាស់ components ជាច្រើនរបស់ Symfony នៅពីក្រោយ ដែលធ្វើឱ្យវាមានស្ថេរភាពកម្រិត enterprise។',
               animation: 'framework_comparison'
+            },
+            {
+              id: '2.1.3',
+              title: 'Real-world Demo: Laravel App Architecture',
+              titleEn: 'App Architecture Demo',
+              type: 'code',
+              content: [
+                '**The Flow of Data**: របៀបដែល Laravel ចាត់ចែង Request ពី Router ទៅ Controller រហូតដល់បង្ហាញក្នុង View។',
+                '**Clean Code Architecture**: បង្ហាញពីរបៀបដែល Model គ្រប់គ្រង Data ហើយ View គ្រប់គ្រងការបង្ហាញ។'
+              ],
+              code: '// 1. Router (web.php)\nRoute::get("/user/{id}", [UserController::class, "show"]);\n\n// 2. Controller (UserController.php)\npublic function show($id) {\n    $user = User::find($id); // Model logic\n    return view("user.profile", ["user" => $user]); // View logic\n}',
+              language: 'php'
             }
           ]
         },
         {
           id: '2.2',
           title: 'Installing Laravel',
+          titleEn: 'Installing Laravel',
+          duration: '30 mins',
+          level: 'Core',
           slides: [
             {
               id: '2.2.0',
               title: 'The Installation Process',
+              titleEn: 'Installation Process',
               type: 'intro',
               content: [
                 '**Project Initiation**: ចាប់ផ្ដើមដំឡើងគម្រោង Laravel ដំបូងរបស់អ្នកដោយប្រើប្រាស់វិធីសាស្ត្រដែលត្រឹមត្រូវ និងមានប្រសិទ្ធភាពបំផុត។',
@@ -675,6 +814,7 @@ export const part1: Part = {
             {
               id: '2.2.1',
               title: 'Prerequisites (តម្រូវការជាមុន)',
+              titleEn: 'Prerequisites',
               type: 'concept',
               content: [
                 '**PHP Environment**: ត្រូវការ PHP Version 8.2 ឬខ្ពស់ជាងនេះ ដើម្បីទទួលបានមុខងារថ្មីៗ និងសុវត្ថិភាពបំផុត។',
@@ -688,6 +828,7 @@ export const part1: Part = {
             {
               id: '2.2.2',
               title: 'Create Your Project',
+              titleEn: 'Creating Project',
               type: 'code',
               content: [
                 '**Command Execution**: ប្រើប្រាស់ Command `composer create-project` ដើម្បីទាញយក និងរៀបចំគម្រោង Laravel ថ្មីស្រឡាង។',
@@ -701,6 +842,7 @@ export const part1: Part = {
             {
               id: '2.2.3',
               title: 'Project Structure (រចនាសម្ព័ន្ធគម្រោង)',
+              titleEn: 'Project Structure',
               type: 'concept',
               content: [
                 '**app/**: ជាបេះដូងនៃកម្មវិធី (Core Logic) ដែលផ្ទុកទៅដោយ Models, Controllers, Middleware និង Providers សំខាន់ៗ។',
@@ -712,16 +854,32 @@ export const part1: Part = {
 
               insight: 'ផ្ដោតលើ "app/" និង "routes/" — នោះគឺជាកន្លែងដែលការងារ ៨០% របស់អ្នកនឹងកើតឡើង។',
               animation: 'laravel_structure'
+            },
+            {
+              id: '2.2.4',
+              title: 'Real-world Demo: Project Initialization',
+              titleEn: 'Project Initialization Demo',
+              type: 'code',
+              content: [
+                '**Starting Fresh**: ជំហានដំបូងបន្ទាប់ពីទាញយក Project ពី GitHub ដើម្បីឱ្យវារត់បានលើម៉ាស៊ីនរបស់អ្នក។',
+                '**Key Setup**: បញ្ជាក់ពីសារៈសំខាន់នៃ `vendor` folder និង `.env` configuration។'
+              ],
+              code: '# 1. ទាញយក Dependencies\ncomposer install\n\n# 2. រៀបចំ Environment\ncp .env.example .env\nphp artisan key:generate\n\n# 3. រៀបចំ Database\nphp artisan migrate',
+              language: 'bash'
             }
           ]
         },
         {
           id: '2.3',
           title: 'Environment Tools',
+          titleEn: 'Environment Tools',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '2.3.0',
               title: 'Local Development Stacks',
+              titleEn: 'Local Development Stacks',
               type: 'intro',
               content: [
                 '**Server Environment**: ដើម្បីដំណើរការ PHP និង Database ប្រកបដោយប្រសិទ្ធភាព អ្នកត្រូវការបរិស្ថានការងារក្នុងម៉ាស៊ីនផ្ទាល់ (Local Environment)។',
@@ -732,6 +890,7 @@ export const part1: Part = {
             {
               id: '2.3.1',
               title: 'All-in-One Stacks',
+              titleEn: 'All-in-One Stacks',
               type: 'concept',
               content: [
                 '**XAMPP / MAMP**: ជាជម្រើសដ៏ពេញនិយម និងមានស្ថេរភាពបំផុតសម្រាប់អ្នកចាប់ផ្ដើមដំបូង ដែលផ្ដល់ជូនទាំង Apache, PHP និង MySQL ក្នុងកញ្ចប់តែមួយ។',
@@ -743,6 +902,7 @@ export const part1: Part = {
             {
               id: '2.3.2',
               title: 'Advanced Environments',
+              titleEn: 'Advanced Environments',
               type: 'concept',
               content: [
                 '**Laravel Valet (macOS)**: Zero-config, លឿនបំផុតសម្រាប់ Mac មិនប្រើ RAM ច្រើន។',
@@ -751,16 +911,32 @@ export const part1: Part = {
               ],
               insight: 'ចាប់ផ្ដើមជាមួយ Laragon ឬ Herd ដើម្បីភាពងាយស្រួលបំផុតក្នុងការរៀន។',
               animation: 'advanced_environments'
+            },
+            {
+              id: '2.3.3',
+              title: 'Real-world Demo: Multi-PHP Version Setup',
+              titleEn: 'PHP Version Setup Demo',
+              type: 'code',
+              content: [
+                '**Version Management**: របៀបប្ដូរ PHP Version ក្នុង Laragon ឬ Herd ដើម្បីឱ្យត្រូវតាមតម្រូវការរបស់ Project ចាស់ ឬថ្មី។',
+                '**CLI Switch**: ការឆែកមើល PHP version តាមរយៈ Terminal ដើម្បីធានាថាវាត្រឹមត្រូវ។'
+              ],
+              code: '# ឆែកមើល version បច្ចុប្បន្ន\nphp -v\n\n# បើប្រើ Herd អ្នកអាចប្ដូរបានតាមរយៈ UI \n# ឬប្រើ command: herd isolate php@8.2',
+              language: 'bash'
             }
           ]
         },
         {
           id: '2.4',
           title: 'The Artisan Console',
+          titleEn: 'The Artisan Console',
+          duration: '25 mins',
+          level: 'Core',
           slides: [
             {
               id: '2.4.0',
               title: 'Automating with Artisan',
+              titleEn: 'Automating with Artisan',
               type: 'intro',
               content: [
                 '**Powerful CLI**: Artisan គឺជាឧបករណ៍ Command-Line Interface (CLI) ដ៏មានឥទ្ធិពលដែលត្រូវបានបង្កើតឡើងយ៉ាងពិសេសសម្រាប់ Laravel។',
@@ -773,6 +949,7 @@ export const part1: Part = {
             {
               id: '2.4.1',
               title: 'Listing Commands',
+              titleEn: 'Listing Commands',
               type: 'code',
               content: [
                 '**Command Discovery**: ប្រើប្រាស់ Command `list` ដើម្បីមើលរាល់បញ្ជី Commands ទាំងអស់ដែល Artisan ផ្ដល់ជូន។',
@@ -785,6 +962,7 @@ export const part1: Part = {
             {
               id: '2.4.2',
               title: 'Generating Code (ការបង្កើតកូដស្វ័យប្រវត្តិ)',
+              titleEn: 'Generating Code',
               type: 'code',
               content: [
                 '**Standardized Coding**: ជៀសវាងការបង្កើត File ដោយដៃ ដើម្បីបង្ការកំហុសនៃ Naming Convention និងធានាថា File នីមួយៗស្ថិតក្នុង Folder ត្រឹមត្រូវតាមស្ដង់ដាររបស់ Laravel។',
@@ -798,6 +976,7 @@ export const part1: Part = {
             {
               id: '2.4.3',
               title: 'Serving Your App',
+              titleEn: 'Serving Your App',
               type: 'code',
               content: [
                 '**Instant Server**: ប្រើប្រាស់ Command `serve` ដើម្បីចាប់ផ្ដើម Local Development Server យ៉ាងឆាប់រហ័សដោយមិនចាំបាច់មាន Configuration ស្មុគស្មាញ។',
@@ -809,6 +988,18 @@ export const part1: Part = {
               language: 'bash',
               insight: 'រក្សា terminal នេះឱ្យនៅដំណើរការ (running) រហូតដល់អ្នកឈប់ធ្វើការ។',
               animation: 'artisan_serve'
+            },
+            {
+              id: '2.4.4',
+              title: 'Real-world Demo: Artisan Maintenance Mode',
+              titleEn: 'Maintenance Mode Demo',
+              type: 'code',
+              content: [
+                '**Site Maintenance**: របៀបបិទ Website ជាបណ្ដោះអាសន្ននៅពេលអ្នកកំពុង Update កូដ ឬជួសជុល Database។',
+                '**Bypass Secret**: របៀបអនុញ្ញាតឱ្យខ្លួនឯងចូលមើលបាន ខណៈពេលដែល User ផ្សេងទៀតឃើញផ្ទាំង Maintenance។'
+              ],
+              code: '# 1. បិទ Website (Maintenance Mode)\nphp artisan down --secret="my-secret-key"\n\n# 2. បើក Website វិញ\nphp artisan up',
+              language: 'bash'
             }
           ]
         }

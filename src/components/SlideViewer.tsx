@@ -77,6 +77,11 @@ import { MigrationUpDownAnimation } from './animations/part2/module-5/MigrationU
 // Part 3 Animations
 // Module 6: Forms and Security
 import { SecurityAnimation } from './animations/part3/module-6/SecurityAnimation';
+import { ValidationFlowAnimation } from './animations/part3/module-6/ValidationFlowAnimation';
+import { ValidationInlineAnimation } from './animations/part3/module-6/ValidationInlineAnimation';
+import { FormRequestAnimation } from './animations/part3/module-6/FormRequestAnimation';
+import { ErrorDisplayAnimation } from './animations/part3/module-6/ErrorDisplayAnimation';
+import { FileUploadAnimation } from './animations/part3/module-6/FileUploadAnimation';
 
 // Part 4 Animations
 // Module 12: Deployment and Performance
@@ -277,6 +282,11 @@ export function SlideViewer({
       case 'model_creation': return <ModelCreationAnimation isProjectorMode={isProjectorMode} />;
       case 'migration_naming': return <MigrationNamingAnimation isProjectorMode={isProjectorMode} />;
       case 'migration_up_down': return <MigrationUpDownAnimation isProjectorMode={isProjectorMode} />;
+      case 'error_display': return <ErrorDisplayAnimation isProjectorMode={isProjectorMode} />;
+      case 'form_request': return <FormRequestAnimation isProjectorMode={isProjectorMode} />;
+      case 'validation_inline': return <ValidationInlineAnimation isProjectorMode={isProjectorMode} />;
+      case 'validation_flow': return <ValidationFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'file_upload': return <FileUploadAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };

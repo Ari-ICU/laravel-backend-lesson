@@ -7,14 +7,21 @@ export const part3: Part = {
     {
       id: 'module-6',
       title: 'Module 6: ការប្រើប្រាស់ Forms (Working with Forms)',
+      titleEn: 'Working with Forms',
+      icon: 'Layout',
+      color: '#3b82f6',
       lessons: [
         {
           id: '6.1',
           title: 'HTML Forms ក្នុង Laravel',
+          titleEn: 'HTML Forms in Laravel',
+          duration: '20 mins',
+          level: 'Core',
           slides: [
             {
               id: '6.1.0',
               title: 'ការគ្រប់គ្រង User Input',
+              titleEn: 'Managing User Input',
               type: 'intro',
               content: [
                 '**User Interaction**: Forms គឺជាវិធីសំខាន់បំផុតដែល user ប្រើដើម្បីផ្ញើទិន្នន័យ (input) មកកាន់ application របស់អ្នក។ (ដូចជា form ចុះឈ្មោះ, login ឬបញ្ចូលព័ត៌មានផ្សេងៗ ដើម្បីឱ្យកម្មវិធីអាចដំណើរការបន្តបាន)',
@@ -27,6 +34,7 @@ export const part3: Part = {
             {
               id: '6.1.1',
               title: 'GET vs. POST',
+              titleEn: 'GET vs. POST',
               type: 'concept',
               content: [
                 '**GET Method**: ប្រើសម្រាប់ស្វែងរក (search) ឬចម្រាញ់ទិន្នន័យ (filter) ដែលមិនប៉ះពាល់ដល់ data។ (parameters នឹងបង្ហាញនៅលើ URL ហើយអាច bookmark ឬ share ទៅកាន់អ្នកដទៃបានយ៉ាងងាយ)',
@@ -37,6 +45,7 @@ export const part3: Part = {
             {
               id: '6.1.2',
               title: 'ការការពារ CSRF',
+              titleEn: 'CSRF Protection',
               type: 'code',
               content: [
                 '**CSRF Protection**: រាល់ POST form ទាំងអស់ **ត្រូវតែ** រួមបញ្ចូល `@csrf` directive ដើម្បីធានាសុវត្ថិភាព។ (បើគ្មានវាទេ Laravel នឹងបដិសេធ Request នោះភ្លាមៗដើម្បីការពារការលួចផ្ញើទិន្នន័យពីក្រៅ)',
@@ -44,55 +53,93 @@ export const part3: Part = {
               ],
               code: '<form method="POST" action="/posts">\n    @csrf\n    \n    <input type="text" name="title">\n    <button type="submit">Submit</button>\n</form>',
               language: 'php'
+            },
+            {
+              id: '6.1.3',
+              title: 'Real-world Demo: បង្កើត Registration Form',
+              titleEn: 'Registration Form Demo',
+              type: 'code',
+              content: [
+                '**Complete Implementation**: នេះគឺជាឧទាហរណ៍នៃ Form ចុះឈ្មោះដែលមានការការពារ CSRF និងការប្រើប្រាស់ POST Method ពេញលេញ។',
+                '**Old Input**: ប្រើ `old()` helper ដើម្បីរក្សាទុកតម្លៃដែល user បានបំពេញ ប្រសិនបើមាន error កើតឡើង។'
+              ],
+              code: '<form action="{{ route("register") }}" method="POST" class="space-y-4">\n    @csrf\n\n    <div>\n        <label>ឈ្មោះពេញ:</label>\n        <input type="text" name="name" value="{{ old("name") }}" class="form-input">\n    </div>\n\n    <div>\n        <label>អ៊ីមែល:</label>\n        <input type="email" name="email" value="{{ old("email") }}" class="form-input">\n    </div>\n\n    <div>\n        <label>ពាក្យសម្ងាត់:</label>\n        <input type="password" name="password" class="form-input">\n    </div>\n\n    <button type="submit" class="btn-primary">ចុះឈ្មោះឥឡូវនេះ</button>\n</form>',
+              language: 'php'
             }
           ]
         },
         {
           id: '6.2',
           title: 'ការធ្វើ Request Validation',
+          titleEn: 'Request Validation',
+          duration: '25 mins',
+          level: 'Core',
           slides: [
             {
               id: '6.2.0',
               title: 'ច្បាប់មាស (The Golden Rule)',
+              titleEn: 'The Golden Rule',
               type: 'intro',
               content: [
-                '**Trust Issues**: **កុំទុកចិត្ត user input ជាដាច់ខាត។** (ព្រោះវាអាចមានទិន្នន័យមិនត្រឹមត្រូវ ឬមានកូដដែលមានបំណងអាក្រក់បង្កប់មកជាមួយ)',
-                '**Data Integrity**: Validation ជួយពិនិត្យ និងធានាថាទិន្នន័យបំពេញតាមលក្ខខណ្ឌមុននឹងរក្សាទុក។ (ជួយការពារកុំឱ្យ Database របស់អ្នកមានទិន្នន័យរញ៉េរញ៉ៃ ឬខុសទម្រង់)',
-                '**Simplicity**: Laravel ផ្ដល់ validation rules ដែលងាយស្រួលប្រើ និងយល់។ (ធ្វើឱ្យការកំណត់លក្ខខណ្ឌស្មុគស្មាញ ក្លាយទៅជាការសរសេរកូដសាមញ្ញ និងខ្លីបំផុត)'
-              ]
+                '**Trust Issues (កុំទុកចិត្ត User Input)**: ជាគោលការណ៍គ្រឹះនៃ Security អ្នកត្រូវចាត់ទុកគ្រប់ទិន្នន័យដែលផ្ញើមកពី User ថាជាទិន្នន័យមិនមានសុវត្ថិភាព ឬអាចមានកូដដែលមានបំណងអាក្រក់ (Malicious code)។',
+                '**Data Integrity (ការធានានូវគុណភាពទិន្នន័យ)**: Validation មិនត្រឹមតែការពារ Security ប៉ុណ្ណោះទេ ប៉ុន្តែវាជួយធានាថាទិន្នន័យក្នុង Database របស់អ្នកមានភាពត្រឹមត្រូវតាមទម្រង់ (Format) និងលក្ខខណ្ឌដែលអ្នកចង់បាន។',
+                '**Developer Experience (ភាពងាយស្រួលសម្រាប់ Developer)**: Laravel ផ្ដល់ជូននូវ Validation Engine ដ៏មានអានុភាព ដែលអនុញ្ញាតឱ្យអ្នកកំណត់លក្ខខណ្ឌស្មុគស្មាញដោយប្រើប្រាស់ Syntax សាមញ្ញ និងខ្លីបំផុត។'
+              ],
+              animation: 'validation_flow'
             },
             {
               id: '6.2.1',
               title: 'ការប្រើប្រាស់ validate() Method',
+              titleEn: 'Using validate() Method',
               type: 'code',
               content: [
-                '**Inline Validation**: ជាវិធីសាមញ្ញបំផុតសម្រាប់ validate ទិន្នន័យដោយផ្ទាល់នៅក្នុង Controller។ (ប្រើ `$request->validate()` ដើម្បីកំណត់លក្ខខណ្ឌភ្លាមៗលើ Request ដែលចូលមក)',
-                '**Automation**: Laravel នឹងគ្រប់គ្រង error handling ដោយស្វ័យប្រវត្តិ។ (វានឹង redirect ត្រឡប់ក្រោយ រួមទាំងបង្ហាញ error messages និងរក្សាទុក input ចាស់ឱ្យដោយមិនបាច់សរសេរកូដបន្ថែម)'
+                '**Inline Validation (ការពិនិត្យក្នុង Controller)**: ប្រើប្រាស់ `$request->validate()` ដើម្បីកំណត់ Rules ភ្លាមៗ។ ប្រសិនបើ Validation មិនជាប់ (Fail) Laravel នឹងបញ្ឈប់ការងារបន្ត ហើយ Redirect ទៅកាន់ទំព័រមុនដោយស្វ័យប្រវត្តិ។',
+                '**Automatic Error Handling**: អ្នកមិនចាំបាច់សរសេរ Logic ដើម្បីឆែកមើល Error ម្ដងមួយៗឡើយ។ Laravel នឹងចាត់ចែងការផ្ញើសារព្រមាន (Error messages) និងការរក្សាទុកទិន្នន័យចាស់ (Old input) ឱ្យអ្នកដោយស្វ័យប្រវត្តិ។',
+                '**Comprehensive Rules**: អ្នកអាចប្រើ Rules ជាច្រើនក្នុងពេលតែមួយដូចជា `required`, `email`, `unique`, `min`, `max` និង `confirmed` (សម្រាប់ Password) ជាដើម។'
               ],
               code: '$validated = $request->validate([\n    "title" => "required|unique:posts|max:255",\n    "body" => "required|min:10"\n]);',
-              language: 'php'
+              language: 'php',
+              animation: 'validation_inline'
             },
             {
               id: '6.2.2',
               title: 'Form Request Classes',
+              titleEn: 'Form Request Classes',
               type: 'code',
               content: [
-                '**Refactoring**: សម្រាប់ validation ដែលស្មុគស្មាញ គួរផ្ទេរ logic ទៅក្នុង Form Request class។ (ជួយឱ្យ Controller របស់អ្នកមើលទៅស្អាត និងផ្ដោតតែលើការងារចម្បង)',
-                '**Reusability**: វិធីនេះជួយឲ្យកូដមានរបៀប និងអាចប្រើឡើងវិញបាននៅកន្លែងផ្សេងៗ។ (អ្នកអាចហៅវាប្រើក្នុង Controller ច្រើនបានដោយមិនចាំបាច់សរសេរ Rules ដដែលៗឡើងវិញ)'
+                '**Separation of Concerns (ការបែងចែកការងារ)**: នៅពេល Validation Rules កើនឡើងច្រើន គួរប្រើ Form Request ដើម្បីបំបែក Logic ចេញពី Controller។ នេះធ្វើឱ្យ Controller របស់អ្នកមានភាពស្អាត (Clean) និងងាយស្រួលថែទាំ។',
+                '**Reusability & Clean Code**: Form Request អាចប្រើឡើងវិញបានក្នុង Controller Actions ផ្សេងៗគ្នា (ឧទាហរណ៍៖ `store` និង `update`) ដែលជួយកាត់បន្ថយកូដដែលសរសេរជាន់គ្នា (DRY Principle)។',
+                '**Authorization Integrated**: ក្នុង Form Request អ្នកក៏អាចឆែកមើលសិទ្ធិរបស់ User (Authorize) ថាតើពួកគេមានសិទ្ធិធ្វើសកម្មភាពនេះដែរឬទេ មុនពេលឈានដល់ការ Validation។'
               ],
               code: '// បង្កើត Class តាមរយៈ Artisan\nphp artisan make:request StorePostRequest\n\n// ប្រើក្នុង Controller របស់អ្នក\npublic function store(StorePostRequest $request) {\n    // Request ដែលចូលមកត្រូវបាន Validate រួចរាល់!\n    $data = $request->validated();\n}',
               language: 'php',
-              insight: 'ប្រើ Form Requests នៅពេលណាដែលអ្នកមានលក្ខខណ្ឌ Validation ចាប់ពី ៥ ទៅ ៦ ឡើងទៅ។'
+              insight: 'ប្រើ Form Requests នៅពេលណាដែលអ្នកមានលក្ខខណ្ឌ Validation ចាប់ពី ៥ ទៅ ៦ ឡើងទៅ។',
+              animation: 'form_request'
             },
             {
               id: '6.2.3',
               title: 'ការបង្ហាញ Error',
+              titleEn: 'Displaying Errors',
               type: 'code',
               content: [
-                '**UX Feedback**: អ្នកអាចទាញយក validation errors មកបង្ហាញក្នុង Blade template បានយ៉ាងងាយ។ (ជួយឲ្យ user ដឹងថាពួកគេបំពេញខុសត្រង់ណា ដើម្បីឱ្យពួកគេកែសម្រួលបានត្រឹមត្រូវ)',
-                '**$errors Variable**: Laravel ផ្ដល់ `$errors` variable ជាស្រាប់នៅក្នុងរាល់ view។ (អ្នកអាចប្រើវាដើម្បីបង្ហាញសារព្រមាននៅក្រោម Field នីមួយៗបានភ្លាមៗ)'
+                '**User Experience (បទពិសោធន៍អ្នកប្រើប្រាស់)**: ការបង្ហាញ Error ឱ្យបានច្បាស់លាស់ និងចំគោលដៅ ជួយឱ្យអ្នកប្រើប្រាស់ដឹងពីកំហុសរបស់ពួកគេ និងងាយស្រួលក្នុងការកែតម្រូវទិន្នន័យឡើងវិញ។',
+                '**Blade Directives**: ប្រើប្រាស់ `@error` directive ដើម្បីឆែកមើល Error នៃ Field ជាក់លាក់ណាមួយ និងបង្ហាញសារព្រមានភ្លាមៗនៅខាងក្រោម Input នោះ។',
+                '**Global $errors Object**: Laravel ផ្ដល់ជូននូវ Variable `$errors` ជាសកលក្នុងរាល់ Views ដែលអនុញ្ញាតឱ្យអ្នកបង្ហាញរាល់ Error messages ទាំងអស់ក្នុងពេលតែមួយបានយ៉ាងងាយស្រួល។'
               ],
               code: '@error("title")\n    <div class="alert alert-danger">{{ $message }}</div>\n@enderror',
+              language: 'php',
+              animation: 'error_display'
+            },
+            {
+              id: '6.2.4',
+              title: 'Real-world Demo: Profile Update Validation',
+              titleEn: 'Profile Update Demo',
+              type: 'code',
+              content: [
+                '**Logic Overview**: ឧទាហរណ៍នៃការ Validate ទិន្នន័យសម្រាប់ Update Profile ដែលរួមមានការឆែក Email ស្ទួន (លើកលែងតែ Email ខ្លួនឯង)។',
+                '**Clean Controller**: រាល់ Validation logic ត្រូវបានដាក់ក្នុង `StoreProfileRequest` ដើម្បីឱ្យ Controller ងាយស្រួលអាន។'
+              ],
+              code: '// ក្នុង StoreProfileRequest.php\npublic function rules() {\n    return [\n        "name" => "required|string|max:100",\n        "email" => "required|email|unique:users,email," . auth()->id(),\n        "bio" => "nullable|min:50|max:500",\n        "birthdate" => "required|date|before:today",\n    ];\n}\n\n// ក្នុង ProfileController.php\npublic function update(StoreProfileRequest $request) {\n    $user = auth()->user();\n    $user->update($request->validated());\n    \n    return back()->with("success", "Profile updated successfully!");\n}',
               language: 'php'
             }
           ]
@@ -100,39 +147,87 @@ export const part3: Part = {
         {
           id: '6.3',
           title: 'ការ Upload ឯកសារ (File Uploads)',
+          titleEn: 'File Uploads',
+          duration: '30 mins',
+          level: 'Advanced',
           slides: [
             {
               id: '6.3.0',
               title: 'ការគ្រប់គ្រង Media',
+              titleEn: 'Managing Media',
               type: 'intro',
               content: [
                 '**Media Management**: ការគ្រប់គ្រងការ Upload ឯកសារ ដូចជា profile image, documents ឬ video។ (ជាកិច្ចការចាំបាច់សម្រាប់ Application សម័យថ្មីដែលអនុញ្ញាតឱ្យ User រក្សាទុកឯកសារផ្ទាល់ខ្លួន)',
                 '**UploadedFile Object**: Laravel ផ្ដល់ Object ដែលមាន functions ស្រាប់ ដើម្បីគ្រប់គ្រង files បានយ៉ាងងាយ។ (ជួយឱ្យអ្នកអាចឆែកទំហំ file, ប្រភេទ file និងរក្សាទុកវាដោយប្រើកូដតែមួយជួរ)',
                 '**Storage Flexibility**: អ្នកអាចរក្សាទុកឯកសារក្នុងម៉ាស៊ីនផ្ទាល់ ឬប្រើ Cloud ដូចជា AWS S3។ (ជួយឱ្យអ្នកអាចពង្រីកទំហំផ្ទុកទិន្នន័យបានយ៉ាងងាយស្រួលនៅពេល App មានអ្នកប្រើប្រាស់ច្រើន)'
-              ]
+              ],
+              animation: 'file_upload'
             },
             {
               id: '6.3.1',
-              title: 'របៀប Upload ឯកសារ',
+              title: 'ការរៀបចំ Form និងការ Upload',
+              titleEn: 'Form Setup & Upload',
               type: 'code',
               content: [
                 '**Form Configuration**: ត្រូវប្រាកដថា form របស់អ្នកមាន attribute `enctype="multipart/form-data"`។ (បើមិនដាក់ទេ Browser នឹងមិនបញ្ជូន file មកឱ្យ Server ឡើយ)',
-                '**Storage Method**: អ្នកអាចប្រើ `store()` method ដើម្បីរក្សាទុកឯកសារដោយស្វ័យប្រវត្តិ។ (វានឹងបង្កើតឈ្មោះ file ថ្មីឱ្យដើម្បីកុំឱ្យជាន់គ្នា និងផ្ដល់ទីតាំងដែលវាបានរក្សាទុកមកឱ្យអ្នកវិញ)'
+                '**Request Methods**: ប្រើ `$request->file("name")` ដើម្បីទាញយក file object ឬ `$request->hasFile("name")` ដើម្បីពិនិត្យថាតើមាន file ផ្ញើមកឬអត់។',
+                '**Automatic Storage**: ប្រើ `store("folder_name")` ដើម្បីរក្សាទុកឯកសារដោយស្វ័យប្រវត្តិ។ (វានឹងបង្កើតឈ្មោះ file ថ្មីដែលមានសុវត្ថិភាពឱ្យអ្នកភ្លាមៗ)'
               ],
-              code: 'public function upload(Request $request) {\n    if ($request->hasFile("avatar")) {\n        $path = $request->file("avatar")->store("avatars");\n        return "File saved at: " . $path;\n    }\n}',
+              code: '// ក្នុង Blade\n<form action="/upload" method="POST" enctype="multipart/form-data">\n    @csrf\n    <input type="file" name="avatar">\n    <button type="submit">Upload</button>\n</form>\n\n// ក្នុង Controller\npublic function upload(Request $request) {\n    if ($request->hasFile("avatar")) {\n        $path = $request->file("avatar")->store("avatars");\n        return "File saved at: " . $path;\n    }\n}',
               language: 'php'
             },
             {
               id: '6.3.2',
-              title: 'Filesystem Library',
+              title: 'ការធ្វើ Validation លើឯកសារ',
+              titleEn: 'File Validation',
               type: 'code',
               content: [
-                '**Unified API**: Storage facade ផ្តល់វិធីសាស្ត្រតែមួយសម្រាប់គ្រប់គ្រងឯកសារគ្រប់ប្រភេទ។ (មិនថាអ្នករក្សាទុកក្នុង Computer ខ្លួនឯង ឬលើ Cloud គឺប្រើកូដដូចគ្នាទាំងអស់)',
-                '**Flexibility**: អ្នកអាចប្តូរទីតាំងផ្ទុកទិន្នន័យបានយ៉ាងងាយស្រួលក្នុង `.env`។ (ជួយឱ្យការផ្លាស់ប្តូរពីការតេស្តក្នុងម៉ាស៊ីន ទៅកាន់ការប្រើប្រាស់ពិតប្រាកដមានភាពងាយស្រួល)'
+                '**Size & Type Restriction**: អ្នកត្រូវតែ Validate គ្រប់ឯកសារដែល Upload មក ដើម្បីការពារ Security និងទំហំ Disk។',
+                '**Mimes Rule**: កំណត់ប្រភេទឯកសារដែលអនុញ្ញាត (ឧទាហរណ៍៖ `jpg, png, pdf`)។',
+                '**Max Rule**: កំណត់ទំហំអតិបរមារបស់ឯកសារ (គិតជា Kilobytes)។'
               ],
-              code: 'use Illuminate\\Support\\Facades\\Storage;\n\n// ពិនិត្យមើលថាតើ File មានពិតមែនឬអត់\nif (Storage::exists("file.jpg")) {\n    // លុប File នោះចោល\n    Storage::delete("file.jpg");\n}',
+              code: '$request->validate([\n    "avatar" => "required|image|mimes:jpeg,png,jpg|max:2048",\n    "document" => "required|mimes:pdf,docx|max:10240"\n]);',
               language: 'php',
-              insight: 'ចូលទៅពិនិត្យ `config/filesystems.php` ដើម្បីកំណត់ "disks" សម្រាប់ផ្ទុកឯកសាររបស់អ្នក។'
+              insight: '`max:2048` មានន័យថាទំហំអតិបរមាគឺ 2MB (2048 KB)។'
+            },
+            {
+              id: '6.3.3',
+              title: 'Storage Link & Public Access',
+              titleEn: 'Storage Link',
+              type: 'concept',
+              content: [
+                '**Private by Default**: ជាធម្មតាឯកសារក្នុង `storage/app` មិនអាចចូលមើលតាម URL បានទេ ដើម្បីសុវត្ថិភាព។',
+                '**The Symbolic Link**: ប្រើ Command `php artisan storage:link` ដើម្បីបង្កើតផ្លូវកាត់ពី `public/storage` ទៅកាន់ `storage/app/public`។',
+                '**Retrieving URLs**: ប្រើ `Storage::url($path)` ដើម្បីទទួលបាន URL សម្រាប់បង្ហាញរូបភាពនៅលើ Website របស់អ្នក។'
+              ],
+              code: '// បង្កើត Link (ធ្វើតែម្ដងគត់ក្នុងមួយ Project)\nphp artisan storage:link\n\n// បង្ហាញរូបភាពក្នុង Blade\n<img src="{{ Storage::url($user->avatar_path) }}">',
+              language: 'php',
+              insight: 'កុំភ្លេចកំណត់ `FILESYSTEM_DISK=public` ក្នុងឯកសារ `.env` ប្រសិនបើអ្នកចង់ឱ្យរូបភាពបង្ហាញជាសាធារណៈ។'
+            },
+            {
+              id: '6.3.4',
+              title: 'ការគ្រប់គ្រង Files កម្រិតខ្ពស់',
+              titleEn: 'Advanced File Management',
+              type: 'code',
+              content: [
+                '**Manual Naming**: ប្រើ `storeAs()` ប្រសិនបើអ្នកចង់កំណត់ឈ្មោះឯកសារដោយខ្លួនឯង។',
+                '**File Operations**: Storage Facade ផ្ដល់មុខងារសម្រាប់ Check វត្តមានឯកសារ, ទាញយក (Download), និងលុប (Delete)។',
+                '**Cloud Ready**: អ្នកអាចប្ដូរទៅរក្សាទុកលើ AWS S3 បានយ៉ាងងាយស្រួលដោយគ្រាន់តែប្ដូរការកំណត់ក្នុង Config។'
+              ],
+              code: 'use Illuminate\\Support\\Facades\\Storage;\n\n// រក្សាទុកជាមួយឈ្មោះជាក់លាក់\n$request->file("avatar")->storeAs("avatars", "user_1.jpg");\n\n// លុបឯកសារចាស់ចោល\nif (Storage::exists("avatars/old_image.jpg")) {\n    Storage::delete("avatars/old_image.jpg");\n}\n\n// ទាញយកឯកសារ\nreturn Storage::download("documents/report.pdf");',
+              language: 'php'
+            },
+            {
+              id: '6.3.5',
+              title: 'Real-world Demo: Avatar Upload System',
+              titleEn: 'Avatar Upload Demo',
+              type: 'code',
+              content: [
+                '**Full Workflow**: នេះគឺជាកូដពេញលេញសម្រាប់ Upload Avatar, លុបរូបភាពចាស់, និងរក្សាទុកឈ្មោះរូបភាពថ្មីចូលក្នុង Database។',
+                '**Security**: ប្រើ `extension()` ជំនួសឱ្យការទុកចិត្តឈ្មោះ file ដើមរបស់ User។'
+              ],
+              code: 'public function updateAvatar(Request $request) {\n    $request->validate([\n        "avatar" => "required|image|max:1024", // 1MB Max\n    ]);\n\n    $user = auth()->user();\n\n    if ($request->hasFile("avatar")) {\n        // 1. លុបរូបចាស់ (បើមាន)\n        if ($user->avatar) {\n            Storage::delete($user->avatar);\n        }\n\n        // 2. Upload រូបថ្មី\n        $path = $request->file("avatar")->store("avatars", "public");\n\n        // 3. Update ក្នុង DB\n        $user->update(["avatar" => $path]);\n    }\n\n    return back()->with("status", "Avatar updated!");\n}',
+              language: 'php'
             }
           ]
         }
@@ -141,25 +236,33 @@ export const part3: Part = {
     {
       id: 'module-7',
       title: 'Module 7: ការបញ្ជាក់អត្តសញ្ញាណ និងការផ្ដល់សិទ្ធិ (Authentication & Authorization)',
+      titleEn: 'Authentication & Authorization',
+      icon: 'ShieldCheck',
+      color: '#ef4444',
       lessons: [
         {
           id: '7.1',
           title: 'Built-in Authentication',
+          titleEn: 'Built-in Authentication',
+          duration: '35 mins',
+          level: 'Core',
           slides: [
             {
               id: '7.1.0',
               title: 'កុំចំណាយពេលបង្កើតអ្វីដែលមានស្រាប់ (Don\'t Rebuild the Wheel)',
+              titleEn: 'Don\'t Rebuild the Wheel',
               type: 'intro',
               content: [
                 '**Security First**: Authentication ជាផ្នែកសំខាន់ដែលពិបាកធ្វើឲ្យត្រឹមត្រូវ និងមានហានិភ័យខ្ពស់។ (ប្រសិនបើធ្វើខុស អាចនាំឱ្យ Hacker លួចចូលប្រើគណនីរបស់អ្នកដទៃបាន)',
                 '**Starter Kits**: Laravel ផ្តល់នូវ "Starter Kits" ផ្លូវការដែលបានរៀបចំប្រព័ន្ធស្រាប់។ (ជួយឱ្យអ្នកចាប់ផ្តើម Project ជាមួយប្រព័ន្ធ Login ដែលមានសុវត្ថិភាពបំផុតក្នុងរយៈពេលប៉ុន្មាននាទី)',
                 '**Full Features**: វារួមមានមុខងារសំខាន់ៗដូចជា login, register, និង password reset។ (អ្នកមិនចាំបាច់ចំណាយពេលសរសេរកូដមូលដ្ឋានទាំងនេះឡើងវិញដោយខ្លួនឯងឡើយ)'
               ],
-              animation: 'security'
+              animation: 'auth_overview'
             },
             {
               id: '7.1.1',
               title: 'ជម្រើសនៃ Scaffolding',
+              titleEn: 'Scaffolding Options',
               type: 'concept',
               content: [
                 '**Laravel Breeze**: ជា starter kit សាមញ្ញបំផុត ផ្តោតលើមូលដ្ឋាន authentication។ (ស័ក្តិសមបំផុតសម្រាប់អ្នកចាប់ផ្តើមដំបូងដែលចង់បានប្រព័ន្ធ Login បែបសាមញ្ញ និងងាយស្រួលកែប្រែ)',
@@ -167,6 +270,17 @@ export const part3: Part = {
                 '**Laravel UI**: ជា scaffolding បែប Legacy ដែលប្រើ Bootstrap ឬ Vue។ (ប្រើសម្រាប់តែគម្រោងចាស់ៗ ឬអ្នកដែលចង់ប្រើ Bootstrap ជាមូលដ្ឋានសម្រាប់ UI)'
               ],
               insight: 'សម្រាប់ Project ថ្មីភាគច្រើន គួរចាប់ផ្តើមជាមួយ Laravel Breeze។'
+            },
+            {
+              id: '7.1.2',
+              title: 'Real-world Demo: Starter Kit Installation',
+              type: 'code',
+              content: [
+                '**Quick Setup**: របៀបដំឡើង Laravel Breeze ដើម្បីទទួលបានប្រព័ន្ធ Authentication ពេញលេញក្នុងរយៈពេលប៉ុន្មានវិនាទី។',
+                '**Frontend Options**: អ្នកអាចជ្រើសរើសរវាង Blade, Vue (Inertia), ឬ React (Inertia)។'
+              ],
+              code: '// 1. ដំឡើងតាមរយៈ Composer\ncomposer require laravel/breeze --dev\n\n// 2. ដំឡើង Starter Kit (Blade version)\nphp artisan breeze:install blade\n\n// 3. Migrate Database និងដំឡើង Assets\nphp artisan migrate\nnpm install && npm run dev',
+              language: 'php'
             }
           ]
         },
@@ -177,16 +291,19 @@ export const part3: Part = {
             {
               id: '7.2.0',
               title: 'ការការពារទំព័ររបស់អ្នក (Guarding Your Pages)',
+              titleEn: 'Guarding Your Pages',
               type: 'intro',
               content: [
                 '**Request Filtering**: Middleware ដើរតួជា "តម្រង" សម្រាប់រាល់ Request ដែលចូលមក។ (ជួយត្រួតពិនិត្យ និងសម្អាត Request មុននឹងវាទៅដល់កន្លែងធ្វើការងារពិតប្រាកដ)',
                 '**Access Control**: វាអាចត្រួតពិនិត្យថា User បាន Login ឬមានសិទ្ធិគ្រប់គ្រាន់ដែរឬទេ។ (បើមិនមានសិទ្ធិទេ វានឹងរារាំងមិនឱ្យចូលមើលទំព័រនោះភ្លាមៗ ដើម្បីរក្សាសុវត្ថិភាព)',
                 '**Custom Logic**: អ្នកអាចបង្កើត Middleware ផ្ទាល់ខ្លួនសម្រាប់កិច្ចការជាក់លាក់។ (ឧទាហរណ៍៖ ការកត់ត្រាសកម្មភាពរបស់ User ឬការប្តូរភាសារបស់ Website តាមតម្រូវការ)'
-              ]
+              ],
+              animation: 'middleware_guard'
             },
             {
               id: '7.2.1',
               title: 'The Auth Middleware',
+              titleEn: 'The Auth Middleware',
               type: 'code',
               content: [
                 '**Route Protection**: ដាក់ `auth` middleware លើ routes ដើម្បីការពារទំព័រសំខាន់ៗ។ (ធានាថាមានតែអ្នកដែលបាន Login ហើយប៉ុណ្ណោះ ទើបអាចចូលមើលព័ត៌មានទាំងនោះបាន)',
@@ -198,6 +315,7 @@ export const part3: Part = {
             {
               id: '7.2.2',
               title: 'Custom Middleware',
+              titleEn: 'Custom Middleware',
               type: 'code',
               content: [
                 '**Custom Logic**: បង្កើត Logic ផ្ទាល់ខ្លួន ដើម្បីដំណើរការមុន ឬក្រោយ Request។ (ឧទាហរណ៍៖ ការឆែកមើលថាតើ User ម្នាក់នោះមានតួនាទីជា Admin ឬគ្រាន់តែជា User ធម្មតា)',
@@ -206,26 +324,44 @@ export const part3: Part = {
               code: '// បង្កើត Middleware Class\nphp artisan make:middleware IsAdmin\n\n// ក្នុង handle method នៃ Middleware\nif ($request->user() && $request->user()->role === "admin") {\n    return $next($request);\n}',
               language: 'php',
               insight: 'កុំភ្លេចចុះឈ្មោះ Custom Middleware របស់អ្នកក្នុង `app/Http/Kernel.php` ទើបអាចប្រើក្នុង routes បាន។'
+            },
+            {
+              id: '7.2.3',
+              title: 'Real-world Demo: Role-based Protection',
+              titleEn: 'Role-based Protection Demo',
+              type: 'code',
+              content: [
+                '**Custom Guarding**: ការប្រើប្រាស់ Middleware ដើម្បីការពារ Route សម្រាប់តែ Admin ប៉ុណ្ណោះ។',
+                '**Reusability**: អ្នកអាចដាក់ Middleware នេះលើ Route ណាមួយដែលចង់បាន។'
+              ],
+              code: '// ក្នុង routes/web.php\nRoute::middleware(["auth", "admin"])->group(function () {\n    Route::get("/admin/settings", [AdminController::class, "settings"]);\n    Route::delete("/users/{user}", [AdminController::class, "destroy"]);\n});\n\n// ក្នុង EnsureUserIsAdmin Middleware\npublic function handle($request, $next) {\n    if ($request->user()->role !== "admin") {\n        abort(403, "សុំទោស អ្នកមិនមានសិទ្ធិចូលមើលទំព័រនេះទេ។");\n    }\n    return $next($request);\n}',
+              language: 'php'
             }
           ]
         },
         {
           id: '7.3',
           title: 'Gates និង Policies',
+          titleEn: 'Gates and Policies',
+          duration: '35 mins',
+          level: 'Expert',
           slides: [
             {
               id: '7.3.0',
               title: 'ការកំណត់សិទ្ធិលម្អិត (Granular Permissions)',
+              titleEn: 'Granular Permissions',
               type: 'intro',
               content: [
                 '**Who are you?**: Authentication ផ្ដោតលើការបញ្ជាក់អត្តសញ្ញាណរបស់ user។ (ដើម្បីដឹងថា តើអ្នកដែលកំពុងចូលប្រើប្រាស់នេះជាសមាជិកពិតប្រាកដមែនឬទេ)',
                 '**What can you do?**: Authorization ផ្ដោតលើការគ្រប់គ្រងសិទ្ធិប្រើប្រាស់មុខងារផ្សេងៗ។ (ដើម្បីកំណត់ថា តើ User ម្នាក់នេះមានសិទ្ធិលុបអត្ថបទ ឬគ្រាន់តែអាចមើលបានតែប៉ុណ្ណោះ)',
                 '**Tools**: Laravel ផ្ដល់ Gates សម្រាប់សកម្មភាពសាមញ្ញ និង Policies សម្រាប់ Resource ជាក់លាក់។ (ជួយឱ្យការគ្រប់គ្រងសិទ្ធិកាន់តែមានរបៀបរៀបរយ និងងាយស្រួលកែប្រែ)'
-              ]
+              ],
+              animation: 'gates_policies'
             },
             {
               id: '7.3.1',
               title: 'ការកំណត់ Gates',
+              titleEn: 'Defining Gates',
               type: 'code',
               content: [
                 '**Simple Authorization**: Gates គឺជា Closures ដែលប្រើសម្រាប់កំណត់សិទ្ធិបែបសាមញ្ញ។ (ដូចជាការឆែកមើលថា តើ User ម្នាក់អាចមើល Report នេះបានឬអត់ ដោយមិនចាំបាច់បង្កើត Class ថ្មី)',
@@ -237,6 +373,7 @@ export const part3: Part = {
             {
               id: '7.3.2',
               title: 'ការប្រើប្រាស់ Policies',
+              titleEn: 'Using Policies',
               type: 'code',
               content: [
                 '**Resource Based**: Policies គឺជា Classes សម្រាប់រៀបចំសិទ្ធិលើ Model ជាក់លាក់។ (ឧទាហរណ៍៖ បង្កើត PostPolicy ដើម្បីកំណត់ថាអ្នកណាអាច Create, Edit ឬ Delete អត្ថបទបាន)',
@@ -248,6 +385,7 @@ export const part3: Part = {
             {
               id: '7.3.3',
               title: 'Blade Directives',
+              titleEn: 'Blade Directives',
               type: 'code',
               content: [
                 '**UI Control**: បង្ហាញ ឬលាក់ផ្នែកខ្លះនៃ UI ដោយផ្អែកលើសិទ្ធិរបស់ User។ (ជួយឱ្យ User មើលឃើញតែប៊ូតុង ឬព័ត៌មានណាដែលពួកគេត្រូវបានអនុញ្ញាតឱ្យប៉ះពាល់ប៉ុណ្ណោះ)',
@@ -256,6 +394,18 @@ export const part3: Part = {
               code: '@can("update", $post)\n    <a href="/post/{{ $post->id }}/edit">Edit Post</a>\n@else\n    <p>អ្នកមិនមានសិទ្ធិកែប្រែ Post នេះទេ។</p>\n@endcan',
               language: 'php',
               insight: 'កុំសង្ឃឹមលើការលាក់ UI តែមួយមុខ ត្រូវតែ Verify សិទ្ធិនៅក្នុង Controller ម្ដងទៀតជានិច្ច។'
+            },
+            {
+              id: '7.3.4',
+              title: 'Real-world Demo: Post Ownership Policy',
+              titleEn: 'Post Ownership Demo',
+              type: 'code',
+              content: [
+                '**Resource Safety**: ការប្រើប្រាស់ Policy ដើម្បីធានាថាមានតែម្ចាស់ Post ប៉ុណ្ណោះ ទើបអាចកែប្រែ ឬលុប Post របស់ខ្លួនបាន។',
+                '**Automatic Binding**: Laravel នឹងឆែកមើល Model ស្វ័យប្រវត្តិ។'
+              ],
+              code: '// ក្នុង PostPolicy.php\npublic function update(User $user, Post $post) {\n    return $user->id === $post->user_id;\n}\n\n// ក្នុង Controller\npublic function edit(Post $post) {\n    $this->authorize("update", $post);\n    return view("posts.edit", compact("post"));\n}\n\n// ក្នុង Blade\n@can("update", $post)\n    <button>Edit</button>\n@endcan',
+              language: 'php'
             }
           ]
         }
@@ -264,24 +414,33 @@ export const part3: Part = {
     {
       id: 'module-8',
       title: 'Module 8: ទំនាក់ទំនងក្នុង Eloquent ORM (Relationships)',
+      titleEn: 'Eloquent Relationships',
+      icon: 'Database',
+      color: '#8b5cf6',
       lessons: [
         {
           id: '8.1',
           title: 'ការកំណត់ទំនាក់ទំនង (Defining Relationships)',
+          titleEn: 'Defining Relationships',
+          duration: '40 mins',
+          level: 'Advanced',
           slides: [
             {
               id: '8.1.0',
               title: 'ការភ្ជាប់ Model របស់អ្នកចូលគ្នា',
+              titleEn: 'Connecting Your Models',
               type: 'intro',
               content: [
                 '**Data Linkage**: ទិន្នន័យក្នុងពិភពពិតតែងមានទំនាក់ទំនងគ្នា។ (ឧទាហរណ៍៖ User ម្នាក់អាចមានអត្ថបទច្រើន ហើយអត្ថបទនីមួយៗអាចមានមតិយោបល់ច្រើន)',
                 '**Eloquent Ease**: Eloquent ធ្វើឱ្យទំនាក់ទំនងទាំងនេះងាយស្រួលប្រើដូចជា property ធម្មតា។ (អ្នកមិនចាំបាច់សរសេរ SQL JOIN វែងៗដែលពិបាកអាន និងងាយមានកំហុសនោះទេ)',
                 '**Efficiency**: យើងនឹងរៀនពីរបៀបគ្រប់គ្រង data ឱ្យមានប្រសិទ្ធភាពបំផុត។ (ជួយឱ្យកម្មវិធីរបស់អ្នកដើរលឿន ទោះបីជាមានទិន្នន័យរាប់ម៉ឺនជួរទាក់ទងគ្នាក៏ដោយ)'
               ],
+              animation: 'relationship_types'
             },
             {
               id: '8.1.1',
               title: 'One-to-One & One-to-Many',
+              titleEn: 'One-to-One & One-to-Many',
               type: 'code',
               content: [
                 '**Fundamental Links**: ជាគ្រឹះសំខាន់សម្រាប់កំណត់ទំនាក់ទំនងរវាងតារាងក្នុង Database។ (ជួយឱ្យកម្មវិធីយល់ថា តើទិន្នន័យក្នុងតារាងមួយ ទាក់ទងនឹងតារាងមួយទៀតដោយរបៀបណា)',
@@ -293,6 +452,7 @@ export const part3: Part = {
             {
               id: '8.1.2',
               title: 'Many-to-Many',
+              titleEn: 'Many-to-Many',
               type: 'code',
               content: [
                 '**Complex Relations**: ប្រើនៅពេលដែល Item ម្ខាងអាចមាន Item ច្រើននៅម្ខាងទៀត។ (ឧទាហរណ៍៖ សិស្សម្នាក់អាចរៀនបានច្រើនមុខវិជ្ជា ហើយមុខវិជ្ជាមួយក៏មានសិស្សរៀនច្រើននាក់ដែរ)',
@@ -305,6 +465,7 @@ export const part3: Part = {
             {
               id: '8.1.3',
               title: 'Advanced Through Relations',
+              titleEn: 'Advanced Through Relations',
               type: 'code',
               content: [
                 '**Has Many Through**: ប្រើសម្រាប់ទាញយកទិន្នន័យឆ្លងកាត់ table កណ្តាលមួយ ដើម្បីចូលទៅកាន់ table ចុងក្រោយបានដោយផ្ទាល់។ (ឧទាហរណ៍៖ ទាញយក Users ទាំងអស់ក្នុងប្រទេសមួយ តាមរយៈតារាង States ដែលនៅកណ្ដាល)',
@@ -312,16 +473,32 @@ export const part3: Part = {
               ],
               code: '// Project -> Environment -> Deployment\n\n// Has Many Through\npublic function deployments() {\n    return $this->hasManyThrough(Deployment::class, Environment::class);\n}\n\n// Has One Through\npublic function deployment() {\n    return $this->hasOneThrough(Deployment::class, Environment::class);\n}',
               language: 'php'
+            },
+            {
+              id: '8.1.4',
+              title: 'Real-world Demo: Blog System Relationships',
+              titleEn: 'Blog System Demo',
+              type: 'code',
+              content: [
+                '**Full Schema**: ឧទាហរណ៍នៃការរៀបចំ Model សម្រាប់ Blog ដែលមាន Post, Category, និង Tags។',
+                '**Versatility**: បង្ហាញពីការប្រើប្រាស់ One-to-Many និង Many-to-Many ក្នុងពេលតែមួយ។'
+              ],
+              code: '// Post.php\npublic function category() {\n    return $this->belongsTo(Category::class);\n}\n\npublic function tags() {\n    return $this->belongsToMany(Tag::class);\n}\n\n// Category.php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}',
+              language: 'php'
             }
           ]
         },
         {
           id: '8.2',
           title: 'ការទាញទិន្នន័យដែលមានទំនាក់ទំនង (Querying Relationships)',
+          titleEn: 'Querying Relationships',
+          duration: '35 mins',
+          level: 'Advanced',
           slides: [
             {
               id: '8.2.0',
               title: 'Fetching Related Data',
+              titleEn: 'Fetching Related Data',
               type: 'intro',
               content: [
                 '**Dynamic Access**: នៅពេលកំណត់ relationship រួច អ្នកអាចចូលប្រើទិន្នន័យបានយ៉ាងងាយ។ (គ្រាន់តែហៅតាមឈ្មោះ Method វានឹងទាញទិន្នន័យមកឱ្យអ្នកភ្លាមៗ)',
@@ -332,6 +509,7 @@ export const part3: Part = {
             {
               id: '8.2.1',
               title: 'Eager Loading (with())',
+              titleEn: 'Eager Loading',
               type: 'code',
               content: [
                 '**Query Optimization**: ជៀសវាងបញ្ហា **N+1 query problem** ដែលនាំឱ្យ App ដើរយឺត។ (កើតឡើងនៅពេលយើងទាញទិន្នន័យក្នុង Loop ហើយវារត់ទៅ Query Database ច្រើនដងពេក)',
@@ -339,11 +517,13 @@ export const part3: Part = {
               ],
               code: '// បែបនេះមិនល្អ (N+1 queries)\n$posts = Post::all(); \n\n// បែបនេះល្អ (Eager Loaded)\n$posts = Post::with("user", "comments")->get();',
               language: 'php',
-              insight: 'ប្រើ Eager Loading ជានិច្ចនៅពេលអ្នក loop លើ collection ហើយទាញយកទំនាក់ទំនង (relations) របស់វា។'
+              insight: 'ប្រើ Eager Loading ជានិច្ចនៅពេលអ្នក loop លើ collection ហើយទាញយកទំនាក់ទំនង (relations) របស់វា។',
+              animation: 'eager_loading'
             },
             {
               id: '8.2.2',
               title: 'Lazy Eager Loading',
+              titleEn: 'Lazy Eager Loading',
               type: 'code',
               content: [
                 '**Conditional Loading**: Load ទំនាក់ទំនងតែនៅពេលណាដែលចាំបាច់ប៉ុណ្ណោះ។ (ជួយសន្សំសំចៃ Resource របស់ Server ដោយមិនទាញទិន្នន័យដែល User មិនទាន់ត្រូវការមើល)',
@@ -351,16 +531,32 @@ export const part3: Part = {
               ],
               code: '$user = User::first();\n\nif ($showPosts) {\n    $user->load("posts");\n}',
               language: 'php'
+            },
+            {
+              id: '8.2.3',
+              title: 'Real-world Demo: Dashboard Query',
+              titleEn: 'Dashboard Query Demo',
+              type: 'code',
+              content: [
+                '**Optimization**: ការទាញយកទិន្នន័យសម្រាប់ Dashboard ដោយប្រើ Eager Loading និង Counting។',
+                '**Performance**: កាត់បន្ថយចំនួន Query ពី រាប់សិបមកត្រឹម ២ ឬ ៣ ប៉ុណ្ណោះ។'
+              ],
+              code: '// ទាញយក Categories ជាមួយចំនួន Posts និងម្ចាស់ម្នាក់ៗ\n$categories = Category::with(["latestPost.user"])\n    ->withCount("posts")\n    ->get();\n\n// ក្នុង Blade\n@foreach($categories as $category)\n    <li>{{ $category->name }} ({{ $category->posts_count }} posts)</li>\n@endforeach',
+              language: 'php'
             }
           ]
         },
         {
           id: '8.3',
           title: 'Relationship Methods',
+          titleEn: 'Relationship Methods',
+          duration: '40 mins',
+          level: 'Expert',
           slides: [
             {
               id: '8.3.0',
               title: 'ការគ្រប់គ្រងការភ្ជាប់ទំនាក់ទំនង (Managing Connections)',
+              titleEn: 'Managing Connections',
               type: 'intro',
               content: [
                 '**Persistence**: តើយើងគ្រប់គ្រង និងរក្សាទុកទំនាក់ទំនងរវាង models នីមួយៗដោយរបៀបណា? (ជាការធានាថាទិន្នន័យដែលទាក់ទងគ្នា នឹងត្រូវរក្សាទុកចូលក្នុង Database យ៉ាងត្រឹមត្រូវ)',
@@ -372,6 +568,7 @@ export const part3: Part = {
             {
               id: '8.3.1',
               title: 'ការ Save និង Create',
+              titleEn: 'Save and Create',
               type: 'code',
               content: [
                 '**Data Storage**: ប្រើ `save()` ឬ `create()` ដើម្បីរក្សាទុក និងភ្ជាប់ទិន្នន័យជាមួយគ្នា។ (ជួយធានាថា រាល់ Item ថ្មីដែលបង្កើតឡើង នឹងត្រូវបានភ្ជាប់ទៅកាន់ម្ចាស់របស់វាដោយស្វ័យប្រវត្តិ)',
@@ -383,6 +580,7 @@ export const part3: Part = {
             {
               id: '8.3.2',
               title: 'Attach, Sync និង Detach',
+              titleEn: 'Attach, Sync and Detach',
               type: 'code',
               content: [
                 '**Pivot Management**: ប្រើសម្រាប់គ្រប់គ្រងទិន្នន័យក្នុង Pivot Table នៃ Many-to-Many។ (ជួយឱ្យការបន្ថែម ឬដកទំនាក់ទំនងចេញពីតារាងកណ្តាលធ្វើឡើងបានយ៉ាងសាមញ្ញ)',
@@ -390,7 +588,20 @@ export const part3: Part = {
               ],
               code: '$user = User::find(1);\n\n// បន្ថែម Role ថ្មី\n$user->roles()->attach($roleId);\n\n// Sync (បន្ថែមដែលខ្វះ, លុបដែលលើស) - ណែនាំឱ្យប្រើ\n$user->roles()->sync([1, 2, 3]);\n\n// ដក Role ចេញវិញ\n$user->roles()->detach($roleId);',
               language: 'php',
-              insight: 'Sync គឺស័ក្តិសមបំផុតសម្រាប់ Form កែប្រែ (Update forms) ដែលមាន Checkboxes។'
+              insight: 'Sync គឺស័ក្តិសមបំផុតសម្រាប់ Form កែប្រែ (Update forms) ដែលមាន Checkboxes។',
+              animation: 'sync_attach'
+            },
+            {
+              id: '8.3.3',
+              title: 'Real-world Demo: User Roles Sync',
+              titleEn: 'User Roles Sync',
+              type: 'code',
+              content: [
+                '**Practical Syncing**: របៀប Update តួនាទីរបស់ User (Roles) តាមរយៈ Sync method ក្នុង Form កែប្រែ។',
+                '**Efficiency**: វានឹងលុប Role ចាស់ដែលមិនបានជ្រើសរើស និងបន្ថែម Role ថ្មីដែលបានជ្រើសរើសដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: 'public function update(Request $request, User $user) {\n    $request->validate([\n        "roles" => "required|array|min:1",\n        "roles.*" => "exists:roles,id"\n    ]);\n\n    // ធ្វើឱ្យ Roles ក្នុង DB ដូចទៅនឹង input ពី form\n    $user->roles()->sync($request->roles);\n\n    return back()->with("status", "User roles updated!");\n}',
+              language: 'php'
             }
           ]
         }
