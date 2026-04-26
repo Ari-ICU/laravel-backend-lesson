@@ -92,6 +92,11 @@ import { GatesPoliciesAnimation } from './animations/part3/module-7/GatesPolicie
 import { RelationshipTypesAnimation } from './animations/part3/module-8/RelationshipTypesAnimation';
 import { EagerLoadingAnimation } from './animations/part3/module-8/EagerLoadingAnimation';
 import { SyncAttachAnimation } from './animations/part3/module-8/SyncAttachAnimation';
+import { PolymorphicAnimation } from './animations/part3/module-8/PolymorphicAnimation';
+import { ThroughRelationsAnimation } from './animations/part3/module-8/ThroughRelationsAnimation';
+import { OneToOneAnimation } from './animations/part3/module-8/OneToOneAnimation';
+import { OneToManyAnimation } from './animations/part3/module-8/OneToManyAnimation';
+import { ManyToManyAnimation } from './animations/part3/module-8/ManyToManyAnimation';
 
 // Part 4 Animations
 // Module 12: Deployment and Performance
@@ -303,6 +308,11 @@ export function SlideViewer({
       case 'relationship_types': return <RelationshipTypesAnimation isProjectorMode={isProjectorMode} />;
       case 'eager_loading': return <EagerLoadingAnimation isProjectorMode={isProjectorMode} />;
       case 'sync_attach': return <SyncAttachAnimation isProjectorMode={isProjectorMode} />;
+      case 'polymorphic': return <PolymorphicAnimation isProjectorMode={isProjectorMode} />;
+      case 'through_relations': return <ThroughRelationsAnimation isProjectorMode={isProjectorMode} />;
+      case 'one_to_one': return <OneToOneAnimation isProjectorMode={isProjectorMode} />;
+      case 'one_to_many': return <OneToManyAnimation isProjectorMode={isProjectorMode} />;
+      case 'many_to_many': return <ManyToManyAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };

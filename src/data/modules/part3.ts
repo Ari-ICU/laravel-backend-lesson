@@ -536,7 +536,8 @@ export const part3: Part = {
               ],
               code: '// User.php\npublic function profile() {\n    return $this->hasOne(Profile::class);\n}\n\n// Profile.php\npublic function user() {\n    return $this->belongsTo(User::class);\n}',
               language: 'php',
-              insight: 'ប្រើ belongsTo() នៅលើ Model ណាដែលមាន Foreign Key (ឧ. user_id) នៅក្នុង Table របស់វា។'
+              insight: 'ប្រើ belongsTo() នៅលើ Model ណាដែលមាន Foreign Key (ឧ. user_id) នៅក្នុង Table របស់វា។',
+              animation: 'one_to_one'
             },
             {
               id: '8.1.2',
@@ -549,7 +550,8 @@ export const part3: Part = {
                 '**Defining Methods**: ប្រើ `hasMany()` សម្រាប់ម្ចាស់ និង `belongsTo()` សម្រាប់កូន (Child)។'
               ],
               code: '// User.php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}\n\n// Post.php\npublic function user() {\n    return $this->belongsTo(User::class);\n}',
-              language: 'php'
+              language: 'php',
+              animation: 'one_to_many'
             },
             {
               id: '8.1.3',
@@ -562,7 +564,8 @@ export const part3: Part = {
               ],
               code: '// User Model\npublic function roles() {\n    return $this->belongsToMany(Role::class);\n}\n\n// Role Model\npublic function users() {\n    return $this->belongsToMany(User::class);\n}',
               language: 'php',
-              insight: 'Laravel សន្មតថាឈ្មោះ pivot table គឺជាឈ្មោះ Model ទាំងពីរឯកវចនៈ (singular) រៀបតាមលំដាប់អក្ខរក្រម ឧទាហរណ៍: role_user។'
+              insight: 'Laravel សន្មតថាឈ្មោះ pivot table គឺជាឈ្មោះ Model ទាំងពីរឯកវចនៈ (singular) រៀបតាមលំដាប់អក្ខរក្រម ឧទាហរណ៍: role_user។',
+              animation: 'many_to_many'
             },
             {
               id: '8.1.4',
@@ -576,7 +579,8 @@ export const part3: Part = {
               ],
               code: '// Comment.php\npublic function commentable() {\n    return $this->morphTo();\n}\n\n// Post.php\npublic function comments() {\n    return $this->morphMany(Comment::class, "commentable");\n}',
               language: 'php',
-              insight: 'Polymorphic relations ជួយកាត់បន្ថយការបង្កើត Tables ស្ទួនៗគ្នាសម្រាប់ប្រភេទ Relationships ដូចគ្នា (ដូចជា Comments, Tags, ឬ Images)។'
+              insight: 'Polymorphic relations ជួយកាត់បន្ថយការបង្កើត Tables ស្ទួនៗគ្នាសម្រាប់ប្រភេទ Relationships ដូចគ្នា (ដូចជា Comments, Tags, ឬ Images)។',
+              animation: 'polymorphic'
             },
             {
               id: '8.1.5',
@@ -588,7 +592,8 @@ export const part3: Part = {
                 '**Has One Through**: ដំណើរការដូចគ្នា ប៉ុន្តែប្រើសម្រាប់ទាញយក record តែមួយគត់តាមរយៈ table កណ្តាល។'
               ],
               code: '// Project -> Environment -> Deployment\n\n// Has Many Through\npublic function deployments() {\n    return $this->hasManyThrough(Deployment::class, Environment::class);\n}\n\n// Has One Through\npublic function deployment() {\n    return $this->hasOneThrough(Deployment::class, Environment::class);\n}',
-              language: 'php'
+              language: 'php',
+              animation: 'through_relations'
             },
             {
               id: '8.1.6',
