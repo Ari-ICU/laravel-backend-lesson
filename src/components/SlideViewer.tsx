@@ -97,6 +97,8 @@ import { ThroughRelationsAnimation } from './animations/part3/module-8/ThroughRe
 import { OneToOneAnimation } from './animations/part3/module-8/OneToOneAnimation';
 import { OneToManyAnimation } from './animations/part3/module-8/OneToManyAnimation';
 import { ManyToManyAnimation } from './animations/part3/module-8/ManyToManyAnimation';
+import { LazyEagerLoadingAnimation } from './animations/part3/module-8/LazyEagerLoadingAnimation';
+import { DashboardQueryAnimation } from './animations/part3/module-8/DashboardQueryAnimation';
 
 // Part 4 Animations
 // Module 12: Deployment and Performance
@@ -313,6 +315,8 @@ export function SlideViewer({
       case 'one_to_one': return <OneToOneAnimation isProjectorMode={isProjectorMode} />;
       case 'one_to_many': return <OneToManyAnimation isProjectorMode={isProjectorMode} />;
       case 'many_to_many': return <ManyToManyAnimation isProjectorMode={isProjectorMode} />;
+      case 'lazy_eager_loading': return <LazyEagerLoadingAnimation isProjectorMode={isProjectorMode} />;
+      case 'dashboard_query': return <DashboardQueryAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };

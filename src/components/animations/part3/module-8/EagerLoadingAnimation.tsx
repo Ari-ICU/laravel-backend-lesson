@@ -24,12 +24,18 @@ export function EagerLoadingAnimation({ isProjectorMode }: { isProjectorMode?: b
   return (
     <div className="relative w-full max-w-3xl min-h-[450px] flex flex-col items-center justify-start pt-8 gap-8">
       <div className="flex items-center justify-between w-full px-12">
-        <div className={`px-6 py-2 rounded-xl font-bold text-lg transition-all ${!isEager ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-400'}`}>
+        <button 
+          onClick={() => { setIsEager(false); setStep(0); }}
+          className={`px-6 py-2 rounded-xl font-bold text-lg transition-all cursor-pointer hover:scale-105 active:scale-95 ${!isEager ? 'bg-red-100 text-red-700 shadow-sm border border-red-200' : 'bg-slate-100 text-slate-400 opacity-60 hover:opacity-100'}`}
+        >
           N+1 Problem (Lazy)
-        </div>
-        <div className={`px-6 py-2 rounded-xl font-bold text-lg transition-all ${isEager ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-400'}`}>
+        </button>
+        <button 
+          onClick={() => { setIsEager(true); setStep(0); }}
+          className={`px-6 py-2 rounded-xl font-bold text-lg transition-all cursor-pointer hover:scale-105 active:scale-95 ${isEager ? 'bg-emerald-100 text-emerald-700 shadow-sm border border-emerald-200' : 'bg-slate-100 text-slate-400 opacity-60 hover:opacity-100'}`}
+        >
           Eager Loading (with)
-        </div>
+        </button>
       </div>
 
       <div className="flex w-full px-12 gap-16 relative mt-4">

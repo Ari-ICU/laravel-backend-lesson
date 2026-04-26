@@ -648,10 +648,12 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Conditional Loading**: Load ទំនាក់ទំនងតែនៅពេលណាដែលចាំបាច់ប៉ុណ្ណោះ។ (ជួយសន្សំសំចៃ Resource របស់ Server ដោយមិនទាញទិន្នន័យដែល User មិនទាន់ត្រូវការមើល)',
-                '**Dynamic Loading**: ប្រើ `load()` method លើ Model ដែលមានស្រាប់។ (អនុញ្ញាតឱ្យអ្នកសម្រេចចិត្តនៅពាក់កណ្តាលផ្លូវថា តើគួរទាញទិន្នន័យបន្ថែមមកបង្ហាញឬក៏អត់)'
+                '**Dynamic Loading**: ប្រើ `load()` method លើ Model ដែលមានស្រាប់។ (អនុញ្ញាតឱ្យអ្នកសម្រេចចិត្តនៅពាក់កណ្តាលផ្លូវថា តើគួរទាញទិន្នន័យបន្ថែមមកបង្ហាញឬក៏អត់)',
+                '**Nested Lazy Loading**: អ្នកក៏អាច load ទំនាក់ទំនងជាន់គ្នាបានដែរ ឧទាហរណ៍៖ `$user->load("posts.comments")`។'
               ],
-              code: '$user = User::first();\n\nif ($showPosts) {\n    $user->load("posts");\n}',
-              language: 'php'
+              code: '$user = User::first();\n\nif ($showPosts) {\n    // Load posts តែនៅពេល User ចង់មើលប៉ុណ្ណោះ\n    $user->load("posts");\n}',
+              language: 'php',
+              animation: 'lazy_eager_loading'
             },
             {
               id: '8.2.3',
@@ -660,10 +662,12 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Optimization**: ការទាញយកទិន្នន័យសម្រាប់ Dashboard ដោយប្រើ Eager Loading និង Counting។',
-                '**Performance**: កាត់បន្ថយចំនួន Query ពី រាប់សិបមកត្រឹម ២ ឬ ៣ ប៉ុណ្ណោះ។'
+                '**Performance**: កាត់បន្ថយចំនួន Query ពី រាប់សិបមកត្រឹម ២ ឬ ៣ ប៉ុណ្ណោះ។',
+                '**Nested Eager Loading**: ប្រើ "dot notation" ដើម្បី load ទំនាក់ទំនងបន្តគ្នា (ឧទាហរណ៍៖ Posts -> Comments -> Authors)។'
               ],
-              code: '// ទាញយក Categories ជាមួយចំនួន Posts និងម្ចាស់ម្នាក់ៗ\n$categories = Category::with(["latestPost.user"])\n    ->withCount("posts")\n    ->get();\n\n// ក្នុង Blade\n@foreach($categories as $category)\n    <li>{{ $category->name }} ({{ $category->posts_count }} posts)</li>\n@endforeach',
-              language: 'php'
+              code: '// ទាញយក Categories ជាមួយ Post ចុងក្រោយ និងម្ចាស់ Post នោះ\n$categories = Category::with(["latestPost.user"])\n    ->withCount("posts") // បន្ថែម posts_count column\n    ->get();\n\n// ក្នុង Blade\n@foreach($categories as $category)\n    <li>{{ $category->name }} ({{ $category->posts_count }} posts)</li>\n@endforeach',
+              language: 'php',
+              animation: 'dashboard_query'
             }
           ]
         },
@@ -714,6 +718,64 @@ export const part3: Part = {
             },
             {
               id: '8.3.3',
+              title: 'Pivot Table ជាមួយ Extra Data',
+              titleEn: 'Pivot with Extra Data',
+              type: 'code',
+              content: [
+                '**Rich Pivots**: Pivot Table មិនត្រឹមតែទុក ID ទាំងពីរប៉ុណ្ណោះទេ — វាអាចទុក data បន្ថែមដូចជា `expires_at` ឬ `assigned_by` ផងដែរ។ (ឧទាហរណ៍: User ត្រូវបាន assign Role នៅថ្ងៃណា? ឬ Role នោះ expire ថ្ងៃណា?)',
+                '**withPivot()**: ប្រើ `withPivot()` ក្នុង Model ដើម្បីប្រាប់ Eloquent ឱ្យ load column បន្ថែមពី Pivot Table មកផងដែរ។ (បើមិនដាក់ withPivot() ទេ columns ទាំងនោះនឹងមិន load ឡើយ)',
+                '**syncWithPivotValues()**: ប្រើ `syncWithPivotValues()` ដើម្បី sync ព្រមជាមួយ extra data ក្នុង Pivot ក្នុងពេលតែមួយ។'
+              ],
+              code: '// ១. ក្នុង User Model — ប្រកាសថាត្រូវ load "expires_at" ពី pivot ផងដែរ\npublic function roles() {\n    return $this->belongsToMany(Role::class)\n                ->withPivot("expires_at", "assigned_by")\n                ->withTimestamps();\n}\n\n// ២. Attach ជាមួយ extra data\n$user->roles()->attach($roleId, [\n    "expires_at"  => now()->addYear(),\n    "assigned_by" => auth()->id(),\n]);\n\n// ៣. Sync ជាមួយ extra data ដូចគ្នាសម្រាប់ IDs ទាំងអស់\n$user->roles()->syncWithPivotValues([1, 2, 3], [\n    "expires_at" => now()->addYear(),\n]);\n\n// ៤. អានទិន្នន័យពី pivot\nforeach ($user->roles as $role) {\n    echo $role->pivot->expires_at;\n}',
+              language: 'php',
+              insight: '`withTimestamps()` នឹងបន្ថែម `created_at` / `updated_at` ក្នុង Pivot Table ដោយស្វ័យប្រវត្តិ — ល្អបំផុតសម្រាប់ Audit Logs។'
+            },
+            {
+              id: '8.3.4',
+              title: 'Associate និង Dissociate',
+              titleEn: 'Associate and Dissociate',
+              type: 'code',
+              content: [
+                '**BelongsTo Relations**: `associate()` និង `dissociate()` ប្រើជាពិសេសសម្រាប់ `belongsTo` relationship ដូចជា Comment belongs to Post។ (ផ្ទុយពី attach/detach ដែលប្រើជាមួយ Many-to-Many)',
+                '**associate()**: ភ្ជាប់ Model ដោយកំណត់ Foreign Key ឱ្យស្វ័យប្រវត្តិ ហើយ save ភ្លាម។ (មានន័យថា `comment->post_id = $post->id; comment->save();` ក្នុងបន្ទាត់តែមួយ)',
+                '**dissociate()**: ដក Foreign Key ចោល (ដាក់ null) ហើយ save ភ្លាម — ដូច "ផ្ដាច់" ទំនាក់ទំនង។ (Comment នៅតែមានក្នុង DB ប៉ុន្តែ post_id ក្លាយជា null)'
+              ],
+              code: '// ---- associate() ----\n$comment = Comment::find(5);\n$post    = Post::find(10);\n\n// ភ្ជាប់ Comment ទៅ Post (កំណត់ post_id = 10 ហើយ save)\n$comment->post()->associate($post);\n$comment->save();\n\n// ---- dissociate() ----\n// ផ្ដាច់ Comment ចេញពី Post (post_id = null)\n$comment->post()->dissociate();\n$comment->save();\n\n// ---- ប្រៀបធៀប ----\n// ❌ ធ្វើដោយដៃ (ងាយខុស)\n$comment->post_id = $post->id;\n$comment->save();\n\n// ✅ ធ្វើដោយ associate (ត្រឹមត្រូវ)\n$comment->post()->associate($post)->save();',
+              language: 'php',
+              insight: '`associate()` ស័ក្តិសមជាងការ assign FK ដោយដៃ ព្រោះវាក៏ set relation cache ផ្ទៃក្នុង Eloquent ផងដែរ ធ្វើឱ្យ `$comment->post` accessible ភ្លាមដោយមិនចាំបាច់ query ទៀត។'
+            },
+            {
+              id: '8.3.5',
+              title: 'SaveMany និង CreateMany',
+              titleEn: 'SaveMany and CreateMany',
+              type: 'code',
+              content: [
+                '**Bulk Insert**: `saveMany()` និង `createMany()` ដូចជា `save()` / `create()` ប៉ុន្តែអាច insert Records ច្រើនក្នុងពេលតែមួយ។ (ជៀសវាងការ loop ច្រើននិង query ច្រើន)',
+                '**saveMany()**: ទទួលយក Array នៃ Model instances ដែលបង្កើតជាស្រេច ហើយ save ទាំងអស់ + ភ្ជាប់ FK ឱ្យ។',
+                '**createMany()**: ទទួលយក Array នៃ attribute arrays ហើយ create + ភ្ជាប់ FK ឱ្យ — កូដខ្លីជាង saveMany()។'
+              ],
+              code: '// ---- saveMany() ----\n// ប្រើ Model instances ដែលបង្កើតមុន\n$post = Post::find(1);\n\n$post->comments()->saveMany([\n    new Comment(["body" => "Comment A"]),\n    new Comment(["body" => "Comment B"]),\n    new Comment(["body" => "Comment C"]),\n]);\n\n// ---- createMany() ----\n// ប្រើ arrays ដោយផ្ទាល់ (ខ្លីជាង)\n$post->comments()->createMany([\n    ["body" => "Comment A"],\n    ["body" => "Comment B"],\n    ["body" => "Comment C"],\n]);\n// → Laravel នឹង insert 3 rows ជាមួយ post_id = 1 ស្វ័យប្រវត្តិ',
+              language: 'php',
+              insight: 'ប្រើ `createMany()` ជំនួស loop + `create()` ម្ដងៗ ដើម្បីសន្សំចំនួន Query និងធ្វើឱ្យ Code មើលស្អាត និងអានកាន់តែងាយ។'
+            },
+            {
+              id: '8.3.6',
+              title: 'សង្ខេប: Best Practices',
+              titleEn: 'Relationship Methods Summary',
+              type: 'summary',
+              content: [
+                '**save() / create()**: ប្រើជាមួយ `hasMany` / `hasOne` — បង្កើត Record ថ្មីមួយ ហើយ auto-set FK។',
+                '**saveMany() / createMany()**: ប្រើបង្កើត Records ច្រើន ក្នុង Loop តែមួយ — ជៀសវាង N+1 Writes។',
+                '**attach() / detach()**: ប្រើជាមួយ `belongsToMany` (Pivot) — បន្ថែម ឬដក connection ក្នុង pivot table។',
+                '**sync()**: ដ្ឋានល្អបំផុតក្នុង Update Forms — auto-add ដែលខ្វះ, auto-remove ដែលលើស។',
+                '**syncWithPivotValues()**: sync + extra pivot data (ឧ. expires_at) ក្នុង call តែមួយ។',
+                '**associate() / dissociate()**: ប្រើជាមួយ `belongsTo` — ផ្លាស់ប្ដូរ FK ដោយមានសុវត្ថិភាព + update relation cache។',
+                '**withPivot()**: ប្រកាសក្នុង Model ដើម្បី load extra columns ពី Pivot Table។'
+              ],
+              insight: 'ច្បាប់ចំណាំ: ប្រើ Eloquent relationship methods ជានិច្ច — ហាមមាន hardcoded FK assignments ដោយដៃ ព្រោះវានឹងនាំឱ្យ bugs ពិបាករកនៅពេលក្រោយ។'
+            },
+            {
+              id: '8.3.7',
               title: 'Real-world Demo: User Roles Sync',
               titleEn: 'User Roles Sync',
               type: 'code',

@@ -67,4 +67,5 @@ export type AnimationType =
   | 'migration_up_down' | 'validation_flow' | 'validation_inline' | 'form_request' 
   | 'error_display' | 'file_upload' | 'auth_overview' | 'middleware_guard' 
   | 'gates_policies' | 'relationship_types' | 'eager_loading' | 'sync_attach'
-  | 'polymorphic' | 'through_relations' | 'one_to_one' | 'one_to_many' | 'many_to_many';
+  | 'polymorphic' | 'through_relations' | 'one_to_one' | 'one_to_many' | 'many_to_many'
+  | 'lazy_eager_loading' | 'dashboard_query';
