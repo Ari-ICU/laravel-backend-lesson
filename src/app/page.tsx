@@ -160,7 +160,7 @@ export default function Home() {
 
                 <h1 className="text-[8rem] font-black tracking-tighter leading-[0.85] mb-12 text-slate-900">
                   Laravel <span className="gradient-text">Expert</span>
-                  <br />Masterclass
+                  <br />Class
                 </h1>
 
                 <p className="text-4xl text-slate-900/50 font-medium leading-relaxed mb-20 max-w-4xl mx-auto">

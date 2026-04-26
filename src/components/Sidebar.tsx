@@ -105,10 +105,10 @@ export function Sidebar({
               <Zap className="w-5 h-5 text-primary fill-primary/20" />
             </div>
             <div>
-              <p className="text-lg font-black text-black tracking-tighter leading-tight font-outfit">Laravel Pro</p>
+              <p className="text-lg font-black text-black tracking-tighter leading-tight font-outfit">Laravel</p>
               <div className="flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <p className="text-xs font-bold text-black/30 uppercase tracking-[0.2em] font-inter">Expert Course</p>
+                <p className="text-xs font-bold text-black/30 uppercase tracking-[0.2em] font-inter">Class</p>
               </div>
             </div>
           </motion.div>
