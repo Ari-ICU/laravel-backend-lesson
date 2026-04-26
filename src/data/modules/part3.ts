@@ -708,14 +708,19 @@ export const part3: Part = {
               titleEn: 'Attach, Sync and Detach',
               type: 'code',
               content: [
-                '**Pivot Management**: ប្រើសម្រាប់គ្រប់គ្រងទិន្នន័យក្នុង Pivot Table នៃ Many-to-Many។ (ជួយឱ្យការបន្ថែម ឬដកទំនាក់ទំនងចេញពីតារាងកណ្តាលធ្វើឡើងបានយ៉ាងសាមញ្ញ)',
-                '**Advanced Syncing**: ប្រើ `sync()` ដើម្បីធ្វើឱ្យទិន្នន័យក្នុង Database ដូចទៅនឹង List ដែលផ្ដល់ឱ្យ។ (វាមានឆ្លាតវៃក្នុងការលុបទិន្នន័យចាស់ដែលលើស និងបន្ថែមទិន្នន័យថ្មីដែលខ្វះឱ្យដោយស្វ័យប្រវត្តិ)'
+                '**attach()** — បន្ថែម Record ថ្មីចូល Pivot Table ដោយមិនប៉ះពាល់ Record ចាស់ (ហានិភ័យ: បើ attach ម្ដងទៀត នឹង duplicate row ក្នុង Pivot)។',
+                '**detach()** — លុប Record ចេញពី Pivot Table ។ អាច detach ID មួយ, IDs ច្រើន, ឬ detach ទាំងអស់ (ប្រសិនមិនបញ្ជូន argument)។',
+                '**sync()** — ធ្វើ Pivot ឱ្យ match ពិតប្រាកដជាមួយ List ដែលផ្ដល់ (លុបអ្វីដែលលើស, បន្ថែមអ្វីដែលខ្វះ)។ ណែនាំឱ្យប្រើក្នុង Update Forms។',
+                '**syncWithoutDetaching()** — ដូច sync() ប៉ុន្តែ **មិនលុប** Record ចាស់ — គ្រាន់បន្ថែមអ្វីដែលខ្វះប៉ុណ្ណោះ។',
+                '**toggle()** — បន្ថែម ប្រសិនវាមិនទាន់មាន, លុប ប្រសិនវាមានរួចហើយ (ដូច Checkbox ចុចបើក/បិទ)។',
+                '**updateExistingPivot()** — Update column ក្នុង Pivot Row ដែលមានស្រាប់ (ដូចជា update expires_at) ដោយមិនចាំបាច់ detach+attach ទៀត។'
               ],
-              code: '$user = User::find(1);\n\n// បន្ថែម Role ថ្មី\n$user->roles()->attach($roleId);\n\n// Sync (បន្ថែមដែលខ្វះ, លុបដែលលើស) - ណែនាំឱ្យប្រើ\n$user->roles()->sync([1, 2, 3]);\n\n// ដក Role ចេញវិញ\n$user->roles()->detach($roleId);',
+              code: '$user = User::find(1);\n\n// ══════════════════════════════════════\n// 1) ATTACH — បន្ថែម Role ចូល Pivot\n// ══════════════════════════════════════\n\n// attach ID មួយ\n$user->roles()->attach(3);\n\n// attach IDs ច្រើនក្នុងពេលតែមួយ\n$user->roles()->attach([1, 2, 3]);\n\n// attach ជាមួយ extra pivot data\n$user->roles()->attach(3, [\'expires_at\' => now()->addYear()]);\n\n// ══════════════════════════════════════\n// 2) DETACH — ដក Role ចេញពី Pivot\n// ══════════════════════════════════════\n\n// detach ID មួយ\n$user->roles()->detach(3);\n\n// detach IDs ច្រើន\n$user->roles()->detach([1, 2]);\n\n// detach ទាំងអស់ (លុបទំនាក់ទំនងចោលទាំងស្រុង)\n$user->roles()->detach();\n\n// ══════════════════════════════════════\n// 3) SYNC — ធ្វើ Pivot ឱ្យ match List\n// ══════════════════════════════════════\n\n// User នេះ ត្រូវមានត្រឹម Role 1,2,3 — ដែលលើសនឹងត្រូវលុប\n$user->roles()->sync([1, 2, 3]);\n\n// Sync ដោយមិនលុបចាស់ (append only)\n$user->roles()->syncWithoutDetaching([4, 5]);\n\n// ══════════════════════════════════════\n// 4) TOGGLE — flip Role (មាន→លុប, គ្មាន→បន្ថែម)\n// ══════════════════════════════════════\n$user->roles()->toggle([1, 3]);\n\n// ══════════════════════════════════════\n// 5) UPDATE EXISTING PIVOT ROW\n// ══════════════════════════════════════\n// Update expires_at សម្រាប់ Role ដែល attach ហើយ\n$user->roles()->updateExistingPivot(3, [\'expires_at\' => now()->addMonths(6)]);',
               language: 'php',
-              insight: 'Sync គឺស័ក្តិសមបំផុតសម្រាប់ Form កែប្រែ (Update forms) ដែលមាន Checkboxes។',
+              insight: '⚠️ attach() មិន check duplicate — ប្រសិន Role 3  មានក្នុង Pivot ហើយ ហើយ attach(3) ម្ដងទៀត → នឹងមាន 2 rows! ប្រើ sync() ឬ syncWithoutDetaching() ជំនួស ព្រោះវា safe និង idempotent (ដំណើរការច្រើនដង លទ្ធផលដូចគ្នា)។',
               animation: 'sync_attach'
             },
+
             {
               id: '8.3.3',
               title: 'Pivot Table ជាមួយ Extra Data',
