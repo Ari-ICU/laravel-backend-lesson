@@ -83,6 +83,16 @@ import { FormRequestAnimation } from './animations/part3/module-6/FormRequestAni
 import { ErrorDisplayAnimation } from './animations/part3/module-6/ErrorDisplayAnimation';
 import { FileUploadAnimation } from './animations/part3/module-6/FileUploadAnimation';
 
+// Module 7: Authentication & Authorization
+import { AuthOverviewAnimation } from './animations/part3/module-7/AuthOverviewAnimation';
+import { MiddlewareGuardAnimation } from './animations/part3/module-7/MiddlewareGuardAnimation';
+import { GatesPoliciesAnimation } from './animations/part3/module-7/GatesPoliciesAnimation';
+
+// Module 8: Eloquent Relationships
+import { RelationshipTypesAnimation } from './animations/part3/module-8/RelationshipTypesAnimation';
+import { EagerLoadingAnimation } from './animations/part3/module-8/EagerLoadingAnimation';
+import { SyncAttachAnimation } from './animations/part3/module-8/SyncAttachAnimation';
+
 // Part 4 Animations
 // Module 12: Deployment and Performance
 import { DeploymentAnimation } from './animations/part4/module-12/DeploymentAnimation';
@@ -287,6 +297,12 @@ export function SlideViewer({
       case 'validation_inline': return <ValidationInlineAnimation isProjectorMode={isProjectorMode} />;
       case 'validation_flow': return <ValidationFlowAnimation isProjectorMode={isProjectorMode} />;
       case 'file_upload': return <FileUploadAnimation isProjectorMode={isProjectorMode} />;
+      case 'auth_overview': return <AuthOverviewAnimation isProjectorMode={isProjectorMode} />;
+      case 'middleware_guard': return <MiddlewareGuardAnimation isProjectorMode={isProjectorMode} />;
+      case 'gates_policies': return <GatesPoliciesAnimation isProjectorMode={isProjectorMode} />;
+      case 'relationship_types': return <RelationshipTypesAnimation isProjectorMode={isProjectorMode} />;
+      case 'eager_loading': return <EagerLoadingAnimation isProjectorMode={isProjectorMode} />;
+      case 'sync_attach': return <SyncAttachAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };

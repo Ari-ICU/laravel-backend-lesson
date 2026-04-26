@@ -42,6 +42,7 @@ export const part2: Part = {
                 '**routes/api.php**: សម្រាប់ Stateless APIs (ប្រើសម្រាប់បញ្ជូនទិន្នន័យទៅកាន់ Mobile App ឬ Frontend Framework ផ្សេងៗដោយមិនចាំបាច់មាន Session)។',
                 '**routes/console.php**: សម្រាប់បង្កើត Command ផ្ទាល់ខ្លួនក្នុង Artisan CLI (ជួយឱ្យអ្នកអាចបង្កើតការងារស្វ័យប្រវត្តិតាមរយៈ Command Line បានយ៉ាងងាយស្រួល)។'
               ],
+              useCase: 'Organizing endpoints cleanly by their environment (Web vs API) to prevent a messy codebase.',
               animation: 'route_files'
             },
             {
@@ -58,6 +59,7 @@ export const part2: Part = {
               ],
               code: 'use App\\Http\\Controllers\\PostController;\n\n// ឧទាហរណ៍នៃការប្រើប្រាស់ Methods ផ្សេងៗ\nRoute::get("/posts", [PostController::class, "index"]);\nRoute::post("/posts", [PostController::class, "store"]);\nRoute::put("/posts/{id}", [PostController::class, "update"]);\nRoute::delete("/posts/{id}", [PostController::class, "destroy"]);\n\n// ប្រើសម្រាប់ចាប់រាល់ Methods\nRoute::any("/search", [SearchController::class, "handle"]);',
               language: 'php',
+              useCase: 'Building a RESTful CRUD application where GET fetches data, POST saves it, PUT updates it, and DELETE removes it.',
               insight: 'ការប្រើប្រាស់ HTTP Methods ឱ្យបានត្រឹមត្រូវតាមស្ដង់ដារ RESTful នឹងធ្វើឱ្យ API របស់អ្នកមានសណ្ដាប់ធ្នាប់ និងងាយស្រួលយល់។',
               animation: 'laravel_http_methods'
             },
@@ -73,6 +75,7 @@ export const part2: Part = {
               ],
               code: '<?php\n// ១. Required Parameter\nRoute::get("/user/{id}", function ($id) {\n    return "User ID: " . $id;\n});\n\n// ២. Optional Parameter ជាមួយ Default Value\nRoute::get("/search/{term?}", function ($term = "all") {\n    return "Searching for: " . $term;\n});\n\n// ៣. បន្ថែមលក្ខខណ្ឌ (Constraints)\nRoute::get("/profile/{username}", function ($username) {\n    return "Profile of: " . $username;\n})->where("username", "[A-Za-z]+"); // អនុញ្ញាតតែអក្សរប៉ុណ្ណោះ\n?>',
               language: 'php',
+              useCase: 'Viewing a specific user profile by passing their ID (e.g., /users/5) or filtering search results (/search/shoes).',
               insight: 'Parameters គឺជាវិធីដែលសាមញ្ញបំផុតក្នុងការផ្ទេរអត្តសញ្ញាណ (ID) ពី URL ទៅកាន់ Backend ដើម្បីទាញយកទិន្នន័យមកបង្ហាញ។',
               animation: 'route_parameters'
             },
@@ -88,6 +91,7 @@ export const part2: Part = {
               ],
               code: '<?php\n// ១. កំណត់ឈ្មោះ Route\nRoute::get("/user/settings", [SettingsController::class, "index"])->name("settings.edit");\n\n// ២. ការហៅប្រើក្នុង Blade View\n// <a href="{{ route("settings.edit") }}">កែប្រែការកំណត់</a>\n\n// ៣. ការហៅប្រើក្នុង Controller\nreturn redirect()->route("settings.edit");\n?>',
               language: 'php',
+              useCase: 'Generating links dynamically so that if the URL changes from /user/settings to /account/settings, links won\'t break.',
               insight: 'Named Routes ជួយការពារបញ្ហា "Broken Links" នៅពេលដែល Structure របស់ URL ត្រូវបានផ្លាស់ប្តូរក្នុងពេលអភិវឌ្ឍ។',
               animation: 'named_routes'
             },
@@ -103,11 +107,40 @@ export const part2: Part = {
               ],
               code: '<?php\n// ក្រុមដែលទាមទារការ Login (Auth Middleware)\nRoute::middleware(["auth"])->group(function () {\n    Route::get("/dashboard", [DashboardController::class, "index"]);\n    Route::get("/profile", [ProfileController::class, "edit"]);\n});\n\n// ក្រុមដែលមានពាក្យ "admin" នៅខាងមុខ URL\nRoute::prefix("admin")->group(function () {\n    Route::get("/users", [AdminController::class, "users"]);\n    Route::get("/reports", [AdminController::class, "reports"]);\n});\n?>',
               language: 'php',
+              useCase: 'Securing an entire Admin dashboard area by applying the auth middleware and an /admin prefix at once.',
               insight: 'ការប្រើប្រាស់ Groups ជួយឱ្យ `web.php` របស់អ្នកមានសណ្ដាប់ធ្នាប់ ងាយស្រួលអាន និងមិនសរសេរកូដជាន់គ្នា។',
               animation: 'route_groups'
             },
             {
               id: '3.1.6',
+              title: 'Route Model Binding',
+              titleEn: 'Route Model Binding',
+              type: 'code',
+              content: [
+                '**Implicit Binding**: ជាមុខងារពិសេសរបស់ Laravel ដែលទាញយក Model ពី Database ដោយស្វ័យប្រវត្តិ ផ្អែកលើ ID ក្នុង URL (ជួយសន្សំសំចៃការសរសេរកូដ `find()` ឬ `findOrFail()` ដោយដៃ)។',
+                '**Custom Key**: យើងអាចប្រាប់ Laravel ឱ្យស្វែងរកតាម Column ផ្សេងក្រៅពី ID បាន (ឧទាហរណ៍៖ ស្វែងរកតាម `slug` សម្រាប់ URL ដែលងាយស្រួលអាន ដូចជា `/posts/my-first-post`)។',
+                '**Automatic 404**: ប្រសិនបើវារកមិនឃើញ Model ដែលត្រូវនឹង ID នោះទេ វានឹងបង្ហាញទំព័រ 404 (Not Found) ដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: '<?php\n// ១. Implicit Binding ធម្មតា (ស្វែងរកតាម ID)\nRoute::get("/users/{user}", function (User $user) {\n    return $user->email;\n});\n\n// ២. ស្វែងរកតាម Key ផ្សេង (Custom Key)\nRoute::get("/posts/{post:slug}", function (Post $post) {\n    return $post->title;\n});\n?>',
+              language: 'php',
+              useCase: 'Automatically fetching a Post model based on the slug in the URL so you don\'t have to write the fetch query manually.',
+              insight: 'Route Model Binding ធ្វើឱ្យ Controller របស់អ្នកកាន់តែខ្លី និងស្រឡះ។'
+            },
+            {
+              id: '3.1.7',
+              title: 'Fallback Routes',
+              titleEn: 'Fallback Routes',
+              type: 'code',
+              content: [
+                '**Catch-All**: Route::fallback() នឹងត្រូវបានដំណើរការនៅពេលដែលគ្មាន Route ណាផ្សេងទៀតត្រូវនឹង URL ដែលបានស្នើសុំ (វាជាអ្នកទទួលខុសត្រូវចុងក្រោយនៅពេលអ្នកប្រើប្រាស់វាយ URL ខុស)។',
+                '**Custom 404**: វាត្រូវបានប្រើជាទូទៅដើម្បីបង្កើតទំព័រ 404 Not Found ដែលមានរចនាបថផ្ទាល់ខ្លួន ឬដើម្បីបញ្ជូនអ្នកប្រើប្រាស់ទៅកាន់ទំព័រដើមវិញដោយស្វ័យប្រវត្តិ។'
+              ],
+              code: 'Route::fallback(function () {\n    return response()->view("errors.custom-404", [], 404);\n});',
+              language: 'php',
+              insight: 'Fallback route គួរតែត្រូវបានសរសេរនៅចុងបញ្ចប់គេបង្អស់នៃឯកសារ routes/web.php របស់អ្នក។'
+            },
+            {
+              id: '3.1.8',
               title: 'Real-world Demo: Admin Panel Routes',
               titleEn: 'Admin Panel Routes Demo',
               type: 'code',
@@ -151,6 +184,7 @@ export const part2: Part = {
               ],
               code: '# ១. បង្កើត Controller ធម្មតា\nphp artisan make:controller UserController\n\n# ២. បង្កើត Resource Controller (លឿនបំផុតសម្រាប់ CRUD)\nphp artisan make:controller PostController --resource\n\n# ៣. បង្កើត Controller ក្នុង Folder ជាក់លាក់\nphp artisan make:controller Admin/DashboardController',
               language: 'bash',
+              useCase: 'Generating a skeleton class for managing Products, complete with standard index/create/store/show/edit/update/destroy methods.',
               insight: 'ការប្រើ `--resource` ជួយសន្សំសំចៃពេលវេលាច្រើន ព្រោះវាបង្កើត Structure សម្រាប់ CRUD ឱ្យយើងស្រាប់។'
             },
             {
@@ -165,11 +199,38 @@ export const part2: Part = {
               ],
               code: '<?php\nnamespace App\\Http\\Controllers;\n\nuse Illuminate\\Http\\Request;\n\nclass PostController extends Controller {\n    public function store(Request $request) {\n        // ទាញយកទិន្នន័យតាមឈ្មោះ Key\n        $title = $request->input("title");\n        \n        // ទាញយកទិន្នន័យទាំងអស់ជា Array\n        $allData = $request->all();\n        \n        return "ទទួបានទិន្នន័យ: " . $title;\n    }\n}\n?>',
               language: 'php',
+              useCase: 'Extracting user input from a submitted registration form (like email and password) before saving to the database.',
               insight: 'Request object ផ្ទុកព័ត៌មានគ្រប់យ៉ាងអំពី HTTP request រួមមាន៖ Inputs, Files, Cookies, និង Headers។',
               animation: 'laravel_request_object'
             },
             {
               id: '3.2.3',
+              title: 'Single Action Controllers',
+              titleEn: 'Single Action Controllers',
+              type: 'code',
+              content: [
+                '**__invoke Method**: ប្រសិនបើ Controller មួយមានតួនាទីតែមួយគត់ យើងអាចប្រើ Magic Method `__invoke` បាន (ធ្វើឱ្យកូដ Route កាន់តែខ្លី ដោយមិនបាច់បញ្ជាក់ឈ្មោះ Method)។',
+                '**Focused Logic**: វាស័ក្តិសមបំផុតសម្រាប់សកម្មភាពដែលស្មុគស្មាញ ប៉ុន្តែឈរឯករាជ្យ ដូចជាការដំណើរការការទូទាត់ប្រាក់ (Payment Processing) ឬការនាំចេញទិន្នន័យ (Data Export)។'
+              ],
+              code: '<?php\n// ក្នុង Controller\nclass ProcessPaymentController extends Controller {\n    public function __invoke(Request $request) {\n        // កូដដំណើរការការទូទាត់ប្រាក់\n    }\n}\n\n// ក្នុង routes/web.php\nRoute::post("/pay", ProcessPaymentController::class);\n?>',
+              language: 'php',
+              insight: 'Single Action Controllers ជួយរក្សាគោលការណ៍ Single Responsibility Principle (SRP) បានយ៉ាងល្អ។'
+            },
+            {
+              id: '3.2.4',
+              title: 'The Response Object',
+              titleEn: 'The Response Object',
+              type: 'code',
+              content: [
+                'ក្រៅពីការបញ្ជូនទិន្នន័យទៅ View យើងក៏អាចផ្ញើលទ្ធផល (Response) ជាទម្រង់ផ្សេងៗបានយ៉ាងងាយស្រួល (ជាពិសេសនៅពេលយើងបង្កើត API)។',
+                '**JSON Responses**: បម្លែង Array ឬ Object ទៅជា JSON ដោយស្វ័យប្រវត្តិជាមួយ `response()->json()`។',
+                '**Redirects**: បញ្ជូនអ្នកប្រើប្រាស់ទៅកាន់ទំព័រផ្សេងទៀតជាមួយ `redirect()` ឬត្រឡប់ទៅទំព័រមុនជាមួយ `back()`។'
+              ],
+              code: 'public function store(Request $request) {\n    // ១. ត្រឡប់ជា JSON សម្រាប់ API\n    return response()->json(["message" => "ជោគជ័យ!"], 201);\n\n    // ២. បញ្ជូនទៅកាន់ Route ផ្សេង\n    return redirect()->route("home");\n\n    // ៣. ត្រឡប់ទៅទំព័រមុនជាមួយសារកំហុស\n    return back()->withErrors(["email" => "អ៊ីមែលមិនត្រឹមត្រូវ"]);\n}',
+              language: 'php'
+            },
+            {
+              id: '3.2.5',
               title: 'Real-world Demo: User Management Controller',
               titleEn: 'User Management Controller Demo',
               type: 'code',
@@ -221,6 +282,7 @@ export const part2: Part = {
               ],
               code: '# បង្កើត View ឈ្មោះ welcome\nphp artisan make:view welcome\n\n# បង្កើតក្នុង Subfolder (users/index.blade.php)\nphp artisan make:view users.index',
               language: 'bash',
+              useCase: 'Rapidly creating the HTML skeleton for a new dashboard page without manually clicking through folders.',
               insight: 'ប្រើ Command នេះដើម្បីជៀសវាងការបង្កើត File និង Folder ដោយដៃដែលនាំឱ្យខាតពេល។'
             },
             {
@@ -236,6 +298,7 @@ export const part2: Part = {
               ],
               code: '<h1>សួស្តី, {{ $user->name }}</h1>\n\n@if($isAdmin)\n    <span class="badge">Admin</span>\n@endif\n\n<ul>\n    @forelse($tasks as $task)\n        <li>{{ $task->title }}</li>\n    @empty\n        <li>មិនមានកិច្ចការឡើយ</li>\n    @endforelse\n</ul>',
               language: 'php',
+              useCase: 'Displaying a table of users, showing an "Edit" button only if the current user is an admin.',
               insight: 'Blade Directives ជួយឱ្យកូដ HTML របស់អ្នកស្អាត និងងាយស្រួលអានជាងការសរសេរ PHP បុរាណ។'
             },
             {
@@ -248,10 +311,25 @@ export const part2: Part = {
                 '**Raw Display**: `{!! $data !!}` ប្រើសម្រាប់បង្ហាញ HTML ដោយផ្ទាល់ (ប្រើតែនៅពេលអ្នកទុកចិត្តប្រភពទិន្នន័យប៉ុណ្ណោះ ដូចជាទិន្នន័យដែលចេញពី Admin Editor ផ្ទាល់ខ្លួន)។',
                 '**Comment**: `{{-- នេះជា Comment --}}` នឹងមិនបង្ហាញនៅក្នុង HTML source code ដែល User ឃើញឡើយ (ជួយឱ្យអ្នកអាចកត់ចំណាំក្នុងកូដបានយ៉ាងមានសុវត្ថិភាព)។'
               ],
+              useCase: 'Rendering blog post content formatted with HTML (using raw display), while safely displaying user comments (using escaped display).',
               insight: 'ច្បាប់មាស៖ កុំប្រើ `{!! !!}` ជាមួយទិន្នន័យដែលបញ្ចូលដោយ Users ជាដាច់ខាត!'
             },
             {
               id: '4.1.4',
+              title: 'The $loop Variable (គ្រប់គ្រងរង្វិលជុំ)',
+              titleEn: 'The $loop Variable',
+              type: 'code',
+              content: [
+                '**Loop Context**: នៅពេលអ្នកប្រើ `@foreach` Blade នឹងបង្កើតអថេរ `$loop` ដោយស្វ័យប្រវត្តិ ដែលមានផ្ទុកព័ត៌មានមានប្រយោជន៍ជាច្រើនអំពីស្ថានភាពនៃរង្វិលជុំ។',
+                '**Properties**: វាមាន Properties ដូចជា `$loop->first`, `$loop->last`, `$loop->iteration` (លេខរៀង), និង `$loop->count` ជាដើម។',
+                '**Styling**: ជួយសម្រួលដល់ការដាក់ Style ខុសៗគ្នាសម្រាប់ធាតុដំបូង ធាតុចុងក្រោយ ឬលេខរៀងសេសគូដោយមិនបាច់សរសេរ Logic រាប់ដោយខ្លួនឯង។'
+              ],
+              code: '@foreach ($users as $user)\n    <div class="{{ $loop->first ? "bg-blue-100" : "bg-white" }}">\n        <span>ល.រ: {{ $loop->iteration }} / {{ $loop->count }}</span>\n        <h3>{{ $user->name }}</h3>\n        @if ($loop->last)\n            <p>នេះជាអ្នកប្រើប្រាស់ចុងក្រោយគេក្នុងបញ្ជី!</p>\n        @endif\n    </div>\n@endforeach',
+              language: 'php',
+              insight: 'អថេរ $loop ជួយសន្សំសំចៃពេលវេលាសរសេរកូដ Counter variables ដោយដៃ។'
+            },
+            {
+              id: '4.1.5',
               title: 'Real-world Demo: Product Card Loop',
               titleEn: 'Product Card Loop Demo',
               type: 'code',
@@ -294,7 +372,8 @@ export const part2: Part = {
                 '**Titles**: យើងក៏អាចប្រើ `@yield("title")` ដើម្បីដាក់ចំណងជើង Page ឱ្យខុសៗគ្នា (ជួយឱ្យ Website របស់អ្នកមាន SEO ល្អ និងងាយស្រួលសម្គាល់នៅលើ Browser Tab)។'
               ],
               code: '<!-- resources/views/layouts/app.blade.php -->\n<html>\n<head>\n    <title>My App - @yield("title")</title>\n</head>\n<body>\n    <nav>Navigation Bar</nav>\n\n    <main>\n        @yield("content")\n    </main>\n\n    <footer>Footer 2024</footer>\n</body>\n</html>',
-              language: 'php'
+              language: 'php',
+              useCase: 'Creating a master template that includes the site header, navigation menu, and footer so you don\'t have to copy-paste them on every page.'
             },
             {
               id: '4.2.2',
@@ -308,6 +387,7 @@ export const part2: Part = {
               ],
               code: '<!-- resources/views/home.blade.php -->\n@extends("layouts.app")\n\n@section("title", "ទំព័រដើម")\n\n@section("content")\n    <h2>ស្វាគមន៍មកកាន់ទំព័រដើម!</h2>\n    <p>កូដត្រង់នេះនឹងត្រូវបង្ហាញក្នុង @yield("content") នៃ Layout មេ។</p>\n@endsection',
               language: 'php',
+              useCase: 'Building a specific page like "About Us" or "Contact", injecting its unique content into the center of the master layout.',
               animation: 'blade_layout'
             },
             {
@@ -322,6 +402,7 @@ export const part2: Part = {
               ],
               code: '<?php\n// ១. ការប្រើ @include\n@include("partials.navbar")\n\n// ២. ការប្រើ Blade Component (x-component-name)\n// បង្កើតដោយ: php artisan make:component Alert\n<x-alert type="error">\n    មានកំហុសក្នុងការរក្សាទុកទិន្នន័យ!\n</x-alert>\n?>',
               language: 'php',
+              useCase: 'Reusing a designed "Save Button" or "Error Alert" across 50 different pages without rewriting the HTML classes.',
               insight: 'ប្រើ Components ជំនួស @include សម្រាប់ UI Elements ដែលមាន Logic ឬស្ទីលស្មុគស្មាញ។',
               animation: 'blade_components'
             },
@@ -365,7 +446,8 @@ export const part2: Part = {
                 'វិធីសាមញ្ញបំផុតគឺបញ្ជូន Data ជា Associative Array ក្នុង Parameter ទីពីរនៃ `view()`។ (វាអនុញ្ញាតឱ្យយើងផ្ទេរទិន្នន័យពី Controller ទៅកាន់ View បានយ៉ាងច្បាស់លាស់ និងងាយស្រួលប្រើក្នុង Blade Template)។'
               ],
               code: 'public function index() {\n    return view("profile", [\n        "username" => "Sokha",\n        "status" => "Active"\n    ]);\n}',
-              language: 'php'
+              language: 'php',
+              useCase: 'Passing an explicit array of calculated statistics (e.g. total_sales, active_users) to a dashboard view.'
             },
             {
               id: '4.3.2',
@@ -378,10 +460,25 @@ export const part2: Part = {
               ],
               code: 'public function show($id) {\n    $user = User::findOrFail($id);\n    $posts = $user->posts;\n\n    // ស្មើនឹង ["user" => $user, "posts" => $posts]\n    return view("user.show", compact("user", "posts"));\n}',
               language: 'php',
+              useCase: 'Passing multiple queried models directly to the view without manually typing out an associative array.',
               insight: 'ប្រើ `compact()` នឹងជួយឱ្យកូដរបស់អ្នកមើលទៅមានលក្ខណៈអាជីព និងស្អាតជាងមុន។'
             },
             {
               id: '4.3.3',
+              title: 'View Composers (ចែករំលែកទិន្នន័យគ្រប់ទំព័រ)',
+              titleEn: 'View Composers',
+              type: 'code',
+              content: [
+                '**Global Data**: ជួនកាលយើងមានទិន្នន័យដែលត្រូវបង្ហាញនៅលើគ្រប់ទំព័រទាំងអស់ (ឧទាហរណ៍៖ បញ្ជី Category នៅក្នុង Sidebar ឬចំនួនសារមិនទាន់អាននៅក្នុង Navbar)។',
+                '**View::share()**: អនុញ្ញាតឱ្យអ្នកបញ្ជូនអថេរទៅកាន់ Views ទាំងអស់ដោយស្វ័យប្រវត្តិ (ច្រើនតែសរសេរក្នុង `AppServiceProvider`)។',
+                '**Cleaner Controllers**: ជួយកុំឱ្យយើងត្រូវសរសេរកូដទាញទិន្នន័យដដែលៗនៅក្នុង Controllers គ្រប់កន្លែងទាំងអស់។'
+              ],
+              code: '<?php\nnamespace App\\Providers;\n\nuse Illuminate\\Support\\Facades\\View;\nuse Illuminate\\Support\\ServiceProvider;\n\nclass AppServiceProvider extends ServiceProvider {\n    public function boot(): void {\n        // ចែករំលែកអថេរ "settings" ទៅកាន់គ្រប់ View ទាំងអស់\n        View::share("settings", Setting::all());\n        \n        // ចែករំលែកអថេរតែទៅកាន់ View ជាក់លាក់\n        View::composer("layouts.sidebar", function ($view) {\n            $view->with("categories", Category::all());\n        });\n    }\n}\n?>',
+              language: 'php',
+              insight: 'ប្រើ View Composers ដើម្បីចៀសវាងការសរសេរកូដ query ដដែលៗនៅក្នុង Controllers ច្រើន។'
+            },
+            {
+              id: '4.3.4',
               title: 'Real-world Demo: Dynamic Profile Page',
               titleEn: 'Dynamic Profile Page Demo',
               type: 'code',
@@ -432,20 +529,17 @@ export const part2: Part = {
                 'គ្រាន់តែកែតម្លៃទាំងនេះឱ្យត្រឹមត្រូវស្របតាម Database ដែលអ្នកបានបង្កើតនៅក្នុង Local Environment របស់អ្នក។ (ដូចជាឈ្មោះ Database, Username និង Password ដើម្បីធានាថាការភ្ជាប់រវាង App និង Database ដំណើរការបានត្រឹមត្រូវ)'
               ],
               code: 'DB_CONNECTION=mysql\nDB_HOST=127.0.0.1\nDB_PORT=3306\nDB_DATABASE=my_app_db\nDB_USERNAME=root\nDB_PASSWORD=secret',
-              language: 'bash'
+              language: 'bash',
+              useCase: 'Configuring a local MySQL database for development while allowing production servers to use different credentials safely.'
             },
             {
               id: '5.1.2',
-              title: 'Real-world Demo: Environment Setup for Teams',
-              titleEn: 'Environment Setup Demo',
+              title: 'Real-world Setup Demo',
+              titleEn: 'Setup Demo',
               type: 'code',
-              content: [
-                '**Team Collaboration**: របៀបប្រើ `.env.example` ដើម្បីជួយឱ្យក្រុមការងារងាយស្រួលរៀបចំ Project។',
-                '**Security**: បញ្ជាក់ពីសារៈសំខាន់នៃ APP_KEY សម្រាប់ការពារទិន្នន័យរបស់ User។'
-              ],
               code: '# ជំហានដំឡើងសម្រាប់អ្នកទើបចូលថ្មី\ncp .env.example .env\nphp artisan key:generate\n\n# បន្ទាប់មកកែឈ្មោះ Database ក្នុង .env\nDB_DATABASE=laravel_course_demo',
               language: 'bash'
-            }
+            } 
           ]
         },
         {
@@ -479,6 +573,7 @@ export const part2: Part = {
               ],
               code: '# ១. បង្កើតតារាងថ្មី\nphp artisan make:migration create_products_table\n\n# ២. បន្ថែម Column ទៅតារាងដែលមានស្រាប់\nphp artisan make:migration add_price_to_products_table\n\n# ៣. បង្កើតតារាងជាមួយ Schema ខ្លះៗស្រាប់\nphp artisan make:migration create_orders_table --create=orders',
               language: 'bash',
+              useCase: 'Initializing the structure of a new feature (like adding an Orders table) so teammates can pull the code and create the exact same table.',
               animation: 'migration_naming'
             },
             {
@@ -493,6 +588,7 @@ export const part2: Part = {
               ],
               code: 'public function up(): void {\n    Schema::create("products", function (Blueprint $table) {\n        $table->id();\n        $table->string("name");\n        $table->timestamps();\n    });\n}\n\npublic function down(): void {\n    Schema::dropIfExists("products");\n}',
               language: 'php',
+              useCase: 'Defining how to safely add a new column in `up()` and exactly how to remove that specific column safely in `down()`.',
               animation: 'migration_up_down'
             },
             {
@@ -507,6 +603,7 @@ export const part2: Part = {
               ],
               code: 'use Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nSchema::create("products", function (Blueprint $table) {\n    $table->id();\n    $table->string("name")->unique();\n    $table->decimal("price", 10, 2)->default(0);\n    $table->text("description")->nullable();\n    $table->timestamps();\n});',
               language: 'php',
+              useCase: 'Designing a precise database table for products with strict data types like decimals for currency to prevent data corruption.',
               animation: 'schema_builder'
             },
             {
@@ -521,6 +618,7 @@ export const part2: Part = {
               ],
               code: '# ១. បង្កើតតារាងតាម Migration\nphp artisan migrate\n\n# ២. ត្រឡប់ក្រោយ ១ ជំហាន\nphp artisan migrate:rollback\n\n# ៣. បង្ហាញស្ថានភាព Migrations ទាំងអស់\nphp artisan migrate:status',
               language: 'bash',
+              useCase: 'Deploying your latest changes to the database server safely, applying only the newly created tables.',
               insight: 'ប្រើ `php artisan migrate:status` ដើម្បីឆែកមើលថា តើមាន File ណាខ្លះដែលមិនទាន់បាន Run ចូល Database។',
               animation: 'artisan_migrate'
             },
@@ -547,16 +645,39 @@ php artisan migrate:reset
 # ៤. លុប Table ទាំងអស់ រួច Run ឡើងវិញ ព្រមទាំង Seed Data
 php artisan migrate:fresh --seed`,
               language: 'bash',
+              useCase: 'Undoing a mistakenly created table in local development using migrate:rollback to rewrite the column definitions.'
             },
             {
               id: '5.2.6',
-              title: 'Real-world Demo: Blog Database Schema',
-              titleEn: 'Blog Schema Demo',
+              title: 'Modifying Columns (ការកែប្រែ Column)',
+              titleEn: 'Modifying Columns',
               type: 'code',
               content: [
-                '**Complete Schema**: ឧទាហរណ៍នៃការរៀបចំ Migration សម្រាប់តារាង Posts ដែលមាន Foreign Key ភ្ជាប់ទៅ Users។',
-                '**Data Integrity**: ប្រើ `constrained()` និង `onDelete("cascade")` ដើម្បីគ្រប់គ្រងសុវត្ថិភាពទិន្នន័យ។'
+                '**Changing Column Type**: យើងអាចផ្លាស់ប្តូរប្រភេទទិន្នន័យរបស់ Column ឬបន្ថែមលក្ខខណ្ឌថ្មីបានដោយប្រើ Method `change()` នៅក្នុង Migration ថ្មី (ជំនួសឱ្យការលុប Table ទាំងមូលចោល)។',
+                '**Renaming Columns**: យើងអាចប្តូរឈ្មោះ Column បានយ៉ាងងាយស្រួលដោយប្រើ `renameColumn()`។',
+                '**Dropping Columns**: ប្រើ `dropColumn()` ដើម្បីលុប Column ដែលយើងលែងត្រូវការចេញពី Table។'
               ],
+              code: 'public function up(): void {\n    Schema::table("users", function (Blueprint $table) {\n        // កែប្រែប្រវែងអក្សរពី ២៥៥ ទៅ ៥០\n        $table->string("name", 50)->change();\n        \n        // ប្តូរឈ្មោះ Column\n        $table->renameColumn("from", "to");\n        \n        // លុប Column ចោល\n        $table->dropColumn("votes");\n    });\n}',
+              language: 'php',
+              insight: 'ចំណាំ៖ ការប្រើប្រាស់ change() តម្រូវឱ្យមានកញ្ចប់ (package) "doctrine/dbal" ដំឡើងនៅក្នុង Project របស់អ្នក។'
+            },
+            {
+              id: '5.2.7',
+              title: 'Foreign Key Constraints',
+              titleEn: 'Foreign Key Constraints',
+              type: 'code',
+              content: [
+                '**Data Integrity**: Foreign Keys ជួយរក្សាភាពត្រឹមត្រូវនៃទិន្នន័យដោយធានាថាទំនាក់ទំនងរវាង Tables មិនត្រូវបានបំបែក (ឧទាហរណ៍៖ មិនអនុញ្ញាតឱ្យលុប User ប្រសិនបើគាត់នៅមាន Post)។',
+                '**Cascade Actions**: យើងអាចកំណត់ឱ្យ Database លុប ឬអាប់ដេតទិន្នន័យដែលពាក់ព័ន្ធដោយស្វ័យប្រវត្តិ នៅពេលដែលប្រភពដើមត្រូវបានលុប ឬផ្លាស់ប្តូរ (`onDelete("cascade")`)។'
+              ],
+              code: 'Schema::create("posts", function (Blueprint $table) {\n    $table->id();\n    // បង្កើត Foreign Key ទៅកាន់ Table users\n    $table->foreignId("user_id")\n          ->constrained("users")\n          ->onUpdate("cascade")\n          ->onDelete("cascade");\n    $table->string("title");\n});',
+              language: 'php'
+            },
+            {
+              id: '5.2.8',
+              title: 'Real-world Demo: Posts Table Schema',
+              titleEn: 'Posts Table Demo',
+              type: 'code',
               code: 'Schema::create("posts", function (Blueprint $table) {\n    $table->id();\n    $table->foreignId("user_id")->constrained()->onDelete("cascade");\n    $table->string("title");\n    $table->string("slug")->unique();\n    $table->text("body");\n    $table->string("image")->nullable();\n    $table->boolean("is_published")->default(false);\n    $table->timestamps();\n});',
               language: 'php'
             }
@@ -593,6 +714,7 @@ php artisan migrate:fresh --seed`,
               ],
               code: '# បង្កើត Model តែមួយ\nphp artisan make:model Product\n\n# បង្កើត Model ព្រមទាំង Migration និង Controller ក្នុងពេលតែមួយ\nphp artisan make:model Product -mc',
               language: 'bash',
+              useCase: 'Generating a User model to represent the "users" table, allowing you to use User::create() instead of writing manual INSERT statements.',
               animation: 'model_creation'
             },
             {
@@ -606,11 +728,41 @@ php artisan migrate:fresh --seed`,
               ],
               code: 'namespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Product extends Model {\n    // កំណត់ Column ដែលអនុញ្ញាត\n    protected $fillable = ["name", "price", "description"];\n}',
               language: 'php',
+              useCase: 'Protecting user registration so that hackers cannot inject an "is_admin" field in their signup form request to become administrators.',
               insight: 'ការប្រើ `$fillable` ជួយការពារពី "Mass Assignment Vulnerability" ដែលជាបញ្ហាសុវត្ថិភាពចម្បង។',
               animation: 'mass_assignment'
             },
             {
               id: '5.3.3',
+              title: 'Eloquent Relationships (ទំនាក់ទំនងរវាង Model)',
+              titleEn: 'Eloquent Relationships',
+              type: 'code',
+              content: [
+                '**Table Relations**: ជាធម្មតាក្នុង Database តារាងតែងតែមានទំនាក់ទំនងជាមួយគ្នា (ឧទាហរណ៍៖ អ្នកនិពន្ធម្នាក់មានអត្ថបទច្រើន `One-to-Many`)។',
+                '**Model Methods**: Eloquent អនុញ្ញាតឱ្យយើងកំណត់ទំនាក់ទំនងទាំងនេះជា Methods នៅក្នុង Model ធ្វើឱ្យការទាញទិន្នន័យពាក់ព័ន្ធងាយស្រួលដូចការហៅ Property មួយអញ្ចឹង។',
+                '**Relationship Types**: មានប្រភេទដូចជា `hasOne`, `hasMany`, `belongsTo`, `belongsToMany`, នឹងជាច្រើនទៀត។'
+              ],
+              code: 'class User extends Model {\n    // User ម្នាក់អាចមាន Post ច្រើន (One-to-Many)\n    public function posts() {\n        return $this->hasMany(Post::class);\n    }\n}\n\nclass Post extends Model {\n    // Post មួយជារបស់ User តែម្នាក់ (Inverse)\n    public function user() {\n        return $this->belongsTo(User::class);\n    }\n}',
+              language: 'php',
+              useCase: 'Retrieving all posts written by a specific user cleanly via `$user->posts`.',
+              animation: 'relationship_types'
+            },
+            {
+              id: '5.3.4',
+              title: 'Soft Deleting (ការលុបដោយមិនបាត់ទិន្នន័យ)',
+              titleEn: 'Soft Deleting',
+              type: 'code',
+              content: [
+                '**Safe Deletion**: នៅពេលប្រើ Soft Deletes ទិន្នន័យនឹងមិនត្រូវបានលុបចេញពី Database ពិតប្រាកដទេ ប៉ុន្តែវានឹងកត់ត្រាកាលបរិច្ឆេទក្នុង Column `deleted_at` ជំនួសវិញ។',
+                '**Trait Usage**: យើងគ្រាន់តែថែម Trait `SoftDeletes` ទៅក្នុង Model និងបន្ថែម `$table->softDeletes()` ទៅក្នុង Migration។',
+                '**Restoration**: អនុញ្ញាតឱ្យអ្នកស្ដារទិន្នន័យ (Restore) មកវិញនៅពេលក្រោយប្រសិនបើមានការលុបដោយអចេតនា។'
+              ],
+              code: 'use Illuminate\\Database\\Eloquent\\SoftDeletes;\n\nclass Post extends Model {\n    use SoftDeletes;\n}\n\n// ការប្រើប្រាស់\n$post->delete(); // ទិន្នន័យមិនបាត់ទេ តែមានជាប់ deleted_at\n\n$post->restore(); // ស្ដារទិន្នន័យមកវិញ\n\n$post->forceDelete(); // លុបចេញពី Database ពិតប្រាកដ',
+              language: 'php',
+              insight: 'Query ទូទៅរបស់ Eloquent នឹងលាក់ទិន្នន័យដែលបាន Soft Delete ដោយស្វ័យប្រវត្តិ។'
+            },
+            {
+              id: '5.3.5',
               title: 'Real-world Demo: Product Model with Attributes',
               titleEn: 'Product Model Demo',
               type: 'code',
@@ -653,6 +805,7 @@ php artisan migrate:fresh --seed`,
               ],
               code: '// បង្កើតថ្មី\nProduct::create(["name" => "Laptop", "price" => 999]);\n\n// ទាញយកទាំងអស់\n$products = Product::all();\n\n// ស្វែងរកតាម ID\n$item = Product::find(1);\n\n// ទាញយកតាមលក្ខខណ្ឌ\n$cheapItems = Product::where("price", "<", 500)->get();',
               language: 'php',
+              useCase: 'Saving a new article from a dashboard form (Create) and then displaying all articles on the homepage (Read).',
               insight: 'Eloquent នឹងបម្លែងលទ្ធផលពី Database ឱ្យទៅជា Objects ឬ Collections ដែលងាយស្រួលប្រើប្រាស់បំផុត។'
             },
             {
@@ -667,10 +820,25 @@ php artisan migrate:fresh --seed`,
               ],
               code: '// ការកែប្រែ (Update)\n$item = Product::find(1);\n$item->update(["price" => 899]);\n\n// ការលុប (Delete)\n$item->delete();\n\n// លុបតាមរយៈ ID ផ្ទាល់\nProduct::destroy(2);',
               language: 'php',
+              useCase: 'Marking a user\'s order as "shipped" (Update) or safely removing a spam comment from a blog post (Delete).',
               insight: 'ចងចាំ៖ រាល់ពេលប្រើ update() ឬ delete() ត្រូវប្រាកដថាអ្នកបានហៅ find() ឬ where() ឱ្យបានត្រឹមត្រូវដើម្បីកុំឱ្យប៉ះពាល់ទិន្នន័យខុសជួរ។'
             },
             {
               id: '5.4.3',
+              title: 'First or Create / Update or Create',
+              titleEn: 'First or Create / Update or Create',
+              type: 'code',
+              content: [
+                '**firstOrCreate**: ប្រើសម្រាប់ស្វែងរក Record តាមលក្ខខណ្ឌដែលបានផ្ដល់ឱ្យ។ បើរកមិនឃើញ វានឹងបង្កើត Record ថ្មីមួយដោយស្វ័យប្រវត្តិ និងរក្សាទុកទៅក្នុង Database។',
+                '**updateOrCreate**: ប្រើសម្រាប់ស្វែងរក Record តាមលក្ខខណ្ឌដែលបានផ្ដល់ឱ្យ។ បើរកឃើញ វានឹង Update ទិន្នន័យនោះ បើរកមិនឃើញ វានឹងបង្កើត Record ថ្មីមួយ។',
+                'ជួយកាត់បន្ថយការសរសេរកូដ `if/else` ស្មុគស្មាញ និងធ្វើឱ្យ Controller របស់អ្នកកាន់តែខ្លី។'
+              ],
+              code: '// ស្វែងរកជើងហោះហើរ បើគ្មាននឹងបង្កើតថ្មី\n$flight = Flight::firstOrCreate(\n    ["name" => "Flight 10"],\n    ["delayed" => 1, "arrival_time" => "11:30"]\n);\n\n// ស្វែងរកជើងហោះហើរ បើមានធ្វើការ Update, បើគ្មាននឹងបង្កើតថ្មី\n$flight = Flight::updateOrCreate(\n    ["departure" => "Oakland", "destination" => "San Diego"],\n    ["price" => 99, "discounted" => 1]\n);',
+              language: 'php',
+              insight: 'Methods ទាំងនេះជួយឱ្យការធ្វើសមកាលកម្មទិន្នន័យ (Data Synchronization) កាន់តែងាយស្រួល។'
+            },
+            {
+              id: '5.4.4',
               title: 'Real-world Demo: Complete CRUD Workflow',
               titleEn: 'CRUD Workflow Demo',
               type: 'code',
@@ -712,6 +880,7 @@ php artisan migrate:fresh --seed`,
               ],
               code: 'use Illuminate\\Support\\Facades\\DB;\n\n// ទាញយកទិន្នន័យផ្ទាល់\n$users = DB::table("users")->get();\n\n// Query បែបស្មុគស្មាញ\n$activeUsers = DB::table("users")\n            ->where("active", true)\n            ->orderBy("last_login", "desc")\n            ->limit(5)\n            ->get();',
               language: 'php',
+              useCase: 'Exporting a CSV of 100,000 sales records where using Eloquent Models would consume too much memory and cause the server to crash.',
               insight: 'ចំណេះដឹងបន្ថែម៖ តាមពិតទៅ Eloquent គឺគ្រាន់តែជា "សំបក" ដែលស្រោបពីលើ Query Builder នេះប៉ុណ្ណោះ។'
             },
             {

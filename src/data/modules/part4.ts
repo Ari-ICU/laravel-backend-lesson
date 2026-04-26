@@ -28,29 +28,20 @@ export const part4: Part = {
                 '**Connectivity**: API អនុញ្ញាតឲ្យ application របស់អ្នកទំនាក់ទំនងជាមួយ mobile apps ឬ modern frontend frameworks ដូចជា Vue ឬ React បានយ៉ាងរលូន។ (ជាស្ពានចម្លងទិន្នន័យរវាង Server និងឧបករណ៍របស់អ្នកប្រើប្រាស់មិនថាជាទូរស័ព្ទ ឬកុំព្យូទ័រ)',
                 '**Data Standardization**: Laravel នឹងបម្លែង និង serialize ទិន្នន័យទៅជា JSON format ដោយស្វ័យប្រវត្តិ។ (ដើម្បីធានាថាគ្រប់ប្រព័ន្ធទាំងអស់អាចយល់ និងយកទិន្នន័យទៅបង្ហាញបានយ៉ាងងាយស្រួល និងមានស្ដង់ដារតែមួយ)'
               ],
-              useCase: 'Building a headless backend for a React/Next.js dashboard or a mobile application.',
-              bestPractices: [
-                'Always use versioning in your API URLs (e.g., /api/v1/...)',
-                'Return appropriate HTTP status codes (200, 201, 404, 500)',
-                'Use JSON as the primary communication format'
-              ]
+              useCase: 'Building a headless backend for a React/Next.js dashboard or a mobile application.'
             },
             {
               id: '9.1.1',
-              title: 'API Routes',
-              titleEn: 'API Routes',
+              title: 'API Routes Definition',
+              titleEn: 'API Routes Definition',
               type: 'code',
               content: [
-                '**Dedicated File**: API routes ត្រូវបានកំណត់នៅក្នុង file `routes/api.php` ដែលជាកន្លែងសម្រាប់រៀបចំ API endpoints ទាំងអស់។ (ជួយឱ្យអ្នកបែងចែកដាច់ពីគ្នា រវាង Route សម្រាប់បង្ហាញ Website និង Route សម្រាប់បញ្ជូនទិន្នន័យ API)',
-                '**Stateless Design**: រាល់ routes នៅទីនេះនឹងមាន prefix `/api` ដោយស្វ័យប្រវត្តិ ហើយវាដំណើរការ stateless។ (មានន័យថាវាមិនប្រើ session ដូច web routes ទេ ដែលធ្វើឱ្យវាដើរលឿន និងស័ក្តិសមសម្រាប់ Mobile Apps)'
+                '**Route Setup**: API endpoints ត្រូវបានកំណត់នៅក្នុងឯកសារ `routes/api.php` ដែលវាមាន `api` prefix ដោយស្វ័យប្រវត្តិ។',
+                '**Stateless**: Routes ទាំងនេះគ្មាន session ទេ ដូច្នេះវាស័ក្តិសមសម្រាប់ high-concurrency requests។'
               ],
-              code: '// routes/api.php\nRoute::middleware("auth:sanctum")->get("/user", function (Request $request) {\n    return $request->user();\n});\n\n// Basic GET resource\nRoute::get("/products", [ProductController::class, "index"]);',
-              language: 'php',
               useCase: 'Creating endpoints that don\'t require session persistence, optimized for high-concurrency stateless requests.',
-              bestPractices: [
-                'Keep routes clean by using Controllers instead of Closures',
-                'Group routes that share common middleware like authentication'
-              ]
+              code: '// routes/api.php\nRoute::middleware("auth:sanctum")->get("/user", function (Request $request) {\n    return $request->user();\n});\n\n// Basic GET resource\nRoute::get("/products", [ProductController::class, "index"]);',
+              language: 'php'
             },
             {
               id: '9.1.2',
@@ -58,27 +49,21 @@ export const part4: Part = {
               titleEn: 'API Resources',
               type: 'code',
               content: [
-                '**Data Transformation**: Resources អនុញ្ញាតឱ្យអ្នកបំប្លែង (Transform) Models ទៅជា JSON Format ដែលអ្នកចង់បានយ៉ាងច្បាស់លាស់។ (ជួយឱ្យអ្នកអាចជ្រើសរើសបានថា តើព័ត៌មានណាខ្លះដែលគួរបង្ហាញឱ្យ User ឃើញ និងព័ត៌មានណាខ្លះដែលគួរលាក់ទុក)',
-                '**API Stability**: វាជួយឱ្យ API របស់អ្នកមានរបៀបរៀបរយ ទោះបីជា structure ក្នុង database ផ្លាស់ប្តូរក៏ដោយ។ (ជួយឱ្យអ្នកអាចប្តូរឈ្មោះ Column ក្នុង Database បានដោយមិនប៉ះពាល់ដល់កម្មវិធី Mobile ឬ Web ដែលកំពុងប្រើ API របស់អ្នក)'
+                '**Data Transformation**: Laravel API Resources អនុញ្ញាតឱ្យអ្នកបម្លែង Models ទៅជា JSON responses ប្រកបដោយវិជ្ជាជីវៈ។'
               ],
-              code: '// Transform model to professional API response\npublic function toArray($request)\n{\n    return [\n        "id" => $this->id,\n        "full_name" => $this->name,\n        "email" => $this->email,\n        "created_at" => $this->created_at->diffForHumans(),\n    ];\n}',
-              language: 'php',
               insight: 'Resources ប្រៀបដូចជា "Views" សម្រាប់ API របស់អ្នកអញ្ចឹង។',
-              useCase: 'Obfuscating database column names and providing extra computed attributes to front-end developers.',
-              bestPractices: [
-                'Never return the raw model; always wrap it in a Resource',
-                'Conditionally load relationships using $this->whenLoaded()'
-              ]
+              code: '// Transform model to professional API response\npublic function toArray($request)\n{\n    return [\n        "id" => $this->id,\n        "full_name" => $this->name,\n        "email" => $this->email,\n        "created_at" => $this->created_at->diffForHumans(),\n    ];\n}',
+              language: 'php'
             },
             {
               id: '9.1.3',
-              title: 'Real-world Demo: Mobile App API Response',
-              titleEn: 'API Response Demo',
+              title: 'Customizing API Resources',
+              titleEn: 'Customizing API Resources',
               type: 'code',
               content: [
-                '**Advanced Resource**: ការប្រើប្រាស់ Resource ដើម្បីប្ដូរឈ្មោះ Column និងរៀបចំទម្រង់ទិន្នន័យឱ្យសមស្របសម្រាប់ Mobile App។',
-                '**Data Consistency**: ធានាថាទិន្នន័យដែលបញ្ជូនទៅកាន់ User មានលក្ខណៈដូចគ្នាជានិច្ច ទោះបីជា Database ផ្លាស់ប្តូរក៏ដោយ។'
+                '**Data Protection**: អ្នកអាចលាក់ឈ្មោះ column ក្នុង database ពិតប្រាកដ ឬបន្ថែមទិន្នន័យថ្មីៗ (computed attributes) យ៉ាងងាយស្រួល។'
               ],
+              useCase: 'Obfuscating database column names and providing extra computed attributes to front-end developers.',
               code: 'public function toArray($request) {\n    return [\n        "id" => $this->id,\n        "product_name" => $this->name,\n        "price_usd" => (float) $this->price,\n        "is_available" => $this->stock > 0,\n        "thumbnail" => url($this->image_path),\n    ];\n}',
               language: 'php'
             }

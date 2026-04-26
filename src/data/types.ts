@@ -16,7 +16,6 @@ export interface Slide {
   language?: string;
   insight?: string | LocalizedString;
   useCase?: string | LocalizedString; // Added
-  bestPractices?: (string | LocalizedString)[]; // Added
   image?: string;
   isList?: boolean;
   options?: (string | LocalizedString)[];
