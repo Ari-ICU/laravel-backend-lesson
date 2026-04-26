@@ -1068,61 +1068,85 @@ export const part4: Part = {
               titleEn: 'Scaling Your Application',
               type: 'intro',
               content: [
-                'នៅពេល App របស់អ្នករីកធំ ការងារសាមញ្ញៗអាចនឹងប្រែជាយឺត។',
-                'យើងប្រើប្រាស់ Caching, Queues, និងការរៀបចំ Database ដើម្បីឱ្យវាដើរលឿន។',
-                'App ដែលដើរលឿន នឹងធ្វើឱ្យអ្នកប្រើប្រាស់សប្បាយចិត្ត។'
+                '**Performance First**: នៅពេល App របស់អ្នករីកធំ ការងារសាមញ្ញៗអាចនឹងប្រែជាយឺត ប្រសិនបើមិនមានការរៀបចំត្រឹមត្រូវ។',
+                '**Tools for Speed**: យើងនឹងសិក្សាអំពីការប្រើប្រាស់ Database Indexing, Caching, និង Queues ដើម្បីបង្កើនល្បឿន។',
+                '**User Experience**: App ដែលដើរលឿន នឹងធ្វើឱ្យអ្នកប្រើប្រាស់សប្បាយចិត្ត និងបង្កើនទំនុកចិត្តលើផលិតផល។'
               ],
-              animation: 'performance'
+              animation: 'performance',
+              insight: 'App ដែលមានល្បឿនលឿន មិនត្រឹមតែល្អសម្រាប់ User ទេ ប៉ុន្តែថែមទាំងជួយឱ្យ Server មិនសូវធ្វើការធ្ងន់ (Low Resource Usage)។'
             },
             {
               id: '12.4.1',
+              title: 'Database Indexing',
+              titleEn: 'Database Indexing',
+              type: 'concept',
+              content: [
+                '**The Librarian**: Indexing ប្រៀបដូចជា "បញ្ជីមាតិកា" ក្នុងសៀវភៅ ដែលជួយឱ្យ Database ស្វែងរកទិន្នន័យបានភ្លាមៗ។',
+                '**Impact**: ការបន្ថែម Index លើ Column ដែលអ្នកប្រើសម្រាប់ "where" ឬ "order by" អាចធ្វើឱ្យ Query លឿនជាងមុនរាប់រយដង។'
+              ],
+              insight: 'ហាមដាក់ Index លើគ្រប់ Column ទាំងអស់ ព្រោះវាអាចធ្វើឱ្យការ Insert/Update យឺតវិញ។'
+            },
+            {
+              id: '12.4.2',
               title: 'Caching Strategies',
               titleEn: 'Caching Strategies',
               type: 'code',
               content: [
-                'រក្សាទុកទិន្នន័យដែលពិបាកទាញ (Expensive data) នៅក្នុង Redis ឬ Memcached។',
-                'ទាញទិន្នន័យពី Database តែនៅពេលដែល cache អស់សុពលភាពប៉ុណ្ណោះ។'
+                '**Cache Aside**: រក្សាទុកទិន្នន័យដែលពិបាកទាញ (Expensive data) នៅក្នុង Cache និងទាញវាចេញមកប្រើវិញដោយមិនបាច់ទៅ Database។',
+                '**Redis**: ជាជម្រើសដ៏ល្អបំផុតសម្រាប់ធ្វើ Caching លើ Production ព្រោះវាមានល្បឿនលឿនបំផុត (In-memory storage)។'
               ],
-              code: '$users = Cache::remember("users.active", 3600, function () {\n    return User::where("active", true)->get();\n});',
+              code: '// រក្សាទុកក្នុង Cache រយៈពេល 1 ម៉ោង (3600 វិនាទី)\n$stats = Cache::remember("dashboard.stats", 3600, function () {\n    return Order::calculateYearlyStats();\n});',
               language: 'php',
-              insight: 'Caching គឺជាវិធីងាយស្រួលបំផុតដើម្បីបង្កើនល្បឿន App ឱ្យលឿនជាងមុនគួរឱ្យកត់សម្គាល់។'
+              insight: 'Caching គឺជាវិធីដែលចំណាយកម្លាំងតិចបំផុត ប៉ុន្តែទទួលបានផលចំណេញល្បឿនច្រើនបំផុត។'
             },
             {
-              id: '12.4.2',
+              id: '12.4.3',
               title: 'Background Jobs (Queues)',
               titleEn: 'Background Jobs',
               type: 'code',
               content: [
-                'កុំឱ្យអ្នកប្រើប្រាស់រង់ចាំការងារដែលយឺតៗ ដូចជាការផ្ញើ Email ជាដើម។',
-                'បោះការងារទាំងនោះទៅក្នុង "Queue" ដើម្បីឱ្យវាដំណើរការនៅខាងក្រោយ (Background)។'
+                '**Don\'t Wait**: កុំឱ្យអ្នកប្រើប្រាស់រង់ចាំការងារដែលយឺតៗ ដូចជាការផ្ញើ Email, ការ Generate PDF, ឬការទាក់ទងទៅ API ខាងក្រៅ។',
+                '**Asynchronous**: បោះការងារទាំងនោះទៅក្នុង "Queue" ដើម្បីឱ្យវាដំណើរការនៅខាងក្រោយ (Background)។'
               ],
-              code: '// នៅក្នុង Controller\nSendWelcomeEmail::dispatch($user);\n\n// Laravel នឹងចាត់ចែងផ្ញើវា ខណៈពេល user បន្តប្រើប្រាស់បានធម្មតា។',
+              code: '// នៅក្នុង Controller\nProcessVideo::dispatch($videoVideo);\n\n// បញ្ជូន Response ទៅ User ភ្លាមៗ\nreturn response()->json(["message" => "Processing started"]);',
               language: 'php',
-              insight: 'ប្រើ "php artisan queue:work" ដើម្បីចាប់ផ្តើមដំណើរការ background worker របស់អ្នក។'
-            },
-            {
-              id: '12.4.3',
-              title: 'Real-world Demo: High-traffic Cache Optimization',
-              titleEn: 'Cache Optimization Demo',
-              type: 'code',
-              content: [
-                '**Atomic Locks**: របៀបប្រើប្រាស់ Cache Lock ដើម្បីការពារកុំឱ្យមានការទាញទិន្នន័យពី Database ច្រើនដងក្នុងពេលតែមួយ (ជួយសន្សំសំចៃ Resource របស់ Server)។',
-                '**Taggabale Cache**: ការប្រើ Tags ដើម្បីងាយស្រួលសម្អាត Cache តាមប្រភេទ (ឧទាហរណ៍៖ សម្អាតតែ Cache របស់ផលិតផល ដោយមិនប៉ះពាល់ Cache របស់ User)។'
-              ],
-              code: '// Cache ជាមួយ Tags (សម្រាប់ Redis/Memcached)\nCache::tags(["products", "active"])->remember("list", 3600, function() {\n    return Product::where("active", true)->get();\n});\n\n// សម្អាតតែ Cache ក្នុង Tag "products"\nCache::tags("products")->flush();',
-              language: 'php'
+              insight: 'ប្រើ "php artisan queue:work" ដើម្បីឱ្យ Laravel ចាប់ផ្ដើមធ្វើការងារដែលនៅក្នុងជួរ (Queue)។'
             },
             {
               id: '12.4.4',
+              title: 'Monitoring & Analysis',
+              titleEn: 'Monitoring Performance',
+              type: 'code',
+              content: [
+                '**Know Your Bottlenecks**: អ្នកមិនអាចកែលម្អអ្វីដែលអ្នកមិនបានវាស់វែង (Measure) នោះទេ។',
+                '**Laravel Horizon**: ផ្តល់ Dashboard ដ៏ស្រស់ស្អាតសម្រាប់ពិនិត្យមើលស្ថានភាព Queues និងការងារដែលខូច (Failed jobs)។'
+              ],
+              code: '# តម្លើង Laravel Horizon សម្រាប់គ្រប់គ្រង Redis Queues\ncomposer require laravel/horizon\nphp artisan horizon:install\n\n# ដំណើរការ Horizon\nphp artisan horizon',
+              language: 'bash'
+            },
+            {
+              id: '12.4.5',
+              title: 'Real-world Demo: Cache Taggability',
+              titleEn: 'Advanced Caching',
+              type: 'code',
+              content: [
+                '**Atomic Locks**: ការពារកុំឱ្យមានការទាញទិន្នន័យពី Database ច្រើនដងក្នុងពេលតែមួយ (Race condition)។',
+                '**Taggabale Cache**: ការប្រើ Tags ដើម្បីងាយស្រួលសម្អាត Cache តាមក្រុម (ឧទាហរណ៍៖ សម្អាតតែ Cache របស់ផលិតផល)។'
+              ],
+              code: '// Cache ជាមួយ Tags (សម្រាប់ Redis)\nCache::tags(["products", "active"])->remember("list", 3600, function() {\n    return Product::active()->get();\n});\n\n// សម្អាតតែ Cache ក្នុង Tag "products"\nCache::tags("products")->flush();',
+              language: 'php'
+            },
+            {
+              id: '12.4.6',
               title: 'សង្ខេប: Best Practices',
               titleEn: 'Best Practices',
               type: 'summary',
               content: [
                 '**Queues**: ប្រើ Background Jobs សម្រាប់រាល់ការងារដែលចំណាយពេលលើសពី ១ វិនាទី។',
-                '**Caching**: Cache ទិន្នន័យដែលទាញយឺត ឬមិនសូវផ្លាស់ប្ដូរ។',
-                '**N+1 Queries**: ប្រើ Eager Loading ("with()") ដើម្បីកាត់បន្ថយការងារ Database។'
+                '**N+1 Queries**: ប្រើ Eager Loading ("with()") ជានិច្ចដើម្បីកាត់បន្ថយ Query ទៅកាន់ Database។',
+                '**Cache Smartly**: កុំ Cache គ្រប់យ៉ាង តែត្រូវ Cache អ្វីដែលយឺត និងមិនសូវផ្លាស់ប្ដូរ។'
               ],
-              insight: 'App ដែលដើរលឿន មិនត្រឹមតែផ្ដល់បទពិសោធន៍ល្អដល់ User ទេ ប៉ុន្តែថែមទាំងសន្សំ Resource របស់ Server ទៀតផង។'
+              insight: 'Performance ល្អ គឺកើតចេញពីការផ្សំគ្នារវាង Code ដែលស្អាត និង Tool ដែលត្រឹមត្រូវ។'
             }
           ]
         }

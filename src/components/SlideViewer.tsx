@@ -329,6 +329,8 @@ export function SlideViewer({
       case 'feature_testing_flow': return <FeatureTestingFlowAnimation isProjectorMode={isProjectorMode} />;
       case 'cicd_flow': return <CICDFlowAnimation isProjectorMode={isProjectorMode} />;
       case 'security_flow': return <SecurityFlowAnimation isProjectorMode={isProjectorMode} />;
+      case 'deployment': return <DeploymentAnimation isProjectorMode={isProjectorMode} />;
+      case 'performance': return <PerformanceAnimation isProjectorMode={isProjectorMode} />;
       default: return null;
     }
   };
