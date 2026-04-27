@@ -187,7 +187,7 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Logic Overview**: ឧទាហរណ៍នៃការ Validate ទិន្នន័យសម្រាប់ Update Profile ដែលរួមមានការឆែក Email ស្ទួន (លើកលែងតែ Email ខ្លួនឯង)។',
-                '**Clean Controller**: រាល់ Validation logic ត្រូវបានដាក់ក្នុង "StoreProfileRequest" ដើម្បីឱ្យ Controller ងាយស្រួលអាន។'
+                '**Clean Controller**: រាល់ Validation logic ត្រូវបានដាក់ក្នុង "StoreProfileRequest" ដើម្បីឱ្យ Controller ងាយស្រួលអាន।'
               ],
               code: '// ក្នុង StoreProfileRequest.php\npublic function rules() {\n    return [\n        \"name\" => \"required|string|max:100\",\n        \"email\" => \"required|email|unique:users,email,\" . auth()->id(),\n        \"bio\" => \"nullable|min:50|max:500\",\n        \"birthdate\" => \"required|date|before:today\",\n    ];\n}\n\n// ក្នុង ProfileController.php\npublic function update(StoreProfileRequest $request) {\n    $user = auth()->user();\n    $user->update($request->validated());\n    \n    return back()->with(\"success\", \"Profile updated successfully!\");\n}',
               language: 'php'
@@ -220,10 +220,11 @@ export const part3: Part = {
               type: 'intro',
               content: [
                 '**Media Management**: ការគ្រប់គ្រងការ Upload ឯកសារ ដូចជា profile image, documents ឬ video។ (ជាកិច្ចការចាំបាច់សម្រាប់ Application សម័យថ្មីដែលអនុញ្ញាតឱ្យ User រក្សាទុកឯកសារផ្ទាល់ខ្លួន)',
-                '**UploadedFile Object**: Laravel ផ្ដល់ Object ដែលមាន functions ស្រាប់ ដើម្បីគ្រប់គ្រង files បានយ៉ាងងាយ។ (ជួយឱ្យអ្នកអាចឆែកទំហំ file, ប្រភេទ file និងរក្សាទុកវាដោយប្រើកូដតែមួយជួរ)',
-                '**Storage Flexibility**: អ្នកអាចរក្សាទុកឯកសារក្នុងម៉ាស៊ីនផ្ទាល់ ឬប្រើ Cloud ដូចជា AWS S3។ (ជួយឱ្យអ្នកអាចពង្រីកទំហំផ្ទុកទិន្នន័យបានយ៉ាងងាយស្រួលនៅពេល App មានអ្នកប្រើប្រាស់ច្រើន)'
+                '**UploadedFile Object**: នៅពេល User ផ្ញើ File មក Laravel នឹងបម្លែងវាទៅជា "UploadedFile" Object ដែលមាន functions ស្រាប់សម្រាប់ Check ទំហំ, ប្រភេទ និងការរក្សាទុក។',
+                '**Storage Drivers (Filesystem)**: Laravel ប្រើប្រព័ន្ធ "Drivers" ដែលអនុញ្ញាតឱ្យអ្នកប្តូរទីតាំងផ្ទុកពី Local Disk (ក្នុងម៉ាស៊ីន) ទៅកាន់ Cloud (AWS S3, DigitalOcean Spaces) ដោយមិនចាំបាច់ដូរ Code ឡើយ។'
               ],
-              animation: 'file_upload'
+              animation: 'file_upload',
+              insight: 'ប្រើ Storage Facade ដើម្បីគ្រប់គ្រង File ឱ្យមានរបៀបរៀបរយ និងងាយស្រួលប្ដូរទៅ Cloud នៅថ្ងៃក្រោយ។'
             },
             {
               id: '6.3.1',
@@ -231,12 +232,13 @@ export const part3: Part = {
               titleEn: 'Form Setup & Upload',
               type: 'code',
               content: [
-                '**Form Configuration**: ត្រូវប្រាកដថា form របស់អ្នកមាន attribute `enctype="multipart/form-data"`។ (បើមិនដាក់ទេ Browser នឹងមិនបញ្ជូន file មកឱ្យ Server ឡើយ)',
-                '**Request Methods**: ប្រើ `$request->file("name")` ដើម្បីទាញយក file object ឬ `$request->hasFile("name")` ដើម្បីពិនិត្យថាតើមាន file ផ្ញើមកឬអត់។',
-                '**Automatic Storage**: ប្រើ `store("folder_name")` ដើម្បីរក្សាទុកឯកសារដោយស្វ័យប្រវត្តិ។ (វានឹងបង្កើតឈ្មោះ file ថ្មីដែលមានសុវត្ថិភាពឱ្យអ្នកភ្លាមៗ)'
+                '**Form Configuration**: ត្រូវតែដាក់ attribute `enctype="multipart/form-data"` នៅក្នុង HTML Form បើមិនដូច្នេះទេ Browser នឹងមិនបញ្ជូន File មក Backend ឡើយ។',
+                '**Request Methods**: ប្រើ `$request->file("name")` ដើម្បីទទួលបាន Object ឬ `$request->hasFile("name")` ដើម្បីឆែកមើលវត្តមាន File មុននឹងដំណើរការបន្ត។',
+                '**Storage Strategy**: ប្រើ `store("folder", "disk")` ដើម្បីរក្សាទុក។ Laravel នឹងបង្កើត "Unique Hash Name" ឱ្យដោយស្វ័យប្រវត្តិ ដើម្បីការពារការជាន់ឈ្មោះ File គ្នា។'
               ],
-              code: '// ក្នុង Blade\n<form action="/upload" method="POST" enctype="multipart/form-data">\n    @csrf\n    <input type="file" name="avatar">\n    <button type="submit">Upload</button>\n</form>\n\n// ក្នុង Controller\npublic function upload(Request $request) {\n    if ($request->hasFile("avatar")) {\n        $path = $request->file("avatar")->store("avatars");\n        return "File saved at: " . $path;\n    }\n}',
-              language: 'php'
+              code: '// ក្នុង Blade\n<form action="/upload" method="POST" enctype="multipart/form-data">\n    @csrf\n    <input type="file" name="avatar">\n    <button type="submit">Upload</button>\n</form>\n\n// ក្នុង Controller\npublic function upload(Request $request) {\n    if ($request->hasFile("avatar")) {\n        // រក្សាទុកក្នុង storage/app/avatars (default disk)\n        $path = $request->file("avatar")->store("avatars");\n        \n        // រក្សាទុកក្នុង storage/app/public/avatars (public disk)\n        $publicPath = $request->file("avatar")->store("avatars", "public");\n        \n        return "File saved at: " . $path;\n    }\n}',
+              language: 'php',
+              animation: 'upload_form'
             },
             {
               id: '6.3.2',
@@ -244,13 +246,13 @@ export const part3: Part = {
               titleEn: 'File Validation',
               type: 'code',
               content: [
-                '**Size & Type Restriction**: អ្នកត្រូវតែ Validate គ្រប់ឯកសារដែល Upload មក ដើម្បីការពារ Security និងទំហំ Disk។',
-                '**Mimes Rule**: កំណត់ប្រភេទឯកសារដែលអនុញ្ញាត (ឧទាហរណ៍៖ `jpg, png, pdf`)។',
-                '**Max Rule**: កំណត់ទំហំអតិបរមារបស់ឯកសារ (គិតជា Kilobytes)។'
+                '**Security & Control**: ការ Validate File គឺសំខាន់បំផុតដើម្បីការពារ Malicious files និងការប្រើប្រាស់ Disk ហួសកម្រិត។',
+                '**Common Rules**: ប្រើ `image` សម្រាប់រូបភាព, `mimes:pdf,docx` សម្រាប់ប្រភេទឯកសារ និង `max:2048` (2MB) សម្រាប់ទំហំ។',
+                '**Advanced Rules**: អ្នកអាចប្រើ `dimensions` ដើម្បីកំណត់ទំហំ Pixel របស់រូបភាព (Width/Height) ឱ្យបានត្រឹមត្រូវតាម Design។'
               ],
-              code: '$request->validate([\n    "avatar" => "required|image|mimes:jpeg,png,jpg|max:2048",\n    "document" => "required|mimes:pdf,docx|max:10240"\n]);',
+              code: '$request->validate([\n    // រូបភាពត្រូវតែជា JPG/PNG, ទំហំមិនលើស 2MB, និងមានទំហំយ៉ាងតិច 100x100px\n    "avatar" => "required|image|mimes:jpeg,png,jpg|max:2048|dimensions:min_width=100,min_height=100",\n    \n    // ឯកសារត្រូវតែជា PDF ឬ DOCX និងមិនលើស 10MB\n    "document" => "required|mimes:pdf,docx|max:10240"\n]);',
               language: 'php',
-              insight: '`max:2048` មានន័យថាទំហំអតិបរមាគឺ 2MB (2048 KB)។'
+              insight: '`max` value គិតជា Kilobytes (KB)។ ឧទាហរណ៍ 1024 = 1MB, 2048 = 2MB។'
             },
             {
               id: '6.3.3',
@@ -258,13 +260,14 @@ export const part3: Part = {
               titleEn: 'Storage Link',
               type: 'concept',
               content: [
-                '**Private by Default**: ជាធម្មតាឯកសារក្នុង `storage/app` មិនអាចចូលមើលតាម URL បានទេ ដើម្បីសុវត្ថិភាព។',
-                '**The Symbolic Link**: ប្រើ Command `php artisan storage:link` ដើម្បីបង្កើតផ្លូវកាត់ពី `public/storage` ទៅកាន់ `storage/app/public`។',
-                '**Retrieving URLs**: ប្រើ `Storage::url($path)` ដើម្បីទទួលបាន URL សម្រាប់បង្ហាញរូបភាពនៅលើ Website របស់អ្នក។'
+                '**Private by Default**: ឯកសារក្នុង `storage/app` មិនអាចចូលមើលតាម URL បានទេ ដើម្បីសុវត្ថិភាពទិន្នន័យ។',
+                '**Public Symlink**: ដើម្បីឱ្យរូបភាពបង្ហាញលើ Website បាន យើងត្រូវបង្កើត Symbolic Link ពី `public/storage` ទៅកាន់ `storage/app/public`।',
+                '**Retrieving URLs**: ប្រើ `Storage::url($path)` ដើម្បីបម្លែង Path ក្នុង Database ទៅជា URL ដែល Browser អាចអានបាន។'
               ],
-              code: '// បង្កើត Link (ធ្វើតែម្ដងគត់ក្នុងមួយ Project)\nphp artisan storage:link\n\n// បង្ហាញរូបភាពក្នុង Blade\n<img src="{{ Storage::url($user->avatar_path) }}">',
+              code: '// បង្កើត Link (ធ្វើតែម្ដងគត់ក្នុងមួយ Project)\nphp artisan storage:link\n\n// ក្នុង Blade ដើម្បីបង្ហាញរូបភាព\n<img src="{{ Storage::url($user->avatar_path) }}" alt="Profile Image">',
               language: 'php',
-              insight: 'កុំភ្លេចកំណត់ `FILESYSTEM_DISK=public` ក្នុងឯកសារ `.env` ប្រសិនបើអ្នកចង់ឱ្យរូបភាពបង្ហាញជាសាធារណៈ។'
+              insight: 'រាល់ File ដែល Upload ទៅកាន់ "public" disk នឹងអាចចូលមើលបានជាសាធារណៈតាមរយៈ URL។',
+              animation: 'storage_link'
             },
             {
               id: '6.3.4',
@@ -272,11 +275,11 @@ export const part3: Part = {
               titleEn: 'Advanced File Management',
               type: 'code',
               content: [
-                '**Manual Naming**: ប្រើ `storeAs()` ប្រសិនបើអ្នកចង់កំណត់ឈ្មោះឯកសារដោយខ្លួនឯង។',
-                '**File Operations**: Storage Facade ផ្ដល់មុខងារសម្រាប់ Check វត្តមានឯកសារ, ទាញយក (Download), និងលុប (Delete)។',
-                '**Cloud Ready**: អ្នកអាចប្ដូរទៅរក្សាទុកលើ AWS S3 បានយ៉ាងងាយស្រួលដោយគ្រាន់តែប្ដូរការកំណត់ក្នុង Config។'
+                '**Manual Naming**: ប្រើ `storeAs("folder", "filename.jpg")` ប្រសិនបើអ្នកចង់រក្សាឈ្មោះដើម ឬកំណត់ឈ្មោះដោយខ្លួនឯង។',
+                '**Storage Operations**: ប្រើ "Storage Facade" ដើម្បីធ្វើការងារផ្សេងៗដូចជា Check វត្តមាន (`exists`), ទាញយក (`download`), ឬលុប (`delete`)។',
+                '**Content Handling**: អ្នកអាចប្រើ `Storage::get()` ដើម្បីអានទិន្នន័យក្នុង File ឬ `Storage::put()` ដើម្បីបង្កើត File ថ្មីពី String ទិន្នន័យ។'
               ],
-              code: 'use Illuminate\\Support\\Facades\\Storage;\n\n// រក្សាទុកជាមួយឈ្មោះជាក់លាក់\n$request->file("avatar")->storeAs("avatars", "user_1.jpg");\n\n// លុបឯកសារចាស់ចោល\nif (Storage::exists("avatars/old_image.jpg")) {\n    Storage::delete("avatars/old_image.jpg");\n}\n\n// ទាញយកឯកសារ\nreturn Storage::download("documents/report.pdf");',
+              code: 'use Illuminate\\Support\\Facades\\Storage;\n\n// Check និង លុប File ចាស់\nif (Storage::disk("public")->exists($oldPath)) {\n    Storage::disk("public")->delete($oldPath);\n}\n\n// បង្កើត File ថ្មីជាមួយ Content ផ្ទាល់ខ្លួន\nStorage::put("logs/user_activity.txt", "User " . $user->id . " updated profile.");\n\n// ទាញយក (Force Download)\nreturn Storage::download("reports/monthly_report.pdf", "Your_Report.pdf");',
               language: 'php'
             },
             {
@@ -285,22 +288,24 @@ export const part3: Part = {
               titleEn: 'Multiple File Uploads',
               type: 'code',
               content: [
-                '**Array Inputs**: ប្រើប្រាស់សញ្ញា `[]` នៅក្នុងឈ្មោះ Input ដើម្បីបញ្ជូនឯកសារជាទម្រង់ Array មកកាន់ Backend។ (ឧទាហរណ៍៖ ការ Upload រូបភាពច្រើនសន្លឹកសម្រាប់ផលិតផលមួយ)',
-                '**Looping**: ក្នុង Controller អ្នកគ្រាន់តែ Loop លើ Array ដែលទទួលពី Request ដើម្បីរក្សាទុកឯកសារម្ដងមួយៗបានយ៉ាងងាយ។'
+                '**Array Inputs**: ប្រើប្រាស់សញ្ញា `[]` ក្នុងឈ្មោះ Input និង attribute `multiple` ក្នុង HTML ដើម្បីបញ្ជូន File ច្រើនក្នុងពេលតែមួយ។',
+                '**Validation for Arrays**: ប្រើសញ្ញា `*` ក្នុង Validation rules ដើម្បីបញ្ជាក់ថាគ្រប់ File ទាំងអស់ក្នុង Array ត្រូវតែគោរពតាមលក្ខខណ្ឌ។',
+                '**Efficient Processing**: ក្នុង Controller ប្រើ `foreach` ដើម្បី Loop លើ Array នៃ Files និងរក្សាទុកពួកវាម្ដងមួយៗ។'
               ],
-              code: '// Blade HTML\n<input type="file" name="photos[]" multiple>\n\n// Controller Logic\nif ($request->hasFile("photos")) {\n    foreach ($request->file("photos") as $photo) {\n        $path = $photo->store("gallery", "public");\n        // រក្សាទុក $path ចូលក្នុង Database\n    }\n}',
-              language: 'php'
+              code: '// HTML Form\n<input type="file" name="gallery[]" multiple>\n\n// Controller Validation & Logic\n$request->validate([\n    "gallery" => "required|array",\n    "gallery.*" => "image|mimes:jpg,png|max:1024" // Validate គ្រប់រូបភាពក្នុង Array\n]);\n\nif ($request->hasFile("gallery")) {\n    foreach ($request->file("gallery") as $image) {\n        $path = $image->store("products", "public");\n        // save $path ទៅក្នុង Database (ឧទាហរណ៍៖ ProductImage model)\n    }\n}',
+              language: 'php',
+              animation: 'multiple_upload'
             },
             {
               id: '6.3.6',
-              title: 'Real-world Demo: Avatar Upload System',
+              title: 'Real-world Demo: Avatar Update System',
               titleEn: 'Avatar Upload Demo',
               type: 'code',
               content: [
-                '**Full Workflow**: នេះគឺជាកូដពេញលេញសម្រាប់ Upload Avatar, លុបរូបភាពចាស់, និងរក្សាទុកឈ្មោះរូបភាពថ្មីចូលក្នុង Database។',
-                '**Security**: ប្រើ "extension()" ជំនួសឱ្យការទុកចិត្តឈ្មោះ file ដើមរបស់ User។'
+                '**Professional Workflow**: ការគ្រប់គ្រង Avatar រួមមានការ Validate, ការលុបរូបចាស់ចោលដើម្បីកុំឱ្យពេញ Disk, និងការ Update Database។',
+                '**Extension Security**: ប្រើ `$file->extension()` ដើម្បីទទួលបាន Extension ពិតប្រាកដដែលបានមកពីការពិនិត្យ Content របស់ File (ជៀសវាងការបន្លំឈ្មោះ Extension)។'
               ],
-              code: 'public function updateAvatar(Request $request) {\n    $request->validate([\n        \"avatar\" => \"required|image|max:1024\", // 1MB Max\n    ]);\n\n    $user = auth()->user();\n\n    if ($request->hasFile(\"avatar\")) {\n        // 1. លុបរូបចាស់ (បើមាន)\n        if ($user->avatar) {\n            Storage::delete($user->avatar);\n        }\n\n        // 2. Upload រូបថ្មី\n        $path = $request->file(\"avatar\")->store(\"avatars\", \"public\");\n\n        // 3. Update ក្នុង DB\n        $user->update([\"avatar\" => $path]);\n    }\n\n    return back()->with(\"status\", \"Avatar updated!\");\n}',
+              code: 'public function updateAvatar(Request $request) {\n    $request->validate([\n        "avatar" => "required|image|max:1024",\n    ]);\n\n    $user = auth()->user();\n\n    if ($request->hasFile("avatar")) {\n        // 1. លុបរូបចាស់ពី Disk (បើមាន) ដើម្បីកុំឱ្យខ្ជះខ្ជាយទំហំផ្ទុក\n        if ($user->avatar_path) {\n            Storage::disk("public")->delete($user->avatar_path);\n        }\n\n        // 2. Upload រូបថ្មី និងទទួលបាន Path\n        $path = $request->file("avatar")->store("avatars", "public");\n\n        // 3. Update Database\n        $user->update(["avatar_path" => $path]);\n    }\n\n    return back()->with("success", "Avatar ត្រូវបានផ្លាស់ប្តូរដោយជោគជ័យ!");\n}',
               language: 'php'
             },
             {
@@ -309,11 +314,12 @@ export const part3: Part = {
               titleEn: 'Best Practices',
               type: 'summary',
               content: [
-                '**Enctype Attribute**: ធានាថា Form របស់អ្នកមាន "enctype=\\"multipart/form-data\\"" ជានិច្ច។',
-                '**File Validation**: ឆែកប្រភេទ (Mimes) និងទំហំ (Max) ឯកសារឱ្យបានច្បាស់លាស់មុននឹង Upload។',
-                '**Storage Link**: ប្រើ "storage:link" ដើម្បីឱ្យរូបភាពអាចបង្ហាញជាសាធារណៈបានតាមរយៈ URL។'
+                '**Security First**: កុំទុកចិត្តឈ្មោះ File របស់ User ឱ្យសោះ (ប្រើ store() ដើម្បីទទួលបាន Hash name) និង Validate ប្រភេទ File ជានិច្ច។',
+                '**Storage Link**: កុំភ្លេច Run "php artisan storage:link" ក្នុង Server ថ្មី ដើម្បីឱ្យរូបភាពអាចបង្ហាញបាន។',
+                '**Cloud Readiness**: ប្រើ "Storage Facade" ជានិច្ច ដើម្បីឱ្យអ្នកអាចប្តូរទៅប្រើ AWS S3 បានយ៉ាងងាយនៅពេល App រីកធំ។',
+                '**Cleanup**: ត្រូវលុប File ចាស់ចោលជានិច្ច នៅពេល User ប្តូរ File ថ្មី ឬលុប Data ដើម្បីកុំឱ្យខ្ជះខ្ជាយទំហំ Server។'
               ],
-              insight: 'ការគ្រប់គ្រងឯកសារបានល្អ ជួយសន្សំសំចៃទំហំផ្ទុក និងបង្កើនសុវត្ថិភាព Application។'
+              insight: 'ការគ្រប់គ្រង File បានល្អ ធ្វើឱ្យ Application របស់អ្នកមានសុវត្ថិភាព ដើរលឿន និងងាយស្រួល Scale។'
             }
           ]
         }
@@ -388,7 +394,7 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**Quick Setup**: របៀបដំឡើង Laravel Breeze ដើម្បីទទួលបានប្រព័ន្ធ Authentication ពេញលេញក្នុងរយៈពេលប៉ុន្មានវិនាទី។',
-                '**Frontend Options**: អ្នកអាចជ្រើសរើសរវាង Blade, Vue (Inertia), ឬ React (Inertia)។'
+                '**Frontend Options**: អ្នកអាចជ្រើសរើសរវាង Blade, Vue (Inertia), ឬ React (Inertia)।'
               ],
               code: '// 1. ដំឡើងតាមរយៈ Composer\ncomposer require laravel/breeze --dev\n\n// 2. ដំឡើង Starter Kit (Blade version)\nphp artisan breeze:install blade\n\n// 3. Migrate Database និងដំឡើង Assets\nphp artisan migrate\nnpm install && npm run dev',
               language: 'php'
@@ -536,7 +542,7 @@ export const part3: Part = {
               type: 'code',
               content: [
                 '**UI Control**: បង្ហាញ ឬលាក់ផ្នែកខ្លះនៃ UI ដោយផ្អែកលើសិទ្ធិរបស់ User។ (ជួយឱ្យ User មើលឃើញតែប៊ូតុង ឬព័ត៌មានណាដែលពួកគេត្រូវបានអនុញ្ញាតឱ្យប៉ះពាល់ប៉ុណ្ណោះ)',
-                '**Clean Templates**: ប្រើ `@can` និង `@cannot` ក្នុង Blade ដើម្បីឱ្យកូដមើលទៅមានរបៀប។ (ជួយកាត់បន្ថយការសរសេរកូដ PHP ស្មុគស្មាញនៅក្នុង HTML ដែលនាំឱ្យពិបាកអាន)'
+                '**Clean Templates**: ប្រើ `@can` និង `@cannot` ក្នុង Blade ដើម្បីឱ្យកូដមើលទៅមានរបៀប។ (ជួយកាត់បន្ថយកូដ PHP ស្មុគស្មាញនៅក្នុង HTML ដែលនាំឱ្យពិបាកអាន)'
               ],
               code: '@can("update", $post)\n    <a href="/post/{{ $post->id }}/edit">Edit Post</a>\n@else\n    <p>អ្នកមិនមានសិទ្ធិកែប្រែ Post នេះទេ។</p>\n@endcan',
               language: 'php',
@@ -560,7 +566,7 @@ export const part3: Part = {
               titleEn: 'Best Practices',
               type: 'summary',
               content: [
-                '**Policy First**: ប្រើ Policies សម្រាប់រៀបចំសិទ្ធិលើ Model នីមួយៗឱ្យមានរបៀបរៀបរយ។',
+                '**Policy First**: ប្រើ Policies សម្រាប់ការរៀបចំសិទ្ធិលើ Model នីមួយៗឱ្យមានរបៀបរៀបរយ។',
                 '**Blade Guarding**: ប្រើ "@can" ដើម្បីលាក់ប៊ូតុង ឬមុខងារណាដែល User មិនមានសិទ្ធិប្រើប្រាស់។',
                 '**Controller Safety**: ប្រើ "$this->authorize()" ជានិច្ចដើម្បីបញ្ជាក់សិទ្ធិម្ដងទៀតក្នុង Backend។'
               ],
@@ -760,7 +766,7 @@ export const part3: Part = {
               type: 'summary',
               content: [
                 '**Eager Loading**: ប្រើ "with()" ជានិច្ចនៅពេលទាញទិន្នន័យក្នុង Loop ដើម្បីកាត់បន្ថយចំនួន Query។',
-                '**Lazy Loading**: ប្រើ "load()" តែនៅពេលណាដែលអ្នកមិនច្បាស់ថាត្រូវការទិន្នន័យនោះឬអត់។',
+                '**Lazy Loading**: ប្រើ "load()" តែនៅពេលណាដែលអ្នកមិនច្បាស់ថាត្រូវការទិន្នន័យនោះឬអត់।',
                 '**withCount()**: ប្រើវាដើម្បីទាញយកចំនួន Records កូនៗដោយមិនចាំបាច់ Load ទិន្នន័យទាំងអស់មក។'
               ],
               insight: 'Performance របស់ App អាស្រ័យលើរបៀបដែលអ្នក Query ទិន្នន័យពី Database។'
@@ -784,7 +790,6 @@ export const part3: Part = {
                 '**Native Methods**: Eloquent ផ្តល់ methods ពិសេសៗសម្រាប់បង្កើត និង sync ទំនាក់ទំនង។ (ជួយឱ្យអ្នកមិនចាំបាច់បញ្ចូល ID ដោយដៃនាំឱ្យខុសលំដាប់លំដោយ)',
                 '**Safety**: វាមានសុវត្ថិភាព និងងាយប្រើជាងការកំណត់ foreign keys ដោយដៃ។ (Laravel នឹងជួយផ្ទៀងផ្ទាត់ និងចាត់ចែងរាល់ logic ទាំងអស់ឱ្យស្រាប់តែម្ដង)'
               ]
-
             },
             {
               id: '8.3.1',
@@ -811,25 +816,24 @@ export const part3: Part = {
                 '**toggle()** — បន្ថែម ប្រសិនវាមិនទាន់មាន, លុប ប្រសិនវាមានរួចហើយ (ដូច Checkbox ចុចបើក/បិទ)។',
                 '**updateExistingPivot()** — Update column ក្នុង Pivot Row ដែលមានស្រាប់ (ដូចជា update expires_at) ដោយមិនចាំបាច់ detach+attach ទៀត។'
               ],
-              code: '$user = User::find(1);\n\n// ══════════════════════════════════════\n// 1) ATTACH — បន្ថែម Role ចូល Pivot\n// ══════════════════════════════════════\n\n// attach ID មួយ\n$user->roles()->attach(3);\n\n// attach IDs ច្រើនក្នុងពេលតែមួយ\n$user->roles()->attach([1, 2, 3]);\n\n// attach ជាមួយ extra pivot data\n$user->roles()->attach(3, [\'expires_at\' => now()->addYear()]);\n\n// ══════════════════════════════════════\n// 2) DETACH — ដក Role ចេញពី Pivot\n// ══════════════════════════════════════\n\n// detach ID មួយ\n$user->roles()->detach(3);\n\n// detach IDs ច្រើន\n$user->roles()->detach([1, 2]);\n\n// detach ទាំងអស់ (លុបទំនាក់ទំនងចោលទាំងស្រុង)\n$user->roles()->detach();\n\n// ══════════════════════════════════════\n// 3) SYNC — ធ្វើ Pivot ឱ្យ match List\n// ══════════════════════════════════════\n\n// User នេះ ត្រូវមានត្រឹម Role 1,2,3 — ដែលលើសនឹងត្រូវលុប\n$user->roles()->sync([1, 2, 3]);\n\n// Sync ដោយមិនលុបចាស់ (append only)\n$user->roles()->syncWithoutDetaching([4, 5]);\n\n// ══════════════════════════════════════\n// 4) TOGGLE — flip Role (មាន→លុប, គ្មាន→បន្ថែម)\n// ══════════════════════════════════════\n$user->roles()->toggle([1, 3]);\n\n// ══════════════════════════════════════\n// 5) UPDATE EXISTING PIVOT ROW\n// ══════════════════════════════════════\n// Update expires_at សម្រាប់ Role ដែល attach ហើយ\n$user->roles()->updateExistingPivot(3, [\'expires_at\' => now()->addMonths(6)]);',
+              code: '$user = User::find(1);\n\n// 1) ATTACH — បន្ថែម Role ចូល Pivot\n$user->roles()->attach(3);\n$user->roles()->attach([1, 2, 3]);\n$user->roles()->attach(3, [\'expires_at\' => now()->addYear()]);\n\n// 2) DETACH — ដក Role ចេញពី Pivot\n$user->roles()->detach(3);\n$user->roles()->detach([1, 2]);\n$user->roles()->detach();\n\n// 3) SYNC — ធ្វើ Pivot ឱ្យ match List\n$user->roles()->sync([1, 2, 3]);\n$user->roles()->syncWithoutDetaching([4, 5]);\n\n// 4) TOGGLE — flip Role\n$user->roles()->toggle([1, 3]);\n\n// 5) UPDATE EXISTING PIVOT ROW\n$user->roles()->updateExistingPivot(3, [\'expires_at\' => now()->addMonths(6)]);',
               language: 'php',
-              insight: '⚠️ attach() មិន check duplicate — ប្រសិន Role 3  មានក្នុង Pivot ហើយ ហើយ attach(3) ម្ដងទៀត → នឹងមាន 2 rows! ប្រើ sync() ឬ syncWithoutDetaching() ជំនួស ព្រោះវា safe និង idempotent (ដំណើរការច្រើនដង លទ្ធផលដូចគ្នា)។',
+              insight: '⚠️ attach() មិន check duplicate — ប្រើ sync() ឬ syncWithoutDetaching() ជំនួស ព្រោះវា safe និង idempotent។',
               animation: 'sync_attach'
             },
-
             {
               id: '8.3.3',
               title: 'Pivot Table ជាមួយ Extra Data',
               titleEn: 'Pivot with Extra Data',
               type: 'code',
               content: [
-                '**Rich Pivots**: Pivot Table មិនត្រឹមតែទុក ID ទាំងពីរប៉ុណ្ណោះទេ — វាអាចទុក data បន្ថែមដូចជា `expires_at` ឬ `assigned_by` ផងដែរ។ (ឧទាហរណ៍: User ត្រូវបាន assign Role នៅថ្ងៃណា? ឬ Role នោះ expire ថ្ងៃណា?)',
-                '**withPivot()**: ប្រើ `withPivot()` ក្នុង Model ដើម្បីប្រាប់ Eloquent ឱ្យ load column បន្ថែមពី Pivot Table មកផងដែរ។ (បើមិនដាក់ withPivot() ទេ columns ទាំងនោះនឹងមិន load ឡើយ)',
+                '**Rich Pivots**: Pivot Table អាចទុក data បន្ថែមដូចជា `expires_at` ឬ `assigned_by` ផងដែរ។ (ឧទាហរណ៍: User ត្រូវបាន assign Role នៅថ្ងៃណា? ឬ Role នោះ expire ថ្ងៃណា?)',
+                '**withPivot()**: ប្រើ `withPivot()` ក្នុង Model ដើម្បីប្រាប់ Eloquent ឱ្យ load column បន្ថែមពី Pivot Table មកផងដែរ។',
                 '**syncWithPivotValues()**: ប្រើ `syncWithPivotValues()` ដើម្បី sync ព្រមជាមួយ extra data ក្នុង Pivot ក្នុងពេលតែមួយ។'
               ],
-              code: '// ១. ក្នុង User Model — ប្រកាសថាត្រូវ load "expires_at" ពី pivot ផងដែរ\npublic function roles() {\n    return $this->belongsToMany(Role::class)\n                ->withPivot("expires_at", "assigned_by")\n                ->withTimestamps();\n}\n\n// ២. Attach ជាមួយ extra data\n$user->roles()->attach($roleId, [\n    "expires_at"  => now()->addYear(),\n    "assigned_by" => auth()->id(),\n]);\n\n// ៣. Sync ជាមួយ extra data ដូចគ្នាសម្រាប់ IDs ទាំងអស់\n$user->roles()->syncWithPivotValues([1, 2, 3], [\n    "expires_at" => now()->addYear(),\n]);\n\n// ៤. អានទិន្នន័យពី pivot\nforeach ($user->roles as $role) {\n    echo $role->pivot->expires_at;\n}',
+              code: '// ១. ក្នុង User Model\npublic function roles() {\n    return $this->belongsToMany(Role::class)\n                ->withPivot("expires_at", "assigned_by")\n                ->withTimestamps();\n}\n\n// ២. Attach ជាមួយ extra data\n$user->roles()->attach($roleId, [\n    "expires_at"  => now()->addYear(),\n    "assigned_by" => auth()->id(),\n]);\n\n// ៣. Sync ជាមួយ extra data\n$user->roles()->syncWithPivotValues([1, 2, 3], [\n    "expires_at" => now()->addYear(),\n]);\n\n// ៤. អានទិន្នន័យពី pivot\nforeach ($user->roles as $role) {\n    echo $role->pivot->expires_at;\n}',
               language: 'php',
-              insight: '`withTimestamps()` នឹងបន្ថែម `created_at` / `updated_at` ក្នុង Pivot Table ដោយស្វ័យប្រវត្តិ — ល្អបំផុតសម្រាប់ Audit Logs។'
+              insight: '`withTimestamps()` នឹងបន្ថែម `created_at` / `updated_at` ក្នុង Pivot Table ដោយស្វ័យប្រវត្តិ។'
             },
             {
               id: '8.3.4',
@@ -837,13 +841,13 @@ export const part3: Part = {
               titleEn: 'Associate and Dissociate',
               type: 'code',
               content: [
-                '**BelongsTo Relations**: `associate()` និង `dissociate()` ប្រើជាពិសេសសម្រាប់ `belongsTo` relationship ដូចជា Comment belongs to Post។ (ផ្ទុយពី attach/detach ដែលប្រើជាមួយ Many-to-Many)',
-                '**associate()**: ភ្ជាប់ Model ដោយកំណត់ Foreign Key ឱ្យស្វ័យប្រវត្តិ ហើយ save ភ្លាម។ (មានន័យថា `comment->post_id = $post->id; comment->save();` ក្នុងបន្ទាត់តែមួយ)',
-                '**dissociate()**: ដក Foreign Key ចោល (ដាក់ null) ហើយ save ភ្លាម — ដូច "ផ្ដាច់" ទំនាក់ទំនង។ (Comment នៅតែមានក្នុង DB ប៉ុន្តែ post_id ក្លាយជា null)'
+                '**BelongsTo Relations**: `associate()` និង `dissociate()` ប្រើជាពិសេសសម្រាប់ `belongsTo` relationship ដូចជា Comment belongs to Post។',
+                '**associate()**: ភ្ជាប់ Model ដោយកំណត់ Foreign Key ឱ្យស្វ័យប្រវត្តិ ហើយ save ភ្លាម។',
+                '**dissociate()**: ដក Foreign Key ចោល (ដាក់ null) ហើយ save ភ្លាម — ដូច "ផ្ដាច់" ទំនាក់ទំនង។'
               ],
-              code: '// ---- associate() ----\n$comment = Comment::find(5);\n$post    = Post::find(10);\n\n// ភ្ជាប់ Comment ទៅ Post (កំណត់ post_id = 10 ហើយ save)\n$comment->post()->associate($post);\n$comment->save();\n\n// ---- dissociate() ----\n// ផ្ដាច់ Comment ចេញពី Post (post_id = null)\n$comment->post()->dissociate();\n$comment->save();\n\n// ---- ប្រៀបធៀប ----\n// ❌ ធ្វើដោយដៃ (ងាយខុស)\n$comment->post_id = $post->id;\n$comment->save();\n\n// ✅ ធ្វើដោយ associate (ត្រឹមត្រូវ)\n$comment->post()->associate($post)->save();',
+              code: '// ---- associate() ----\n$comment = Comment::find(5);\n$post    = Post::find(10);\n$comment->post()->associate($post);\n$comment->save();\n\n// ---- dissociate() ----\n$comment->post()->dissociate();\n$comment->save();',
               language: 'php',
-              insight: '`associate()` ស័ក្តិសមជាងការ assign FK ដោយដៃ ព្រោះវាក៏ set relation cache ផ្ទៃក្នុង Eloquent ផងដែរ ធ្វើឱ្យ `$comment->post` accessible ភ្លាមដោយមិនចាំបាច់ query ទៀត។'
+              insight: '`associate()` ស័ក្តិសមជាងការ assign FK ដោយដៃ ព្រោះវាក៏ set relation cache ផ្ទៃក្នុង Eloquent ផងដែរ។'
             },
             {
               id: '8.3.5',
@@ -851,13 +855,13 @@ export const part3: Part = {
               titleEn: 'SaveMany and CreateMany',
               type: 'code',
               content: [
-                '**Bulk Insert**: `saveMany()` និង `createMany()` ដូចជា `save()` / `create()` ប៉ុន្តែអាច insert Records ច្រើនក្នុងពេលតែមួយ។ (ជៀសវាងការ loop ច្រើននិង query ច្រើន)',
+                '**Bulk Insert**: `saveMany()` និង `createMany()` ដូចជា `save()` / `create()` ប៉ុន្តែអាច insert Records ច្រើនក្នុងពេលតែមួយ។',
                 '**saveMany()**: ទទួលយក Array នៃ Model instances ដែលបង្កើតជាស្រេច ហើយ save ទាំងអស់ + ភ្ជាប់ FK ឱ្យ។',
-                '**createMany()**: ទទួលយក Array នៃ attribute arrays ហើយ create + ភ្ជាប់ FK ឱ្យ — កូដខ្លីជាង saveMany()។'
+                '**createMany()**: ទទួលយក Array នៃ attribute arrays ហើយ create + ភ្ជាប់ FK ឱ្យ។'
               ],
-              code: '// ---- saveMany() ----\n// ប្រើ Model instances ដែលបង្កើតមុន\n$post = Post::find(1);\n\n$post->comments()->saveMany([\n    new Comment(["body" => "Comment A"]),\n    new Comment(["body" => "Comment B"]),\n    new Comment(["body" => "Comment C"]),\n]);\n\n// ---- createMany() ----\n// ប្រើ arrays ដោយផ្ទាល់ (ខ្លីជាង)\n$post->comments()->createMany([\n    ["body" => "Comment A"],\n    ["body" => "Comment B"],\n    ["body" => "Comment C"],\n]);\n// → Laravel នឹង insert 3 rows ជាមួយ post_id = 1 ស្វ័យប្រវត្តិ',
+              code: '// ---- saveMany() ----\n$post = Post::find(1);\n$post->comments()->saveMany([\n    new Comment(["body" => "Comment A"]),\n    new Comment(["body" => "Comment B"]),\n]);\n\n// ---- createMany() ----\n$post->comments()->createMany([\n    ["body" => "Comment A"],\n    ["body" => "Comment B"],\n]);',
               language: 'php',
-              insight: 'ប្រើ `createMany()` ជំនួស loop + `create()` ម្ដងៗ ដើម្បីសន្សំចំនួន Query និងធ្វើឱ្យ Code មើលស្អាត និងអានកាន់តែងាយ។'
+              insight: 'ប្រើ `createMany()` ជំនួស loop + `create()` ម្ដងៗ ដើម្បីសន្សំចំនួន Query។'
             },
             {
               id: '8.3.6',
@@ -881,11 +885,11 @@ export const part3: Part = {
                 '**saveMany() / createMany()**: ប្រើបង្កើត Records ច្រើន ក្នុង Loop តែមួយ — ជៀសវាង N+1 Writes។',
                 '**attach() / detach()**: ប្រើជាមួយ "belongsToMany" (Pivot) — បន្ថែម ឬដក connection ក្នុង pivot table។',
                 '**sync()**: ដ្ឋានល្អបំផុតក្នុង Update Forms — auto-add ដែលខ្វះ, auto-remove ដែលលើស។',
-                '**syncWithPivotValues()**: sync + extra pivot data (ឧ. expires_at) ក្នុង call តែមួយ។',
+                '**syncWithPivotValues()**: sync + extra pivot data ក្នុង call តែមួយ។',
                 '**associate() / dissociate()**: ប្រើជាមួយ "belongsTo" — ផ្លាស់ប្ដូរ FK ដោយមានសុវត្ថិភាព + update relation cache។',
                 '**withPivot()**: ប្រកាសក្នុង Model ដើម្បី load extra columns ពី Pivot Table។'
               ],
-              insight: 'ច្បាប់ចំណាំ: ប្រើ Eloquent relationship methods ជានិច្ច — ហាមមាន hardcoded FK assignments ដោយដៃ ព្រោះវានឹងនាំឱ្យ bugs ពិបាករកនៅពេលក្រោយ។'
+              insight: 'ច្បាប់ចំណាំ: ប្រើ Eloquent relationship methods ជានិច្ច — ហាមមាន hardcoded FK assignments ដោយដៃ។'
             }
           ]
         }

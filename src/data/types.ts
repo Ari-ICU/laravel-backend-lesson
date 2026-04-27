@@ -65,7 +65,7 @@ export type AnimationType =
   | 'database_migrations' | 'schema_builder' | 'eloquent_orm' | 'artisan_migrate'
   | 'mass_assignment' | 'blade_components' | 'model_creation' | 'migration_naming'
   | 'migration_up_down' | 'validation_flow' | 'validation_inline' | 'form_request'
-  | 'error_display' | 'file_upload' | 'auth_overview' | 'middleware_guard'
+  | 'error_display' | 'file_upload' | 'upload_form' | 'storage_link' | 'multiple_upload' | 'auth_overview' | 'middleware_guard'
   | 'gates_policies' | 'relationship_types' | 'eager_loading' | 'sync_attach'
   | 'polymorphic' | 'through_relations' | 'one_to_one' | 'one_to_many' | 'many_to_many'
   | 'lazy_eager_loading' | 'dashboard_query' | 'api_concept_flow' | 'token_auth_flow' | 'error_handling_flow' | 'logging_flow' | 'testing_overview_flow' | 'unit_testing_flow' | 'mocking_flow' | 'feature_testing_flow' | 'cicd_flow' | 'security_flow' | 'deployment' | 'performance';

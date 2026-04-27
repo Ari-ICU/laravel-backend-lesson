@@ -82,6 +82,9 @@ import { ValidationInlineAnimation } from './animations/part3/module-6/Validatio
 import { FormRequestAnimation } from './animations/part3/module-6/FormRequestAnimation';
 import { ErrorDisplayAnimation } from './animations/part3/module-6/ErrorDisplayAnimation';
 import { FileUploadAnimation } from './animations/part3/module-6/FileUploadAnimation';
+import { UploadFormAnimation } from './animations/part3/module-6/UploadFormAnimation';
+import { StorageLinkAnimation } from './animations/part3/module-6/StorageLinkAnimation';
+import { MultipleUploadAnimation } from './animations/part3/module-6/MultipleUploadAnimation';
 
 // Module 7: Authentication & Authorization
 import { AuthOverviewAnimation } from './animations/part3/module-7/AuthOverviewAnimation';
@@ -310,6 +313,9 @@ export function SlideViewer({
       case 'validation_inline': return <ValidationInlineAnimation isProjectorMode={isProjectorMode} />;
       case 'validation_flow': return <ValidationFlowAnimation isProjectorMode={isProjectorMode} />;
       case 'file_upload': return <FileUploadAnimation isProjectorMode={isProjectorMode} />;
+      case 'upload_form': return <UploadFormAnimation isProjectorMode={isProjectorMode} />;
+      case 'storage_link': return <StorageLinkAnimation isProjectorMode={isProjectorMode} />;
+      case 'multiple_upload': return <MultipleUploadAnimation isProjectorMode={isProjectorMode} />;
       case 'auth_overview': return <AuthOverviewAnimation isProjectorMode={isProjectorMode} />;
       case 'middleware_guard': return <MiddlewareGuardAnimation isProjectorMode={isProjectorMode} />;
       case 'gates_policies': return <GatesPoliciesAnimation isProjectorMode={isProjectorMode} />;
